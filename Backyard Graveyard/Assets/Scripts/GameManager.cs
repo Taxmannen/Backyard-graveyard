@@ -1,18 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
+/* Script Made By Daniel */
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static event Action<bool> PauseEvent;
+
+    private bool paused;
+
+    private void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.P)) Pause(!paused);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Pause(bool state)
     {
-        
+        paused = state;
+        if (paused) Time.timeScale = 0;
+        else        Time.timeScale = 1;
+        PauseEvent?.Invoke(state);
     }
 }
