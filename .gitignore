@@ -1,9 +1,11 @@
-[Ll]ibrary/
-[Tt]emp/
-[Oo]bj/
-[Bb]uild/
-[Bb]uilds/
-Assets/AssetStoreTools*
+Backyard Graveyard/[Ll]ibrary/
+Backyard Graveyard/[Tt]emp/
+Backyard Graveyard/[Oo]bj/
+Backyard Graveyard/[Bb]uild/
+Backyard Graveyard/[Bb]uilds/
+Backyard Graveyard/Assets/AssetStoreTools*
+Backyard Graveyard/Assets/=Test=-/*
+Backyard Graveyard/Assets/-=Test=-.meta
 
 # Visual Studio cache directory
 .vs/
