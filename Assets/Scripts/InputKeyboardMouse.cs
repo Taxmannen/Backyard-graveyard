@@ -17,6 +17,8 @@ public class InputKeyboardMouse : MonoBehaviour
     public GameObject hand;
     [Tooltip("Allows the player to fly.")]
     public bool allowFlying = false;
+    [Tooltip("The speed at which the player moves around.")]
+    public float moveSpeed = 5;
 
     public GameObject rotX;
     public GameObject rotY;
@@ -50,18 +52,18 @@ public class InputKeyboardMouse : MonoBehaviour
 
         //if conflictingKeysStopPlayer is false, then ignore the top row
         if (conflictingKeysStopPlayer && (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.S))) movement.z = 0;
-        else if (Input.GetKey(KeyCode.W)) movement.z = Time.deltaTime;
-        else if (Input.GetKey(KeyCode.S)) movement.z = -Time.deltaTime;
+        else if (Input.GetKey(KeyCode.W)) movement.z = Time.deltaTime * moveSpeed;
+        else if (Input.GetKey(KeyCode.S)) movement.z = -Time.deltaTime * moveSpeed;
 
         //if conflictingKeysStopPlayer is false, then ignore the top row
         if (conflictingKeysStopPlayer && (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))) movement.x = 0;
-        else if (Input.GetKey(KeyCode.A)) movement.x = -Time.deltaTime;
-        else if (Input.GetKey(KeyCode.D)) movement.x = Time.deltaTime;
+        else if (Input.GetKey(KeyCode.A)) movement.x = -Time.deltaTime * moveSpeed;
+        else if (Input.GetKey(KeyCode.D)) movement.x = Time.deltaTime * moveSpeed;
 
         //movement.Normalize();
 
         playerObject.transform.Translate(movement, Space.Self);
-        if (!allowFlying) playerObject.transform.position = new Vector3(playerObject.transform.position.x, 1, playerObject.transform.position.z);
+        if (!allowFlying) playerObject.transform.position = new Vector3(playerObject.transform.position.x, 1.83f, playerObject.transform.position.z);
         #endregion
 
         #region Mouse rotation
