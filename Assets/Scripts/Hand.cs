@@ -5,7 +5,7 @@ using Valve.VR;
 public class Hand : MonoBehaviour
 {
     public SteamVR_Action_Boolean grabAction = null;
-
+        
     private SteamVR_Behaviour_Pose pose = null;
     private FixedJoint fixedJoint;
     private Interactable currentInteractable;
@@ -57,14 +57,13 @@ public class Hand : MonoBehaviour
         if (currentInteractable.ActiveHand)
             currentInteractable.ActiveHand.Drop();
 
-        currentInteractable.transform.position = transform.position;
+        currentInteractable.transform.position = currentInteractable.GetPickupPosition();
+        Debug.Log(currentInteractable.transform.position);
 
         Rigidbody targetBody = currentInteractable.GetComponent<Rigidbody>();
         fixedJoint.connectedBody = targetBody;
 
         currentInteractable.ActiveHand = this;
-
-
     }
 
     private void Drop()
