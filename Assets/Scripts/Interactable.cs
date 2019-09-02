@@ -1,9 +1,16 @@
 ﻿using UnityEngine;
 
+/* Script Made By Daniel and Petter */
 public class Interactable : MonoBehaviour
 {
+    [Header("Pickup")]
     [SerializeField] private bool snapOnPickup;
-    [SerializeField] private Transform handle;
+    //[SerializeField] private bool snapWhenThrow; //Skall implementeras
+
+    private MeshRenderer meshRenderer;
+    private Material outlineMaterial;
+    private Material[] standardMaterials;
+    private Material[] outlineMaterials;
 
     public Hand ActiveHand { get; set; } = null;
 
@@ -12,9 +19,25 @@ public class Interactable : MonoBehaviour
         get { return snapOnPickup; }
     }
 
-    public Vector3 GetPickupPosition()
+    private void Start()
     {
-        if (handle != null) return handle.position;
-        else                return transform.position;
+        meshRenderer = GetComponent<MeshRenderer>();
+        if (meshRenderer == null) meshRenderer = GetComponentInChildren<MeshRenderer>();
+
+        outlineMaterial = Resources.Load<Material>("Materials/Outline Material");
+
+        //Krävs för att ändra alla material
+        standardMaterials = meshRenderer.materials;
+        outlineMaterials = new Material[meshRenderer.materials.Length];
+        for (int i = 0; i < meshRenderer.materials.Length; i++) outlineMaterials[i] = outlineMaterial;
+    }
+
+    public void SetToOutlineMaterial(bool highlight)
+    {
+        /*Material mat = (highlight == true) ? outlineMaterial : standardMaterials[0];
+        if (meshRenderer.material != mat) meshRenderer.material = mat;*/
+
+        if (highlight) meshRenderer.materials = outlineMaterials;
+        else           meshRenderer.materials = standardMaterials;
     }
 }

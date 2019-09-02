@@ -2,6 +2,7 @@
 using UnityEngine;
 using Valve.VR;
 
+/* Script Made By Daniel, Edited By Petter */
 public class Hand : MonoBehaviour
 {
     public SteamVR_Action_Boolean grabAction = null;
@@ -11,6 +12,8 @@ public class Hand : MonoBehaviour
     private Interactable currentInteractable;
     private List<Interactable> contactInteractable = new List<Interactable>();
 
+    private MeshRenderer[] controllerMeshes;
+
     private void Awake()
     {
         pose = GetComponent<SteamVR_Behaviour_Pose>();
@@ -19,17 +22,10 @@ public class Hand : MonoBehaviour
 
     private void Update()
     {
-        if (grabAction.GetStateDown(pose.inputSource))
-        {
-            Debug.Log(pose.inputSource + " " + "Trigger Down");
-            Pickup();
-        }
+        if (grabAction.GetStateDown(pose.inputSource)) Pickup();
+        if (grabAction.GetStateUp(pose.inputSource)) Drop();
 
-        if (grabAction.GetStateUp(pose.inputSource))
-        {
-            Debug.Log(pose.inputSource + " " + "Trigger Up");
-            Drop();
-        }
+        if (contactInteractable.Count > 0) SetMaterialOnClosest(); //Måste optimeras
     }
 
     private void OnTriggerEnter(Collider other)
@@ -44,7 +40,10 @@ public class Hand : MonoBehaviour
     {
         if (other.CompareTag("Interactable"))
         {
-            contactInteractable.Remove(other.gameObject.GetComponent<Interactable>());
+            Interactable interactable = other.gameObject.GetComponent<Interactable>();
+            contactInteractable.Remove(interactable);
+
+            interactable.SetToOutlineMaterial(false);
         }
     }
 
@@ -57,13 +56,17 @@ public class Hand : MonoBehaviour
         if (currentInteractable.ActiveHand)
             currentInteractable.ActiveHand.Drop();
 
-        currentInteractable.transform.position = currentInteractable.GetPickupPosition();
-        Debug.Log(currentInteractable.transform.position);
+        if (currentInteractable.SnapOnPickup)
+        {
+            currentInteractable.transform.position = transform.position;
+            currentInteractable.transform.rotation = Quaternion.Euler(transform.eulerAngles );
+        }
 
         Rigidbody targetBody = currentInteractable.GetComponent<Rigidbody>();
         fixedJoint.connectedBody = targetBody;
 
         currentInteractable.ActiveHand = this;
+        SetControllerMeshState(false);
     }
 
     private void Drop()
@@ -78,17 +81,16 @@ public class Hand : MonoBehaviour
 
         currentInteractable.ActiveHand = null;
         currentInteractable = null;
+        SetControllerMeshState(true);
     }
 
     private Interactable GetNearestInteractable()
     {
         Interactable nearest = null;
         float minDistance = float.MaxValue;
-        float distance = 0;
-
         foreach (Interactable interactable in contactInteractable)
         {
-            distance = (interactable.transform.position - transform.position).sqrMagnitude;
+            float distance = (interactable.transform.position - transform.position).sqrMagnitude;
             if (distance < minDistance)
             {
                 minDistance = distance;
@@ -96,5 +98,21 @@ public class Hand : MonoBehaviour
             }
         }
         return nearest;
+    }
+
+    private void SetControllerMeshState(bool state)
+    {
+        if (controllerMeshes == null) controllerMeshes = GetComponentsInChildren<MeshRenderer>();
+        if (controllerMeshes != null) foreach (MeshRenderer renderer in controllerMeshes) renderer.enabled = state;
+    }
+
+    //Glöm ej att optimera
+    private void SetMaterialOnClosest()
+    {
+        foreach (var interactable in contactInteractable)
+        {
+            interactable.SetToOutlineMaterial(false);
+        }
+        GetNearestInteractable().SetToOutlineMaterial(true);
     }
 }
