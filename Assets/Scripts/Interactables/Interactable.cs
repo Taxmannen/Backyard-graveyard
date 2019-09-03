@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody), typeof(MeshRenderer))]
 /* Script Made By Daniel and Petter */
 public class Interactable : MonoBehaviour
 {
     [Header("Pickup")]
     [SerializeField] private bool snapOnPickup;
     //[SerializeField] private bool snapWhenThrow; //Skall implementeras
+    [SerializeField] private float despawnTimer; //TODO
 
     private MeshRenderer meshRenderer;
     private Material outlineMaterial;
@@ -39,5 +41,15 @@ public class Interactable : MonoBehaviour
 
         if (highlight) meshRenderer.materials = outlineMaterials;
         else           meshRenderer.materials = standardMaterials;
+    }
+
+    public virtual Interactable Interact()
+    {
+        return this;
+    }
+
+    public virtual void Drop()
+    {
+        ActiveHand = null;
     }
 }
