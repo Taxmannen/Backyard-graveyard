@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /* Script Made By Daniel */
 public class GameManager : MonoBehaviour
@@ -11,6 +12,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.P)) Pause(!paused);
+        if (Input.GetKeyDown(KeyCode.R)) SceneManager.LoadScene("Main");
     }
 
     private void Pause(bool state)

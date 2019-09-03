@@ -42,7 +42,6 @@ public class Hand : MonoBehaviour
         {
             Interactable interactable = other.gameObject.GetComponent<Interactable>();
             contactInteractable.Remove(interactable);
-
             interactable.SetToOutlineMaterial(false);
         }
     }
@@ -56,17 +55,22 @@ public class Hand : MonoBehaviour
         if (currentInteractable.ActiveHand)
             currentInteractable.ActiveHand.Drop();
 
-        if (currentInteractable.SnapOnPickup)
+        currentInteractable = currentInteractable.Interact();
+
+        if (currentInteractable != null)
         {
-            currentInteractable.transform.position = transform.position;
-            currentInteractable.transform.rotation = Quaternion.Euler(transform.eulerAngles );
+            if (currentInteractable.SnapOnPickup)
+            {
+                currentInteractable.transform.position = transform.position;
+                currentInteractable.transform.rotation = Quaternion.Euler(transform.eulerAngles);
+            }
+
+            Rigidbody targetBody = currentInteractable.GetComponent<Rigidbody>();
+            fixedJoint.connectedBody = targetBody;
+
+            currentInteractable.ActiveHand = this;
+            SetControllerMeshState(false);
         }
-
-        Rigidbody targetBody = currentInteractable.GetComponent<Rigidbody>();
-        fixedJoint.connectedBody = targetBody;
-
-        currentInteractable.ActiveHand = this;
-        SetControllerMeshState(false);
     }
 
     private void Drop()
@@ -79,7 +83,7 @@ public class Hand : MonoBehaviour
 
         fixedJoint.connectedBody = null;
 
-        currentInteractable.ActiveHand = null;
+        currentInteractable.Drop();
         currentInteractable = null;
         SetControllerMeshState(true);
     }
@@ -109,7 +113,7 @@ public class Hand : MonoBehaviour
     //Glöm ej att optimera
     private void SetMaterialOnClosest()
     {
-        foreach (var interactable in contactInteractable)
+        foreach (Interactable interactable in contactInteractable)
         {
             interactable.SetToOutlineMaterial(false);
         }
