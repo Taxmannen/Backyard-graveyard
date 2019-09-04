@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/* Script Created By Petter */
 public class Body : Interactable
 {
+    [SerializeField] private Transform headPosition;
 
-    [SerializeField] private GameObject[] bodyTypes;
-    [SerializeField] private GameObject[] headTypes;
-    [SerializeField] private Transform bodySpawnPoint;
-
+    public bool hasHead = false;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -18,14 +18,17 @@ public class Body : Interactable
     // Update is called once per frame
     void Update()
     {
-        SpawnRandomFullBody();
+        
     }
 
-    private void SpawnRandomFullBody()
+    private void OnTriggerEnter(Collider other)
     {
-        if (Input.GetKeyDown(KeyCode.S))
+        if (other.GetComponent<Head>() && !hasHead)
         {
-            Instantiate(bodyTypes[Random.Range(0, bodyTypes.Length)], bodySpawnPoint.position, Quaternion.identity, bodySpawnPoint);
+            other.gameObject.transform.position = headPosition.position;
+            gameObject.GetComponent<SpringJoint>().connectedBody = other.gameObject.GetComponent<Rigidbody>();
+            hasHead = true;
+            gameObject.AddComponent<FullBody>();
         }
     }
 }
