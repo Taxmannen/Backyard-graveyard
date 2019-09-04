@@ -105,8 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 397a9f98814fa3441b3491a4b1e9096f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snapOnPickup: 0
-  shouldDespawnWhenOnGround: 0
-  despawnTimeWhenOnGround: 0
+  meshRenderers:
+  - {fileID: 7721163428189576156}
   spanwPrefab: {fileID: 5467560262156124729, guid: 6bd4aef8bb27c5b48a04667da8d6a590,
     type: 3}

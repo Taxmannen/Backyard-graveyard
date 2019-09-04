@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 
 /* Script Made By Daniel */
-public class Dirt : Interactable
+public class Dirt : Pickup
 {
-    private float timer;
+    private float timer; //Fixa
 
     private void Update()
     {
@@ -12,7 +12,7 @@ public class Dirt : Interactable
 
     private void OnCollisionStay(Collision other)
     {
-        if (other.gameObject.GetComponent<Grave>() != null && timer > 1)
+        if (other.gameObject.GetComponent<Grave>() != null && timer > 0.5f)
         {
             other.gameObject.GetComponent<Grave>().AddDirt();
             Destroy(gameObject);
