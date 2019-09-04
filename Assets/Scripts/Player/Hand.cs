@@ -9,7 +9,7 @@ public class Hand : MonoBehaviour
         
     private SteamVR_Behaviour_Pose pose = null;
     private FixedJoint fixedJoint;
-    private Interactable currentInteractable;
+    [SerializeField] private Interactable currentInteractable;
     private List<Interactable> contactInteractable = new List<Interactable>();
 
     private MeshRenderer[] controllerMeshes;
@@ -54,12 +54,14 @@ public class Hand : MonoBehaviour
 
         if (currentInteractable.ActiveHand)
             currentInteractable.ActiveHand.Drop();
-
         currentInteractable = currentInteractable.Interact();
 
-        if (currentInteractable != null)
+        Debug.Log("Pickup");
+
+        Pickup pickup = currentInteractable?.GetComponent<Pickup>();
+        if (currentInteractable != null && pickup != null)
         {
-            if (currentInteractable.SnapOnPickup)
+            if (pickup.SnapOnPickup)
             {
                 currentInteractable.transform.position = transform.position;
                 currentInteractable.transform.rotation = Quaternion.Euler(transform.eulerAngles);
@@ -83,7 +85,7 @@ public class Hand : MonoBehaviour
 
         fixedJoint.connectedBody = null;
 
-        currentInteractable.Drop();
+        currentInteractable.GetComponent<Pickup>()?.Drop();
         currentInteractable = null;
         SetControllerMeshState(true);
     }
@@ -128,6 +130,6 @@ public class Hand : MonoBehaviour
         {
             interactable.SetToOutlineMaterial(false);
         }
-        GetNearestInteractable()?.SetToOutlineMaterial(true);
+        if (GetNearestInteractable() != currentInteractable) GetNearestInteractable()?.SetToOutlineMaterial(true);
     }
 }

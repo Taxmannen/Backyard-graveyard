@@ -122,6 +122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89e4810e44de6e149a5bc555d6f60765, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meshRenderers:
+  - {fileID: 5467560262156124735}
   snapOnPickup: 1
   shouldDespawnWhenOnGround: 1
   despawnTimeWhenOnGround: 2

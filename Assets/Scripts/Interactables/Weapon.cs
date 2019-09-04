@@ -2,7 +2,7 @@
 using Valve.VR;
 
 /* Script Made By Daniel */
-public class Weapon : Interactable
+public class Weapon : Pickup
 {
     [Header("Weapon")]
     [SerializeField] private int damagePerForce;

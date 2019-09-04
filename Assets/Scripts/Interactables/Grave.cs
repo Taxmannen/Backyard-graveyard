@@ -22,6 +22,7 @@ public class Grave : Interactable
     {
         if (dirtLayerList.Count > 0)
         {
+            Debug.Log("Dig");
             RemoveDirt();
             return Instantiate(dirt).GetComponent<Interactable>();
         }
