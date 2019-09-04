@@ -17,16 +17,6 @@ public class Interactable : MonoBehaviour
     {
         outlineMaterial = Resources.Load<Material>("Materials/Outline Material");
         for (int i = 0; i < meshRenderers.Length; i++) materials.Add(meshRenderers[i].materials);
-
-        /*
-        meshRenderer = GetComponent<MeshRenderer>();
-        if (meshRenderer == null) meshRenderer = GetComponentInChildren<MeshRenderer>();
-
-        //Krävs för att ändra alla material
-        standardMaterials = meshRenderer.materials;
-        outlineMaterials = new Material[meshRenderer.materials.Length];
-        for (int i = 0; i < meshRenderer.materials.Length; i++) outlineMaterials[i] = outlineMaterial;
-        */
     }
 
     public void SetToOutlineMaterial(bool highlight)
@@ -38,10 +28,18 @@ public class Interactable : MonoBehaviour
                 MeshRenderer meshRender = meshRenderers[i];
                 if (meshRender)
                 {
+                    if (meshRender == null) Debug.Log(gameObject.name + " " + "MeshRenderer är nöll");
                     if (highlight)
                     {
                         Material[] outline = new Material[meshRender.materials.Length];
-                        for (int j = 0; j < meshRender.materials.Length; j++) outline[j] = outlineMaterial;
+                        for (int j = 0; j < meshRender.materials.Length; j++)
+                        {
+                            if (outline[j] == null)
+                            {
+                                Debug.Log(gameObject.name + " " + "Outline är nöll");
+                                outline[j] = outlineMaterial;
+                            }
+                        }
                         meshRender.materials = outline;
                     }
                     else meshRender.materials = materials[i];
@@ -50,8 +48,5 @@ public class Interactable : MonoBehaviour
         }
     }
 
-    public virtual Interactable Interact()
-    {
-        return this;
-    }
+    public virtual Interactable Interact() { return this; }
 }
