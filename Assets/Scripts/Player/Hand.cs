@@ -9,7 +9,7 @@ public class Hand : MonoBehaviour
         
     private SteamVR_Behaviour_Pose pose = null;
     private FixedJoint fixedJoint;
-    [SerializeField] private Interactable currentInteractable;
+    private Interactable currentInteractable;
     private List<Interactable> contactInteractable = new List<Interactable>();
 
     private MeshRenderer[] controllerMeshes;

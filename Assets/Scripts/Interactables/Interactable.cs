@@ -7,7 +7,7 @@ public class Interactable : MonoBehaviour
 {
     [Header("Highlight")]
     [SerializeField] private MeshRenderer[] meshRenderers;
-
+    public bool test;
     private Material outlineMaterial;
     private List<Material[]> materials = new List<Material[]>();
 
@@ -28,18 +28,10 @@ public class Interactable : MonoBehaviour
                 MeshRenderer meshRender = meshRenderers[i];
                 if (meshRender)
                 {
-                    if (meshRender == null) Debug.Log(gameObject.name + " " + "MeshRenderer är nöll");
                     if (highlight)
                     {
                         Material[] outline = new Material[meshRender.materials.Length];
-                        for (int j = 0; j < meshRender.materials.Length; j++)
-                        {
-                            if (outline[j] == null)
-                            {
-                                Debug.Log(gameObject.name + " " + "Outline är nöll");
-                                outline[j] = outlineMaterial;
-                            }
-                        }
+                        for (int j = 0; j < meshRender.materials.Length; j++) outline[j] = outlineMaterial;
                         meshRender.materials = outline;
                     }
                     else meshRender.materials = materials[i];
