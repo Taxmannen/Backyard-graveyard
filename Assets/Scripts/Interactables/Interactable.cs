@@ -2,7 +2,7 @@
 using UnityEngine;
 
 /* Script Made By Daniel and Petter */
-[RequireComponent(typeof(Rigidbody), typeof(MeshRenderer))]
+[RequireComponent(typeof(Rigidbody))]
 public class Interactable : MonoBehaviour
 {
     [Header("Highlight")]
@@ -31,7 +31,7 @@ public class Interactable : MonoBehaviour
 
     public void SetToOutlineMaterial(bool highlight)
     {
-        if (meshRenderers.Length > 0)
+       if (meshRenderers.Length > 0)
         {
             for (int i = 0; i < meshRenderers.Length; i++)
             {
@@ -47,9 +47,6 @@ public class Interactable : MonoBehaviour
                     else meshRender.materials = materials[i];
                 }
             }
-
-            /*if (highlight) meshRenderer.materials = outlineMaterials;
-            else           meshRenderer.materials = standardMaterials;*/
         }
     }
 

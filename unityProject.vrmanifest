@@ -5,7 +5,7 @@
       "app_key": "application.generated.unity.backyardgraveyard.exe",
       "launch_type": "url",
       "url": "steam://launch/",
-      "action_manifest_path": "D:\\Github\\Backyard-graveyard\\actions.json",
+      "action_manifest_path": "D:\\GitHub\\Backyard-graveyard\\actions.json",
       "strings": {
         "en_us": {
           "name": "Backyard Graveyard [Testing]"

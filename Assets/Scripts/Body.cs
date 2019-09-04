@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /* Script Created By Petter */
-public class Body : Interactable
+public class Body : Pickup
 {
     [SerializeField] private Transform headPosition;
 
