@@ -238,9 +238,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   snapOnPickup: 0
-  maxAmountOfDirtLayers: 0
-  dirt: {fileID: 0}
-  dirtLayer: {fileID: 0}
+  shouldDespawnWhenOnGround: 0
+  despawnTimeWhenOnGround: 0
+  maxAmountOfDirtLayers: 5
+  dirt: {fileID: 5467560262156124729, guid: 6bd4aef8bb27c5b48a04667da8d6a590, type: 3}
+  dirtLayer: {fileID: 1930263825163367472, guid: e690d6f52159b6e4a88f67c2aee9ac6b,
+    type: 3}
+  dirtLayerParent: {fileID: 6230482428519676335}
 --- !u!1 &6230482429098158071
 GameObject:
   m_ObjectHideFlags: 0
