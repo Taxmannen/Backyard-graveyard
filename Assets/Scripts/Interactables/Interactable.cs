@@ -51,15 +51,19 @@ public class Interactable : MonoBehaviour
 
     public virtual void Drop()
     {
-        //prevHand = ActiveHand;
         ActiveHand = null;
     }
 
-    protected virtual void OnCollisionEnter(Collision other)
+    private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.tag == "Ground" && ActiveHand == null &&shouldDespawnWhenOnGround)
         {
             Destroy(gameObject, despawnTimeWhenOnGround);
         }
+    }
+
+    private void OnDestroy()
+    {
+        if (ActiveHand != null) ActiveHand.Drop();
     }
 }

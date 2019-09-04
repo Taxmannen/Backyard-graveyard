@@ -10,7 +10,7 @@ public class Hand : MonoBehaviour
     private SteamVR_Behaviour_Pose pose = null;
     private FixedJoint fixedJoint;
     private Interactable currentInteractable;
-    [SerializeField] private List<Interactable> contactInteractable = new List<Interactable>();
+    private List<Interactable> contactInteractable = new List<Interactable>();
 
     private MeshRenderer[] controllerMeshes;
 
@@ -73,7 +73,7 @@ public class Hand : MonoBehaviour
         }
     }
 
-    private void Drop()
+    public void Drop()
     {
         if (!currentInteractable) return;
 
@@ -115,7 +115,10 @@ public class Hand : MonoBehaviour
     private void SetControllerMeshState(bool state)
     {
         if (controllerMeshes == null) controllerMeshes = GetComponentsInChildren<MeshRenderer>();
-        if (controllerMeshes != null) foreach (MeshRenderer renderer in controllerMeshes) renderer.enabled = state;
+        if (controllerMeshes != null)
+        {
+            foreach (MeshRenderer renderer in controllerMeshes) renderer.enabled = state;
+        }
     }
 
     //Glöm ej att optimera
@@ -125,13 +128,6 @@ public class Hand : MonoBehaviour
         {
             interactable.SetToOutlineMaterial(false);
         }
-        GetNearestInteractable().SetToOutlineMaterial(true);
+        GetNearestInteractable()?.SetToOutlineMaterial(true);
     }
-
-    /*
-    public void Test(Interactable testo)
-    {
-        contactInteractable.Remove(testo);
-    }
-    */
 }
