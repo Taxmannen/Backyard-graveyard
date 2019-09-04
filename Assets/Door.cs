@@ -2,20 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/* Script Made By Svedlund */
 public class Door : MonoBehaviour
 {
-    private BoxCollider thisCollider;
     public Door targetDoor;
-    private Transform targetSpawnPoint;
-
     public bool doorOnCooldown = false;
-
-
-    private void Start()
-    {
-        thisCollider = GetComponentInChildren<BoxCollider>();
-        targetSpawnPoint = targetDoor.transform.Find("SpawnPoint");
-    }
+    
 
     public IEnumerator DoorCooldown()
     {
