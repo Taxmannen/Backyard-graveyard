@@ -73,7 +73,7 @@ public class Hand : MonoBehaviour
         }
     }
 
-    private void Drop()
+    public void Drop()
     {
         if (!currentInteractable) return;
 
@@ -94,11 +94,19 @@ public class Hand : MonoBehaviour
         float minDistance = float.MaxValue;
         foreach (Interactable interactable in contactInteractable)
         {
-            float distance = (interactable.transform.position - transform.position).sqrMagnitude;
-            if (distance < minDistance)
+            if (interactable == null)
             {
-                minDistance = distance;
-                nearest = interactable;
+                contactInteractable.Remove(interactable);
+                break;
+            }
+            else
+            {
+                float distance = (interactable.transform.position - transform.position).sqrMagnitude;
+                if (distance < minDistance)
+                {
+                    minDistance = distance;
+                    nearest = interactable;
+                }
             }
         }
         return nearest;
@@ -107,7 +115,10 @@ public class Hand : MonoBehaviour
     private void SetControllerMeshState(bool state)
     {
         if (controllerMeshes == null) controllerMeshes = GetComponentsInChildren<MeshRenderer>();
-        if (controllerMeshes != null) foreach (MeshRenderer renderer in controllerMeshes) renderer.enabled = state;
+        if (controllerMeshes != null)
+        {
+            foreach (MeshRenderer renderer in controllerMeshes) renderer.enabled = state;
+        }
     }
 
     //Glöm ej att optimera
@@ -117,6 +128,6 @@ public class Hand : MonoBehaviour
         {
             interactable.SetToOutlineMaterial(false);
         }
-        GetNearestInteractable().SetToOutlineMaterial(true);
+        GetNearestInteractable()?.SetToOutlineMaterial(true);
     }
 }

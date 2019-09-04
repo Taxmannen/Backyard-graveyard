@@ -7,7 +7,8 @@ public class Interactable : MonoBehaviour
     [Header("Pickup")]
     [SerializeField] private bool snapOnPickup;
     //[SerializeField] private bool snapWhenThrow; //Skall implementeras
-    [SerializeField] private float despawnTimer; //TODO
+    [SerializeField] protected bool shouldDespawnWhenOnGround;
+    [SerializeField] protected float despawnTimeWhenOnGround;
 
     private MeshRenderer meshRenderer;
     private Material outlineMaterial;
@@ -36,11 +37,11 @@ public class Interactable : MonoBehaviour
 
     public void SetToOutlineMaterial(bool highlight)
     {
-        /*Material mat = (highlight == true) ? outlineMaterial : standardMaterials[0];
-        if (meshRenderer.material != mat) meshRenderer.material = mat;*/
-
-        if (highlight) meshRenderer.materials = outlineMaterials;
-        else           meshRenderer.materials = standardMaterials;
+        if (meshRenderer)
+        {
+            if (highlight) meshRenderer.materials = outlineMaterials;
+            else           meshRenderer.materials = standardMaterials;
+        }
     }
 
     public virtual Interactable Interact()
@@ -51,5 +52,18 @@ public class Interactable : MonoBehaviour
     public virtual void Drop()
     {
         ActiveHand = null;
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Ground" && ActiveHand == null &&shouldDespawnWhenOnGround)
+        {
+            Destroy(gameObject, despawnTimeWhenOnGround);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (ActiveHand != null) ActiveHand.Drop();
     }
 }
