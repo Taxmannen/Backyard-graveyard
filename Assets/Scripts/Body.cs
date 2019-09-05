@@ -12,8 +12,6 @@ public class Body : Pickup
     [SerializeField] private Transform headPosition;
 
     [SerializeField] private FixedJoint fixedJoint;
-    [SerializeField] private BoxCollider myCol;
-    [SerializeField] private SphereCollider otherCol;
 
     public bool fullBody;
     
@@ -22,16 +20,24 @@ public class Body : Pickup
     private void Awake()
     {
         SetColor();
-        Physics.IgnoreCollision(myCol, otherCol);
+    }
 
-        //For test, delete!
-        //SpawnFullBody(new Vector3(0, 0, 0));
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SpawnFullBody(new Vector3(0,2,0));
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<Head>())
         {
+
+            AttachHeadToCorrectPosition(other.gameObject, this.gameObject);
+
+            /*other.GetComponent<Collider>().enabled = false;
             other.gameObject.transform.position = headPosition.position;
             other.transform.rotation = transform.rotation;
             fullBody = true;
@@ -43,12 +49,13 @@ public class Body : Pickup
             }
             fixedJoint = gameObject.AddComponent<FixedJoint>();
             fixedJoint.connectedBody = other.gameObject.GetComponent<Rigidbody>();
+            other.GetComponent<Collider>().enabled = true;*/
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        /*if (other.GetComponent<Head>())
+        if (other.GetComponent<Head>())
         {
             if (fixedJoint != null)
             {
@@ -56,7 +63,7 @@ public class Body : Pickup
                 fixedJoint = null;
             }
             fullBody = false;
-        }*/
+        }
     }
 
     private void SetColor()
@@ -76,12 +83,38 @@ public class Body : Pickup
         }
     }
 
+    private void AttachHeadToCorrectPosition(GameObject head, GameObject body)
+    {
+        head.GetComponent<Collider>().enabled = false;
+        head.transform.SetParent(body.transform);
+        head.transform.position = body.GetComponent<Body>().headPosition.position;
+        head.transform.rotation = body.transform.rotation;
+
+        if (!body.GetComponent<FixedJoint>())
+        {
+            body.AddComponent<FixedJoint>();
+        }   
+        if (body.GetComponent<FixedJoint>())
+        {   
+            body.GetComponent<FixedJoint>().connectedBody = head.GetComponent<Rigidbody>();
+        }
+
+        body.GetComponent<Body>().fullBody = true;
+        head.GetComponent<Collider>().enabled = true;
+    }
+
     public void SpawnFullBody(Vector3 spawnPosition)
     {
         GameObject newBody = Instantiate(bodyPrefab, spawnPosition, Quaternion.identity);
         GameObject newHead = Instantiate(headPrefab, spawnPosition, Quaternion.identity);
+
+        AttachHeadToCorrectPosition(newHead, newBody);
+        
+        /*newHead.GetComponent<Collider>().enabled = false;
+        newHead.transform.SetParent(newBody.transform);
         newHead.transform.position = newBody.GetComponent<Body>().headPosition.position;
-        //newHead.transform.rotation = Quaternion.Euler()
+        newHead.transform.rotation = newBody.transform.rotation;
+
         if (!newBody.GetComponent<FixedJoint>())
         {
             newBody.AddComponent<FixedJoint>();
@@ -91,5 +124,6 @@ public class Body : Pickup
             newBody.GetComponent<FixedJoint>().connectedBody = newHead.GetComponent<Rigidbody>();
         }
         newBody.GetComponent<Body>().fullBody = true;
+        newHead.GetComponent<Collider>().enabled = true;*/
     }
 }
