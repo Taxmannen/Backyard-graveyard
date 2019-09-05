@@ -44,6 +44,9 @@ public class InputKeyboardMouse : MonoBehaviour
         originalRotation = playerObject.transform.rotation;
     }
 
+    /// <summary>
+    /// Handles keyboard movement, mouse picking and player mouse rotation
+    /// </summary>
     private void Update() 
     {
 
@@ -94,33 +97,33 @@ public class InputKeyboardMouse : MonoBehaviour
         #endregion
 
         #region Mouse picking
-        if (Input.GetMouseButtonDown(0)) {
-            if (mainCamera == null) {
+        if (Input.GetMouseButtonDown(0)) 
+        {
+            if (mainCamera == null) 
+            {
                 mainCamera = Camera.main;
             }
-            //Debug.Log(Input.mousePosition);
-            //Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+
             Ray ray = mainCamera.ScreenPointToRay(new Vector3(Screen.width/2, Screen.height/2, 0));
             RaycastHit[] raycastHits = Physics.RaycastAll(ray);
 
-            if (raycastHits.Length > 0) {
+            if (raycastHits.Length > 0) 
+            {
                 var nearest = raycastHits
                     .Where(x => x.transform.CompareTag("Interactable"))
                     .OrderBy(x => (x.transform.position - playerObject.transform.position).sqrMagnitude)
                     .FirstOrDefault();
 
-                if (nearest.transform != null) {
+                if (nearest.transform != null) //Check if an object with the Interactable tag was hit
+                {
                     var interactable = nearest.transform.GetComponent<Interactable>();
-
-                    Debug.Log("Clicked on " + interactable.transform.name);
 
                     Pickup(interactable);
                 }
             }
-
-            //Pickup();
         }
-        else if (Input.GetMouseButtonUp(0)) {
+        else if (Input.GetMouseButtonUp(0)) 
+        {
             Drop();
         }
         #endregion
