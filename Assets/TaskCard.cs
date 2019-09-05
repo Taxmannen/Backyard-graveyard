@@ -42,10 +42,38 @@ public class TaskCard : MonoBehaviour
     private void SetBody(int BodyType)
     {
         bodyImage.sprite = ornamentSprites[BodyType];
+        switch (BodyType)
+        {
+            case 0:
+                bodyImage.color = Color.red;
+                break;
+            case 1:
+                bodyImage.color = Color.green;
+                break;
+            case 2:
+                bodyImage.color = Color.blue;
+                break;
+            default:
+                throw new System.Exception("TaskCard::SetBody exception: Invalid color");
+        }
     }
 
     private void SetHead(int HeadType)
     {
         headImage.sprite = ornamentSprites[HeadType];
+        switch (HeadType)
+        {
+            case 0:
+                bodyImage.color = Color.red;
+                break;
+            case 1:
+                bodyImage.color = Color.green;
+                break;
+            case 2:
+                bodyImage.color = Color.blue;
+                break;
+            default:
+                throw new System.Exception("TaskCard::SetHead exception: Invalid color");
+        }
     }
 }
