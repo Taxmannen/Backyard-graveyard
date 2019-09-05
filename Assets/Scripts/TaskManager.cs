@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// <author>Simon</author>
+/// </summary>
+
 public class TaskManager : MonoBehaviour
 {
     public Task[] tasks;

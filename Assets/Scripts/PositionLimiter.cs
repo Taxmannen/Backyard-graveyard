@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// <author>Simon</author>
+/// </summary>
 public class PositionLimiter : MonoBehaviour
 {
     [SerializeField] Vector3 min;

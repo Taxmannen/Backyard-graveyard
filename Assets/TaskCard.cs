@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// <author>Kristoffer</author>
+/// </summary>
 public class TaskCard : MonoBehaviour
 {
     public Image headImage;

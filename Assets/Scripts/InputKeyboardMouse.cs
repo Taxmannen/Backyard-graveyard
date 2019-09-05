@@ -6,6 +6,9 @@ using UnityEngine;
 using System.Linq;
 using Valve.VR;
 
+/// <summary>
+/// <author>Simon</author>
+/// </summary>
 public class InputKeyboardMouse : MonoBehaviour
 {
     #region Public variables

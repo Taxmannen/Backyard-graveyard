@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// <author>Simon Ektjärn</author>
+/// </summary>
 
 public class TaskObject : MonoBehaviour
 {

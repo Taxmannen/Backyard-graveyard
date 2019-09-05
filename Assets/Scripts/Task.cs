@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// <author>
+/// Simon
+/// Kristoffer
+/// </author>
+/// </summary>
+
 public enum Heads { Red, Green, Blue, NumberOfTypes, None };
 public enum Bodies { Red, Green, Blue, NumberOfTypes, None };
 public enum Ornaments { Candle, Flower, NumberOfTypes, None };

@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// <author>Simon</author>
+/// </summary>
 public class RandomManager : MonoBehaviour
 {
     public static int GetRandomNumber(int min, int max) {

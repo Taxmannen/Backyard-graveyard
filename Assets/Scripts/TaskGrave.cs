@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// <author>
+/// Simon
+/// Kristoffer
+/// </author>
+/// </summary>
+
 [RequireComponent(typeof(Collider))]
 [RequireComponent(typeof(Rigidbody))]
 public class TaskGrave : MonoBehaviour
