@@ -41,7 +41,7 @@ public class TaskCard : MonoBehaviour
 
     private void SetBody(int BodyType)
     {
-        bodyImage.sprite = ornamentSprites[BodyType];
+        bodyImage.sprite = bodySprites[BodyType];
         switch (BodyType)
         {
             case 0:
@@ -60,17 +60,17 @@ public class TaskCard : MonoBehaviour
 
     private void SetHead(int HeadType)
     {
-        headImage.sprite = ornamentSprites[HeadType];
+        headImage.sprite = headSprites[HeadType];
         switch (HeadType)
         {
             case 0:
-                bodyImage.color = Color.red;
+                headImage.color = Color.red;
                 break;
             case 1:
-                bodyImage.color = Color.green;
+                headImage.color = Color.green;
                 break;
             case 2:
-                bodyImage.color = Color.blue;
+                headImage.color = Color.blue;
                 break;
             default:
                 throw new System.Exception("TaskCard::SetHead exception: Invalid color");
