@@ -21,6 +21,8 @@ public class Door : MonoBehaviour
             cameraFadeImage = Instantiate(cameraFadeCanvas, this.transform.position, Quaternion.identity);
         }
         else cameraFadeImage = GameObject.Find("CameraFadeCanvas(Clone)").GetComponent<Image>();
+
+        cameraFadeImage.GetComponent<Canvas>().worldCamera = FindObjectOfType<Camera>();
         cameraFadeImage.CrossFadeAlpha(0f, 0f, false);
     }
 
