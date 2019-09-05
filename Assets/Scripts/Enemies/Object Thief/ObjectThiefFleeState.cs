@@ -8,10 +8,12 @@ using UnityEngine;
 public class ObjectThiefFleeState : ObjectThiefState
 {
     private Vector2 directionToRun;
+    private GameObject distanceCheckForDespawnObject;
 
     public override void Enter(ObjectThief objectThief)
     {
         directionToRun = Random.insideUnitCircle.normalized;
+        distanceCheckForDespawnObject = GameObject.FindGameObjectWithTag("DistanceCheckForObjectThief");
     }
 
     public override void Exit(ObjectThief objectThief)
@@ -29,7 +31,7 @@ public class ObjectThiefFleeState : ObjectThiefState
     public override ObjectThiefState Update(ObjectThief objectThief, float t)
     {
         //Debug.Log(objectThief.GetDistanceToDespawnCheckObject());
-        if (objectThief.GetDistanceToDespawnCheckObject() >= objectThief.GetDistanceToDespawn())
+        if (GetDistanceToDespawnCheckObject(objectThief) >= objectThief.GetDistanceToDespawn())
         {
             return new ObjectThiefDespawnState();
         }
@@ -40,5 +42,10 @@ public class ObjectThiefFleeState : ObjectThiefState
     private void SetNewRandomDirection()
     {
         directionToRun = Random.insideUnitCircle.normalized;
+    }
+
+    public float GetDistanceToDespawnCheckObject(ObjectThief objectThief)
+    {
+        return Vector3.Distance(objectThief.transform.position, distanceCheckForDespawnObject.transform.position);
     }
 }
