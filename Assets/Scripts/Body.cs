@@ -5,12 +5,15 @@ using UnityEngine;
 /* Script Created By Petter */
 public class Body : Pickup
 {
+    [Header("Body")]
     [SerializeField] private GameObject bodyPrefab;
     [SerializeField] private GameObject headPrefab;
 
     [SerializeField] private Transform headPosition;
 
     [SerializeField] private FixedJoint fixedJoint;
+    [SerializeField] private BoxCollider myCol;
+    [SerializeField] private SphereCollider otherCol;
 
     public bool fullBody;
     
@@ -19,6 +22,7 @@ public class Body : Pickup
     private void Awake()
     {
         SetColor();
+        Physics.IgnoreCollision(myCol, otherCol);
 
         //For test, delete!
         //SpawnFullBody(new Vector3(0, 0, 0));
@@ -29,7 +33,9 @@ public class Body : Pickup
         if (other.GetComponent<Head>())
         {
             other.gameObject.transform.position = headPosition.position;
+            other.transform.rotation = transform.rotation;
             fullBody = true;
+
             if (fixedJoint != null)
             {
                 Destroy(fixedJoint);
@@ -42,7 +48,7 @@ public class Body : Pickup
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<Head>())
+        /*if (other.GetComponent<Head>())
         {
             if (fixedJoint != null)
             {
@@ -50,7 +56,7 @@ public class Body : Pickup
                 fixedJoint = null;
             }
             fullBody = false;
-        }
+        }*/
     }
 
     private void SetColor()
@@ -58,15 +64,15 @@ public class Body : Pickup
         MyColor myColor = (MyColor)Random.Range(0, 3);
         if (myColor == MyColor.Blue)
         {
-            gameObject.GetComponent<MeshRenderer>().material.color = Color.blue;
+            gameObject.GetComponentInChildren<MeshRenderer>().material.color = Color.blue;
         }
         else if (myColor == MyColor.Green)
         {
-            gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+            gameObject.GetComponentInChildren<MeshRenderer>().material.color = Color.green;
         }
         else if (myColor == MyColor.Red)
         {
-            gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
+            gameObject.GetComponentInChildren<MeshRenderer>().material.color = Color.red;
         }
     }
 
