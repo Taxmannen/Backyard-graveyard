@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 1665755026038520336}
   - component: {fileID: 2565858894226241295}
   - component: {fileID: 1665755026038520343}
-  - component: {fileID: 1665755026038520341}
   m_Layer: 0
   m_Name: Petter_Body_Basic
   m_TagString: Interactable
@@ -63,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 670224309865224971, guid: 79cdd5e77a4a4eb409b7f983a4bd323f, type: 3}
+  - {fileID: 2100000, guid: e9f4e530e5506a44c8422167c63ef7b1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -112,9 +111,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74a763911eb9c7643a00634821135b5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshRenderers: []
+  meshRenderers:
+  - {fileID: 1090193620332105421}
+  snapOnPickup: 0
+  shouldDespawnWhenOnGround: 0
+  despawnTimeWhenOnGround: 0
   headPosition: {fileID: 6929089756163747660}
-  hasHead: 0
+  fixedJoint: {fileID: 0}
+  fullBody: 0
 --- !u!65 &2565858894226241295
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -141,29 +145,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.8525934, y: 1.9116919, z: 0.19705136}
   m_Center: {x: 0, y: 0, z: -0.8596416}
---- !u!145 &1665755026038520341
-SpringJoint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1665755026038520337}
-  m_ConnectedBody: {fileID: 0}
-  m_Anchor: {x: 0, y: 0, z: -0.9}
-  m_AutoConfigureConnectedAnchor: 0
-  m_ConnectedAnchor: {x: 0.2, y: 0.94, z: 0.63}
-  serializedVersion: 2
-  m_Spring: 10
-  m_Damper: 0.05
-  m_MinDistance: 0
-  m_MaxDistance: 0
-  m_Tolerance: 0.025
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_EnableCollision: 0
-  m_EnablePreprocessing: 1
-  m_MassScale: 1
-  m_ConnectedMassScale: 1
 --- !u!1 &6929089756163747661
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,7 +169,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6929089756163747661}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0, z: -1.478}
+  m_LocalPosition: {x: 0, y: 0, z: -1.465}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2397791344363702274}

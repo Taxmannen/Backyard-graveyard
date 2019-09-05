@@ -57,7 +57,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 670224309865224971, guid: 217a4922e8f778f4ca05c9cf4522efe6, type: 3}
+  - {fileID: 2100000, guid: e9f4e530e5506a44c8422167c63ef7b1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -89,7 +89,6 @@ GameObject:
   - component: {fileID: 8097577092949507839}
   - component: {fileID: 3826630009149676942}
   - component: {fileID: 3826630009149676943}
-  - component: {fileID: 3826630009149676941}
   - component: {fileID: 5060645952705957101}
   m_Layer: 0
   m_Name: Petter_Head_Basic
@@ -143,19 +142,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.2999999, y: 0.3065221, z: 0.2999999}
   m_Center: {x: 0, y: 0.02, z: 0}
---- !u!114 &3826630009149676941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5060645952705957100}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c638da77e5e42ca4f8fe3c3d687db257, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderers: []
 --- !u!114 &5060645952705957101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,6 +154,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 370e4d2c3870f4c4984d580ef69965a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meshRenderers:
+  - {fileID: 5437830253568043873}
+  - {fileID: 1554083139675900066}
+  snapOnPickup: 0
+  shouldDespawnWhenOnGround: 0
+  despawnTimeWhenOnGround: 0
 --- !u!1 &5435521833392123113
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,7 +217,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 670224309865224971, guid: 217a4922e8f778f4ca05c9cf4522efe6, type: 3}
+  - {fileID: 2100000, guid: e9f4e530e5506a44c8422167c63ef7b1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
