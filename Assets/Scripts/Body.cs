@@ -8,10 +8,9 @@ public class Body : Pickup
     [Header("Body")]
     [SerializeField] private GameObject bodyPrefab;
     [SerializeField] private GameObject headPrefab;
-
     [SerializeField] private Transform headPosition;
 
-    [SerializeField] private FixedJoint fixedJoint;
+    public FixedJoint fixedJoint { get; set; }
 
     public bool fullBody;
     
@@ -61,6 +60,7 @@ public class Body : Pickup
             {
                 Destroy(gameObject.GetComponent<FixedJoint>());
                 fixedJoint = null;
+                other.transform.SetParent(null);
             }
             fullBody = false;
         }
@@ -90,14 +90,14 @@ public class Body : Pickup
         head.transform.position = body.GetComponent<Body>().headPosition.position;
         head.transform.rotation = body.transform.rotation;
 
-        if (!body.GetComponent<FixedJoint>())
+        Body bodyScript = body.GetComponent<Body>();
+        if (bodyScript.fixedJoint != null)
         {
-            body.AddComponent<FixedJoint>();
-        }   
-        if (body.GetComponent<FixedJoint>())
-        {   
-            body.GetComponent<FixedJoint>().connectedBody = head.GetComponent<Rigidbody>();
+            Destroy(bodyScript.fixedJoint);
+            bodyScript.fixedJoint = null;
         }
+        bodyScript.fixedJoint = body.AddComponent<FixedJoint>();
+        bodyScript.fixedJoint.connectedBody = head.gameObject.GetComponent<Rigidbody>();
 
         body.GetComponent<Body>().fullBody = true;
         head.GetComponent<Collider>().enabled = true;
