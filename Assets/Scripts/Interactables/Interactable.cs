@@ -15,7 +15,7 @@ public class Interactable : MonoBehaviour
 
     public Hand ActiveHand { get; set; } = null;
 
-    private void Start()
+    protected virtual void Start()
     {
         outlineMaterial = Resources.Load<Material>("Materials/Outline Material");
         ghostMaterial   = Resources.Load<Material>("Materials/Ghost Material");

@@ -463,7 +463,8 @@ MonoBehaviour:
   shouldDespawnWhenOnGround: 0
   despawnTimeWhenOnGround: 0
   snappedPosition: {x: 0, y: 0.03, z: 0}
-  snappedRotation: {x: 0, y: 0, z: 0, w: 0}
+  snappedRotation: {x: 0, y: 270, z: 0}
+  canPlace: 1
 --- !u!1 &3819109171109231592
 GameObject:
   m_ObjectHideFlags: 0

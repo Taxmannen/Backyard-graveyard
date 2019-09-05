@@ -2,7 +2,8 @@
 
 public class OrnamentPlacement : MonoBehaviour
 {
-    private Ornament placedOrnament;
+    //Debug
+    [SerializeField] private Ornament placedOrnament;
 
     private void OnCollisionEnter(Collision other)
     {
@@ -10,14 +11,14 @@ public class OrnamentPlacement : MonoBehaviour
         {
             if (placedOrnament == null && other.gameObject.GetComponent<Ornament>() != null)
             {
-                Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
-                rb.constraints = RigidbodyConstraints.FreezeAll;
-                rb.freezeRotation = true;
-
                 placedOrnament = other.gameObject.GetComponent<Ornament>();
-                placedOrnament.SetPositionAndRotation(transform.position);
-                placedOrnament.Drop();
+                /*if (placedOrnament.CanPlace())*/ placedOrnament.PlaceOrnament(this, transform.position);
             }
         }
+    }
+
+    public void RemoveOrnament()
+    {
+        placedOrnament = null;
     }
 }
