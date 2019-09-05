@@ -20,7 +20,6 @@ public class ObjectThief : MonoBehaviour
     [SerializeField] private float maxSpeed;
     [SerializeField] private float pickupDistance;
 
-    [SerializeField] private GameObject distanceCheckForDespawnObject;
     [SerializeField] private float distanceToDespawn;
 
     private void Start()
@@ -115,10 +114,7 @@ public class ObjectThief : MonoBehaviour
         rigidBody.velocity = new Vector3(direction.x * speed, rigidBody.velocity.y, direction.y * speed);
     }
 
-    public float GetDistanceToDespawnCheckObject()
-    {
-        return Vector3.Distance(transform.position, distanceCheckForDespawnObject.transform.position);
-    }
+    
 
     public float GetDistanceToDespawn()
     {
