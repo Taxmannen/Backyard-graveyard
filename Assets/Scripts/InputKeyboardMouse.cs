@@ -149,7 +149,7 @@ public class InputKeyboardMouse : MonoBehaviour
         if (!currentInteractable) return;
         currentInteractable = currentInteractable.Interact();
 
-        Debug.Log("Pickup");
+        //Debug.Log("Pickup");
 
         Pickup pickup = currentInteractable?.GetComponent<Pickup>();
         if (currentInteractable != null && pickup != null) {
