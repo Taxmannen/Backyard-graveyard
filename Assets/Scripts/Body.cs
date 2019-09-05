@@ -35,7 +35,7 @@ public class Body : Pickup
         if (other.GetComponent<Head>())
         {
             other.gameObject.transform.position = headPosition.position;
-            other.gameObject.transform.rotation = Quaternion.Euler(headPosition.eulerAngles);
+            other.gameObject.transform.rotation = Quaternion.Euler((transform.rotation.x - 90), transform.rotation.y, transform.rotation.z);
             //other.gameObject.GetComponent<Rigidbody>().useGravity = false;
             fullBody = true;
             if (fixedJoint != null)

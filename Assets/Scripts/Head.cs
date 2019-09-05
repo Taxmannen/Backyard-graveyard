@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/* Script Created By Petter */
 public class Head : Pickup
 {
     public enum MyColor { Blue, Green, Red };
