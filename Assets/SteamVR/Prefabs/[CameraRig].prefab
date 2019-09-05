@@ -137,6 +137,9 @@ MonoBehaviour:
   grabAction:
     actionPath: /actions/default/in/GrabPinch
     needsReinit: 0
+  restartAction:
+    actionPath: /actions/default/in/Restart
+    needsReinit: 0
 --- !u!1 &146900
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,6 +434,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grabAction:
     actionPath: /actions/default/in/GrabPinch
+    needsReinit: 0
+  restartAction:
+    actionPath: /actions/default/in/Restart
     needsReinit: 0
 --- !u!1 &192944
 GameObject:
