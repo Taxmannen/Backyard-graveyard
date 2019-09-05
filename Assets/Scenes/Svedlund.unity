@@ -153,9 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c638da77e5e42ca4f8fe3c3d687db257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snapOnPickup: 0
-  shouldDespawnWhenOnGround: 0
-  despawnTimeWhenOnGround: 0
+  meshRenderers: []
 --- !u!65 &71985674
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -700,6 +698,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2294666606489321190, guid: 09f459d8d3111214687da90887cda31b,
+        type: 3}
+      propertyPath: targetDoor
+      value: 
+      objectReference: {fileID: 131893085}
+    - target: {fileID: 2294666606489321190, guid: 09f459d8d3111214687da90887cda31b,
+        type: 3}
+      propertyPath: doorOnCooldown
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3623557996432900438, guid: 09f459d8d3111214687da90887cda31b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -753,16 +761,6 @@ PrefabInstance:
     - target: {fileID: 3623557996432900438, guid: 09f459d8d3111214687da90887cda31b,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2294666606489321190, guid: 09f459d8d3111214687da90887cda31b,
-        type: 3}
-      propertyPath: targetDoor
-      value: 
-      objectReference: {fileID: 131893085}
-    - target: {fileID: 2294666606489321190, guid: 09f459d8d3111214687da90887cda31b,
-        type: 3}
-      propertyPath: doorOnCooldown
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1073,7 +1071,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1701220716
 GameObject:
@@ -1200,9 +1198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c638da77e5e42ca4f8fe3c3d687db257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snapOnPickup: 0
-  shouldDespawnWhenOnGround: 0
-  despawnTimeWhenOnGround: 0
+  meshRenderers: []
 --- !u!65 &1865781125
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1290,7 +1286,7 @@ Transform:
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1922723782
 PrefabInstance:
@@ -1567,9 +1563,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c638da77e5e42ca4f8fe3c3d687db257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snapOnPickup: 0
-  shouldDespawnWhenOnGround: 0
-  despawnTimeWhenOnGround: 0
+  meshRenderers: []
 --- !u!54 &2049621603
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1598,6 +1592,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door
       objectReference: {fileID: 0}
+    - target: {fileID: 2294666606489321190, guid: 09f459d8d3111214687da90887cda31b,
+        type: 3}
+      propertyPath: targetDoor
+      value: 
+      objectReference: {fileID: 452697010}
     - target: {fileID: 3623557996432900438, guid: 09f459d8d3111214687da90887cda31b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1636,7 +1635,7 @@ PrefabInstance:
     - target: {fileID: 3623557996432900438, guid: 09f459d8d3111214687da90887cda31b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3623557996432900438, guid: 09f459d8d3111214687da90887cda31b,
         type: 3}
@@ -1653,11 +1652,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2294666606489321190, guid: 09f459d8d3111214687da90887cda31b,
-        type: 3}
-      propertyPath: targetDoor
-      value: 
-      objectReference: {fileID: 452697010}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09f459d8d3111214687da90887cda31b, type: 3}
 --- !u!1001 &5933280504204199420
@@ -1710,7 +1704,7 @@ PrefabInstance:
     - target: {fileID: 5933280504760529477, guid: 1a90814c7a11e8e4a86bce13c51ff340,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5933280504760529477, guid: 1a90814c7a11e8e4a86bce13c51ff340,
         type: 3}
