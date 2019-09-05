@@ -1,55 +1,44 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody), typeof(MeshRenderer))]
 /* Script Made By Daniel and Petter */
+[RequireComponent(typeof(Rigidbody))]
 public class Interactable : MonoBehaviour
 {
-    [Header("Pickup")]
-    [SerializeField] private bool snapOnPickup;
-    //[SerializeField] private bool snapWhenThrow; //Skall implementeras
-    [SerializeField] private float despawnTimer; //TODO
-
-    private MeshRenderer meshRenderer;
+    [Header("Highlight")]
+    [SerializeField] private MeshRenderer[] meshRenderers;
+    public bool test;
     private Material outlineMaterial;
-    private Material[] standardMaterials;
-    private Material[] outlineMaterials;
+    private List<Material[]> materials = new List<Material[]>();
 
     public Hand ActiveHand { get; set; } = null;
 
-    public bool SnapOnPickup
-    {
-        get { return snapOnPickup; }
-    }
-
     private void Start()
     {
-        meshRenderer = GetComponent<MeshRenderer>();
-        if (meshRenderer == null) meshRenderer = GetComponentInChildren<MeshRenderer>();
-
         outlineMaterial = Resources.Load<Material>("Materials/Outline Material");
-
-        //Krävs för att ändra alla material
-        standardMaterials = meshRenderer.materials;
-        outlineMaterials = new Material[meshRenderer.materials.Length];
-        for (int i = 0; i < meshRenderer.materials.Length; i++) outlineMaterials[i] = outlineMaterial;
+        for (int i = 0; i < meshRenderers.Length; i++) materials.Add(meshRenderers[i].materials);
     }
 
     public void SetToOutlineMaterial(bool highlight)
     {
-        /*Material mat = (highlight == true) ? outlineMaterial : standardMaterials[0];
-        if (meshRenderer.material != mat) meshRenderer.material = mat;*/
-
-        if (highlight) meshRenderer.materials = outlineMaterials;
-        else           meshRenderer.materials = standardMaterials;
+       if (meshRenderers.Length > 0)
+        {
+            for (int i = 0; i < meshRenderers.Length; i++)
+            {
+                MeshRenderer meshRender = meshRenderers[i];
+                if (meshRender)
+                {
+                    if (highlight)
+                    {
+                        Material[] outline = new Material[meshRender.materials.Length];
+                        for (int j = 0; j < meshRender.materials.Length; j++) outline[j] = outlineMaterial;
+                        meshRender.materials = outline;
+                    }
+                    else meshRender.materials = materials[i];
+                }
+            }
+        }
     }
 
-    public virtual Interactable Interact()
-    {
-        return this;
-    }
-
-    public virtual void Drop()
-    {
-        ActiveHand = null;
-    }
+    public virtual Interactable Interact() { return this; }
 }
