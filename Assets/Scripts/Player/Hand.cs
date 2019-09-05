@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Valve.VR;
 
 /* Script Made By Daniel, Edited By Petter */
 public class Hand : MonoBehaviour
 {
     public SteamVR_Action_Boolean grabAction = null;
+    public SteamVR_Action_Boolean restartAction = null;
         
     private SteamVR_Behaviour_Pose pose = null;
     private FixedJoint fixedJoint;
@@ -24,6 +26,9 @@ public class Hand : MonoBehaviour
     {
         if (grabAction.GetStateDown(pose.inputSource)) Pickup();
         if (grabAction.GetStateUp(pose.inputSource)) Drop();
+        
+        //For Debug
+        if (restartAction.GetLastStateDown(pose.inputSource)) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
         if (contactInteractable.Count > 0) SetMaterialOnClosest(); //Måste optimeras
     }
@@ -42,7 +47,7 @@ public class Hand : MonoBehaviour
         {
             Interactable interactable = other.gameObject.GetComponent<Interactable>();
             contactInteractable.Remove(interactable);
-            interactable.SetToOutlineMaterial(false);
+            interactable.SetToOutlineMaterial(MaterialType.Standard);
         }
     }
 
@@ -55,8 +60,6 @@ public class Hand : MonoBehaviour
         if (currentInteractable.ActiveHand)
             currentInteractable.ActiveHand.Drop();
         currentInteractable = currentInteractable.Interact();
-
-        Debug.Log("Pickup");
 
         Pickup pickup = currentInteractable?.GetComponent<Pickup>();
         if (currentInteractable != null && pickup != null)
@@ -128,8 +131,8 @@ public class Hand : MonoBehaviour
     {
         foreach (Interactable interactable in contactInteractable)
         {
-            interactable.SetToOutlineMaterial(false);
+            interactable.SetToOutlineMaterial(MaterialType.Standard);
         }
-        if (GetNearestInteractable() != currentInteractable) GetNearestInteractable()?.SetToOutlineMaterial(true);
+        if (GetNearestInteractable() != currentInteractable) GetNearestInteractable()?.SetToOutlineMaterial(MaterialType.Outline);
     }
 }

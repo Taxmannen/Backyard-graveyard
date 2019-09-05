@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+public enum MaterialType { Standard, Ghost, Outline }
+
 /* Script Made By Daniel and Petter */
 public class Interactable : MonoBehaviour
 {
@@ -8,6 +10,7 @@ public class Interactable : MonoBehaviour
     [SerializeField] private MeshRenderer[] meshRenderers;
 
     private Material outlineMaterial;
+    private Material ghostMaterial;
     private List<Material[]> materials = new List<Material[]>();
 
     public Hand ActiveHand { get; set; } = null;
@@ -15,25 +18,30 @@ public class Interactable : MonoBehaviour
     private void Start()
     {
         outlineMaterial = Resources.Load<Material>("Materials/Outline Material");
+        ghostMaterial   = Resources.Load<Material>("Materials/Ghost Material");
         for (int i = 0; i < meshRenderers.Length; i++) materials.Add(meshRenderers[i].materials);
     }
 
-    public void SetToOutlineMaterial(bool highlight)
+    public void SetToOutlineMaterial(MaterialType matType)
     {
-       if (meshRenderers.Length > 0)
+        if (meshRenderers.Length > 0)
         {
             for (int i = 0; i < meshRenderers.Length; i++)
             {
                 MeshRenderer meshRender = meshRenderers[i];
                 if (meshRender)
                 {
-                    if (highlight)
+                    if (matType == MaterialType.Standard) meshRender.materials = materials[i];
+                    else
                     {
-                        Material[] outline = new Material[meshRender.materials.Length];
-                        for (int j = 0; j < meshRender.materials.Length; j++) outline[j] = outlineMaterial;
-                        meshRender.materials = outline;
+                        Material[] newMaterial = new Material[meshRender.materials.Length];
+                        for (int j = 0; j < meshRender.materials.Length; j++)
+                        {
+                            if (matType == MaterialType.Outline) newMaterial[j] = outlineMaterial;
+                            else                                 newMaterial[j] = ghostMaterial;
+                        }
+                        meshRender.materials = newMaterial;
                     }
-                    else meshRender.materials = materials[i];
                 }
             }
         }
