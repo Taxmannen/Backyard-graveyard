@@ -131,15 +131,33 @@ public class InputKeyboardMouse : MonoBehaviour
 
     public void Pickup(Interactable interactable) 
     {
-        if (currentInteractable == interactable) return;
+        //if (currentInteractable == interactable) return;
+
+        //currentInteractable = interactable;
+
+        //if (!currentInteractable) return;
+
+        //if (currentInteractable.ActiveHand) Drop();
+
+        //currentInteractable.transform.position = hand.transform.position;
+
+        //Rigidbody targetBody = currentInteractable.GetComponent<Rigidbody>();
+        //fixedJoint.connectedBody = targetBody;
 
         currentInteractable = interactable;
 
         if (!currentInteractable) return;
+        currentInteractable = currentInteractable.Interact();
 
-        if (currentInteractable.ActiveHand) Drop();
+        Debug.Log("Pickup");
 
-        currentInteractable.transform.position = hand.transform.position;
+        Pickup pickup = currentInteractable?.GetComponent<Pickup>();
+        if (currentInteractable != null && pickup != null) {
+            if (pickup.SnapOnPickup) {
+                currentInteractable.transform.position = hand.transform.position;
+                currentInteractable.transform.rotation = Quaternion.Euler(hand.transform.eulerAngles);
+            }
+        }
 
         Rigidbody targetBody = currentInteractable.GetComponent<Rigidbody>();
         fixedJoint.connectedBody = targetBody;
