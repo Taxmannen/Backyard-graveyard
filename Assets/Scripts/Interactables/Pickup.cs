@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
 /* Script Made By Daniel */
+[RequireComponent(typeof(Rigidbody))]
 public class Pickup : Interactable
 {
     [Header("Pickup")]

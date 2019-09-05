@@ -2,12 +2,11 @@
 using UnityEngine;
 
 /* Script Made By Daniel and Petter */
-[RequireComponent(typeof(Rigidbody))]
 public class Interactable : MonoBehaviour
 {
     [Header("Highlight")]
     [SerializeField] private MeshRenderer[] meshRenderers;
-    public bool test;
+
     private Material outlineMaterial;
     private List<Material[]> materials = new List<Material[]>();
 
