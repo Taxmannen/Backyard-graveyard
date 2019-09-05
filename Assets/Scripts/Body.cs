@@ -5,6 +5,9 @@ using UnityEngine;
 /* Script Created By Petter */
 public class Body : Pickup
 {
+    [SerializeField] private GameObject bodyPrefab;
+    [SerializeField] private GameObject headPrefab;
+
     [SerializeField] private Transform headPosition;
 
     [SerializeField] private FixedJoint fixedJoint;
@@ -15,19 +18,10 @@ public class Body : Pickup
 
     private void Awake()
     {
-        MyColor myColor = (MyColor)Random.Range(0, 3);
-        if (myColor == MyColor.Blue)
-        {
-            gameObject.GetComponent<MeshRenderer>().material.color = Color.blue;
-        }
-        else if (myColor == MyColor.Green)
-        {
-            gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-        }
-        else if (myColor == MyColor.Red)
-        {
-            gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
-        }
+        SetColor();
+
+        //For test, delete!
+        //SpawnFullBody(new Vector3(0, 0, 0));
     }
 
     private void OnTriggerEnter(Collider other)
@@ -35,8 +29,6 @@ public class Body : Pickup
         if (other.GetComponent<Head>())
         {
             other.gameObject.transform.position = headPosition.position;
-            other.gameObject.transform.rotation = Quaternion.Euler((transform.rotation.x - 90), transform.rotation.y, transform.rotation.z);
-            //other.gameObject.GetComponent<Rigidbody>().useGravity = false;
             fullBody = true;
             if (fixedJoint != null)
             {
@@ -57,8 +49,41 @@ public class Body : Pickup
                 Destroy(gameObject.GetComponent<FixedJoint>());
                 fixedJoint = null;
             }
-            //other.gameObject.GetComponent<Rigidbody>().useGravity = true;
             fullBody = false;
         }
+    }
+
+    private void SetColor()
+    {
+        MyColor myColor = (MyColor)Random.Range(0, 3);
+        if (myColor == MyColor.Blue)
+        {
+            gameObject.GetComponent<MeshRenderer>().material.color = Color.blue;
+        }
+        else if (myColor == MyColor.Green)
+        {
+            gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+        }
+        else if (myColor == MyColor.Red)
+        {
+            gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
+        }
+    }
+
+    public void SpawnFullBody(Vector3 spawnPosition)
+    {
+        GameObject newBody = Instantiate(bodyPrefab, spawnPosition, Quaternion.identity);
+        GameObject newHead = Instantiate(headPrefab, spawnPosition, Quaternion.identity);
+        newHead.transform.position = newBody.GetComponent<Body>().headPosition.position;
+        //newHead.transform.rotation = Quaternion.Euler()
+        if (!newBody.GetComponent<FixedJoint>())
+        {
+            newBody.AddComponent<FixedJoint>();
+        }
+        if (newBody.GetComponent<FixedJoint>())
+        {
+            newBody.GetComponent<FixedJoint>().connectedBody = newHead.GetComponent<Rigidbody>();
+        }
+        newBody.GetComponent<Body>().fullBody = true;
     }
 }

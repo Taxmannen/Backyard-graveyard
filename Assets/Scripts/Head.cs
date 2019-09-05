@@ -9,6 +9,11 @@ public class Head : Pickup
 
     private void Awake()
     {
+        SetColor();
+    }
+
+    private void SetColor()
+    {
         MyColor myColor = (MyColor)Random.Range(0, 3);
 
         MeshRenderer[] meshRenderer = GetComponentsInChildren<MeshRenderer>();
