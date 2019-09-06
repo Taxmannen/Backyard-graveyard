@@ -133,8 +133,8 @@ GameObject:
   - component: {fileID: 6230482428666462202}
   - component: {fileID: 6230482428666462205}
   - component: {fileID: 6230482428666462204}
-  - component: {fileID: 6230482428666462206}
   - component: {fileID: 6230482428666462203}
+  - component: {fileID: 2109273528}
   m_Layer: 0
   m_Name: Grave
   m_TagString: Interactable
@@ -212,19 +212,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &6230482428666462206
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6230482428666462201}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.1, y: 1.2, z: 0.8}
-  m_Center: {x: 0, y: 0.1, z: 0}
 --- !u!114 &6230482428666462203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,6 +234,19 @@ MonoBehaviour:
   dirtLayer: {fileID: 1930263825163367472, guid: e690d6f52159b6e4a88f67c2aee9ac6b,
     type: 3}
   dirtLayerParent: {fileID: 6230482428519676335}
+--- !u!65 &2109273528
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6230482428666462201}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1, y: 1.2, z: 0.8}
+  m_Center: {x: 0, y: 0.1, z: 0}
 --- !u!1 &6230482429098158071
 GameObject:
   m_ObjectHideFlags: 0
