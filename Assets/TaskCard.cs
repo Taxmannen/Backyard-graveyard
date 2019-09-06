@@ -94,22 +94,28 @@ public class TaskCard : MonoBehaviour
 
     public void TaskCompleted()
     {
-        foreach (Image image in GetComponentsInChildren<Image>())
-        {
-            taskCompletedImage.gameObject.SetActive(true);
-        }
+        //foreach (Image image in GetComponentsInChildren<Image>())
+        //{
+        //    taskCompletedImage.gameObject.SetActive(true);
+        //}
+        taskCompletedImage.gameObject.SetActive(true);
+    }
+
+
+    public void TaskFailed() {
+        taskFailedImage.gameObject.SetActive(true);
     }
 
     public void Disable() {
         foreach (Image image in GetComponentsInChildren<Image>()) {
-            taskCompletedImage.gameObject.SetActive(false);
+            image.gameObject.SetActive(false);
         }
 
-        headImage.gameObject.SetActive(false);
-        bodyImage.gameObject.SetActive(false);
+        //headImage.gameObject.SetActive(false);
+        //bodyImage.gameObject.SetActive(false);
 
-        ornamentSlot01Image.gameObject.SetActive(false);
-        ornamentSlot02Image.gameObject.SetActive(false);
-        ornamentSlot03Image.gameObject.SetActive(false);
+        //ornamentSlot01Image.gameObject.SetActive(false);
+        //ornamentSlot02Image.gameObject.SetActive(false);
+        //ornamentSlot03Image.gameObject.SetActive(false);
     }
 }

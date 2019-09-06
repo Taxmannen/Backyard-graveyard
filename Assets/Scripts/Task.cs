@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,19 +23,34 @@ public class Task : MonoBehaviour
     private Bodies body;
     private Ornaments[] ornaments = new Ornaments[3];
 
-    private bool completed = false;
+    private bool taskEnded = false;
 
     TaskManager taskManager;
 
     public TaskCard TaskCard { get => taskCard; private set => taskCard = value; }
     public TaskManager TaskManager { get => taskManager; set => taskManager = value; }
 
+    [SerializeField] private float maxTimeInSeconds = 5f;
+    private DateTime startTime;
 
     private void Start() {
         GameObject go = GameObject.Instantiate(PrefabTaskCard, transform.position, transform.rotation);
         TaskCard = go.GetComponent<TaskCard>();
 
         RefreshTaskCardIngredients();
+    }
+
+    private void Update() {
+        float secondsElapsed = (float)((DateTime.Now - startTime).TotalSeconds);
+        float quotientCompleted = secondsElapsed / maxTimeInSeconds;
+
+        if(quotientCompleted > 1f) {
+            FailTask();
+        }
+        else {
+            //Debug.Log("Seconds elapsed: " + secondsElapsed + " Quotient: " + quotientCompleted);
+            taskCard.UpdateTimerBar(quotientCompleted);
+        }
     }
 
     private void CompleteTask() {
@@ -45,6 +61,12 @@ public class Task : MonoBehaviour
         //RefreshTaskCardIngredients();
         TaskCard.TaskCompleted();
         TaskManager.CompleteTask(this);
+    }
+
+    private void FailTask() {
+        taskEnded = true;
+        TaskCard.TaskFailed();
+        TaskManager.FailTask(this);
     }
 
     private void RefreshTaskCardIngredients() {
@@ -62,6 +84,9 @@ public class Task : MonoBehaviour
         ornaments[2] = (Ornaments)ornament3;
 
         TaskCard.SetTaskIngredients(ornament1, ornament2, ornament3, bodydIndex, headIndex);
+
+        maxTimeInSeconds = RandomManager.GetRandomNumber(3, 8);
+        startTime = DateTime.Now;
     }
 
     /// <summary>
@@ -72,7 +97,7 @@ public class Task : MonoBehaviour
     /// <param name="ornaments"></param>
     /// <returns>Returns true if the task completed this frame</returns>
     public bool CheckTask(Heads head, Bodies body, List<Ornaments> ornaments) {
-        if (completed) {
+        if (taskEnded) {
             Debug.Log("Completed");
             return false;
         }

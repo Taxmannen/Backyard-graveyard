@@ -6,7 +6,7 @@ using UnityEngine;
 /// <author>Simon Ektjärn</author>
 /// </summary>
 
-    public enum TaskObjectType { Head, Body, Ornament };
+public enum TaskObjectType { Head, Body, Ornament };
 public class TaskObject : MonoBehaviour
 {
     public TaskObjectType taskObjectType = TaskObjectType.Head;
