@@ -92,4 +92,17 @@ public class TaskCard : MonoBehaviour
             taskCompletedImage.gameObject.SetActive(true);
         }
     }
+
+    public void Disable() {
+        foreach (Image image in GetComponentsInChildren<Image>()) {
+            taskCompletedImage.gameObject.SetActive(false);
+        }
+
+        headImage.gameObject.SetActive(false);
+        bodyImage.gameObject.SetActive(false);
+
+        ornamentSlot01Image.gameObject.SetActive(false);
+        ornamentSlot02Image.gameObject.SetActive(false);
+        ornamentSlot03Image.gameObject.SetActive(false);
+    }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// <author>Simon</author>
@@ -9,18 +10,36 @@ using UnityEngine;
 public class TaskManager : MonoBehaviour
 {
     public Task[] tasks;
+    public GameObject levelCompletedImage;
+    Dictionary<Task, bool> completedTasks = new Dictionary<Task, bool>();
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //foreach(Task task in tasks) {
-        //    task.SpawnNewTaskCard();
-        //}
+    private void Start() {
+        foreach(Task task in tasks) {
+            completedTasks[task] = false;
+            task.TaskManager = this;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void CompleteTask(Task task) {
+        completedTasks[task] = true;
+        CheckLevelCompletion();
+    }
+
+    public bool CheckLevelCompletion() {
+        foreach (Task task in tasks) {
+            if (!completedTasks[task])
+                return false;
+        }
+
+        CompleteLevel();
+        return true;
+    }
+
+    private void CompleteLevel() {
+        foreach (Task task in tasks) {
+            task.TaskCard.Disable();
+        }
+
+        levelCompletedImage.SetActive(true);
     }
 }

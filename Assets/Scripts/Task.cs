@@ -24,9 +24,15 @@ public class Task : MonoBehaviour
 
     private bool completed = false;
 
+    TaskManager taskManager;
+
+    public TaskCard TaskCard { get => taskCard; private set => taskCard = value; }
+    public TaskManager TaskManager { get => taskManager; set => taskManager = value; }
+
+
     private void Start() {
         GameObject go = GameObject.Instantiate(PrefabTaskCard, transform.position, transform.rotation);
-        taskCard = go.GetComponent<TaskCard>();
+        TaskCard = go.GetComponent<TaskCard>();
 
         RefreshTaskCardIngredients();
     }
@@ -37,7 +43,8 @@ public class Task : MonoBehaviour
         Debug.Log("Task completed");
 
         //RefreshTaskCardIngredients();
-        taskCard.TaskCompleted();
+        TaskCard.TaskCompleted();
+        TaskManager.CompleteTask(this);
     }
 
     private void RefreshTaskCardIngredients() {
@@ -54,7 +61,7 @@ public class Task : MonoBehaviour
         int ornament3 = RandomManager.GetRandomNumber(0, (int)Ornaments.NumberOfTypes);
         ornaments[2] = (Ornaments)ornament3;
 
-        taskCard.SetTaskIngredients(ornament1, ornament2, ornament3, bodydIndex, headIndex);
+        TaskCard.SetTaskIngredients(ornament1, ornament2, ornament3, bodydIndex, headIndex);
     }
 
     /// <summary>
