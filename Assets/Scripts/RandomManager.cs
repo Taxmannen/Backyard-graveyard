@@ -12,4 +12,10 @@ public class RandomManager : MonoBehaviour
         Debug.Log("Finding random number between " + min + " and " + max + " resulting in "+ number);
         return number;
     }
+
+    public static float GetRandomNumber(float min, float max) {
+        float number = Random.Range(min, max);
+        Debug.Log("Finding random number between " + min + " and " + max + " resulting in " + number);
+        return number;
+    }
 }

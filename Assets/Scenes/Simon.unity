@@ -402,11 +402,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 12.499592
       objectReference: {fileID: 0}
-    - target: {fileID: 6120881116044642907, guid: 2f3f6c9dc2f17664f897e237ba3ecd78,
-        type: 3}
-      propertyPath: m_UseGravity
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6120881115428797886, guid: 2f3f6c9dc2f17664f897e237ba3ecd78,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -521,6 +516,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6120881116044642907, guid: 2f3f6c9dc2f17664f897e237ba3ecd78,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f3f6c9dc2f17664f897e237ba3ecd78, type: 3}
@@ -611,11 +611,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 12.499592
       objectReference: {fileID: 0}
-    - target: {fileID: 6120881116044642907, guid: 2f3f6c9dc2f17664f897e237ba3ecd78,
-        type: 3}
-      propertyPath: m_UseGravity
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6120881115428797886, guid: 2f3f6c9dc2f17664f897e237ba3ecd78,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -730,6 +725,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6120881116044642907, guid: 2f3f6c9dc2f17664f897e237ba3ecd78,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f3f6c9dc2f17664f897e237ba3ecd78, type: 3}
@@ -820,11 +820,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 12.499592
       objectReference: {fileID: 0}
-    - target: {fileID: 6120881116044642907, guid: 2f3f6c9dc2f17664f897e237ba3ecd78,
-        type: 3}
-      propertyPath: m_UseGravity
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6120881115428797886, guid: 2f3f6c9dc2f17664f897e237ba3ecd78,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -939,6 +934,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6120881116044642907, guid: 2f3f6c9dc2f17664f897e237ba3ecd78,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f3f6c9dc2f17664f897e237ba3ecd78, type: 3}
@@ -1863,6 +1863,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshRenderers: []
   snapOnPickup: 0
+  snapWhenThrow: 0
   shouldDespawnWhenOnGround: 0
   despawnTimeWhenOnGround: 0
 --- !u!114 &752784421
@@ -1881,6 +1882,7 @@ MonoBehaviour:
   - {fileID: 752784417}
   - {fileID: 752784416}
   snapOnPickup: 0
+  snapWhenThrow: 0
   shouldDespawnWhenOnGround: 0
   despawnTimeWhenOnGround: 0
   snappedPosition: {x: 0, y: 0, z: 0}
@@ -2034,6 +2036,7 @@ MonoBehaviour:
   - {fileID: 771910556}
   - {fileID: 771910555}
   snapOnPickup: 0
+  snapWhenThrow: 0
   shouldDespawnWhenOnGround: 0
   despawnTimeWhenOnGround: 0
   snappedPosition: {x: 0, y: 0, z: 0}
@@ -2798,6 +2801,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshRenderers: []
   snapOnPickup: 0
+  snapWhenThrow: 0
   shouldDespawnWhenOnGround: 0
   despawnTimeWhenOnGround: 0
 --- !u!114 &1129137441
@@ -2815,6 +2819,7 @@ MonoBehaviour:
   meshRenderers:
   - {fileID: 1129137437}
   snapOnPickup: 0
+  snapWhenThrow: 0
   shouldDespawnWhenOnGround: 0
   despawnTimeWhenOnGround: 0
   snappedPosition: {x: 0, y: 0, z: 0}
@@ -3429,6 +3434,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshRenderers: []
   snapOnPickup: 0
+  snapWhenThrow: 0
   shouldDespawnWhenOnGround: 0
   despawnTimeWhenOnGround: 0
 --- !u!114 &1588242240
@@ -3446,6 +3452,7 @@ MonoBehaviour:
   meshRenderers:
   - {fileID: 1588242236}
   snapOnPickup: 0
+  snapWhenThrow: 0
   shouldDespawnWhenOnGround: 0
   despawnTimeWhenOnGround: 0
   snappedPosition: {x: 0, y: 0, z: 0}
@@ -3587,6 +3594,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshRenderers: []
   snapOnPickup: 0
+  snapWhenThrow: 0
   shouldDespawnWhenOnGround: 0
   despawnTimeWhenOnGround: 0
 --- !u!114 &1614517946
@@ -3604,6 +3612,7 @@ MonoBehaviour:
   meshRenderers:
   - {fileID: 1614517942}
   snapOnPickup: 0
+  snapWhenThrow: 0
   shouldDespawnWhenOnGround: 0
   despawnTimeWhenOnGround: 0
   snappedPosition: {x: 0, y: 0, z: 0}
@@ -3769,6 +3778,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshRenderers: []
   snapOnPickup: 0
+  snapWhenThrow: 0
   shouldDespawnWhenOnGround: 0
   despawnTimeWhenOnGround: 0
 --- !u!114 &1619854813
@@ -3787,6 +3797,7 @@ MonoBehaviour:
   - {fileID: 1619854810}
   - {fileID: 1619854809}
   snapOnPickup: 0
+  snapWhenThrow: 0
   shouldDespawnWhenOnGround: 0
   despawnTimeWhenOnGround: 0
   snappedPosition: {x: 0, y: 0, z: 0}
@@ -4362,6 +4373,8 @@ MonoBehaviour:
   - {fileID: 1624203867}
   - {fileID: 1707792689}
   levelCompletedImage: {fileID: 1063013875}
+  maxTimeInSecondsMin: 30
+  maxTimeInSecondsMax: 300
 --- !u!4 &1783345790
 Transform:
   m_ObjectHideFlags: 0
@@ -4653,11 +4666,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 12.499592
       objectReference: {fileID: 0}
-    - target: {fileID: 6120881116044642907, guid: 2f3f6c9dc2f17664f897e237ba3ecd78,
-        type: 3}
-      propertyPath: m_UseGravity
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6120881115428797886, guid: 2f3f6c9dc2f17664f897e237ba3ecd78,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -4772,6 +4780,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6120881116044642907, guid: 2f3f6c9dc2f17664f897e237ba3ecd78,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f3f6c9dc2f17664f897e237ba3ecd78, type: 3}
@@ -4931,11 +4944,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 12.499592
       objectReference: {fileID: 0}
-    - target: {fileID: 6120881116044642907, guid: 2f3f6c9dc2f17664f897e237ba3ecd78,
-        type: 3}
-      propertyPath: m_UseGravity
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6120881115428797886, guid: 2f3f6c9dc2f17664f897e237ba3ecd78,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -5050,6 +5058,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6120881116044642907, guid: 2f3f6c9dc2f17664f897e237ba3ecd78,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6120881114268558120, guid: 2f3f6c9dc2f17664f897e237ba3ecd78,
         type: 3}

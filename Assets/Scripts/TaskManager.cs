@@ -14,11 +14,20 @@ public class TaskManager : MonoBehaviour
     Dictionary<Task, bool> completedTasks = new Dictionary<Task, bool>();
     Dictionary<Task, bool> failedTasks = new Dictionary<Task, bool>();
 
+    [SerializeField][Range(0, 600)]
+    private int timeLimitInSecondsMin = 5;
+    [SerializeField][Range(0, 600)]
+    private int timeLimitInSecondsMax = 10;
+
+    public int TimeLimitInSecondsMin { get => timeLimitInSecondsMin; private set => timeLimitInSecondsMin = value; }
+    public int TimeLimitInSecondsMax { get => timeLimitInSecondsMax; private set => timeLimitInSecondsMax = value; }
+
     private void Start() {
         foreach(Task task in tasks) {
             completedTasks[task] = false;
             failedTasks[task] = false;
             task.TaskManager = this;
+            task.RefreshTaskCardIngredients();
         }
     }
 
@@ -50,7 +59,7 @@ public class TaskManager : MonoBehaviour
             }
         }
 
-        Debug.Log("You completed " + nrOfCompletedTasks + " tasks and failed " + nrOfFailedTasks + " tasks");
+        //Debug.Log("You completed " + nrOfCompletedTasks + " tasks and failed " + nrOfFailedTasks + " tasks");
 
         CompleteLevel();
         return true;

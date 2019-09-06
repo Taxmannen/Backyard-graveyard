@@ -30,14 +30,12 @@ public class Task : MonoBehaviour
     public TaskCard TaskCard { get => taskCard; private set => taskCard = value; }
     public TaskManager TaskManager { get => taskManager; set => taskManager = value; }
 
-    [SerializeField] private float maxTimeInSeconds = 5f;
+    private float maxTimeInSeconds = 5f;
     private DateTime startTime;
 
     private void Start() {
         GameObject go = GameObject.Instantiate(PrefabTaskCard, transform.position, transform.rotation);
         TaskCard = go.GetComponent<TaskCard>();
-
-        RefreshTaskCardIngredients();
     }
 
     private void Update() {
@@ -48,7 +46,7 @@ public class Task : MonoBehaviour
             FailTask();
         }
         else {
-            //Debug.Log("Seconds elapsed: " + secondsElapsed + " Quotient: " + quotientCompleted);
+            Debug.Log("Seconds elapsed: " + secondsElapsed + " Quotient: " + quotientCompleted);
             taskCard.UpdateTimerBar(quotientCompleted);
         }
     }
@@ -69,7 +67,7 @@ public class Task : MonoBehaviour
         TaskManager.FailTask(this);
     }
 
-    private void RefreshTaskCardIngredients() {
+    public void RefreshTaskCardIngredients() {
         // TODO: THIS SHOULD GENERATE A UNIQUE TASK?
 
         int headIndex = RandomManager.GetRandomNumber(0, (int)Heads.NumberOfTypes);
@@ -85,7 +83,8 @@ public class Task : MonoBehaviour
 
         TaskCard.SetTaskIngredients(ornament1, ornament2, ornament3, bodydIndex, headIndex);
 
-        maxTimeInSeconds = RandomManager.GetRandomNumber(3, 8);
+        maxTimeInSeconds = RandomManager.GetRandomNumber(taskManager.TimeLimitInSecondsMin, taskManager.TimeLimitInSecondsMax);
+        Debug.Log("Setting random time to: " + maxTimeInSeconds);
         startTime = DateTime.Now;
     }
 
