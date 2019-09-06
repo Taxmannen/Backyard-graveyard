@@ -6,9 +6,11 @@ using UnityEngine;
 /// <author>Simon Ektjärn</author>
 /// </summary>
 
+    public enum TaskObjectType { Head, Body, Ornament };
 public class TaskObject : MonoBehaviour
 {
-    public Heads head;
-    public Bodies body;
-    public Ornaments ornament;
+    public TaskObjectType taskObjectType = TaskObjectType.Head;
+    public Heads head = Heads.None;
+    public Bodies body = Bodies.None;
+    public Ornaments ornament = Ornaments.None;
 }

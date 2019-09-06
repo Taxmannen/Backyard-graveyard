@@ -9,9 +9,9 @@ using UnityEngine;
 /// </author>
 /// </summary>
 
-public enum Heads { Red, Green, Blue, NumberOfTypes, None };
-public enum Bodies { Red, Green, Blue, NumberOfTypes, None };
-public enum Ornaments { Candle, Flower, NumberOfTypes, None };
+public enum Heads { Red, Green, Blue, [System.ObsoleteAttribute] NumberOfTypes, [System.ObsoleteAttribute] None };
+public enum Bodies { Red, Green, Blue, [System.ObsoleteAttribute] NumberOfTypes, [System.ObsoleteAttribute] None };
+public enum Ornaments { Candle, Flower, [System.ObsoleteAttribute] NumberOfTypes, [System.ObsoleteAttribute] None };
 
 public class Task : MonoBehaviour
 {
@@ -21,6 +21,8 @@ public class Task : MonoBehaviour
     private Heads head;
     private Bodies body;
     private Ornaments[] ornaments = new Ornaments[3];
+
+    private bool completed = false;
 
     private void Start() {
         GameObject go = GameObject.Instantiate(PrefabTaskCard, transform.position, transform.rotation);
@@ -34,10 +36,13 @@ public class Task : MonoBehaviour
 
         Debug.Log("Task completed");
 
-        RefreshTaskCardIngredients();
+        //RefreshTaskCardIngredients();
+        taskCard.TaskCompleted();
     }
 
     private void RefreshTaskCardIngredients() {
+        // TODO: THIS SHOULD GENERATE A UNIQUE TASK?
+
         int headIndex = RandomManager.GetRandomNumber(0, (int)Heads.NumberOfTypes);
         head = (Heads)headIndex;
         int bodydIndex = RandomManager.GetRandomNumber(0, (int)Bodies.NumberOfTypes);
@@ -52,7 +57,19 @@ public class Task : MonoBehaviour
         taskCard.SetTaskIngredients(ornament1, ornament2, ornament3, bodydIndex, headIndex);
     }
 
+    /// <summary>
+    /// Returns true if the task completed this frame
+    /// </summary>
+    /// <param name="head"></param>
+    /// <param name="body"></param>
+    /// <param name="ornaments"></param>
+    /// <returns>Returns true if the task completed this frame</returns>
     public bool CheckTask(Heads head, Bodies body, List<Ornaments> ornaments) {
+        if (completed) {
+            Debug.Log("Completed");
+            return false;
+        }
+
         Debug.Log("Checking stuff, our head " + this.head + " == " + head + " our body " + this.body + " == " + body);
         if (this.head == head && this.body == body) {
             //correct body, check ornaments
