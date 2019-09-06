@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,6 +20,9 @@ public class TaskCard : MonoBehaviour
     public Sprite[] bodySprites;
     public Sprite[] ornamentSprites;
 
+    [SerializeField]
+    private Image taskCompletedImage;
+
     //private void Start()
     //{
     //    headImage.sprite = headSprites[Random.Range(0, headSprites.Length)];
@@ -30,6 +34,12 @@ public class TaskCard : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(CompleteDelay());
+    }
+
+    private IEnumerator CompleteDelay()
+    {
+        yield return new WaitForSeconds(3f);
         TaskCompleted();
     }
 
@@ -89,7 +99,7 @@ public class TaskCard : MonoBehaviour
     {
         foreach (Image image in GetComponentsInChildren<Image>())
         {
-            image.gameObject.SetActive(false);
+            taskCompletedImage.gameObject.SetActive(true);
         }
     }
 }
