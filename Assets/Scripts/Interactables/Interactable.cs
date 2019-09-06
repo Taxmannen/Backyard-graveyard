@@ -3,7 +3,7 @@ using UnityEngine;
 
 public enum MaterialType { Standard, Ghost, Outline }
 
-/* Script Made By Daniel and Petter */
+/* Script Made By Daniel, Edited By Petter */
 public class Interactable : MonoBehaviour
 {
     [Header("Highlight")]
@@ -48,5 +48,30 @@ public class Interactable : MonoBehaviour
         }
     }
 
+    public GameObject CreateGhostObject(Vector3 position, Vector3 rotation)
+    {
+        GameObject ghost = Instantiate(gameObject);
+        Interactable ghostScript = ghost.GetComponent<Interactable>();
+        ghostScript.Start();
+        ghostScript.SetToOutlineMaterial(MaterialType.Ghost);
+
+        Collider[] cols = ghost.GetComponents<Collider>();
+        foreach (var collider in cols) Destroy(collider);
+
+        MonoBehaviour[] monoBehaviours = ghost.GetComponents<MonoBehaviour>();
+        foreach (var script in monoBehaviours) Destroy(script);
+
+        Destroy(ghost.GetComponent<Rigidbody>());
+
+        ghost.tag = "Untagged";
+        ghost.transform.position = position;
+        ghost.transform.rotation = Quaternion.Euler(rotation);
+        ghost.gameObject.SetActive(false);
+
+        ghost.SetActive(true);
+
+        return ghost;
+    }
+ 
     public virtual Interactable Interact() { return this; }
 }
