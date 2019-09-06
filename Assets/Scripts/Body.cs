@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/* Script Created By Petter */
+/* Script Created By Petter and Helped By Daniel */
 public class Body : Pickup
 {
     [Header("Body")]
@@ -22,6 +22,11 @@ public class Body : Pickup
         SetColor();
         GameObject newHead = Instantiate(headPrefab);
         AttachHeadToCorrectPosition(newHead);
+    }
+
+    protected override void Start()
+    {
+        base.Start();
         SnapOnPickup = false;
     }
 
