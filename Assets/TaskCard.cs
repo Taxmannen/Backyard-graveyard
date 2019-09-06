@@ -22,6 +22,8 @@ public class TaskCard : MonoBehaviour
 
     [SerializeField]
     private Image taskCompletedImage;
+    [SerializeField]
+    private Image taskFailedImage;
 
     [SerializeField]
     private Image timerImage;
@@ -30,26 +32,6 @@ public class TaskCard : MonoBehaviour
     private float timerWidthMin = 0f;
     private Color timerColor = new Color(0f, 255f, 0f);
 
-    //float, lerp från max till min
-
-    //private void Start()
-    //{
-    //    headImage.sprite = headSprites[Random.Range(0, headSprites.Length)];
-    //    bodyImage.sprite = bodySprites[Random.Range(0, bodySprites.Length)];
-    //    ornamentSlot01Image.sprite = ornamentSprites[Random.Range(0, ornamentSprites.Length)];
-    //    ornamentSlot02Image.sprite = ornamentSprites[Random.Range(0, ornamentSprites.Length)];
-    //    ornamentSlot03Image.sprite = ornamentSprites[Random.Range(0, ornamentSprites.Length)];
-    //}
-
-    //private void Update()
-    //{
-    //    timerWidth -= 0.01f;
-    //    Debug.Log(timerWidth);
-    //    timerImage.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, timerWidth);
-    //    timerColor.g -= 1.5f;
-    //    timerColor.r += 1.5f;
-    //    timerImage.color = timerColor;
-    //}
 
     public void UpdateTimerBar(float timerPercent)
     {
