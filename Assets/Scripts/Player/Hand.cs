@@ -8,10 +8,12 @@ public class Hand : MonoBehaviour
 {
     public SteamVR_Action_Boolean grabAction = null;
     public SteamVR_Action_Boolean restartAction = null;
+
+    [Header("Debug")]
+    [SerializeField] private Interactable currentInteractable;
         
     private SteamVR_Behaviour_Pose pose = null;
     private FixedJoint fixedJoint;
-    private Interactable currentInteractable;
     private List<Interactable> contactInteractable = new List<Interactable>();
 
     private MeshRenderer[] controllerMeshes;
@@ -81,7 +83,6 @@ public class Hand : MonoBehaviour
     public void Drop()
     {
         if (!currentInteractable) return;
-
         Rigidbody targetBody = currentInteractable.GetComponent<Rigidbody>();
         targetBody.velocity = pose.GetVelocity();
         targetBody.angularVelocity = pose.GetAngularVelocity();

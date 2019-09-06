@@ -20,6 +20,7 @@ public class Interactable : MonoBehaviour
         outlineMaterial = Resources.Load<Material>("Materials/Outline Material");
         ghostMaterial   = Resources.Load<Material>("Materials/Ghost Material");
         for (int i = 0; i < meshRenderers.Length; i++) materials.Add(meshRenderers[i].materials);
+        if (meshRenderers.Length == 0) Debug.LogError(gameObject.name + " " + "MESH RENDERER ÄR NULL!");
     }
 
     public void SetToOutlineMaterial(MaterialType matType)
