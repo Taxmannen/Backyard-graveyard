@@ -3,19 +3,16 @@
 /* Script Made By Daniel */
 public class Dirt : Pickup
 {
-    private float timer; //Fixa
-
-    private void Update()
-    {
-        timer += Time.deltaTime;
-    }
-
     private void OnCollisionStay(Collision other)
     {
-        if (other.gameObject.GetComponent<Grave>() != null && timer > 0.5f)
+        if (other.gameObject.GetComponent<Grave>() != null)
         {
-            other.gameObject.GetComponent<Grave>().AddDirt();
-            Destroy(gameObject);
+            Grave grave = other.gameObject.GetComponent<Grave>();
+            if (!ActiveHand)
+            {
+                grave.GetComponent<Grave>().AddDirt();
+                Destroy(gameObject);
+            } 
         }
     }
 }

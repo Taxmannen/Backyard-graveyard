@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+/* Script Made By Daniel */
 public class Ornament : Pickup
 {
     [Header("Ornament")]
@@ -7,11 +8,7 @@ public class Ornament : Pickup
     [SerializeField] private Vector3 snappedRotation;
 
     private Rigidbody rb;
-    private Coroutine coroutine;
-    //private OrnamentPlacement placement;
-
-    //For Debug
-    [SerializeField] private bool canPlace = true;
+    private OrnamentContainer container;
 
     protected override void Start()
     {
@@ -19,11 +16,10 @@ public class Ornament : Pickup
         base.Start();
     }
 
-    public void PlaceOrnament(OrnamentPlacement placement, Vector3 position)
+    public void PlaceOrnament(OrnamentContainer container, Vector3 position)
     {
-        //this.placement = placement;
+        this.container = container;
 
-        Drop();
         rb.constraints = RigidbodyConstraints.FreezeAll;
         rb.freezeRotation = true;
 
@@ -33,35 +29,18 @@ public class Ornament : Pickup
 
     public override Interactable Interact()
     {
-        //PickupOrnament();
+        PickupOrnamentFromPlacement();
         return this;
     }
-
-
-    /*
-    public void PickupOrnament()
+    
+    public void PickupOrnamentFromPlacement()
     {
-        if (coroutine == null) coroutine = StartCoroutine(Kaj());
-        rb.constraints = RigidbodyConstraints.None;
-        rb.freezeRotation = false;
-        if (placement)
+        if (container)
         {
-            placement.RemoveOrnament();
-            placement = null;
+            rb.constraints = RigidbodyConstraints.None;
+            rb.freezeRotation = false;
+            container.RemoveOrnament();
+            container = null;
         }
     }
-
-    private IEnumerator Kaj()
-    {
-        canPlace = false;
-        yield return new WaitForSeconds(1);
-        canPlace = true;
-        coroutine = null;
-    }
-
-    public bool CanPlace()
-    {
-        return canPlace;
-    }
-    */
 }

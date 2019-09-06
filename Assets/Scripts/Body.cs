@@ -10,58 +10,70 @@ public class Body : Pickup
     [SerializeField] private GameObject headPrefab;
     [SerializeField] private Transform headPosition;
 
+    [SerializeField] private BoxCollider bodyCollider;
+    [SerializeField] private BoxCollider headCollider;
+
     public FixedJoint fixedJoint { get; set; }
 
     public bool fullBody;
+    public Head head;
     
     public enum MyColor {Blue, Green, Red};
 
     private void Awake()
     {
         SetColor();
+        //Physics.IgnoreCollision(bodyCollider, headCollider);
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SpawnFullBody(new Vector3(0,2,0));
+            //SpawnFullBody(new Vector3(0,2,0));
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if (other.GetComponent<Head>())
+        if (other.CompareTag("Interactable") && other.GetComponent<Head>() && !fullBody)
         {
+            //AttachHeadToCorrectPosition(other.gameObject, this.gameObject);
 
-            AttachHeadToCorrectPosition(other.gameObject, this.gameObject);
+            //other.GetComponent<Collider>().enabled = false;
 
-            /*other.GetComponent<Collider>().enabled = false;
-            other.gameObject.transform.position = headPosition.position;
-            other.transform.rotation = transform.rotation;
-            fullBody = true;
-
-            if (fixedJoint != null)
+            if (!other.GetComponent<Head>().ActiveHand || !ActiveHand)
             {
-                Destroy(fixedJoint);
-                fixedJoint = null;
+                other.gameObject.transform.position = headPosition.position;
+                other.transform.rotation = transform.rotation;
+
+                if (fixedJoint != null)
+                {
+                    Destroy(fixedJoint);
+                    fixedJoint = null;
+                }
+                fixedJoint = gameObject.AddComponent<FixedJoint>();
+                fixedJoint.connectedBody = other.gameObject.GetComponent<Rigidbody>();
+
+                other.transform.SetParent(transform);
+
+                head = other.GetComponent<Head>();
+                fullBody = true;
             }
-            fixedJoint = gameObject.AddComponent<FixedJoint>();
-            fixedJoint.connectedBody = other.gameObject.GetComponent<Rigidbody>();
-            other.GetComponent<Collider>().enabled = true;*/
+            //other.GetComponent<Collider>().enabled = true;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<Head>())
+        if (other.CompareTag("Interactable") && other.GetComponent<Head>() && fullBody)
         {
             if (fixedJoint != null)
             {
                 Destroy(gameObject.GetComponent<FixedJoint>());
                 fixedJoint = null;
-                other.transform.SetParent(null);
             }
+            other.transform.SetParent(null);
             fullBody = false;
         }
     }
@@ -83,24 +95,24 @@ public class Body : Pickup
         }
     }
 
+    /*
     private void AttachHeadToCorrectPosition(GameObject head, GameObject body)
     {
-        head.GetComponent<Collider>().enabled = false;
+        //head.GetComponent<Collider>().enabled = false;
         head.transform.SetParent(body.transform);
         head.transform.position = body.GetComponent<Body>().headPosition.position;
         head.transform.rotation = body.transform.rotation;
 
-        Body bodyScript = body.GetComponent<Body>();
-        if (bodyScript.fixedJoint != null)
+        if (fixedJoint != null)
         {
             Destroy(bodyScript.fixedJoint);
-            bodyScript.fixedJoint = null;
+            fixedJoint = null;
         }
-        bodyScript.fixedJoint = body.AddComponent<FixedJoint>();
-        bodyScript.fixedJoint.connectedBody = head.gameObject.GetComponent<Rigidbody>();
+        fixedJoint = body.AddComponent<FixedJoint>();
+        fixedJoint.connectedBody = head.gameObject.GetComponent<Rigidbody>();
 
-        body.GetComponent<Body>().fullBody = true;
-        head.GetComponent<Collider>().enabled = true;
+        fullBody = true;
+        //head.GetComponent<Collider>().enabled = true;
     }
 
     public void SpawnFullBody(Vector3 spawnPosition)
@@ -125,5 +137,5 @@ public class Body : Pickup
         }
         newBody.GetComponent<Body>().fullBody = true;
         newHead.GetComponent<Collider>().enabled = true;*/
-    }
+    //}
 }
