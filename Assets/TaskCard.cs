@@ -28,6 +28,11 @@ public class TaskCard : MonoBehaviour
     //    ornamentSlot03Image.sprite = ornamentSprites[Random.Range(0, ornamentSprites.Length)];
     //}
 
+    private void Start()
+    {
+        TaskCompleted();
+    }
+
     public void SetTaskIngredients(int Ornament01Type, int Ornament02Type, int Ornament03Type, int BodyType, int HeadType)
     {
         SetOrnaments(Ornament01Type, Ornament02Type, Ornament03Type);
@@ -77,6 +82,14 @@ public class TaskCard : MonoBehaviour
                 break;
             default:
                 throw new System.Exception("TaskCard::SetHead exception: Invalid color");
+        }
+    }
+
+    public void TaskCompleted()
+    {
+        foreach (Image image in GetComponentsInChildren<Image>())
+        {
+            image.gameObject.SetActive(false);
         }
     }
 }
