@@ -128,7 +128,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &3826630009149676943
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -158,6 +158,7 @@ MonoBehaviour:
   - {fileID: 5437830253568043873}
   - {fileID: 1554083139675900066}
   snapOnPickup: 0
+  snapWhenThrow: 0
   shouldDespawnWhenOnGround: 0
   despawnTimeWhenOnGround: 0
 --- !u!1 &5435521833392123113

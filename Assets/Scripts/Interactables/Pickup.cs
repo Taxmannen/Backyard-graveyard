@@ -13,6 +13,7 @@ public class Pickup : Interactable
     public bool SnapOnPickup
     {
         get { return snapOnPickup; }
+        set { snapOnPickup = value; }
     }
 
     public virtual void Drop()
