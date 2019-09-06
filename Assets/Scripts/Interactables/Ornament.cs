@@ -7,8 +7,8 @@ public class Ornament : Pickup
     [SerializeField] private Vector3 snappedPosition;
     [SerializeField] private Vector3 snappedRotation;
 
-    private Rigidbody rb;
     private OrnamentContainer container;
+    private Rigidbody rb;
 
     protected override void Start()
     {
@@ -43,4 +43,8 @@ public class Ornament : Pickup
             container = null;
         }
     }
+
+    public Vector3 GetPosition() { return snappedPosition; }
+
+    public Vector3 GetRotation() { return snappedRotation; }
 }
