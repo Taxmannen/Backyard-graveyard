@@ -31,17 +31,7 @@ public class TaskCard : MonoBehaviour
     //    ornamentSlot02Image.sprite = ornamentSprites[Random.Range(0, ornamentSprites.Length)];
     //    ornamentSlot03Image.sprite = ornamentSprites[Random.Range(0, ornamentSprites.Length)];
     //}
-
-    private void Start()
-    {
-        StartCoroutine(CompleteDelay());
-    }
-
-    private IEnumerator CompleteDelay()
-    {
-        yield return new WaitForSeconds(3f);
-        TaskCompleted();
-    }
+    
 
     public void SetTaskIngredients(int Ornament01Type, int Ornament02Type, int Ornament03Type, int BodyType, int HeadType)
     {
