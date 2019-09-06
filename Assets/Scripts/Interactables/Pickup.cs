@@ -6,7 +6,7 @@ public class Pickup : Interactable
 {
     [Header("Pickup")]
     [SerializeField] private bool snapOnPickup;
-    //[SerializeField] protected bool snapWhenThrow; //Kanske implmenteras??
+    [SerializeField] protected bool snapWhenThrow;
     [SerializeField] protected bool shouldDespawnWhenOnGround;
     [SerializeField] protected float despawnTimeWhenOnGround;
 

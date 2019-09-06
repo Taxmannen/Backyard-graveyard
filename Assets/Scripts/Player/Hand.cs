@@ -6,6 +6,7 @@ using Valve.VR;
 /* Script Made By Daniel, Edited By Petter */
 public class Hand : MonoBehaviour
 {
+    #region Variables
     public SteamVR_Action_Boolean grabAction = null;
     public SteamVR_Action_Boolean restartAction = null;
 
@@ -17,6 +18,7 @@ public class Hand : MonoBehaviour
     private List<Interactable> contactInteractable = new List<Interactable>();
 
     private MeshRenderer[] controllerMeshes;
+    #endregion
 
     private void Awake()
     {
