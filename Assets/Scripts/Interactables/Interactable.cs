@@ -2,11 +2,14 @@
 using UnityEngine;
 
 public enum MaterialType { Standard, Ghost, Outline }
-public enum InteractableType { Weapon, Ornament, Head, Body, Other }
+public enum InteractableType { Other, Weapon, Ornament, Head, Body }
 
 /* Script Made By Daniel, Edited By Petter */
 public class Interactable : MonoBehaviour
 {
+    [Header("Interactable")]
+    [SerializeField] private InteractableType interactableType;
+
     [Header("Highlight")]
     [SerializeField] private MeshRenderer[] meshRenderers;
 

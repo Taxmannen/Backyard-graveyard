@@ -94,9 +94,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2063653b0fec40240b0123f7ca0c3ada, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  taskObjectType: 0
   head: 4
   body: 4
-  ornament: 0
+  ornament: 3
 --- !u!54 &7081553365740325115
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -125,13 +126,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd3d256e97da7fd419e1d041f716100c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactableType: 0
   meshRenderers: []
   snapOnPickup: 0
   shouldDespawnWhenOnGround: 0
   despawnTimeWhenOnGround: 0
   snappedPosition: {x: 0, y: 0, z: 0}
   snappedRotation: {x: 0, y: 0, z: 0}
-  canPlace: 1
 --- !u!114 &7081553365740325109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,5 +145,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c638da77e5e42ca4f8fe3c3d687db257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactableType: 2
   meshRenderers:
   - {fileID: 674273714420966690}

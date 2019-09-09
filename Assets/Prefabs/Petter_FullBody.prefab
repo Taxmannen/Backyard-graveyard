@@ -168,6 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74a763911eb9c7643a00634821135b5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactableType: 3
   meshRenderers:
   - {fileID: 3608135628285300408}
   snapOnPickup: 1
