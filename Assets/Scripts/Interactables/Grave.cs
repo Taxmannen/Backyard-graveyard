@@ -108,6 +108,8 @@ public class Grave : Interactable
                     if (task.CheckTask(body.Head.GetHeadType(), body.GetBodyType(), tempo))
                     {
                         Debug.Log("TaskGrave: FINISHED TASK, AWW YEAH");
+
+                        return;
                     }
                 }
             }
