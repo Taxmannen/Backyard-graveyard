@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8752650417617431582}
   - component: {fileID: 8752650417617431586}
   - component: {fileID: 8752650417617431583}
-  - component: {fileID: 8752650417617431587}
+  - component: {fileID: 6560277225515472269}
   m_Layer: 0
   m_Name: Box
   m_TagString: Interactable
@@ -110,7 +110,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8752650417617431587
+--- !u!114 &6560277225515472269
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,8 +119,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8752650417617431580}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c638da77e5e42ca4f8fe3c3d687db257, type: 3}
+  m_Script: {fileID: 11500000, guid: e67be067edb7d214799af6a28792b208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderers:
   - {fileID: 8752650417617431582}
+  snapOnPickup: 0
+  shouldDespawnWhenOnGround: 0
+  despawnTimeWhenOnGround: 0
