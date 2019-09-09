@@ -24,7 +24,7 @@ public class Ornament : Pickup
         rb.freezeRotation = true;
 
         transform.position = position + snappedPosition;
-        transform.rotation = Quaternion.Euler(snappedRotation);
+        transform.rotation = Quaternion.Euler(container.transform.eulerAngles + snappedRotation);
     }
 
     public override Interactable Interact()

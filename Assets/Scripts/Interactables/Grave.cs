@@ -44,7 +44,7 @@ public class Grave : Interactable
             body = newBody;
             body.SetRigidbodyConstraints(true);
             body.transform.position = transform.position + bodyOffset;
-            body.transform.rotation = Quaternion.Euler(new Vector3(0, 0, -90));
+            body.transform.rotation = Quaternion.Euler(transform.eulerAngles + new Vector3(90, 90, 90));
         }
     }
 
