@@ -19,23 +19,23 @@ public class TaskGrave : MonoBehaviour
     /// what stuff it has on it
     /// maybe that data could somehow be sent directly into the task
     /// bypassing our storage
-    //[SerializeField] private Heads head = Heads.None;
-    //[SerializeField] private Bodies body = Bodies.None;
-    //[SerializeField] private List<Ornaments> ornament;
+    [SerializeField] private HeadType head = HeadType.None;
+    [SerializeField] private BodyType body = BodyType.None;
+    [SerializeField] private List<OrnamentType> ornament;
 
     private List<GameObject> stuffOnTop = new List<GameObject>();
     public bool ClearObjectsOnTopOnCompletion = true;
-
+/*
     private void OnTriggerEnter(Collider other) {
         TaskObject taskObject = other.GetComponent<TaskObject>();
         if(taskObject != null) {
-            if(taskObject.head != Heads.None && taskObject.head != Heads.NumberOfTypes) {
+            if(taskObject.head != HeadType.None && taskObject.head != HeadType.NumberOfTypes) {
                 head = taskObject.head;
             }
-            else if (taskObject.body != Bodies.None && taskObject.body != Bodies.NumberOfTypes) {
+            else if (taskObject.body != BodyType.None && taskObject.body != BodyType.NumberOfTypes) {
                 body = taskObject.body;
             }
-            else if (taskObject.ornament != Ornaments.None && taskObject.ornament != Ornaments.NumberOfTypes) {
+            else if (taskObject.ornament != OrnamentType.None && taskObject.ornament != OrnamentType.NumberOfTypes) {
                 ornament.Add(taskObject.ornament);
                 Debug.Log("Added " + taskObject.ornament);
             }
@@ -54,8 +54,8 @@ public class TaskGrave : MonoBehaviour
         foreach (Task task in FindObjectOfType<TaskManager>().tasks) {
             if (task.CheckTask(head, body, ornament)) {
                 Debug.Log("TaskGrave: FINISHED TASK, AWW YEAH");
-                head = Heads.None;
-                body = Bodies.None;
+                head = HeadType.None;
+                body = BodyType.None;
                 ornament.Clear();
 
                 if(ClearObjectsOnTopOnCompletion) {
@@ -69,5 +69,5 @@ public class TaskGrave : MonoBehaviour
                 }
             }
         }
-    }
+    }*/
 }

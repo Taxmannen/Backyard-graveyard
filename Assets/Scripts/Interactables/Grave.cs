@@ -17,10 +17,9 @@ public class Grave : Interactable
 
     [Header("Body")]
     [SerializeField] private Body body = null; //For Debug!
-    [SerializeField] private Vector3 bodyOffset = new Vector3();
-
 
     private List<GameObject> dirtLayerList = new List<GameObject>();
+    private Vector3 bodyOffset = new Vector3(0, -0.5f, 0);
     #endregion
 
     private void Awake()
@@ -34,17 +33,6 @@ public class Grave : Interactable
         {
             Body body = other.GetComponent<Body>();
             if (body != null) AddBody(body);
-        }
-    }
-
-    private void AddBody(Body newBody)
-    {
-        if (body == null && dirtLayerList.Count == 0)
-        {
-            body = newBody;
-            body.SetRigidbodyConstraints(true);
-            body.transform.position = transform.position + bodyOffset;
-            body.transform.rotation = Quaternion.Euler(transform.eulerAngles + new Vector3(90, 90, 90));
         }
     }
 
@@ -63,6 +51,17 @@ public class Grave : Interactable
         else return null;
     }
 
+    private void AddBody(Body newBody)
+    {
+        if (body == null && dirtLayerList.Count == 0)
+        {
+            body = newBody;
+            body.SetRigidbodyConstraints(true);
+            body.transform.position = transform.position + bodyOffset;
+            body.transform.rotation = Quaternion.Euler(transform.eulerAngles + new Vector3(90, 90, 90));
+        }
+    }
+
     public void AddDirt()
     {
         if (dirtLayerList.Count < maxAmountOfDirtLayers)
@@ -73,6 +72,7 @@ public class Grave : Interactable
             current.transform.localPosition = new Vector3(0, (-0.5f + (scale / 2)) + (scale * dirtLayerList.Count), 0);
             dirtLayerList.Add(current);
         }
+        if (dirtLayerList.Count == maxAmountOfDirtLayers) CheckTaskCompletion();
     }
 
     private void RemoveDirt()
@@ -80,5 +80,29 @@ public class Grave : Interactable
         GameObject currentLayer = dirtLayerList[dirtLayerList.Count - 1];
         dirtLayerList.Remove(currentLayer);
         Destroy(currentLayer);
+    }
+
+    public void ResetGrave()
+    {
+        if (body != null) Destroy(body);
+        foreach (OrnamentContainer container in ornamentContainers) container.DestroyOrnament();
+        for (int i = 0; i < (maxAmountOfDirtLayers - dirtLayerList.Count); i++) AddDirt();
+    }
+
+    public void CheckTaskCompletion()
+    {
+        List<OrnamentType> tempo = new List<OrnamentType>();
+        foreach (OrnamentContainer container in ornamentContainers)
+        {
+            tempo.Add(container.GetPlacedOrnament().GetOrnamentType());
+        }
+
+        foreach (Task task in FindObjectOfType<TaskManager>().tasks)
+        {
+            if (task.CheckTask(body.Head.GetHeadType(), body.GetBodyType(), tempo))
+            {
+                Debug.Log("TaskGrave: FINISHED TASK, AWW YEAH");
+            }
+        }
     }
 }
