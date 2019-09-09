@@ -9,14 +9,13 @@ public class Body : Pickup
     [SerializeField] private GameObject bodyPrefab;
     [SerializeField] private GameObject headPrefab;
     [SerializeField] private Transform headPosition;
+    public bool fullBody;
 
     [Header("Head")]
     public GameObject myCurrentHead;
     [SerializeField] GameObject ghostObject;
 
-    public FixedJoint fixedJoint { get; set; }
-
-    public bool fullBody;
+    public FixedJoint fixedJoint;
     
     public enum MyColor {Blue, Green, Red};
 
@@ -37,32 +36,40 @@ public class Body : Pickup
     {
         if (other.CompareTag("Interactable") && other.GetComponent<Head>() && !fullBody)
         {
-            ghostObject = other.GetComponent<Interactable>().CreateGhostObject(headPosition.position, transform.rotation.eulerAngles);
-            ghostObject.transform.SetParent(transform);
+            if (ghostObject == null)
+            {
+                ghostObject = other.GetComponent<Interactable>().CreateGhostObject(headPosition.position, transform.rotation.eulerAngles);
+                ghostObject.transform.SetParent(transform);
+            }
 
             if (!other.GetComponent<Head>().ActiveHand || !ActiveHand)
             {
-                if (!other.GetComponent<Head>().ActiveHand && !ActiveHand)
-                {
-                    return;
-                }
-                else AttachHeadToCorrectPosition(other.gameObject);
+                if (!other.GetComponent<Head>().ActiveHand && !ActiveHand) { return; }
+                
+                else { AttachHeadToCorrectPosition(other.gameObject); Destroy(ghostObject); }
             }
-            Destroy(ghostObject);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Interactable") && other.GetComponent<Head>() && fullBody)
+        if (other.CompareTag("Interactable") && other.GetComponent<Head>())
         {
-            if (fixedJoint != null)
+            if (ghostObject != null)
             {
-                Destroy(gameObject.GetComponent<FixedJoint>());
-                fixedJoint = null;
+                Destroy(ghostObject);
             }
-            other.transform.SetParent(null);
-            fullBody = false;
+
+            if (fullBody)
+            {
+                if (fixedJoint != null)
+                {
+                    Destroy(gameObject.GetComponent<FixedJoint>());
+                    fixedJoint = null;
+                }
+                other.transform.SetParent(null);
+                fullBody = false;
+            }
         }
     }
 
