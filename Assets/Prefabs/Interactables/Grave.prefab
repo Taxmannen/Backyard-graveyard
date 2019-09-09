@@ -43,8 +43,8 @@ GameObject:
   - component: {fileID: 8695872206774074927}
   - component: {fileID: 8695872206774074920}
   - component: {fileID: 8695872206774074921}
-  - component: {fileID: 8695872206774074926}
   - component: {fileID: 3376274140732798061}
+  - component: {fileID: 8695872206774074926}
   m_Layer: 0
   m_Name: Grave
   m_TagString: Interactable
@@ -123,6 +123,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &3376274140732798061
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8695872206774074924}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8, y: 1.2, z: 1.1}
+  m_Center: {x: 0, y: 0.1, z: 0}
 --- !u!114 &8695872206774074926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,19 +163,6 @@ MonoBehaviour:
   - {fileID: 8699760391194360622}
   body: {fileID: 0}
   bodyOffset: {x: 0, y: -0.5, z: 0}
---- !u!65 &3376274140732798061
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8695872206774074924}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.8, y: 1.2, z: 1.1}
-  m_Center: {x: 0, y: 0.1, z: 0}
 --- !u!1 &8695872206971277848
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,6 +18,7 @@ public class Pickup : Interactable
 
     public virtual void Drop()
     {
+        //SetToOutlineMaterial(MaterialType.Standard);
         ActiveHand = null;
     }
 
