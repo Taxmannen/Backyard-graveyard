@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 674273714420966690}
   - component: {fileID: 7081553365740325115}
   - component: {fileID: 7081553365740325108}
+  - component: {fileID: 1714106326121983755}
   m_Layer: 0
   m_Name: Candle_Stick
   m_TagString: Interactable
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 1254065932924604926}
   m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
   m_LocalPosition: {x: 1.2562387, y: 0.253, z: -0.66}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 0.25}
+  m_LocalScale: {x: 0.016666668, y: 0.016666668, z: 0.083333336}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -108,11 +109,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd3d256e97da7fd419e1d041f716100c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactableType: 0
-  meshRenderers: []
-  snapOnPickup: 0
+  interactableType: 2
+  meshRenderers:
+  - {fileID: 674273714420966690}
+  snapOnPickup: 1
   shouldDespawnWhenOnGround: 0
   despawnTimeWhenOnGround: 0
   ornamentType: 0
   snappedPosition: {x: 0, y: 0, z: 0}
-  snappedRotation: {x: 0, y: 0, z: 0}
+  snappedRotation: {x: -90, y: 0, z: 0}
+--- !u!65 &1714106326121983755
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1254065932924604926}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 11.999999, y: 12, z: 4.8000007}
+  m_Center: {x: 0, y: 0, z: 1.4000001}

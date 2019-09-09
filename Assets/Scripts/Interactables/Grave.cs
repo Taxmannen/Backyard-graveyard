@@ -94,14 +94,22 @@ public class Grave : Interactable
         List<OrnamentType> tempo = new List<OrnamentType>();
         foreach (OrnamentContainer container in ornamentContainers)
         {
-            tempo.Add(container.GetPlacedOrnament().GetOrnamentType());
+            Ornament ornament = container.GetPlacedOrnament();
+            if (ornament) tempo.Add(ornament.GetOrnamentType());
         }
 
-        foreach (Task task in FindObjectOfType<TaskManager>().tasks)
+        if (body != null)
         {
-            if (task.CheckTask(body.Head.GetHeadType(), body.GetBodyType(), tempo))
+            foreach (Task task in FindObjectOfType<TaskManager>().tasks)
             {
-                Debug.Log("TaskGrave: FINISHED TASK, AWW YEAH");
+                Head head = body.Head;
+                if (head != null)
+                {
+                    if (task.CheckTask(body.Head.GetHeadType(), body.GetBodyType(), tempo))
+                    {
+                        Debug.Log("TaskGrave: FINISHED TASK, AWW YEAH");
+                    }
+                }
             }
         }
     }

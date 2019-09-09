@@ -105,6 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 397a9f98814fa3441b3491a4b1e9096f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactableType: 4
   meshRenderers:
   - {fileID: 4902855810044610098}
   spawnPrefab: {fileID: 4410019569351948750, guid: 661a96f52f475164ea110a3e179a175d,

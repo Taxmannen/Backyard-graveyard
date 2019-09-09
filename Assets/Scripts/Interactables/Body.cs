@@ -2,27 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum BodyType { Red, Green, Blue, [System.ObsoleteAttribute] NumberOfTypes, [System.ObsoleteAttribute] None };
+
 /* Script Created By Petter and Helped By Daniel */
 public class Body : Pickup
 {
     [Header("Body")]
+    [SerializeField] private BodyType bodyType;
     [SerializeField] private GameObject bodyPrefab;
     [SerializeField] private GameObject headPrefab;
     [SerializeField] private Transform headPosition;
     public bool fullBody;
 
     [Header("Head")]
-    public GameObject myCurrentHead;
     [SerializeField] GameObject ghostObject;
 
+    public Head Head { get; private set; }
+
     public FixedJoint fixedJoint;
-    
-    public enum MyColor {Blue, Green, Red};
 
     private void Awake()
     {
         SetColor();
-        GameObject newHead = Instantiate(headPrefab);
+        Head newHead = Instantiate(headPrefab).GetComponent<Head>();
         AttachHeadToCorrectPosition(newHead);
     }
 
@@ -34,7 +36,8 @@ public class Body : Pickup
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Interactable") && other.GetComponent<Head>() && !fullBody)
+        Head head = other.GetComponent<Head>();
+        if (!fullBody && other.CompareTag("Interactable") && head)
         {
             if (ghostObject == null)
             {
@@ -42,11 +45,11 @@ public class Body : Pickup
                 ghostObject.transform.SetParent(transform);
             }
 
-            if (!other.GetComponent<Head>().ActiveHand || !ActiveHand)
+            if (!head.ActiveHand || !ActiveHand)
             {
-                if (!other.GetComponent<Head>().ActiveHand && !ActiveHand) { return; }
+                if (!head.ActiveHand && !ActiveHand) { return; }
                 
-                else { AttachHeadToCorrectPosition(other.gameObject); Destroy(ghostObject); }
+                else { AttachHeadToCorrectPosition(head); Destroy(ghostObject); }
             }
         }
     }
@@ -75,23 +78,23 @@ public class Body : Pickup
 
     private void SetColor()
     {
-        MyColor myColor = (MyColor)Random.Range(0, 3);
-        if (myColor == MyColor.Blue)
+        bodyType = (BodyType)Random.Range(0, 3);
+        if (bodyType == BodyType.Blue)
         {
             gameObject.GetComponentInChildren<MeshRenderer>().material.color = Color.blue;
         }
-        else if (myColor == MyColor.Green)
+        else if (bodyType == BodyType.Green)
         {
             gameObject.GetComponentInChildren<MeshRenderer>().material.color = Color.green;
         }
-        else if (myColor == MyColor.Red)
+        else if (bodyType == BodyType.Red)
         {
             gameObject.GetComponentInChildren<MeshRenderer>().material.color = Color.red;
         }
     }
 
     
-    private void AttachHeadToCorrectPosition(GameObject head)
+    private void AttachHeadToCorrectPosition(Head head)
     {
         head.transform.position = headPosition.position;
         head.transform.rotation = transform.rotation;
@@ -105,7 +108,7 @@ public class Body : Pickup
         fixedJoint.connectedBody = head.gameObject.GetComponent<Rigidbody>();
 
         head.transform.SetParent(transform);
-        myCurrentHead = head;
+        Head = head;
         fullBody = true;
     }
 
@@ -125,4 +128,6 @@ public class Body : Pickup
             }
         }
     }
+
+    public BodyType GetBodyType() { return bodyType; }
 }
