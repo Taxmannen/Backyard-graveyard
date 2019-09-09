@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+public enum PickupType { Other, Weapon, Ornament, Head, Body }
+
 /* Script Made By Daniel */
 [RequireComponent(typeof(Rigidbody))]
 public class Pickup : Interactable
 {
     [Header("Pickup")]
+    [SerializeField] private PickupType pickupType;
     [SerializeField] private bool snapOnPickup;
     //[SerializeField] protected bool snapWhenThrow;
     [SerializeField] protected bool shouldDespawnWhenOnGround;
@@ -31,7 +34,6 @@ public class Pickup : Interactable
 
     public virtual void Drop()
     {
-        //SetToOutlineMaterial(MaterialType.Standard);
         ActiveHand = null;
     }
 
@@ -40,7 +42,6 @@ public class Pickup : Interactable
         if (other.gameObject.tag == "Ground" && ActiveHand == null && shouldDespawnWhenOnGround)
         {
             if (coroutine == null) coroutine = StartCoroutine(DestoryMe());
-            //Destroy(gameObject, despawnTimeWhenOnGround);
         }
     }
 

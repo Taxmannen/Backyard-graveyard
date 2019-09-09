@@ -89,13 +89,14 @@ public class Grave : Interactable
         for (int i = 0; i < (maxAmountOfDirtLayers - dirtLayerList.Count); i++) AddDirt();
     }
 
+    //STÄDA!
     public void CheckTaskCompletion()
     {
-        List<OrnamentType> tempo = new List<OrnamentType>();
+        List<OrnamentType> ornamentType = new List<OrnamentType>();
         foreach (OrnamentContainer container in ornamentContainers)
         {
             Ornament ornament = container.GetPlacedOrnament();
-            if (ornament) tempo.Add(ornament.GetOrnamentType());
+            if (ornament) ornamentType.Add(ornament.GetOrnamentType());
         }
 
         if (body != null)
@@ -105,9 +106,10 @@ public class Grave : Interactable
                 Head head = body.Head;
                 if (head != null)
                 {
-                    if (task.CheckTask(body.Head.GetHeadType(), body.GetBodyType(), tempo))
+                    if (task.CheckTask(body.Head.GetHeadType(), body.GetBodyType(), ornamentType))
                     {
                         Debug.Log("TaskGrave: FINISHED TASK, AWW YEAH");
+                        return;
                     }
                 }
             }

@@ -441,7 +441,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd3d256e97da7fd419e1d041f716100c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactableType: 2
   meshRenderers:
   - {fileID: 6409169832057533287}
   - {fileID: 7335948224390775258}
@@ -460,12 +459,13 @@ MonoBehaviour:
   - {fileID: 6412794135289218292}
   - {fileID: 340184003201563784}
   - {fileID: 4071276006065992004}
+  pickupType: 2
   snapOnPickup: 0
   shouldDespawnWhenOnGround: 0
   despawnTimeWhenOnGround: 0
   ornamentType: 1
-  snappedPosition: {x: 0, y: 0.03, z: 0}
-  snappedRotation: {x: 0, y: 270, z: 0}
+  snappedPosition: {x: 0, y: 0, z: 0}
+  snappedRotation: {x: 0, y: 90, z: 0}
 --- !u!1 &3819109171109231592
 GameObject:
   m_ObjectHideFlags: 0

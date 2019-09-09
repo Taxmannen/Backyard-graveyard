@@ -109,15 +109,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd3d256e97da7fd419e1d041f716100c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactableType: 2
   meshRenderers:
   - {fileID: 674273714420966690}
+  pickupType: 2
   snapOnPickup: 1
   shouldDespawnWhenOnGround: 0
   despawnTimeWhenOnGround: 0
   ornamentType: 0
-  snappedPosition: {x: 0, y: 0, z: 0}
-  snappedRotation: {x: -90, y: 0, z: 0}
+  snappedPosition: {x: 0, y: 0.08, z: 0}
+  snappedRotation: {x: -90, y: 0, z: 90}
 --- !u!65 &1714106326121983755
 BoxCollider:
   m_ObjectHideFlags: 0

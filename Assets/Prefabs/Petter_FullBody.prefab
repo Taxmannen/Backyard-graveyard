@@ -168,18 +168,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74a763911eb9c7643a00634821135b5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactableType: 3
   meshRenderers:
   - {fileID: 3608135628285300408}
+  pickupType: 4
   snapOnPickup: 1
   shouldDespawnWhenOnGround: 0
   despawnTimeWhenOnGround: 0
+  bodyType: 0
   bodyPrefab: {fileID: 4410019569351948750}
   headPrefab: {fileID: 5060645952705957100, guid: 1cf5b4ef40e7a9848a6306e41c117d46,
     type: 3}
   headPosition: {fileID: 6708845041535332153}
   fullBody: 0
-  myCurrentHead: {fileID: 0}
   ghostObject: {fileID: 0}
   fixedJoint: {fileID: 0}
 --- !u!1 &6708845041535332152
