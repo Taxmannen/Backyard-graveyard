@@ -2,6 +2,7 @@
 using UnityEngine;
 
 public enum MaterialType { Standard, Ghost, Outline }
+public enum InteractableType { Weapon, Ornament, Head, Body, Other }
 
 /* Script Made By Daniel, Edited By Petter */
 public class Interactable : MonoBehaviour

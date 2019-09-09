@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4804054930346812938}
   - component: {fileID: 4804054930346812939}
   - component: {fileID: 4804054930346812936}
+  - component: {fileID: 1496700290}
   - component: {fileID: 4804054930346812937}
   m_Layer: 0
   m_Name: Ornament Container
@@ -91,8 +92,21 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10, y: 2.220446e-16, z: 10}
+  m_Size: {x: 10, y: 2.22, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &1496700290
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4804054930346812942}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 7, z: 10}
+  m_Center: {x: 0, y: 3.49, z: 0}
 --- !u!114 &4804054930346812937
 MonoBehaviour:
   m_ObjectHideFlags: 0
