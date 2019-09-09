@@ -463,6 +463,7 @@ MonoBehaviour:
   snapOnPickup: 0
   shouldDespawnWhenOnGround: 0
   despawnTimeWhenOnGround: 0
+  ornamentType: 1
   snappedPosition: {x: 0, y: 0.03, z: 0}
   snappedRotation: {x: 0, y: 270, z: 0}
 --- !u!1 &3819109171109231592

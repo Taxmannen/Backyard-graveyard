@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 
+public enum OrnamentType { Candle, Flower, [System.ObsoleteAttribute] NumberOfTypes, [System.ObsoleteAttribute] None };
+
 /* Script Made By Daniel */
 public class Ornament : Pickup
 {
     [Header("Ornament")]
+    [SerializeField] private OrnamentType ornamentType;
     [SerializeField] private Vector3 snappedPosition;
     [SerializeField] private Vector3 snappedRotation;
 
@@ -47,4 +50,6 @@ public class Ornament : Pickup
     public Vector3 GetPosition() { return snappedPosition; }
 
     public Vector3 GetRotation() { return snappedRotation; }
+
+    public OrnamentType GetOrnamentType() { return ornamentType; }
 }

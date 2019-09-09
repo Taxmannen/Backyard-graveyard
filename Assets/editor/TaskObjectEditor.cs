@@ -10,9 +10,9 @@ public class TaskObjectEditor : Editor
     SerializedProperty bodySP;
     SerializedProperty ornamentSP;
 
-    Heads head;
-    Bodies body;
-    Ornaments ornament;
+    HeadType head;
+    BodyType body;
+    OrnamentType ornament;
 
     TaskObject taskObject;
 
@@ -38,25 +38,25 @@ public class TaskObjectEditor : Editor
         //EditorGUILayout.PropertyField(bodySP, true);
         //EditorGUILayout.PropertyField(ornamentSP, true);
 
-        taskObject.taskObjectType = (TaskObjectType)EditorGUILayout.EnumPopup("TaskObjectType:", taskObject.taskObjectType);
+        /*taskObject.taskObjectType = (TaskObjectType)EditorGUILayout.EnumPopup("TaskObjectType:", taskObject.taskObjectType);
         switch (taskObject.taskObjectType) {
             case TaskObjectType.Head:
                 taskObject.head = (Heads)EditorGUILayout.EnumPopup("Head type:", taskObject.head);
-                taskObject.body = Bodies.None;
+                taskObject.body = BodyType.None;
                 taskObject.ornament = Ornaments.None;
                 break;
             case TaskObjectType.Body:
                 taskObject.head = Heads.None;
-                taskObject.body = (Bodies)EditorGUILayout.EnumPopup("Body type:", taskObject.body);
+                taskObject.body = (BodyType)EditorGUILayout.EnumPopup("Body type:", taskObject.body);
                 taskObject.ornament = Ornaments.None;
                 break;
             case TaskObjectType.Ornament:
                 taskObject.head = Heads.None;
-                taskObject.body = Bodies.None;
+                taskObject.body = BodyType.None;
                 taskObject.ornament = (Ornaments)EditorGUILayout.EnumPopup("Ornament type:", taskObject.ornament);
                 break;
         }
 
-        serializedObject.ApplyModifiedProperties();
+        serializedObject.ApplyModifiedProperties();*/
     }
 }

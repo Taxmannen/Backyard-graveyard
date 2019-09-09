@@ -3,6 +3,8 @@
 /* Script Made By Daniel */
 public class OrnamentContainer : MonoBehaviour
 {
+    [SerializeField] private Grave grave;
+
     private Ornament placedOrnament;
     private GameObject ghost;
 
@@ -24,6 +26,7 @@ public class OrnamentContainer : MonoBehaviour
                     placedOrnament = currentOrnamnet;
                     placedOrnament.PlaceOrnament(this, transform.position);
                     Destroy(ghost);
+                    if (grave != null) grave.CheckTaskCompletion();
                 }
             }
         }
@@ -40,5 +43,19 @@ public class OrnamentContainer : MonoBehaviour
     public void RemoveOrnament()
     {
         placedOrnament = null;
+    }
+
+    public void DestroyOrnament()
+    {
+        if (placedOrnament != null)
+        {
+            Destroy(placedOrnament);
+            RemoveOrnament();
+        }
+    }
+
+    public Ornament GetPlacedOrnament()
+    {
+        return placedOrnament;
     }
 }

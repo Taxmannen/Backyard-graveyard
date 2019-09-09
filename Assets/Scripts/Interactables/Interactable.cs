@@ -2,6 +2,7 @@
 using UnityEngine;
 
 public enum MaterialType { Standard, Ghost, Outline }
+
 public enum InteractableType { Other, Weapon, Ornament, Head, Body }
 
 /* Script Made By Daniel, Edited By Petter */

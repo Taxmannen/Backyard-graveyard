@@ -12,13 +12,13 @@ public class TaskCard : MonoBehaviour
     public Image headImage;
     public Image bodyImage;
 
-    public Image ornamentSlot01Image;
-    public Image ornamentSlot02Image;
-    public Image ornamentSlot03Image;
+    public Image OrnamentTypelot01Image;
+    public Image OrnamentTypelot02Image;
+    public Image OrnamentTypelot03Image;
 
-    public Sprite[] headSprites;
+    public Sprite[] HeadTypeprites;
     public Sprite[] bodySprites;
-    public Sprite[] ornamentSprites;
+    public Sprite[] OrnamentTypeprites;
 
     [SerializeField]
     private Image taskCompletedImage;
@@ -42,16 +42,16 @@ public class TaskCard : MonoBehaviour
 
     public void SetTaskIngredients(int Ornament01Type, int Ornament02Type, int Ornament03Type, int BodyType, int HeadType)
     {
-        SetOrnaments(Ornament01Type, Ornament02Type, Ornament03Type);
+        SetOrnamentType(Ornament01Type, Ornament02Type, Ornament03Type);
         SetBody(BodyType);
         SetHead(HeadType);
     }
 
-    private void SetOrnaments(int Ornament01Type, int Ornament02Type, int Ornament03Type)
+    private void SetOrnamentType(int Ornament01Type, int Ornament02Type, int Ornament03Type)
     {
-        ornamentSlot01Image.sprite = ornamentSprites[Ornament01Type];
-        ornamentSlot02Image.sprite = ornamentSprites[Ornament02Type];
-        ornamentSlot03Image.sprite = ornamentSprites[Ornament03Type];
+        OrnamentTypelot01Image.sprite = OrnamentTypeprites[Ornament01Type];
+        OrnamentTypelot02Image.sprite = OrnamentTypeprites[Ornament02Type];
+        OrnamentTypelot03Image.sprite = OrnamentTypeprites[Ornament03Type];
     }
 
     private void SetBody(int BodyType)
@@ -75,7 +75,7 @@ public class TaskCard : MonoBehaviour
 
     private void SetHead(int HeadType)
     {
-        headImage.sprite = headSprites[HeadType];
+        headImage.sprite = HeadTypeprites[HeadType];
         switch (HeadType)
         {
             case 0:
@@ -114,8 +114,8 @@ public class TaskCard : MonoBehaviour
         //headImage.gameObject.SetActive(false);
         //bodyImage.gameObject.SetActive(false);
 
-        //ornamentSlot01Image.gameObject.SetActive(false);
-        //ornamentSlot02Image.gameObject.SetActive(false);
-        //ornamentSlot03Image.gameObject.SetActive(false);
+        //OrnamentTypelot01Image.gameObject.SetActive(false);
+        //OrnamentTypelot02Image.gameObject.SetActive(false);
+        //OrnamentTypelot03Image.gameObject.SetActive(false);
     }
 }

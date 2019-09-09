@@ -9,8 +9,8 @@ using UnityEngine;
 public enum TaskObjectType { Head, Body, Ornament };
 public class TaskObject : MonoBehaviour
 {
-    public TaskObjectType taskObjectType = TaskObjectType.Head;
-    public Heads head = Heads.None;
-    public Bodies body = Bodies.None;
-    public Ornaments ornament = Ornaments.None;
+    /*public TaskObjectType taskObjectType = TaskObjectType.Head;
+    public HeadType head = HeadType.None;
+    public BodyType body = BodyType.None;
+    public OrnamentType ornament = OrnamentType.None;*/
 }

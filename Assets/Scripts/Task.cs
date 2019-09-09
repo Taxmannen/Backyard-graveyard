@@ -10,18 +10,18 @@ using UnityEngine;
 /// </author>
 /// </summary>
 
-public enum Heads { Red, Green, Blue, [System.ObsoleteAttribute] NumberOfTypes, [System.ObsoleteAttribute] None };
-public enum Bodies { Red, Green, Blue, [System.ObsoleteAttribute] NumberOfTypes, [System.ObsoleteAttribute] None };
-public enum Ornaments { Candle, Flower, [System.ObsoleteAttribute] NumberOfTypes, [System.ObsoleteAttribute] None };
+//public enum HeadType { Red, Green, Blue, [System.ObsoleteAttribute] NumberOfTypes, [System.ObsoleteAttribute] None };
+//public enum Bodies { Red, Green, Blue, [System.ObsoleteAttribute] NumberOfTypes, [System.ObsoleteAttribute] None };
+//public enum OrnamentType { Candle, Flower, [System.ObsoleteAttribute] NumberOfTypes, [System.ObsoleteAttribute] None };
 
 public class Task : MonoBehaviour
 {
     public GameObject PrefabTaskCard;
     private TaskCard taskCard;
 
-    private Heads head;
-    private Bodies body;
-    private Ornaments[] ornaments = new Ornaments[3];
+    private HeadType head;
+    private BodyType body;
+    private OrnamentType[] ornamentType = new OrnamentType[3];
 
     private bool taskEnded = false;
 
@@ -79,16 +79,16 @@ public class Task : MonoBehaviour
     public void RefreshTaskCardIngredients() {
         // TODO: THIS SHOULD GENERATE A UNIQUE TASK?
 
-        int headIndex = RandomManager.GetRandomNumber(0, (int)Heads.NumberOfTypes);
-        head = (Heads)headIndex;
-        int bodydIndex = RandomManager.GetRandomNumber(0, (int)Bodies.NumberOfTypes);
-        body = (Bodies)bodydIndex;
-        int ornament1 = RandomManager.GetRandomNumber(0, (int)Ornaments.NumberOfTypes);
-        ornaments[0] = (Ornaments)ornament1;
-        int ornament2 = RandomManager.GetRandomNumber(0, (int)Ornaments.NumberOfTypes);
-        ornaments[1] = (Ornaments)ornament2;
-        int ornament3 = RandomManager.GetRandomNumber(0, (int)Ornaments.NumberOfTypes);
-        ornaments[2] = (Ornaments)ornament3;
+        int headIndex = RandomManager.GetRandomNumber(0, (int)HeadType.NumberOfTypes);
+        head = (HeadType)headIndex;
+        int bodydIndex = RandomManager.GetRandomNumber(0, (int)BodyType.NumberOfTypes);
+        body = (BodyType)bodydIndex;
+        int ornament1 = RandomManager.GetRandomNumber(0, (int)OrnamentType.NumberOfTypes);
+        ornamentType[0] = (OrnamentType)ornament1;
+        int ornament2 = RandomManager.GetRandomNumber(0, (int)OrnamentType.NumberOfTypes);
+        ornamentType[1] = (OrnamentType)ornament2;
+        int ornament3 = RandomManager.GetRandomNumber(0, (int)OrnamentType.NumberOfTypes);
+        ornamentType[2] = (OrnamentType)ornament3;
 
         TaskCard.SetTaskIngredients(ornament1, ornament2, ornament3, bodydIndex, headIndex);
 
@@ -102,9 +102,9 @@ public class Task : MonoBehaviour
     /// </summary>
     /// <param name="head"></param>
     /// <param name="body"></param>
-    /// <param name="ornaments"></param>
+    /// <param name="OrnamentType"></param>
     /// <returns>Returns true if the task completed this frame</returns>
-    public bool CheckTask(Heads head, Bodies body, List<Ornaments> ornaments) {
+    public bool CheckTask(HeadType head, BodyType body, List<OrnamentType> OrnamentType) {
         if (taskEnded) {
             Debug.Log("Completed");
             return false;
@@ -112,16 +112,16 @@ public class Task : MonoBehaviour
 
         Debug.Log("Checking stuff, our head " + this.head + " == " + head + " our body " + this.body + " == " + body);
         if (this.head == head && this.body == body) {
-            //correct body, check ornaments
+            //correct body, check OrnamentType
 
-            List<Ornaments> tmpOrnaments = new List<Ornaments>(ornaments);
-            foreach(Ornaments ornament in this.ornaments) {
-                if (!tmpOrnaments.Contains(ornament)) {
+            List<OrnamentType> tmpOrnamentType = new List<OrnamentType>(OrnamentType);
+            foreach(OrnamentType ornament in this.ornamentType) {
+                if (!tmpOrnamentType.Contains(ornament)) {
                     Debug.Log("oH NOES they dId NoT COnTAiN " + ornament);
                     return false;
                 }
                 else {
-                    tmpOrnaments.Remove(ornament);
+                    tmpOrnamentType.Remove(ornament);
                 }
             }
 

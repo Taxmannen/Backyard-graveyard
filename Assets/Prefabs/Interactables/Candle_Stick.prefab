@@ -11,10 +11,8 @@ GameObject:
   - component: {fileID: 2827151754539639789}
   - component: {fileID: 6514185511965956571}
   - component: {fileID: 674273714420966690}
-  - component: {fileID: 7081553365740325114}
   - component: {fileID: 7081553365740325115}
   - component: {fileID: 7081553365740325108}
-  - component: {fileID: 7081553365740325109}
   m_Layer: 0
   m_Name: Candle_Stick
   m_TagString: Interactable
@@ -82,22 +80,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &7081553365740325114
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1254065932924604926}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2063653b0fec40240b0123f7ca0c3ada, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  taskObjectType: 0
-  head: 4
-  body: 4
-  ornament: 3
 --- !u!54 &7081553365740325115
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -131,20 +113,6 @@ MonoBehaviour:
   snapOnPickup: 0
   shouldDespawnWhenOnGround: 0
   despawnTimeWhenOnGround: 0
+  ornamentType: 0
   snappedPosition: {x: 0, y: 0, z: 0}
   snappedRotation: {x: 0, y: 0, z: 0}
---- !u!114 &7081553365740325109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1254065932924604926}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c638da77e5e42ca4f8fe3c3d687db257, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactableType: 2
-  meshRenderers:
-  - {fileID: 674273714420966690}
