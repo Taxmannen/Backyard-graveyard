@@ -10,10 +10,13 @@ public class Body : Pickup
     [SerializeField] private GameObject headPrefab;
     [SerializeField] private Transform headPosition;
 
+    [Header("Head")]
+    public GameObject myCurrentHead;
+    [SerializeField] GameObject ghostObject;
+
     public FixedJoint fixedJoint { get; set; }
 
     public bool fullBody;
-    public GameObject myCurrentHead;
     
     public enum MyColor {Blue, Green, Red};
 
@@ -34,6 +37,9 @@ public class Body : Pickup
     {
         if (other.CompareTag("Interactable") && other.GetComponent<Head>() && !fullBody)
         {
+            ghostObject = other.GetComponent<Interactable>().CreateGhostObject(headPosition.position, transform.rotation.eulerAngles);
+            ghostObject.transform.SetParent(transform);
+
             if (!other.GetComponent<Head>().ActiveHand || !ActiveHand)
             {
                 if (!other.GetComponent<Head>().ActiveHand && !ActiveHand)
@@ -42,6 +48,7 @@ public class Body : Pickup
                 }
                 else AttachHeadToCorrectPosition(other.gameObject);
             }
+            Destroy(ghostObject);
         }
     }
 
@@ -93,5 +100,16 @@ public class Body : Pickup
         head.transform.SetParent(transform);
         myCurrentHead = head;
         fullBody = true;
+    }
+
+    public void SetRigidbodyConstraints(bool setConstraints)
+    {
+        Rigidbody[] allRigidbodies = GetComponentsInChildren<Rigidbody>();
+        foreach (Rigidbody rigidbody in allRigidbodies)
+        {
+            rigidbody.isKinematic = setConstraints;
+            RigidbodyConstraints rbConstraints = setConstraints == true ? RigidbodyConstraints.FreezeAll : RigidbodyConstraints.None;
+            rigidbody.constraints = rbConstraints;
+        }
     }
 }
