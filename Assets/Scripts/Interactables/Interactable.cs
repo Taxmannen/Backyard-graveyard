@@ -2,10 +2,14 @@
 using UnityEngine;
 
 public enum MaterialType { Standard, Ghost, Outline }
+public enum InteractableType { Other, Weapon, Ornament, Head, Body }
 
 /* Script Made By Daniel, Edited By Petter */
 public class Interactable : MonoBehaviour
 {
+    [Header("Interactable")]
+    [SerializeField] private InteractableType interactableType;
+
     [Header("Highlight")]
     [SerializeField] private MeshRenderer[] meshRenderers;
 
@@ -61,8 +65,8 @@ public class Interactable : MonoBehaviour
         MonoBehaviour[] monoBehaviours = ghost.GetComponents<MonoBehaviour>();
         foreach (var script in monoBehaviours) Destroy(script);
 
-        //Destroy(ghost.GetComponent<Rigidbody>());
-        ghost.GetComponent<Rigidbody>().useGravity = false;
+        Destroy(ghost.GetComponent<Rigidbody>());
+        //ghost.GetComponent<Rigidbody>().useGravity = false;
 
         ghost.tag = "Untagged";
         ghost.transform.position = position;
