@@ -201,18 +201,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1510452176}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &72658325 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2115221864, guid: 708e7f5f202665d46bb61e5c9a4c1611,
-    type: 3}
-  m_PrefabInstance: {fileID: 465517680}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &124262148
 GameObject:
   m_ObjectHideFlags: 0
@@ -548,8 +536,19 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8695872206774074927, guid: f6220166c0873c141986dcda1a092d54,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6220166c0873c141986dcda1a092d54, type: 3}
+--- !u!4 &365950786 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8695872206774074927, guid: f6220166c0873c141986dcda1a092d54,
+    type: 3}
+  m_PrefabInstance: {fileID: 365950785}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &436829613
 GameObject:
   m_ObjectHideFlags: 0
@@ -578,7 +577,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 849850659}
-  - {fileID: 1332118848}
+  - {fileID: 365950786}
   - {fileID: 1815755955}
   - {fileID: 1446801024}
   - {fileID: 38934365}
@@ -665,26 +664,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1009302462, guid: 708e7f5f202665d46bb61e5c9a4c1611, type: 3}
-      propertyPath: levelCompletedText
-      value: 
-      objectReference: {fileID: 72658325}
-    - target: {fileID: 1009302462, guid: 708e7f5f202665d46bb61e5c9a4c1611, type: 3}
-      propertyPath: timeLimitInSecondsMin
-      value: 121
-      objectReference: {fileID: 0}
-    - target: {fileID: 1009302462, guid: 708e7f5f202665d46bb61e5c9a4c1611, type: 3}
-      propertyPath: timeLimitInSecondsMax
-      value: 181
-      objectReference: {fileID: 0}
-    - target: {fileID: 2115221864, guid: 708e7f5f202665d46bb61e5c9a4c1611, type: 3}
-      propertyPath: m_Text
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2115221864, guid: 708e7f5f202665d46bb61e5c9a4c1611, type: 3}
-      propertyPath: m_FontData.m_FontSize
-      value: 36
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 708e7f5f202665d46bb61e5c9a4c1611, type: 3}
@@ -1966,12 +1945,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d512dea7ceb4ba7418b831d3bd16789e, type: 3}
---- !u!4 &1332118848 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6230482428666462202, guid: f6220166c0873c141986dcda1a092d54,
-    type: 3}
-  m_PrefabInstance: {fileID: 365950785}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1346102862 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2128873106243716957, guid: d512dea7ceb4ba7418b831d3bd16789e,

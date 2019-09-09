@@ -17,7 +17,7 @@ using UnityEngine;
 public class Task : MonoBehaviour
 {
     public GameObject PrefabTaskCard;
-    private TaskCard taskCard;
+    [SerializeField] private TaskCard taskCard;
 
     private HeadType head;
     private BodyType body;
@@ -44,7 +44,7 @@ public class Task : MonoBehaviour
             return;
 
         GameObject go = GameObject.Instantiate(PrefabTaskCard, transform.position, transform.rotation);
-        go.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+        go.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
         TaskCard = go.GetComponent<TaskCard>();
 
         initialised = true;

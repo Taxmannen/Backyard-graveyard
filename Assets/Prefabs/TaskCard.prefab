@@ -1492,12 +1492,17 @@ MonoBehaviour:
   OrnamentTypelot01Image: {fileID: 6120881115066648578}
   OrnamentTypelot02Image: {fileID: 6120881114639082611}
   OrnamentTypelot03Image: {fileID: 6120881114990553080}
-  HeadTypeprites: []
+  HeadTypeprites:
+  - {fileID: 21300000, guid: fcc79ff6963515349ad3d75dc3bd7249, type: 3}
+  - {fileID: 21300000, guid: 44757773e1f3c9c42b4870ea5dd127df, type: 3}
+  - {fileID: 21300000, guid: 76d6dd87da8809a44b039017d3f3be23, type: 3}
   bodySprites:
   - {fileID: 21300000, guid: ecbb2f9cd1a606d409e555feb077c2dd, type: 3}
   - {fileID: 21300000, guid: 270f4ba1f00d23b49aa0037464fe5866, type: 3}
   - {fileID: 21300000, guid: eeb1aabfba1674241b3d999495c3a16b, type: 3}
-  OrnamentTypeprites: []
+  OrnamentTypeprites:
+  - {fileID: 21300000, guid: d4ea0c9b2153ebb418d0f8468a65cb62, type: 3}
+  - {fileID: 21300000, guid: 232644d1959d2b64ab5b516869809b38, type: 3}
   taskCompletedImage: {fileID: 4109342618497726613}
   taskFailedImage: {fileID: 4810072535817708267}
   timerImage: {fileID: 4310205551068021343}
