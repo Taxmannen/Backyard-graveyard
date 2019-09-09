@@ -117,7 +117,7 @@ public class Body : Pickup
             rigidbody.isKinematic = setConstraints;
             RigidbodyConstraints rbConstraints = setConstraints == true ? RigidbodyConstraints.FreezeAll : RigidbodyConstraints.None;
             rigidbody.constraints = rbConstraints;
-            rigidbody.GetComponent<Collider>().enabled = setConstraints;
+            rigidbody.gameObject.GetComponent<Collider>().enabled = setConstraints;
         }
     }
 }
