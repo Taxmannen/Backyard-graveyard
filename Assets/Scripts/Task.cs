@@ -33,28 +33,37 @@ public class Task : MonoBehaviour
     private float maxTimeInSeconds = 5f;
     private DateTime startTime;
 
+    private bool initialised = false;
+
     private void Start() {
+        Initialise();
+    }
+
+    public void Initialise() {
+        if (initialised)
+            return;
+
         GameObject go = GameObject.Instantiate(PrefabTaskCard, transform.position, transform.rotation);
+        go.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
         TaskCard = go.GetComponent<TaskCard>();
+
+        initialised = true;
     }
 
     private void Update() {
         float secondsElapsed = (float)((DateTime.Now - startTime).TotalSeconds);
         float quotientCompleted = secondsElapsed / maxTimeInSeconds;
 
-        if(quotientCompleted > 1f) {
+        if(quotientCompleted > 1f && !taskEnded) {
             FailTask();
         }
         else {
-            Debug.Log("Seconds elapsed: " + secondsElapsed + " Quotient: " + quotientCompleted);
             taskCard.UpdateTimerBar(quotientCompleted);
         }
     }
 
     private void CompleteTask() {
         // Clean up task card, etc?
-
-        Debug.Log("Task completed");
 
         //RefreshTaskCardIngredients();
         TaskCard.TaskCompleted();
@@ -84,7 +93,7 @@ public class Task : MonoBehaviour
         TaskCard.SetTaskIngredients(ornament1, ornament2, ornament3, bodydIndex, headIndex);
 
         maxTimeInSeconds = RandomManager.GetRandomNumber(taskManager.TimeLimitInSecondsMin, taskManager.TimeLimitInSecondsMax);
-        Debug.Log("Setting random time to: " + maxTimeInSeconds);
+
         startTime = DateTime.Now;
     }
 

@@ -19,9 +19,9 @@ public class TaskGrave : MonoBehaviour
     /// what stuff it has on it
     /// maybe that data could somehow be sent directly into the task
     /// bypassing our storage
-    [SerializeField] private Heads head = Heads.None;
-    [SerializeField] private Bodies body = Bodies.None;
-    [SerializeField] private List<Ornaments> ornament;
+    //[SerializeField] private Heads head = Heads.None;
+    //[SerializeField] private Bodies body = Bodies.None;
+    //[SerializeField] private List<Ornaments> ornament;
 
     private List<GameObject> stuffOnTop = new List<GameObject>();
     public bool ClearObjectsOnTopOnCompletion = true;

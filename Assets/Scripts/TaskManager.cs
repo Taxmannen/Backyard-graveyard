@@ -11,6 +11,7 @@ public class TaskManager : MonoBehaviour
 {
     public Task[] tasks;
     public GameObject levelCompletedImage;
+    public Text levelCompletedText;
     Dictionary<Task, bool> completedTasks = new Dictionary<Task, bool>();
     Dictionary<Task, bool> failedTasks = new Dictionary<Task, bool>();
 
@@ -27,6 +28,8 @@ public class TaskManager : MonoBehaviour
             completedTasks[task] = false;
             failedTasks[task] = false;
             task.TaskManager = this;
+
+            task.Initialise();
             task.RefreshTaskCardIngredients();
         }
     }
@@ -59,7 +62,29 @@ public class TaskManager : MonoBehaviour
             }
         }
 
-        //Debug.Log("You completed " + nrOfCompletedTasks + " tasks and failed " + nrOfFailedTasks + " tasks");
+        string s = "You completed " + nrOfCompletedTasks + " tasks and failed " + nrOfFailedTasks + " tasks";
+        switch (nrOfCompletedTasks) {
+            case 0:
+                s += "\nYou might have a very minor case of serious brain injury.";
+                break;
+            case 1:
+                s += "\nYou're fired!";
+                break;
+            case 2:
+                s += "\nYour success is a lie.";
+                break;
+            case 3:
+                s += "\n3.6 completed tasks, not great, not terrible.";
+                break;
+            case 4:
+                s += "\nDon't get cocky.";
+                break;
+            case 5:
+                s += "\nI'm proud of you... son.";
+                break;
+        }
+        levelCompletedText.text = s;
+        Debug.Log(s);
 
         CompleteLevel();
         return true;
