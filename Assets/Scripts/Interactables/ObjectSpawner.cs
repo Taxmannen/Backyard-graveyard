@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+
 /* Script Made By Daniel */
 public class ObjectSpawner : Interactable
 {
