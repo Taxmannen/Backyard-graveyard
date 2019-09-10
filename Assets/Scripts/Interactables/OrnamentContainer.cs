@@ -49,9 +49,8 @@ public class OrnamentContainer : MonoBehaviour
     {
         if (placedOrnament != null)
         {
-            Destroy(placedOrnament);
-            placedOrnament = null;
-            //RemoveOrnament();
+            Destroy(placedOrnament.gameObject);
+            RemoveOrnament();
         }
     }
 
