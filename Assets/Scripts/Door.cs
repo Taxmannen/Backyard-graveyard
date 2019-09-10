@@ -13,7 +13,7 @@ public class Door : MonoBehaviour
     private Image cameraFadeCanvas;
 
 
-    private void Awake() // TODO fix so that only one CameraFadeCanvas is instantiated
+    private void Awake()
     {
         cameraFadeCanvas = Resources.Load<Image>("CameraFadeCanvas");
         if (GameObject.Find("CameraFadeCanvas(Clone)") == null)
@@ -28,7 +28,6 @@ public class Door : MonoBehaviour
 
     public IEnumerator DoorCooldown()
     {
-        Debug.Log(name);
         doorOnCooldown = true;
         yield return new WaitForSeconds(3f);
         doorOnCooldown = false;
@@ -49,7 +48,6 @@ public class Door : MonoBehaviour
         {
             StartCoroutine(targetDoor.DoorCooldown());
             StartCoroutine(CameraFade());
-            Debug.Log("Door activated");
             StartCoroutine(TeleportPlayer(other));
             //other.gameObject.transform.root.LookAt(targetDoor.transform);
         }
