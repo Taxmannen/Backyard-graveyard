@@ -3,7 +3,7 @@
 /* Script Made By Daniel */
 public class Dirt : Pickup
 {
-    private void OnCollisionStay(Collision other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.GetComponent<Grave>() != null)
         {

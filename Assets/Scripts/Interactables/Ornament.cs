@@ -5,6 +5,7 @@ public enum OrnamentType { Candle, Flower, [System.ObsoleteAttribute] NumberOfTy
 /* Script Made By Daniel */
 public class Ornament : Pickup
 {
+    #region Variables
     [Header("Ornament")]
     [SerializeField] private OrnamentType ornamentType;
     [SerializeField] private Vector3 snappedPosition;
@@ -12,6 +13,7 @@ public class Ornament : Pickup
 
     private OrnamentContainer container;
     private Rigidbody rb;
+    #endregion
 
     public bool Snappable { get; set; } = true;
 
@@ -24,10 +26,7 @@ public class Ornament : Pickup
     public void PlaceOrnament(OrnamentContainer container, Vector3 position)
     {
         this.container = container;
-
         rb.constraints = RigidbodyConstraints.FreezeAll;
-        rb.freezeRotation = true;
-
         transform.position = position + snappedPosition;
         transform.rotation = Quaternion.Euler(container.transform.eulerAngles + snappedRotation);
     }
@@ -43,7 +42,6 @@ public class Ornament : Pickup
         if (container)
         {
             rb.constraints = RigidbodyConstraints.None;
-            rb.freezeRotation = false;
             container.RemoveOrnament();
             container = null;
         }

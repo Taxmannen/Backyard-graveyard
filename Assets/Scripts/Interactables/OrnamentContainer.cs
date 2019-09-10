@@ -50,7 +50,8 @@ public class OrnamentContainer : MonoBehaviour
         if (placedOrnament != null)
         {
             Destroy(placedOrnament);
-            RemoveOrnament();
+            placedOrnament = null;
+            //RemoveOrnament();
         }
     }
 

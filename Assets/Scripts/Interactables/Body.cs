@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public enum BodyType { Red, Green, Blue, [System.ObsoleteAttribute] NumberOfTypes, [System.ObsoleteAttribute] None };
 
@@ -12,14 +10,11 @@ public class Body : Pickup
     [SerializeField] private GameObject bodyPrefab;
     [SerializeField] private GameObject headPrefab;
     [SerializeField] private Transform headPosition;
-    public bool fullBody;
 
-    [Header("Head")]
-    [SerializeField] GameObject ghostObject;
+    private GameObject ghostObject;
+    private FixedJoint fixedJoint;
 
     public Head Head { get; private set; }
-
-    public FixedJoint fixedJoint;
 
     private void Awake()
     {
@@ -37,7 +32,7 @@ public class Body : Pickup
     private void OnTriggerStay(Collider other)
     {
         Head head = other.GetComponent<Head>();
-        if (!fullBody && other.CompareTag("Interactable") && head)
+        if (!Head && other.CompareTag("Interactable") && head)
         {
             if (ghostObject == null)
             {
@@ -47,9 +42,16 @@ public class Body : Pickup
 
             if (!head.ActiveHand || !ActiveHand)
             {
-                if (!head.ActiveHand && !ActiveHand) { return; }
-                
-                else { AttachHeadToCorrectPosition(head); Destroy(ghostObject); }
+                if (!head.ActiveHand && !ActiveHand)
+                {
+                    return;
+                }
+
+                else
+                {
+                    AttachHeadToCorrectPosition(head);
+                    Destroy(ghostObject);
+                }
             }
         }
     }
@@ -63,7 +65,7 @@ public class Body : Pickup
                 Destroy(ghostObject);
             }
 
-            if (fullBody)
+            if (Head)
             {
                 if (fixedJoint != null)
                 {
@@ -71,7 +73,7 @@ public class Body : Pickup
                     fixedJoint = null;
                 }
                 other.transform.SetParent(null);
-                fullBody = false;
+                Head = null;
             }
         }
     }
@@ -93,7 +95,7 @@ public class Body : Pickup
         }
     }
 
-    
+
     private void AttachHeadToCorrectPosition(Head head)
     {
         head.transform.position = headPosition.position;
@@ -109,7 +111,6 @@ public class Body : Pickup
 
         head.transform.SetParent(transform);
         Head = head;
-        fullBody = true;
     }
 
     public void SetRigidbodyConstraints(bool setConstraints)
@@ -120,14 +121,17 @@ public class Body : Pickup
             rigidbody.isKinematic = setConstraints;
             RigidbodyConstraints rbConstraints = setConstraints == true ? RigidbodyConstraints.FreezeAll : RigidbodyConstraints.None;
             rigidbody.constraints = rbConstraints;
-                
+
             Collider[] colliders = GetComponentsInChildren<Collider>();
-            foreach (Collider col in colliders)
-            {
-                col.enabled = !setConstraints;
-            }
+            foreach (Collider col in colliders) col.enabled = !setConstraints;
         }
     }
 
     public BodyType GetBodyType() { return bodyType; }
+
+    public void Test()
+    {
+        ActiveHand = null;
+        if (Head != null) Head.ActiveHand = null;
+    }
 }

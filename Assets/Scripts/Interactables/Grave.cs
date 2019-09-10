@@ -45,8 +45,10 @@ public class Grave : Interactable
         }
         else if (dirtLayerList.Count == 0 && body != null)
         {
-            body.SetRigidbodyConstraints(false);
-            return body;
+            Body currentBody = body;
+            currentBody.SetRigidbodyConstraints(false);
+            body = null;
+            return currentBody;
         }
         else return null;
     }
@@ -84,14 +86,18 @@ public class Grave : Interactable
 
     public void ResetGrave()
     {
-        if (body != null) Destroy(body);
+        if (body != null)
+        {
+            Destroy(body);
+            body = null;
+        }
         foreach (OrnamentContainer container in ornamentContainers) container.DestroyOrnament();
-        for (int i = 0; i < (maxAmountOfDirtLayers - dirtLayerList.Count); i++) AddDirt();
+        for (int i = 0; i < (maxAmountOfDirtLayers - dirtLayerList.Count); i++) AddDirt(); //behövs ej
     }
 
     public void CheckTaskCompletion()
     {
-        if (body == null) return;
+        if (body == null || dirtLayerList.Count != maxAmountOfDirtLayers) return;
         List<OrnamentType> ornamentType = new List<OrnamentType>();
         foreach (OrnamentContainer container in ornamentContainers)
         {
@@ -107,6 +113,7 @@ public class Grave : Interactable
                 if (task.CheckTask(head.GetHeadType(), body.GetBodyType(), ornamentType))
                 {
                     Debug.Log("TaskGrave: FINISHED TASK, AWW YEAH");
+                    //ResetGrave();
                     return;
                 }
             }
