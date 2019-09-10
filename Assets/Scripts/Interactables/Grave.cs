@@ -58,9 +58,9 @@ public class Grave : Interactable
         if (body == null && dirtLayerList.Count == 0)
         {
             body = newBody;
-            body.SetRigidbodyConstraints(true);
             body.transform.position = transform.position + bodyOffset;
             body.transform.rotation = Quaternion.Euler(transform.eulerAngles + new Vector3(90, 90, 90));
+            body.SetRigidbodyConstraints(true);
         }
     }
 
@@ -88,11 +88,11 @@ public class Grave : Interactable
     {
         if (body != null)
         {
-            Destroy(body);
+            Destroy(body.gameObject);
             body = null;
         }
         foreach (OrnamentContainer container in ornamentContainers) container.DestroyOrnament();
-        for (int i = 0; i < (maxAmountOfDirtLayers - dirtLayerList.Count); i++) AddDirt(); //behövs ej
+        for (int i = 0; i < (maxAmountOfDirtLayers - dirtLayerList.Count); i++) AddDirt(); //behövs ej??
     }
 
     public void CheckTaskCompletion()
@@ -101,7 +101,7 @@ public class Grave : Interactable
         List<OrnamentType> ornamentType = new List<OrnamentType>();
         foreach (OrnamentContainer container in ornamentContainers)
         {
-            Ornament ornament = container.GetPlacedOrnament();
+            Ornament ornament = container.PlacedOrnament;
             if (ornament) ornamentType.Add(ornament.GetOrnamentType());
         }
 

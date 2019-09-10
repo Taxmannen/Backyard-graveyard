@@ -123,7 +123,7 @@ public class Body : Pickup
             rigidbody.constraints = rbConstraints;
 
             Collider[] colliders = GetComponentsInChildren<Collider>();
-            foreach (Collider col in colliders) col.enabled = !setConstraints;
+            //foreach (Collider col in colliders) if (!col.isTrigger) col.enabled = !setConstraints;
         }
     }
 

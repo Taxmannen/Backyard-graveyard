@@ -81,6 +81,7 @@ MonoBehaviour:
     type: 3}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0}
+  despawnWhenPutBack: 1
 --- !u!1 &4844812409142403736
 GameObject:
   m_ObjectHideFlags: 0

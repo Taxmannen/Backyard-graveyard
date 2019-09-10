@@ -5,8 +5,8 @@ public class OrnamentContainer : MonoBehaviour
 {
     [SerializeField] private Grave grave;
 
-    private Ornament placedOrnament;
     private GameObject ghost;
+    public Ornament PlacedOrnament { get; private set; }
 
     private void Start()
     {
@@ -15,7 +15,7 @@ public class OrnamentContainer : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (placedOrnament == null && other.gameObject.CompareTag("Interactable"))
+        if (PlacedOrnament == null && other.gameObject.CompareTag("Interactable"))
         {
             if (other.gameObject.GetComponent<Ornament>() != null && other.gameObject.GetComponent<Ornament>().Snappable)
             {
@@ -23,8 +23,8 @@ public class OrnamentContainer : MonoBehaviour
                 if (ghost == null) ghost = currentOrnamnet.CreateGhostObject(transform.position + currentOrnamnet.GetPosition(), transform.eulerAngles + currentOrnamnet.GetRotation());
                 if (currentOrnamnet.ActiveHand == null)
                 {
-                    placedOrnament = currentOrnamnet;
-                    placedOrnament.PlaceOrnament(this, transform.position);
+                    PlacedOrnament = currentOrnamnet;
+                    PlacedOrnament.PlaceOrnament(this, transform.position);
                     Destroy(ghost);
                     if (grave != null) grave.CheckTaskCompletion();
                 }
@@ -42,20 +42,17 @@ public class OrnamentContainer : MonoBehaviour
 
     public void RemoveOrnament()
     {
-        placedOrnament = null;
+        PlacedOrnament = null;
     }
 
     public void DestroyOrnament()
     {
-        if (placedOrnament != null)
+        if (PlacedOrnament != null)
         {
-            Destroy(placedOrnament.gameObject);
+            Destroy(PlacedOrnament.gameObject);
             RemoveOrnament();
         }
     }
 
-    public Ornament GetPlacedOrnament()
-    {
-        return placedOrnament;
-    }
+    //public Ornament GetPlacedOrnament() { return placedOrnament; }
 }
