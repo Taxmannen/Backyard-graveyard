@@ -136,6 +136,6 @@ public class Hand : MonoBehaviour
         {
             interactable.SetToOutlineMaterial(MaterialType.Standard);
         }
-        if (!GetNearestInteractable().ActiveHand) GetNearestInteractable()?.SetToOutlineMaterial(MaterialType.Outline);
+        if (!GetNearestInteractable()?.ActiveHand) GetNearestInteractable()?.SetToOutlineMaterial(MaterialType.Outline);
     }
 }

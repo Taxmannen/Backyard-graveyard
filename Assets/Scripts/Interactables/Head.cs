@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public enum HeadType { Red, Green, Blue, [System.ObsoleteAttribute] NumberOfTypes, [System.ObsoleteAttribute] None };
 
@@ -9,8 +7,6 @@ public class Head : Pickup
 {
     private HeadType headType;
 
-    //public enum headType { Blue, Green, Red };
-
     private void Awake()
     {
         SetColor();
@@ -18,27 +14,20 @@ public class Head : Pickup
 
     private void SetColor()
     {
-        headType = (HeadType)Random.Range(0, 3);
-
         MeshRenderer[] meshRenderer = GetComponentsInChildren<MeshRenderer>();
 
-        if (headType == HeadType.Blue)
+        headType = (HeadType)Random.Range(0, 3);
+        for (int i = 0; i < meshRenderer.Length; i++)
         {
-            for (int i = 0; i < meshRenderer.Length; i++)
+            if (headType == HeadType.Blue)
             {
                 meshRenderer[i].material.color = Color.blue;
             }
-        }
-        else if (headType == HeadType.Green)
-        {
-            for (int i = 0; i < meshRenderer.Length; i++)
+            else if (headType == HeadType.Green)
             {
                 meshRenderer[i].material.color = Color.green;
             }
-        }
-        else if (headType == HeadType.Red)
-        {
-            for (int i = 0; i < meshRenderer.Length; i++)
+            else if (headType == HeadType.Red)
             {
                 meshRenderer[i].material.color = Color.red;
             }
