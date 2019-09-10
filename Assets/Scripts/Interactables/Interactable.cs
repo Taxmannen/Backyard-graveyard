@@ -7,7 +7,7 @@ public enum MaterialType { Standard, Ghost, Outline }
 public class Interactable : MonoBehaviour
 {
     [Header("Highlight")]
-    [SerializeField] private MeshRenderer[] meshRenderers;
+    [SerializeField] protected MeshRenderer[] meshRenderers;
 
     private Material outlineMaterial;
     private Material ghostMaterial;
