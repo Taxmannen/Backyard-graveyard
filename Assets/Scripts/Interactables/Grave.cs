@@ -27,6 +27,11 @@ public class Grave : Interactable
         for (int i = 0; i < maxAmountOfDirtLayers; i++) AddDirt();
     }
 
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.H)) ResetGrave();
+    }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Interactable") && body == null)
@@ -86,11 +91,11 @@ public class Grave : Interactable
 
     public void ResetGrave()
     {
-        if (body != null)
+        /*if (body != null)
         {
             Destroy(body);
             body = null;
-        }
+        }*/
         foreach (OrnamentContainer container in ornamentContainers) container.DestroyOrnament();
         for (int i = 0; i < (maxAmountOfDirtLayers - dirtLayerList.Count); i++) AddDirt(); //behövs ej
     }
@@ -113,7 +118,7 @@ public class Grave : Interactable
                 if (task.CheckTask(head.GetHeadType(), body.GetBodyType(), ornamentType))
                 {
                     Debug.Log("TaskGrave: FINISHED TASK, AWW YEAH");
-                    //ResetGrave();
+                    ResetGrave();
                     return;
                 }
             }

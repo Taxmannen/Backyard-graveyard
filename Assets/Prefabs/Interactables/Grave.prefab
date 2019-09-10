@@ -135,7 +135,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.6, y: 1.2, z: 0.9}
+  m_Size: {x: 0.55, y: 1.2, z: 0.85}
   m_Center: {x: 0, y: 0.1, z: 0}
 --- !u!114 &8695872206774074926
 MonoBehaviour:
@@ -154,7 +154,7 @@ MonoBehaviour:
   - {fileID: 8695872206971277845}
   - {fileID: 8695872207559482265}
   - {fileID: 8695872207005066815}
-  maxAmountOfDirtLayers: 5
+  maxAmountOfDirtLayers: 1
   dirt: {fileID: 5467560262156124729, guid: 6bd4aef8bb27c5b48a04667da8d6a590, type: 3}
   dirtLayer: {fileID: 1930263825163367472, guid: e690d6f52159b6e4a88f67c2aee9ac6b,
     type: 3}
@@ -777,12 +777,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4804054930346812933, guid: 36b501c6e5dd62a478e82e5113b9cbae,
         type: 3}
-      propertyPath: m_LocalScale.z
+      propertyPath: m_LocalScale.y
       value: 0.049999997
       objectReference: {fileID: 0}
     - target: {fileID: 4804054930346812933, guid: 36b501c6e5dd62a478e82e5113b9cbae,
         type: 3}
-      propertyPath: m_LocalScale.y
+      propertyPath: m_LocalScale.z
       value: 0.049999997
       objectReference: {fileID: 0}
     m_RemovedComponents: []
