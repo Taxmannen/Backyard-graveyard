@@ -4,9 +4,11 @@ public class ObjectSpawner : Interactable
 {
     [Header("Spawner")]
     [SerializeField] private GameObject spawnPrefab;
+    [SerializeField] private bool snapOnPickup; //TODO
 
     public override Interactable Interact()
     {
-        return Instantiate(spawnPrefab).GetComponent<Interactable>();
+        Pickup pickup = Instantiate(spawnPrefab).GetComponent<Pickup>();
+        return pickup;
     }
 }
