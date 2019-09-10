@@ -22,6 +22,11 @@ public class Pickup : Interactable
         set { snapOnPickup = value; }
     }
 
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space)) ActiveHand?.Drop();
+    }
+
     public override Interactable Interact()
     {
         if (coroutine != null)
@@ -42,6 +47,12 @@ public class Pickup : Interactable
         if (other.gameObject.tag == "Ground" && ActiveHand == null && shouldDespawnWhenOnGround)
         {
             if (coroutine == null) coroutine = StartCoroutine(DestoryMe());
+        }
+        //if (!other.collider.isTrigger)
+        if(other.gameObject.isStatic)
+        {
+            //Debug.Log(gameObject.GetComponent<Rigidbody>()?.velocity);
+            //ActiveHand?.Drop();
         }
     }
 

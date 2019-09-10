@@ -27,7 +27,7 @@ public class Hand : MonoBehaviour
 
     private void Update()
     {
-        if (grabAction.GetStateDown(pose.inputSource)) Pickup();
+        if (grabAction.GetStateDown(pose.inputSource)) Interact();
         if (grabAction.GetStateUp(pose.inputSource)) Drop();
         
         //For Debug
@@ -54,7 +54,7 @@ public class Hand : MonoBehaviour
         }
     }
 
-    private void Pickup()
+    private void Interact()
     {
         currentInteractable = GetNearestInteractable();
 
