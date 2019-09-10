@@ -1473,7 +1473,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c638da77e5e42ca4f8fe3c3d687db257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactableType: 0
   meshRenderers: []
 --- !u!114 &3781455721957062567
 MonoBehaviour:
