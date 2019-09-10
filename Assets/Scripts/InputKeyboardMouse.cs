@@ -30,6 +30,7 @@ public class InputKeyboardMouse : MonoBehaviour
     #region Private variables
     private FixedJoint fixedJoint;
     private Interactable currentInteractable;
+    private bool wasSnappable = false;
 
     private Camera mainCamera;
 
@@ -160,15 +161,26 @@ public class InputKeyboardMouse : MonoBehaviour
                 currentInteractable.transform.position = hand.transform.position;
                 currentInteractable.transform.rotation = Quaternion.Euler(hand.transform.eulerAngles);
             }
-        }
 
-        Rigidbody targetBody = currentInteractable.GetComponent<Rigidbody>();
-        fixedJoint.connectedBody = targetBody;
+            if (pickup is Ornament) {
+                wasSnappable = ((Ornament)pickup).Snappable;
+                ((Ornament)pickup).Snappable = false;
+            }
+
+            Rigidbody targetBody = currentInteractable.GetComponent<Rigidbody>();
+            fixedJoint.connectedBody = targetBody;
+        }
     }
 
     private void Drop() 
     {
         if (!currentInteractable) return;
+
+        Pickup pickup = currentInteractable?.GetComponent<Pickup>();
+        if (pickup is Ornament) {
+            ((Ornament)pickup).Snappable = wasSnappable;
+            wasSnappable = false;
+        }
 
         Rigidbody targetBody = currentInteractable.GetComponent<Rigidbody>();
         targetBody.velocity = Vector3.zero;

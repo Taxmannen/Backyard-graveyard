@@ -13,6 +13,8 @@ public class Ornament : Pickup
     private OrnamentContainer container;
     private Rigidbody rb;
 
+    public bool Snappable { get; set; } = true;
+
     protected override void Start()
     {
         rb = GetComponent<Rigidbody>();
