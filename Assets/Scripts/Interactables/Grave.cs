@@ -88,11 +88,11 @@ public class Grave : Interactable
     {
         if (body != null)
         {
-            Destroy(body);
+            Destroy(body.gameObject);
             body = null;
         }
         foreach (OrnamentContainer container in ornamentContainers) container.DestroyOrnament();
-        for (int i = 0; i < (maxAmountOfDirtLayers - dirtLayerList.Count); i++) AddDirt(); //behövs ej
+        for (int i = 0; i < (maxAmountOfDirtLayers - dirtLayerList.Count); i++) AddDirt(); //behövs ej??
     }
 
     public void CheckTaskCompletion()
@@ -101,7 +101,7 @@ public class Grave : Interactable
         List<OrnamentType> ornamentType = new List<OrnamentType>();
         foreach (OrnamentContainer container in ornamentContainers)
         {
-            Ornament ornament = container.GetPlacedOrnament();
+            Ornament ornament = container.PlacedOrnament;
             if (ornament) ornamentType.Add(ornament.GetOrnamentType());
         }
 
