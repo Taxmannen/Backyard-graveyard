@@ -12,11 +12,10 @@ public class Hand : MonoBehaviour
 
     [Header("Debug")]
     [SerializeField] private Interactable currentInteractable;
-        
+    [SerializeField] private List<Interactable> contactInteractable = new List<Interactable>();
+
     private SteamVR_Behaviour_Pose pose = null;
     private FixedJoint fixedJoint;
-    private List<Interactable> contactInteractable = new List<Interactable>();
-
     private MeshRenderer[] controllerMeshes;
     #endregion
 
