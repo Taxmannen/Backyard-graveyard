@@ -55,4 +55,9 @@ public class Pickup : Interactable
         yield return new WaitForSeconds(despawnTimeWhenOnGround);
         Destroy(gameObject);
     }
+
+    public PickupType GetPickupType()
+    {
+        return pickupType;
+    }
 }

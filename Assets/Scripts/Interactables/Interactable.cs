@@ -12,6 +12,7 @@ public class Interactable : MonoBehaviour
     private Material outlineMaterial;
     private Material ghostMaterial;
     private List<Material[]> materials = new List<Material[]>();
+    private MaterialType materialType = MaterialType.Standard;
 
     public Hand ActiveHand { get; set; } = null;
 
@@ -25,6 +26,7 @@ public class Interactable : MonoBehaviour
 
     public void SetToOutlineMaterial(MaterialType matType)
     {
+        if (materialType == matType) return;
         if (meshRenderers.Length > 0)
         {
             for (int i = 0; i < meshRenderers.Length; i++)
@@ -45,6 +47,7 @@ public class Interactable : MonoBehaviour
                     }
                 }
             }
+            materialType = matType;
         }
     }
 
@@ -62,7 +65,6 @@ public class Interactable : MonoBehaviour
         foreach (var script in monoBehaviours) Destroy(script);
 
         Destroy(ghost.GetComponent<Rigidbody>());
-        //ghost.GetComponent<Rigidbody>().useGravity = false;
 
         ghost.tag = "Untagged";
         ghost.transform.position = position;
