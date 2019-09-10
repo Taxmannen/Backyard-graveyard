@@ -117,7 +117,7 @@ public class Task : MonoBehaviour
             List<OrnamentType> tmpOrnamentType = new List<OrnamentType>(OrnamentType);
             foreach(OrnamentType ornament in this.ornamentType) {
                 if (!tmpOrnamentType.Contains(ornament)) {
-                    Debug.Log("oH NOES they dId NoT COnTAiN " + ornament);
+                    Debug.Log("OrnamentType did not contain: " + ornament);
                     return false;
                 }
                 else {

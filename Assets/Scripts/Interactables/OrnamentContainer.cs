@@ -17,7 +17,7 @@ public class OrnamentContainer : MonoBehaviour
     {
         if (placedOrnament == null && other.gameObject.CompareTag("Interactable"))
         {
-            if (other.gameObject.GetComponent<Ornament>() != null)
+            if (other.gameObject.GetComponent<Ornament>() != null && other.gameObject.GetComponent<Ornament>().Snappable)
             {
                 Ornament currentOrnamnet = other.gameObject.GetComponent<Ornament>();
                 if (ghost == null) ghost = currentOrnamnet.CreateGhostObject(transform.position + currentOrnamnet.GetPosition(), transform.eulerAngles + currentOrnamnet.GetRotation());

@@ -15,6 +15,8 @@ public class Ornament : Pickup
     private Rigidbody rb;
     #endregion
 
+    public bool Snappable { get; set; } = true;
+
     protected override void Start()
     {
         rb = GetComponent<Rigidbody>();
