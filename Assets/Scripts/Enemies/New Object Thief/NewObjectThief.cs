@@ -7,10 +7,14 @@ using UnityEngine;
 
 public class NewObjectThief : MonoBehaviour
 {
+    [Header("Testing stuff")]
+    [SerializeField] public bool stateMachineOn = true;
+
     //Objects to target & Hold
     [Header("Object Check (DO NOT TOUCH!)")]
     public GameObject currentTargetObject;
     public GameObject objectInHand;
+    public GameObject randomTargetObject;
 
     //States & Commands
     NewObjectThiefState currentState;
@@ -20,6 +24,7 @@ public class NewObjectThief : MonoBehaviour
     public ObjectThiefJump enemyJump;
     public ObjectThiefPickupHand pickupHand;
     public ObjectThiefObjectSearcher objectSearcher;
+    public NewObjectThiefRandomTargetArea randomTargetArea;
 
     [Header("Rigidbodies to Control (DO NOT TOUCH)")]
     [SerializeField] private Rigidbody rigidBodyMarionette;
@@ -40,7 +45,14 @@ public class NewObjectThief : MonoBehaviour
         //Change this? Should be the play-area in the beginning
         currentTargetObject = GameObject.FindGameObjectWithTag("DistanceCheckForObjectThief");
 
-        currentState = new NewObjectThiefMoveToTargetState();
+        if(stateMachineOn)
+        {
+            currentState = new NewObjectThiefMoveToTargetState();
+        }
+        
+        else{
+            currentState = new NewObjectThiefEmptyStateForTesting();
+        }
         currentState.Enter(this);
 
         

@@ -56,6 +56,7 @@ public class NewObjectThiefMoveToTargetState : NewObjectThiefState
             {
                 objectThief.Despawn();
             }
+
         }
 
         return null;
