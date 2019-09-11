@@ -18,6 +18,7 @@ public class Pickup : Interactable
 
     [Header("Debug")]
     [SerializeField] private CollisionTest collisionTest;
+    [SerializeField] private float dropTime = 0.2f;
 
     private Coroutine coroutine;
 
@@ -44,6 +45,8 @@ public class Pickup : Interactable
 
     public virtual void Drop()
     {
+        Collider[] colliders = GetComponentsInChildren<Collider>();
+        foreach (Collider collider in colliders) collider.enabled = true;
         ActiveHand = null;
     }
 
@@ -62,10 +65,11 @@ public class Pickup : Interactable
                     {
                         Collider[] colliders = GetComponentsInChildren<Collider>();
                         foreach (Collider collider in colliders) collider.enabled = false;
+                        //foreach (Collider collider in colliders) Physics.IgnoreCollision(other.gameObject.GetComponent<Collider>(), collider, true);
                     }
                     break;
                 case CollisionTest.Drop:
-                    ActiveHand?.Drop();
+                    Invoke("Test", dropTime);
                     break;
             }
         }
@@ -75,11 +79,16 @@ public class Pickup : Interactable
     {
         if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Static"))
         {
+            Debug.Log(other.gameObject.name);
             switch (collisionTest)
             {
-                case CollisionTest.Collider:
+                /*case CollisionTest.Collider:
                     Collider[] colliders = GetComponentsInChildren<Collider>();
                     foreach (Collider collider in colliders) collider.enabled = true;
+                    //foreach (Collider collider in colliders) Physics.IgnoreCollision(other.gameObject.GetComponent<Collider>(), collider, false);
+                    break;*/
+                case CollisionTest.Drop:
+                    CancelInvoke("Drop");
                     break;
             }
         }
@@ -99,5 +108,10 @@ public class Pickup : Interactable
     public PickupType GetPickupType()
     {
         return pickupType;
+    }
+
+    private void Test()
+    {
+        ActiveHand?.Drop();
     }
 }
