@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public enum CollisionTest { Drop, Collider, None }
+public enum CollisionTest { None, Drop, Collider }
+
 public enum PickupType { Other, Weapon, Ornament, Head, Body }
 
 /* Script Made By Daniel */
