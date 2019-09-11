@@ -10,6 +10,9 @@ public class Hand : MonoBehaviour
     public SteamVR_Action_Boolean grabAction = null;
     public SteamVR_Action_Boolean restartAction = null;
 
+    public KeyCode grabKey;
+    public KeyCode restartKey;
+
     [Header("Debug")]
     [SerializeField] private Interactable currentInteractable;
     [SerializeField] private List<Interactable> contactInteractable = new List<Interactable>();
@@ -27,11 +30,22 @@ public class Hand : MonoBehaviour
 
     private void Update()
     {
-        if (grabAction.GetStateDown(pose.inputSource)) Interact();
-        if (grabAction.GetStateUp(pose.inputSource)) Drop();
-        
-        //For Debug
-        if (restartAction.GetLastStateDown(pose.inputSource)) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        // Fetch using another method?
+        switch (FindObjectOfType<Player>().GetPlayMode()) {
+            case Playmode.VR:
+                if (grabAction.GetStateDown(pose.inputSource)) Interact();
+                if (grabAction.GetStateUp(pose.inputSource)) Drop();
+
+                //For Debug
+                if (restartAction.GetLastStateDown(pose.inputSource)) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                break;
+            case Playmode.PC:
+                if (Input.GetKeyDown(grabKey)) Interact();
+                if (Input.GetKeyUp(grabKey)) Drop();
+
+                if(Input.GetKeyUp(restartKey)) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                break;
+        }
 
         if (contactInteractable.Count > 0) SetMaterialOnClosest(); //Måste optimeras
     }
@@ -85,8 +99,11 @@ public class Hand : MonoBehaviour
     {
         if (!currentInteractable) return;
         Rigidbody targetBody = currentInteractable.GetComponent<Rigidbody>();
-        targetBody.velocity = pose.GetVelocity();
-        targetBody.angularVelocity = pose.GetAngularVelocity();
+
+        if(FindObjectOfType<Player>().GetPlayMode() == Playmode.VR) {
+            targetBody.velocity = pose.GetVelocity();
+            targetBody.angularVelocity = pose.GetAngularVelocity();
+        }
 
         fixedJoint.connectedBody = null;
 

@@ -100,37 +100,37 @@ public class InputKeyboardMouse : MonoBehaviour
         //oldMousePosition = currentMousePosition;
         #endregion
 
-        #region Mouse picking
-        if (Input.GetMouseButtonDown(0)) 
-        {
-            if (mainCamera == null) 
-            {
-                mainCamera = Camera.main;
-            }
+        //#region Mouse picking
+        //if (Input.GetMouseButtonDown(0)) 
+        //{
+        //    if (mainCamera == null) 
+        //    {
+        //        mainCamera = Camera.main;
+        //    }
 
-            Ray ray = mainCamera.ScreenPointToRay(new Vector3(Screen.width/2, Screen.height/2, 0));
-            RaycastHit[] raycastHits = Physics.RaycastAll(ray);
+        //    Ray ray = mainCamera.ScreenPointToRay(new Vector3(Screen.width/2, Screen.height/2, 0));
+        //    RaycastHit[] raycastHits = Physics.RaycastAll(ray);
 
-            if (raycastHits.Length > 0) 
-            {
-                var nearest = raycastHits
-                    .Where(x => x.transform.CompareTag("Interactable"))
-                    .OrderBy(x => (x.transform.position - playerObject.transform.position).sqrMagnitude)
-                    .FirstOrDefault();
+        //    if (raycastHits.Length > 0) 
+        //    {
+        //        var nearest = raycastHits
+        //            .Where(x => x.transform.CompareTag("Interactable"))
+        //            .OrderBy(x => (x.transform.position - playerObject.transform.position).sqrMagnitude)
+        //            .FirstOrDefault();
 
-                if (nearest.transform != null) //Check if an object with the Interactable tag was hit
-                {
-                    var interactable = nearest.transform.GetComponent<Interactable>();
+        //        if (nearest.transform != null) //Check if an object with the Interactable tag was hit
+        //        {
+        //            var interactable = nearest.transform.GetComponent<Interactable>();
 
-                    Pickup(interactable);
-                }
-            }
-        }
-        else if (Input.GetMouseButtonUp(0)) 
-        {
-            Drop();
-        }
-        #endregion
+        //            Pickup(interactable);
+        //        }
+        //    }
+        //}
+        //else if (Input.GetMouseButtonUp(0)) 
+        //{
+        //    Drop();
+        //}
+        //#endregion
     }
 
     public void Pickup(Interactable interactable) 

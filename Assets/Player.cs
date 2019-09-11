@@ -23,4 +23,6 @@ public class Player : MonoBehaviour
                 break;
         }
     }
+
+    public Playmode GetPlayMode() { return playmode; }
 }

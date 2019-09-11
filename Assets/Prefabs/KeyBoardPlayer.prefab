@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 5933280503975507380}
   - component: {fileID: 5933280503975507376}
   - component: {fileID: 5933280503975507383}
+  - component: {fileID: 8765369192958271792}
   m_Layer: 0
   m_Name: CursorCube
   m_TagString: Player
@@ -155,6 +156,28 @@ FixedJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &8765369192958271792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5933280503975507386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abaff4b6a2c491d40bfbf1fbc72e1b79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabAction:
+    actionPath: /actions/default/in/GrabGrip
+    needsReinit: 0
+  restartAction:
+    actionPath: /actions/default/in/Restart
+    needsReinit: 0
+  grabKey: 101
+  restartKey: 27
+  currentInteractable: {fileID: 0}
+  contactInteractable: []
 --- !u!1 &5933280504691661911
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,7 +282,7 @@ GameObject:
   - component: {fileID: 5933280505009816914}
   - component: {fileID: 5933280505009816913}
   - component: {fileID: 5933280505009816912}
-  - component: {fileID: 5933280505009816919}
+  - component: {fileID: 2208609202775169175}
   m_Layer: 0
   m_Name: Camera (1)
   m_TagString: MainCamera
@@ -333,7 +356,7 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5933280505009816918}
   m_Enabled: 1
---- !u!114 &5933280505009816919
+--- !u!114 &2208609202775169175
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
