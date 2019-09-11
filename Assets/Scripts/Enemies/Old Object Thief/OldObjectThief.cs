@@ -5,16 +5,16 @@ using UnityEngine;
 
 /* Script by Christopher Tåqvist */
 
-public class ObjectThief : MonoBehaviour
+public class OldObjectThief : MonoBehaviour
 {
     //States & Commands
-    ObjectThiefState currentState;
-    ObjectThiefState returnedState;
+    OldObjectThiefState currentState;
+    OldObjectThiefState returnedState;
 
     private Rigidbody rigidBody;
 
     [SerializeField] private string objectToStealName;
-    private EnemyStealTarget currentStealTarget;
+    private OldEnemyStealTarget currentStealTarget;
 
     [SerializeField] private float speed;
     [SerializeField] private float maxSpeed;
@@ -26,7 +26,7 @@ public class ObjectThief : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody>();
 
-        currentState = new ObjectThiefSearchState();
+        currentState = new OldObjectThiefSearchState();
         currentState.Enter(this);
     }
 
@@ -65,9 +65,9 @@ public class ObjectThief : MonoBehaviour
         return timeBetweenEachSearch;
     }
 
-    public EnemyStealTarget[] FindAllEnemyStealTargets()
+    public OldEnemyStealTarget[] FindAllEnemyStealTargets()
     {
-        return FindObjectsOfType<EnemyStealTarget>();
+        return FindObjectsOfType<OldEnemyStealTarget>();
     }
 
     public string GetNameOfObjectToSteal()
@@ -75,12 +75,12 @@ public class ObjectThief : MonoBehaviour
         return objectToStealName;
     }
 
-    public EnemyStealTarget GetCurrentTargetToSteal()
+    public OldEnemyStealTarget GetCurrentTargetToSteal()
     {
         return currentStealTarget;
     }
 
-    public void SetNewTargetToSteal(EnemyStealTarget newTarget)
+    public void SetNewTargetToSteal(OldEnemyStealTarget newTarget)
     {
         currentStealTarget = newTarget;
     }

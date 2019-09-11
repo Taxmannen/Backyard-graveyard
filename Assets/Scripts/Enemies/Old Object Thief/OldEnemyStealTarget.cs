@@ -5,7 +5,7 @@ using UnityEngine;
 
 /* Script by Christopher Tåqvist */
 
-public class EnemyStealTarget : MonoBehaviour
+public class OldEnemyStealTarget : MonoBehaviour
 {
     private Rigidbody rigidBody;
 

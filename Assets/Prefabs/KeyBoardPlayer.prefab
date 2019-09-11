@@ -371,7 +371,7 @@ MonoBehaviour:
   playerObject: {fileID: 5933280505009816918}
   conflictingKeysStopPlayer: 1
   hand: {fileID: 5933280503975507386}
-  allowFlying: 0
+  allowFlying: 1
   moveSpeed: 5
   rotX: {fileID: 5933280504691661911}
   rotY: {fileID: 5933280503292146072}

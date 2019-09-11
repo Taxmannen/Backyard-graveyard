@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public enum OrnamentType { Candle, Flower, [System.ObsoleteAttribute] NumberOfTypes, [System.ObsoleteAttribute] None };
+public enum OrnamentType { Candle, Flower, /*Statue,*/ [System.ObsoleteAttribute] NumberOfTypes, [System.ObsoleteAttribute] None };
 
 /* Script Made By Daniel */
 public class Ornament : Pickup
