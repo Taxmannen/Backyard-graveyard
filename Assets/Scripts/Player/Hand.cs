@@ -40,12 +40,14 @@ public class Hand : MonoBehaviour
                 if (restartAction.GetLastStateDown(pose.inputSource)) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 break;
             case Playmode.PC:
-                if (Input.GetKeyDown(grabKey)) Interact();
-                if (Input.GetKeyUp(grabKey)) Drop();
-
-                if(Input.GetKeyUp(restartKey)) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 break;
         }
+
+        //Keyboard controls
+        if (Input.GetKeyDown(grabKey)) Interact();
+        if (Input.GetKeyUp(grabKey)) Drop();
+
+        if (Input.GetKeyUp(restartKey)) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
         if (contactInteractable.Count > 0) SetMaterialOnClosest(); //Måste optimeras
     }
