@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/* Code by Christopher Tåqvist */
+
 public abstract class NewObjectThiefState
 {
     public abstract void Enter(NewObjectThief objectThief);

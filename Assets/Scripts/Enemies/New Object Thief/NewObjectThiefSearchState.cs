@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/* Code by Christopher Tåqvist */
+
 public class NewObjectThiefSearchState : NewObjectThiefState
 {
     public override void Enter(NewObjectThief objectThief)
@@ -17,6 +20,7 @@ public class NewObjectThiefSearchState : NewObjectThiefState
     public override NewObjectThiefState FixedUpdate(NewObjectThief objectThief, float t)
     {
         //Få in funktionalitet för att röra sig omkring inom ett satt område
+        //Står just nu bara stilla
         return null;
     }
 

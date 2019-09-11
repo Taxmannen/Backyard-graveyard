@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class ObjectThiefObjectSearcher : MonoBehaviour
 {
-    private Pickup possibleTarget;
     [SerializeField] PickupType targetType;
+
+    private Pickup possibleTarget;
     [HideInInspector] public Pickup realTarget;
 
     private void OnTriggerEnter(Collider other)

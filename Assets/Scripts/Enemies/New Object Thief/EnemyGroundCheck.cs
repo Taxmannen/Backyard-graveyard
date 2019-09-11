@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class EnemyGroundCheck : MonoBehaviour
 {
-    [SerializeField] private float groundHeight = 0.5f;
     [SerializeField] private float checkRate = 0.5f;
-    private bool grounded = false;
-    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private float groundHeight = 0.5f;
     [SerializeField] private float heightOffSet = 0.25f;
+    [SerializeField] private LayerMask groundLayer;
+
+    private bool grounded = false;
 
     private void Start()
     {

@@ -4,25 +4,22 @@ using UnityEngine;
 
 public class ObjectThiefJump : MonoBehaviour
 {
-    [SerializeField] private Rigidbody rigidBodyToJump;
-    [SerializeField] private float forceToAdd = 10;
-    [SerializeField] private ConstantForce constantForce;
+    [Header("Components (DO NOT TOUCH)")]
     [SerializeField] private EnemyGroundCheck groundCheck;
+    [SerializeField] private Rigidbody rigidBodyToJump;
+    [SerializeField] private ConstantForce constantForce;
+    
+    [Header("Jump Settings")]
+    [SerializeField] private float jumpForce = 100;
 
-    //Kolla vilkey håll velocity.y går åt
-    //Sätt canJump = false
-    //När velocity.y
-
-
+    /*JumpCheck*/
     private bool canJump = false;
 
-    private float jumpTimer = 0.5f;
 
     public void TryJump()
     {
         if (groundCheck.GetGrounded() && canJump)
         {
-            //Debug.Log("Jumped");
             Jump();
             canJump = false;
         }
@@ -33,9 +30,10 @@ public class ObjectThiefJump : MonoBehaviour
         }
     }
 
+
     private void Jump()
     {
-        rigidBodyToJump.AddForce(0, forceToAdd, 0);
+        rigidBodyToJump.AddForce(0, jumpForce, 0);
     }
 
     

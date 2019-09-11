@@ -2,16 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/* Code by Christopher Tåqvist */
+
 public class NewObjectThiefMoveToTargetState : NewObjectThiefState
 {
-    private Vector3 forceToMoveAgainst;
-
     //Change this to trigger-area later?
-    private float distanceBeforeStateChange = 3;
+    private float distanceToTargetBeforeStateChange;
+
+    private Vector3 marionetteStringPosition;
+    private Vector3 directionToTarget;
 
     public override void Enter(NewObjectThief objectThief)
     {
-        
+        distanceToTargetBeforeStateChange = objectThief.GetDistanceBeforeTargetIsReached();
     }
 
     public override void Exit(NewObjectThief objectThief)
@@ -21,23 +25,21 @@ public class NewObjectThiefMoveToTargetState : NewObjectThiefState
 
     public override NewObjectThiefState FixedUpdate(NewObjectThief objectThief, float t)
     {
-        forceToMoveAgainst = objectThief.GetDirectionToTarget(objectThief.GetTargetPosition(), objectThief.GetStringPosition());
+        marionetteStringPosition = objectThief.GetMarionetteStringPosition();
 
-        objectThief.Move(forceToMoveAgainst);
-
+        //Gör om getdirectionToTarget till ett script för varje del så man inte behöver hoppa fram/tillbaks såhär
+        directionToTarget = objectThief.GetDirectionToTarget(marionetteStringPosition);
+        objectThief.Move(directionToTarget);
         objectThief.enemyJump.TryJump();
-
         return null;
     }
 
     public override NewObjectThiefState Update(NewObjectThief objectThief, float t)
     {
-        
-        float distanceToTarget = Vector3.Distance(objectThief.GetStringPosition(), objectThief.GetTargetPosition());
+        float distanceToTarget = objectThief.GetDistanceToTarget(marionetteStringPosition);
 
-        if (distanceToTarget < distanceBeforeStateChange)
+        if (distanceToTarget < distanceToTargetBeforeStateChange)
         {
-
             //byt denna till själva player-areat
             if(objectThief.currentTargetObject.tag == "DistanceCheckForObjectThief")
             {
@@ -49,21 +51,13 @@ public class NewObjectThiefMoveToTargetState : NewObjectThiefState
                 return new NewObjectThiefPickupState();
             }
 
-
             //Bör ändras
             if(objectThief.currentTargetObject.tag == "OutOfBounds")
             {
                 objectThief.Despawn();
-                //return new NewObjectThiefDespawnState();
             }
-
         }
 
-        //if(object is dropped)
-        //set new target
-
-
-        //När spelaren kommer in i play-area.
         return null;
     }
 

@@ -2,25 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/* Code by Christopher Tåqvist */
+
 public class NewObjectThief : MonoBehaviour
 {
+    //Objects to target & Hold
+    [Header("Object Check (DO NOT TOUCH!)")]
+    public GameObject currentTargetObject;
+    public GameObject objectInHand;
+
     //States & Commands
     NewObjectThiefState currentState;
     NewObjectThiefState returnedState;
 
+    [Header("Components (DO NOT TOUCH)")]
     public ObjectThiefJump enemyJump;
     public ObjectThiefPickupHand pickupHand;
+    public ObjectThiefObjectSearcher objectSearcher;
 
+    [Header("Rigidbodies to Control (DO NOT TOUCH)")]
     [SerializeField] private Rigidbody rigidBodyMarionette;
     [SerializeField] private Rigidbody rigidBodyArm;
 
-    [SerializeField] private float speed = 50;
+    [Header("Speed Settings")]
+    [SerializeField] private float movementSpeed = 50;
     [SerializeField] private float armSpeed = 50;
 
-
-
-    public GameObject currentTargetObject;
-    public GameObject objectInHand;
+    [Header("Distance Settings")]
+    [SerializeField] private float distanceBeforeTargetIsReached = 3;
+    [SerializeField] private float distanceBeforeTargetIsPickedUp = 0.5f;
 
 
 
@@ -64,33 +75,11 @@ public class NewObjectThief : MonoBehaviour
         currentState.Enter(this);
     }
 
+
+    /*  MOVE BODYPART FUBNCTIONS  */
     public void Move(Vector3 moveAgainst)
     {
-        MovePart(rigidBodyMarionette, moveAgainst, speed);
-        //moveAgainst = moveAgainst.normalized;
-        //Vector3 movement = new Vector3(moveAgainst.x, 0, moveAgainst.z);
-        //rigidBodyMarionette.AddForce(movement * speed);
-    }
-
-    public Vector3 GetDirectionToTarget(Vector3 targetPosition, Vector3 bodyPartToMovePosition)
-    {
-        Vector3 directionToTarget = targetPosition - bodyPartToMovePosition;
-        return directionToTarget;
-    }
-
-    public Vector3 GetTargetPosition()
-    {
-        return currentTargetObject.transform.position;
-    }
-
-    public Vector3 GetStringPosition()
-    {
-        return rigidBodyMarionette.transform.position;
-    }
-
-    public Vector3 GetArmPosition()
-    {
-        return rigidBodyArm.transform.position;
+        MovePart(rigidBodyMarionette, moveAgainst, movementSpeed);
     }
 
     public void MoveArm(Vector3 moveAgainst)
@@ -105,8 +94,49 @@ public class NewObjectThief : MonoBehaviour
         rigidBodyToMove.AddForce(movement * forceToMoveWith);
     }
 
-    public ObjectThiefObjectSearcher objectSearcher;
 
+
+    /*  DIRECTIONS & POSITIONS  */
+    public Vector3 GetDirectionToTarget(Vector3 bodyPartToMovePosition)
+    {
+        Vector3 directionToTarget = currentTargetObject.transform.position - bodyPartToMovePosition;
+        return directionToTarget;
+    }
+
+    public float GetDistanceToTarget(Vector3 bodyPartToMovePosition)
+    {
+        return Vector3.Distance(bodyPartToMovePosition, currentTargetObject.transform.position);
+    }
+
+    public Vector3 GetTargetPosition()
+    {
+        return currentTargetObject.transform.position;
+    }
+
+    public Vector3 GetMarionetteStringPosition()
+    {
+        return rigidBodyMarionette.transform.position;
+    }
+
+    public Vector3 GetArmPosition()
+    {
+        return rigidBodyArm.transform.position;
+    }
+
+    public float GetDistanceBeforeTargetIsReached()
+    {
+        return distanceBeforeTargetIsReached;
+    }
+
+    public float GetDistanceBeforeTargetIsPickedUp()
+    {
+        return distanceBeforeTargetIsPickedUp;
+    }
+
+
+
+
+    /*  FIND OBJECT  */
     public void FindNewCurrentGameObjectWithTag(string tag)
     {
         currentTargetObject = GameObject.FindGameObjectWithTag(tag);
@@ -114,6 +144,7 @@ public class NewObjectThief : MonoBehaviour
 
     public void Despawn()
     {
+        Debug.Log("DEspawned");
         if(objectInHand != null)
         {
             Destroy(objectInHand);
