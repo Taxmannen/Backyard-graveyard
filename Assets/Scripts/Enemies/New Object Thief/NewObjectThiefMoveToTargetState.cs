@@ -7,7 +7,7 @@ public class NewObjectThiefMoveToTargetState : NewObjectThiefState
     private Vector3 forceToMoveAgainst;
 
     //Change this to trigger-area later?
-    private float distanceBeforeStateChange = 5;
+    private float distanceBeforeStateChange = 3;
 
     public override void Enter(NewObjectThief objectThief)
     {
