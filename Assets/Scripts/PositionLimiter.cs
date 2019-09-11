@@ -13,15 +13,15 @@ public class PositionLimiter : MonoBehaviour
 
     void LateUpdate()
     {
-        float x = transform.position.x, y = transform.position.y, z = transform.position.z;
+        float x = transform.localPosition.x, y = transform.localPosition.y, z = transform.localPosition.z;
         if (limitX) {
-            x = Mathf.Clamp(transform.position.x, min.x, max.x);
+            x = Mathf.Clamp(transform.localPosition.x, min.x, max.x);
         }if (limitY) {
-            y = Mathf.Clamp(transform.position.y, min.y, max.y);
+            y = Mathf.Clamp(transform.localPosition.y, min.y, max.y);
         }if (limitZ) {
-            z = Mathf.Clamp(transform.position.z, min.z, max.z);
+            z = Mathf.Clamp(transform.localPosition.z, min.z, max.z);
         }
 
-        transform.position = new Vector3(x, y, z);
+        transform.localPosition = new Vector3(x, y, z);
     }
 }

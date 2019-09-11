@@ -7,6 +7,16 @@ using UnityEngine.UI;
 /// <author>Simon</author>
 /// </summary>
 
+[System.Serializable]
+public class EndOfGameStrings {
+    [TextArea(1, 2)] public string zeroCompletedTask = "You might have a very minor case of serious brain injury.";
+    [TextArea(1, 2)] public string oneCompletedTask = "You're fired!";
+    [TextArea(1, 2)] public string twoCompletedTasks = "Your success is a lie.";
+    [TextArea(1, 2)] public string threeCompletedTasks = "3.6 completed tasks, not great, not terrible.";
+    [TextArea(1, 2)] public string fourCompletedTasks = "Don't get cocky.";
+    [TextArea(1, 2)] public string fiveCompletedTasks = "I'm proud of you... son.";
+}
+
 public class TaskManager : MonoBehaviour
 {
     public Task[] tasks;
@@ -22,6 +32,8 @@ public class TaskManager : MonoBehaviour
 
     public int TimeLimitInSecondsMin { get => timeLimitInSecondsMin; private set => timeLimitInSecondsMin = value; }
     public int TimeLimitInSecondsMax { get => timeLimitInSecondsMax; private set => timeLimitInSecondsMax = value; }
+
+    [SerializeField] private EndOfGameStrings endOfGameStrings;
 
     private void Start() {
         foreach(Task task in tasks) {
@@ -65,22 +77,22 @@ public class TaskManager : MonoBehaviour
         string s = "You completed " + nrOfCompletedTasks + " tasks and failed " + nrOfFailedTasks + " tasks";
         switch (nrOfCompletedTasks) {
             case 0:
-                s += "\nYou might have a very minor case of serious brain injury.";
+                s += "\n" + endOfGameStrings.zeroCompletedTask;
                 break;
             case 1:
-                s += "\nYou're fired!";
+                s += "\n" + endOfGameStrings.oneCompletedTask;
                 break;
             case 2:
-                s += "\nYour success is a lie.";
+                s += "\n" + endOfGameStrings.twoCompletedTasks;
                 break;
             case 3:
-                s += "\n3.6 completed tasks, not great, not terrible.";
+                s += "\n" + endOfGameStrings.threeCompletedTasks;
                 break;
             case 4:
-                s += "\nDon't get cocky.";
+                s += "\n" + endOfGameStrings.fourCompletedTasks;
                 break;
             case 5:
-                s += "\nI'm proud of you... son.";
+                s += "\n" + endOfGameStrings.fiveCompletedTasks;
                 break;
         }
         levelCompletedText.text = s;

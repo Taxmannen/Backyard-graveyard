@@ -19,8 +19,8 @@ public class NewObjectThief : MonoBehaviour
 
 
 
-    [HideInInspector] public GameObject currentTargetObject;
-    [HideInInspector] public GameObject objectInHand;
+    public GameObject currentTargetObject;
+    public GameObject objectInHand;
 
 
 
@@ -40,6 +40,8 @@ public class NewObjectThief : MonoBehaviour
         //Fullfix för om target-objekt försvinner
         if(currentTargetObject == null)
         {
+            returnedState = new NewObjectThiefMoveToTargetState();
+            StateSwap();
             currentTargetObject = GameObject.FindGameObjectWithTag("DistanceCheckForObjectThief");
         }
 

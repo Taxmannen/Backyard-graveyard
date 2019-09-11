@@ -544,7 +544,7 @@ MonoBehaviour:
   checkRate: 0.5
   groundLayer:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 2147483648
   heightOffSet: 0.25
 --- !u!1 &1377319386420075066
 GameObject:

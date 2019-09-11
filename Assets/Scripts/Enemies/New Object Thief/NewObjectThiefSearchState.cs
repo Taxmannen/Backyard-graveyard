@@ -6,7 +6,6 @@ public class NewObjectThiefSearchState : NewObjectThiefState
 {
     public override void Enter(NewObjectThief objectThief)
     {
-        Debug.Log("Entered Search State");
         
     }
 
