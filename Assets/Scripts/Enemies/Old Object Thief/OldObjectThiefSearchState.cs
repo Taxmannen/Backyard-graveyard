@@ -5,7 +5,7 @@ using UnityEngine;
 
 /* Script by Christopher Tåqvist */
 
-public class ObjectThiefSearchState : ObjectThiefState
+public class OldObjectThiefSearchState : OldObjectThiefState
 {
 
     private float timer;
@@ -14,7 +14,7 @@ public class ObjectThiefSearchState : ObjectThiefState
     private GameObject distanceCheckForDespawnObject;
 
 
-    public override void Enter(ObjectThief objectThief)
+    public override void Enter(OldObjectThief objectThief)
     {
         timer = objectThief.GetTimeBetweenEachSearch();
         FindClosestObject(objectThief);
@@ -23,13 +23,14 @@ public class ObjectThiefSearchState : ObjectThiefState
         distanceCheckForDespawnObject = GameObject.FindGameObjectWithTag("DistanceCheckForObjectThief");
     }
 
-    public override void Exit(ObjectThief objectThief)
+    public override void Exit(OldObjectThief objectThief)
     {
 
     }
 
-    public override ObjectThiefState FixedUpdate(ObjectThief objectThief, float t)
+    public override OldObjectThiefState FixedUpdate(OldObjectThief objectThief, float t)
     {
+        Debug.Log(distanceCheckForDespawnObject.transform.position);
         //Tempstuff just to get the zombie moving towards the player even without a target.
         Vector2 directionToTarget = new Vector2((distanceCheckForDespawnObject.transform.position.x - objectThief.transform.position.x), (distanceCheckForDespawnObject.transform.position.z - objectThief.transform.position.z));
         directionToTarget = directionToTarget.normalized;
@@ -38,7 +39,7 @@ public class ObjectThiefSearchState : ObjectThiefState
         return null;
     }
 
-    public override ObjectThiefState Update(ObjectThief objectThief, float t)
+    public override OldObjectThiefState Update(OldObjectThief objectThief, float t)
     {
 
 
@@ -51,22 +52,22 @@ public class ObjectThiefSearchState : ObjectThiefState
 
         if(objectThief.GetCurrentTargetToSteal() != null)
         {
-            return new ObjectThiefHuntState();
+            return new OldObjectThiefHuntState();
         }
 
         return null;
     }
 
-    private void FindClosestObject(ObjectThief objectThief)
+    private void FindClosestObject(OldObjectThief objectThief)
     {
-        EnemyStealTarget[] stealTargetList;
+        OldEnemyStealTarget[] stealTargetList;
         stealTargetList = objectThief.FindAllEnemyStealTargets();
 
         if (stealTargetList.Length != 0)
         {
             float distance = Mathf.Infinity;
             Vector3 position = objectThief.transform.position;
-            foreach (EnemyStealTarget stealTarget in stealTargetList)
+            foreach (OldEnemyStealTarget stealTarget in stealTargetList)
             {
                 //Lägg till att kolla så den inte plockats upp av spelaren också!
                 if (objectThief.GetNameOfObjectToSteal() == stealTarget.getObjectName() && stealTarget.pickedUpByEnemy == false)
@@ -90,7 +91,7 @@ public class ObjectThiefSearchState : ObjectThiefState
         }
     }
 
-    public float GetDistanceToDespawnCheckObject(ObjectThief objectThief)
+    public float GetDistanceToDespawnCheckObject(OldObjectThief objectThief)
     {
         return Vector3.Distance(objectThief.transform.position, distanceCheckForDespawnObject.transform.position);
     }

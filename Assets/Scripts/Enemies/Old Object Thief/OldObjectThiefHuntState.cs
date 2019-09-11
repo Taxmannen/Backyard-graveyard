@@ -5,15 +5,15 @@ using UnityEngine;
 
 /* Script by Christopher Tåqvist */
 
-public class ObjectThiefHuntState : ObjectThiefState
+public class OldObjectThiefHuntState : OldObjectThiefState
 {
-    private EnemyStealTarget currentStealTarget;
+    private OldEnemyStealTarget currentStealTarget;
     private Interactable interactable;
     private float speed;
     private float pickupDistance;
     private bool pickedUpByMe = false;
 
-    public override void Enter(ObjectThief objectThief)
+    public override void Enter(OldObjectThief objectThief)
     {
         currentStealTarget = objectThief.GetCurrentTargetToSteal();
         interactable = currentStealTarget.GetComponent<Interactable>();
@@ -21,12 +21,12 @@ public class ObjectThiefHuntState : ObjectThiefState
         pickupDistance = objectThief.GetPickupDistance();
     }
 
-    public override void Exit(ObjectThief objectThief)
+    public override void Exit(OldObjectThief objectThief)
     {
         
     }
 
-    public override ObjectThiefState FixedUpdate(ObjectThief objectThief, float t)
+    public override OldObjectThiefState FixedUpdate(OldObjectThief objectThief, float t)
     {
 
         if(currentStealTarget != null)
@@ -48,22 +48,22 @@ public class ObjectThiefHuntState : ObjectThiefState
         return null;
     }
 
-    public override ObjectThiefState Update(ObjectThief objectThief, float t)
+    public override OldObjectThiefState Update(OldObjectThief objectThief, float t)
     {
         if(currentStealTarget == null)
         {
-            return new ObjectThiefFleeState();
+            return new OldObjectThiefFleeState();
         }
         if(currentStealTarget != null)
         {
             if(currentStealTarget.pickedUpByEnemy && !pickedUpByMe)
             {
-                return new ObjectThiefSearchState();
+                return new OldObjectThiefSearchState();
             }
         }
         if(interactable.ActiveHand != null)
         {
-            return new ObjectThiefSearchState();
+            return new OldObjectThiefSearchState();
         }
 
         return null;

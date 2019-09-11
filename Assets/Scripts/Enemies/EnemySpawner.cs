@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/* Script by Christopher Tåqvist */
+
 public class EnemySpawner : MonoBehaviour
 {
 
