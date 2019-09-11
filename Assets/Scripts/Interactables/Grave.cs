@@ -110,7 +110,8 @@ public class Grave : Interactable
             Head head = body.Head;
             foreach (Task task in FindObjectOfType<TaskManager>().tasks)
             {
-                if (task.CheckTask(head.GetHeadType(), body.GetBodyType(), ornamentType))
+                // Needs body.Treatment
+                if (task.CheckTask(head.GetHeadType(), body.GetBodyType(), ornamentType, TreatmentType.Mummify))
                 {
                     Debug.Log("TaskGrave: FINISHED TASK, AWW YEAH");
                     ResetGrave();

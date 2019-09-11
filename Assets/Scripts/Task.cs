@@ -22,6 +22,7 @@ public class Task : MonoBehaviour
     private HeadType head;
     private BodyType body;
     private OrnamentType[] ornamentType = new OrnamentType[3];
+    private TreatmentType treatment;
 
     private bool taskEnded = false;
 
@@ -89,8 +90,11 @@ public class Task : MonoBehaviour
         ornamentType[1] = (OrnamentType)ornament2;
         int ornament3 = RandomManager.GetRandomNumber(0, (int)OrnamentType.NumberOfTypes);
         ornamentType[2] = (OrnamentType)ornament3;
+        int treatmentIndex = RandomManager.GetRandomNumber(0, (int)TreatmentType.NumberOfTypes);
+        //body = (BodyType)bodydIndex;
 
-        TaskCard.SetTaskIngredients(ornament1, ornament2, ornament3, bodydIndex, headIndex);
+        //TaskCard.SetTaskIngredients(ornament1, ornament2, ornament3, bodydIndex, headIndex);
+        TaskCard.SetTaskIngredients(ornament1, ornament2, ornament3, bodydIndex, headIndex, treatmentIndex);
 
         maxTimeInSeconds = RandomManager.GetRandomNumber(taskManager.TimeLimitInSecondsMin, taskManager.TimeLimitInSecondsMax);
 
@@ -104,14 +108,14 @@ public class Task : MonoBehaviour
     /// <param name="body"></param>
     /// <param name="OrnamentType"></param>
     /// <returns>Returns true if the task completed this frame</returns>
-    public bool CheckTask(HeadType head, BodyType body, List<OrnamentType> OrnamentType) {
+    public bool CheckTask(HeadType head, BodyType body, List<OrnamentType> OrnamentType, TreatmentType treatment) {
         if (taskEnded) {
             Debug.Log("Completed");
             return false;
         }
 
         Debug.Log("Checking stuff, our head " + this.head + " == " + head + " our body " + this.body + " == " + body);
-        if (this.head == head && this.body == body) {
+        if (this.head == head && this.body == body && this.treatment == treatment) {
             //correct body, check OrnamentType
 
             List<OrnamentType> tmpOrnamentType = new List<OrnamentType>(OrnamentType);

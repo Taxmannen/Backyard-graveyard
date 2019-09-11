@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 /// <summary>
 /// <author>Kristoffer</author>
+/// <edits>Simon</edits>
 /// </summary>
 public class TaskCard : MonoBehaviour
 {
@@ -16,9 +17,12 @@ public class TaskCard : MonoBehaviour
     public Image OrnamentTypelot02Image;
     public Image OrnamentTypelot03Image;
 
+    public Image treatmentImage;
+
     public Sprite[] HeadTypeprites;
     public Sprite[] bodySprites;
     public Sprite[] OrnamentTypeprites;
+    public Sprite[] TreatmentSprites;
 
     [SerializeField]
     private Image taskCompletedImage;
@@ -40,11 +44,12 @@ public class TaskCard : MonoBehaviour
         timerImage.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, timerWidth);
     }
 
-    public void SetTaskIngredients(int Ornament01Type, int Ornament02Type, int Ornament03Type, int BodyType, int HeadType)
+    public void SetTaskIngredients(int Ornament01Type, int Ornament02Type, int Ornament03Type, int BodyType, int HeadType, int treatmentIndex)
     {
         SetOrnamentType(Ornament01Type, Ornament02Type, Ornament03Type);
         SetBody(BodyType);
         SetHead(HeadType);
+        SetTreatment(treatmentIndex);
     }
 
     private void SetOrnamentType(int Ornament01Type, int Ornament02Type, int Ornament03Type)
@@ -90,6 +95,23 @@ public class TaskCard : MonoBehaviour
             default:
                 throw new System.Exception("TaskCard::SetHead exception: Invalid color");
         }
+    }
+
+    private void SetTreatment(int treatmentType) {
+        treatmentImage.sprite = TreatmentSprites[treatmentType];
+        //switch (treatmentType) {
+        //    case 0:
+        //        treatmentImage.color = Color.red;
+        //        break;
+        //    case 1:
+        //        treatmentImage.color = Color.green;
+        //        break;
+        //    case 2:
+        //        treatmentImage.color = Color.blue;
+        //        break;
+        //    default:
+        //        throw new System.Exception("TaskCard::SetHead exception: Invalid color");
+        //}
     }
 
     public void TaskCompleted()
