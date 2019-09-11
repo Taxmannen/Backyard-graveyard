@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 
 public enum Playmode { VR, PC }
+
+/* Script Made By Daniel */
 public class Player : MonoBehaviour
 {
     [SerializeField] private Playmode playmode;

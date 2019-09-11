@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+public enum CollisionTest { Drop, Collider, None }
 public enum PickupType { Other, Weapon, Ornament, Head, Body }
 
 /* Script Made By Daniel */
@@ -13,6 +14,9 @@ public class Pickup : Interactable
     //[SerializeField] protected bool snapWhenThrow;
     [SerializeField] protected bool shouldDespawnWhenOnGround;
     [SerializeField] protected float despawnTimeWhenOnGround;
+
+    [Header("Debug")]
+    [SerializeField] private CollisionTest collisionTest;
 
     private Coroutine coroutine;
 
@@ -48,11 +52,35 @@ public class Pickup : Interactable
         {
             if (coroutine == null) coroutine = StartCoroutine(DestoryMe());
         }
-        //if (!other.collider.isTrigger)
-        if(other.gameObject.isStatic)
+        if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Static"))
         {
-            //Debug.Log(gameObject.GetComponent<Rigidbody>()?.velocity);
-            //ActiveHand?.Drop();
+            switch (collisionTest)
+            {
+                case CollisionTest.Collider:
+                    if (ActiveHand)
+                    {
+                        Collider[] colliders = GetComponentsInChildren<Collider>();
+                        foreach (Collider collider in colliders) collider.enabled = false;
+                    }
+                    break;
+                case CollisionTest.Drop:
+                    ActiveHand?.Drop();
+                    break;
+            }
+        }
+    }
+
+    private void OnCollisionExit(Collision other)
+    {
+        if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Static"))
+        {
+            switch (collisionTest)
+            {
+                case CollisionTest.Collider:
+                    Collider[] colliders = GetComponentsInChildren<Collider>();
+                    foreach (Collider collider in colliders) collider.enabled = true;
+                    break;
+            }
         }
     }
 
