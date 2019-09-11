@@ -29,7 +29,7 @@ public class InputKeyboardMouse : MonoBehaviour
 
     #region Private variables
     private FixedJoint fixedJoint;
-    private Interactable currentInteractable;
+    [SerializeField] private Interactable currentInteractable;
     private bool wasSnappable = false;
 
     private Camera mainCamera;
