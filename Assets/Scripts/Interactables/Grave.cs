@@ -19,7 +19,7 @@ public class Grave : Interactable
     [SerializeField] private Body body = null; //For Debug!
 
     private List<GameObject> dirtLayerList = new List<GameObject>();
-    private Vector3 bodyOffset = new Vector3(0, -0.5f, 0);
+    private Vector3 bodyOffset = new Vector3(0, -0.5f, -0.125f);
     #endregion
 
     private void Awake()
@@ -58,7 +58,7 @@ public class Grave : Interactable
         if (body == null && dirtLayerList.Count == 0)
         {
             body = newBody;
-            body.transform.position = transform.position + bodyOffset;
+            body.transform.position = transform.position + (transform.rotation * bodyOffset);
             body.transform.rotation = Quaternion.Euler(transform.eulerAngles + new Vector3(90, 90, 90));
             body.SetRigidbodyConstraints(true);
         }
