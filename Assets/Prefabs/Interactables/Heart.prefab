@@ -129,6 +129,7 @@ MonoBehaviour:
   shouldDespawnWhenOnGround: 0
   despawnTimeWhenOnGround: 0
   collisionTest: 0
+  dropTime: 0.2
   ornamentType: 3
-  snappedPosition: {x: 0, y: 0, z: 0}
-  snappedRotation: {x: 0, y: 0, z: 0}
+  snappedPosition: {x: 0, y: 0.1, z: 0}
+  snappedRotation: {x: -90, y: 90, z: 0}

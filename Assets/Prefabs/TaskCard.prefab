@@ -1475,8 +1475,8 @@ GameObject:
   - component: {fileID: 6120881116044642907}
   - component: {fileID: 6120881116044642906}
   - component: {fileID: 6120881116044642900}
-  - component: {fileID: 6120881116044642901}
   - component: {fileID: 3781455721957062567}
+  - component: {fileID: 546061244}
   m_Layer: 0
   m_Name: TaskCard
   m_TagString: Interactable
@@ -1568,19 +1568,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &6120881116044642901
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6120881116044642905}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c638da77e5e42ca4f8fe3c3d687db257, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderers: []
 --- !u!114 &3781455721957062567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1619,6 +1606,26 @@ MonoBehaviour:
   taskCompletedImage: {fileID: 4109342618497726613}
   taskFailedImage: {fileID: 4810072535817708267}
   timerImage: {fileID: 4310205551068021343}
+--- !u!114 &546061244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6120881116044642905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e67be067edb7d214799af6a28792b208, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderers:
+  - {fileID: 6120881116044642900}
+  pickupType: 0
+  snapOnPickup: 0
+  shouldDespawnWhenOnGround: 0
+  despawnTimeWhenOnGround: 0
+  collisionTest: 0
+  dropTime: 0.2
 --- !u!1 &7009350503707033692
 GameObject:
   m_ObjectHideFlags: 0
