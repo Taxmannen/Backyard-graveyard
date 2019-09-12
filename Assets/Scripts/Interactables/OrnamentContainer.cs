@@ -5,8 +5,9 @@ public class OrnamentContainer : MonoBehaviour
 {
     [SerializeField] private Grave grave;
 
-    private GameObject ghost;
     public Ornament PlacedOrnament { get; private set; }
+
+    private GameObject ghost;
 
     private void Start()
     {

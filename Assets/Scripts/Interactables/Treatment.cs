@@ -2,8 +2,6 @@
 
 public enum TreatmentType { MakeUp, WashUp, Mummify, [System.ObsoleteAttribute] NumberOfTypes }
 
-/* Script Made By  */
-
 /*
     What it’s used for: Treatments are parts of Tasks. Every body will require exactly one treatment. (Might want to lower the requirement to zero treatments, but never more).
     How it works
@@ -15,6 +13,7 @@ public enum TreatmentType { MakeUp, WashUp, Mummify, [System.ObsoleteAttribute] 
     Mummify - Cover the body in mummy-cloth. Can we add a mummy-material to any object that the cloth is applied to?
  */
 
+/* Script Made By Daniel */
 public class Treatment : Pickup
 {
     [Header("Treathment")]
