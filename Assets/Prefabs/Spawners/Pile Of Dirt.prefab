@@ -107,7 +107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshRenderers:
   - {fileID: 3852835042529567243}
-  spawnPrefab: {fileID: 5467560262156124729, guid: 6bd4aef8bb27c5b48a04667da8d6a590,
+  spawnPrefab: {fileID: 5467560262156124729, guid: 153773ae47cfb2540ad0f59fcd5ecedf,
     type: 3}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0}

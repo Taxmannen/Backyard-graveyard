@@ -79,7 +79,7 @@ public class Pickup : Interactable
     {
         if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Static"))
         {
-            Debug.Log(other.gameObject.name);
+            //Debug.Log(other.gameObject.name);
             switch (collisionTest)
             {
                 /*case CollisionTest.Collider:

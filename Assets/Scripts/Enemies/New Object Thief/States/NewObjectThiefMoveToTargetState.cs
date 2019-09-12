@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class NewObjectThiefMoveToTargetState : NewObjectThiefState
 {
+    private float timeBeforeTryingNewTarget;
+
     //Change this to trigger-area later?
     private float distanceToTargetBeforeStateChange;
 
@@ -15,6 +17,13 @@ public class NewObjectThiefMoveToTargetState : NewObjectThiefState
 
     public override void Enter(NewObjectThief objectThief)
     {
+        timeBeforeTryingNewTarget = objectThief.GetTimeBeforeTryingNewTarget();
+
+        if (objectThief.debugStates)
+        {
+            Debug.Log("Entered Move to Target State");
+        }
+
         distanceToTargetBeforeStateChange = objectThief.GetDistanceBeforeTargetIsReached();
     }
 
@@ -38,10 +47,34 @@ public class NewObjectThiefMoveToTargetState : NewObjectThiefState
     {
         float distanceToTarget = objectThief.GetDistanceToTarget(marionetteStringPosition);
 
+        timeBeforeTryingNewTarget -= t;
+        
+        if (timeBeforeTryingNewTarget < 0)
+        {
+            Debug.Log(objectThief.currentTargetObject.tag);
+            if (objectThief.currentTargetObject.tag == "RandomTargetObject" && objectThief.objectInHand == null)
+            {
+                return new NewObjectThiefSearchState();
+            }
+
+            if (objectThief.currentTargetObject.tag == "Interactable")
+            {
+                //objectThief.currentTargetObject = null;
+                return new NewObjectThiefSearchState();
+            }
+
+            if (objectThief.currentTargetObject.tag == "OutOfBounds" && objectThief.objectInHand != null)
+            {
+                Debug.Log("Jumped");
+                objectThief.Jump(2000);
+                return new NewObjectThiefMoveToTargetState();
+            }
+        }
+
         if (distanceToTarget < distanceToTargetBeforeStateChange)
         {
             //byt denna till själva player-areat
-            if(objectThief.currentTargetObject.tag == "DistanceCheckForObjectThief")
+            if(objectThief.currentTargetObject.tag == "RandomTargetObject")
             {
                 return new NewObjectThiefSearchState();
             }
@@ -56,7 +89,6 @@ public class NewObjectThiefMoveToTargetState : NewObjectThiefState
             {
                 objectThief.Despawn();
             }
-
         }
 
         return null;

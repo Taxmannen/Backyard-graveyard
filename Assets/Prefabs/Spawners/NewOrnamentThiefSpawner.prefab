@@ -46,5 +46,5 @@ MonoBehaviour:
   startTimeBetweenEachSpawn: 10
   timeDecreaseBetweenEachSpawn: 1
   endTimeBetweenEachSpawn: 2
-  enemyToSpawnPrefab: {fileID: 6186850130882205570, guid: f9c979193169e3e49b0a4454667574ab,
+  enemyToSpawnPrefab: {fileID: 3088007686144677300, guid: f9c979193169e3e49b0a4454667574ab,
     type: 3}
