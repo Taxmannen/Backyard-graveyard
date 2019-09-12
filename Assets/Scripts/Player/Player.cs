@@ -1,15 +1,24 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum Playmode { VR, PC }
 
 /* Script Made By Daniel */
-public class Player : MonoBehaviour
+public class Player : Singleton<Player>
 {
     [SerializeField] private Playmode playmode;
 
     [Header("Setup")]
     [SerializeField] private GameObject vr;
     [SerializeField] private GameObject pc;
+
+    public KeyCode restartKey;
+    public KeyCode reenableObjectsKey;
+    public KeyCode disableObjectsKey;
+
+    private void Start() {
+        SetInstance(this);
+    }
 
     private void Awake()
     {
@@ -24,6 +33,12 @@ public class Player : MonoBehaviour
                 pc.SetActive(true);
                 break;
         }
+    }
+
+    private void Update() {
+        if (Input.GetKeyUp(restartKey)) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if (Input.GetKeyUp(reenableObjectsKey)) DisableAllObjectsOfType.EnableAllDisabledObjects<Interactable>();
+        if (Input.GetKeyUp(disableObjectsKey)) DisableAllObjectsOfType.DisableAllObjects<Interactable>();
     }
 
     public Playmode GetPlayMode() { return playmode; }

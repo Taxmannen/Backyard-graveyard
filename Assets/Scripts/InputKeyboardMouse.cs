@@ -9,7 +9,7 @@ using Valve.VR;
 /// <summary>
 /// <author>Simon</author>
 /// </summary>
-public class InputKeyboardMouse : MonoBehaviour
+public class InputKeyboardMouse : Singleton<InputKeyboardMouse>
 {
     #region Public variables
     [Tooltip("The object to be interacted with using the input.")]
@@ -40,6 +40,10 @@ public class InputKeyboardMouse : MonoBehaviour
     float rotationY;
     float rotationX;
     #endregion
+
+    private void Start() {
+        SetInstance(this);
+    }
 
     private void Awake() 
     {

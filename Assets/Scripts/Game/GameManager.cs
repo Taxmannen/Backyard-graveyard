@@ -3,11 +3,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /* Script Made By Daniel */
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
     public static event Action<bool> PauseEvent;
 
     private bool paused;
+
+    private void Start() {
+        SetInstance(this);
+    }
 
     private void Update()
     {

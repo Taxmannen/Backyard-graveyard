@@ -11,7 +11,6 @@ public class Hand : MonoBehaviour
     public SteamVR_Action_Boolean restartAction = null;
 
     public KeyCode grabKey;
-    public KeyCode restartKey;
 
     [Header("Debug")]
     [SerializeField] private Interactable currentInteractable;
@@ -46,8 +45,6 @@ public class Hand : MonoBehaviour
         //Keyboard controls
         if (Input.GetKeyDown(grabKey)) Interact();
         if (Input.GetKeyUp(grabKey)) Drop();
-
-        if (Input.GetKeyUp(restartKey)) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
         if (contactInteractable.Count > 0) SetMaterialOnClosest(); //Måste optimeras
     }

@@ -5,8 +5,12 @@ using UnityEngine;
 /// <summary>
 /// <author>Simon</author>
 /// </summary>
-public class RandomManager : MonoBehaviour
+public class RandomManager : Singleton<RandomManager>
 {
+    private void Start() {
+        SetInstance(this);
+    }
+
     public static int GetRandomNumber(int min, int max) {
         int number = Random.Range(min, max);
         return number;

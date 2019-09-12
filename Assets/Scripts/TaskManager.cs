@@ -17,7 +17,7 @@ public class EndOfGameStrings {
     [TextArea(1, 2)] public string fiveCompletedTasks = "I'm proud of you... son.";
 }
 
-public class TaskManager : MonoBehaviour
+public class TaskManager : Singleton<TaskManager>
 {
     public Task[] tasks;
     public GameObject levelCompletedImage;
@@ -36,7 +36,9 @@ public class TaskManager : MonoBehaviour
     [SerializeField] private EndOfGameStrings endOfGameStrings;
 
     private void Start() {
-        foreach(Task task in tasks) {
+        SetInstance(this);
+
+        foreach (Task task in tasks) {
             completedTasks[task] = false;
             failedTasks[task] = false;
             task.TaskManager = this;
@@ -108,5 +110,8 @@ public class TaskManager : MonoBehaviour
         }
 
         levelCompletedImage.SetActive(true);
+
+        // Disable all InteractableObjects
+        DisableAllObjectsOfType.DisableAllObjects<Interactable>();
     }
 }
