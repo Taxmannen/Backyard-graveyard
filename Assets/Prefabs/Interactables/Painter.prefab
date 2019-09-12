@@ -286,8 +286,9 @@ GameObject:
   - component: {fileID: 4396972548012373108}
   - component: {fileID: 4396972548012373109}
   - component: {fileID: 4396972548012373110}
+  - component: {fileID: 1732101739}
   m_Layer: 0
-  m_Name: Trigger Zone
+  m_Name: Paint Zone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -382,3 +383,20 @@ MonoBehaviour:
   effect: {fileID: 11815356943928808, guid: d6e53280342daf748a0b9b7b8dac3b54, type: 3}
   rayTransform: {fileID: 4396972546266430352}
   contactObjects: []
+--- !u!114 &1732101739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4396972548012373107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6e88d1cd16b79847b977b203b7e5b30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 11815356943928808, guid: d6e53280342daf748a0b9b7b8dac3b54, type: 3}
+  amount: 400
+  scalable: 0
+  reusable: 1
+  amountInPool: 0
