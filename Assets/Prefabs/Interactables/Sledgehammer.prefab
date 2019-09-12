@@ -189,7 +189,7 @@ MonoBehaviour:
   snapOnPickup: 1
   shouldDespawnWhenOnGround: 0
   despawnTimeWhenOnGround: 0
-  collisionTest: 2
+  collisionTest: 0
   dropTime: 0.2
   damagePerForce: 3
 --- !u!1 &8880844880468426660

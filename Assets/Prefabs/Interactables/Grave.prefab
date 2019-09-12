@@ -157,7 +157,7 @@ MonoBehaviour:
   - {fileID: 8695872207559482265}
   - {fileID: 8695872207005066815}
   maxAmountOfDirtLayers: 1
-  dirt: {fileID: 5467560262156124729, guid: 6bd4aef8bb27c5b48a04667da8d6a590, type: 3}
+  dirt: {fileID: 5467560262156124729, guid: 153773ae47cfb2540ad0f59fcd5ecedf, type: 3}
   dirtLayer: {fileID: 1930263825163367472, guid: e690d6f52159b6e4a88f67c2aee9ac6b,
     type: 3}
   dirtLayerParent: {fileID: 8695872207432562810}
