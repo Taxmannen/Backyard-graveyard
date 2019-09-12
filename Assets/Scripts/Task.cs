@@ -90,11 +90,17 @@ public class Task : MonoBehaviour
         ornamentType[1] = (OrnamentType)ornament2;
         int ornament3 = RandomManager.GetRandomNumber(0, (int)OrnamentType.NumberOfTypes);
         ornamentType[2] = (OrnamentType)ornament3;
-        int treatmentIndex = RandomManager.GetRandomNumber(0, (int)TreatmentType.NumberOfTypes);
         //body = (BodyType)bodydIndex;
 
         //TaskCard.SetTaskIngredients(ornament1, ornament2, ornament3, bodydIndex, headIndex);
-        TaskCard.SetTaskIngredients(ornament1, ornament2, ornament3, bodydIndex, headIndex, treatmentIndex);
+        if (TaskManager.GetInstance().IncludeTreatments) {
+            int treatmentIndex = RandomManager.GetRandomNumber(0, (int)TreatmentType.NumberOfTypes);
+
+            TaskCard.SetTaskIngredients(ornament1, ornament2, ornament3, bodydIndex, headIndex, treatmentIndex);
+        }
+        else {
+            TaskCard.SetTaskIngredients(ornament1, ornament2, ornament3, bodydIndex, headIndex);
+        }
 
         maxTimeInSeconds = RandomManager.GetRandomNumber(taskManager.TimeLimitInSecondsMin, taskManager.TimeLimitInSecondsMax);
 
@@ -115,7 +121,7 @@ public class Task : MonoBehaviour
         }
 
         Debug.Log("Checking stuff, our head " + this.head + " == " + head + " our body " + this.body + " == " + body);
-        if (this.head == head && this.body == body && this.treatment == treatment) {
+        if (this.head == head && this.body == body && (!TaskManager.GetInstance().IncludeTreatments || this.treatment == treatment)) {
             //correct body, check OrnamentType
 
             List<OrnamentType> tmpOrnamentType = new List<OrnamentType>(OrnamentType);

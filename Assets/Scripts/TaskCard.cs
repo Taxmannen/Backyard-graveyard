@@ -44,6 +44,12 @@ public class TaskCard : MonoBehaviour
         timerImage.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, timerWidth);
     }
 
+    public void SetTaskIngredients(int Ornament01Type, int Ornament02Type, int Ornament03Type, int BodyType, int HeadType) {
+        SetOrnamentType(Ornament01Type, Ornament02Type, Ornament03Type);
+        SetBody(BodyType);
+        SetHead(HeadType);
+    }
+
     public void SetTaskIngredients(int Ornament01Type, int Ornament02Type, int Ornament03Type, int BodyType, int HeadType, int treatmentIndex)
     {
         SetOrnamentType(Ornament01Type, Ornament02Type, Ornament03Type);

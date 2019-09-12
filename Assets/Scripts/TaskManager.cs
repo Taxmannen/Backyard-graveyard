@@ -30,10 +30,13 @@ public class TaskManager : Singleton<TaskManager>
     [SerializeField][Range(0, 600)]
     private int timeLimitInSecondsMax = 10;
 
+    [SerializeField] private EndOfGameStrings endOfGameStrings;
+
+    [SerializeField] private bool includeTreatments = false;
+
     public int TimeLimitInSecondsMin { get => timeLimitInSecondsMin; private set => timeLimitInSecondsMin = value; }
     public int TimeLimitInSecondsMax { get => timeLimitInSecondsMax; private set => timeLimitInSecondsMax = value; }
-
-    [SerializeField] private EndOfGameStrings endOfGameStrings;
+    public bool IncludeTreatments { get => includeTreatments; private set => includeTreatments = value; }
 
     private void Start() {
         SetInstance(this);
