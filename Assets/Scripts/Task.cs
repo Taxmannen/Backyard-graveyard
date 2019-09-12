@@ -10,10 +10,7 @@ using UnityEngine;
 /// </author>
 /// </summary>
 
-//public enum HeadType { Red, Green, Blue, [System.ObsoleteAttribute] NumberOfTypes, [System.ObsoleteAttribute] None };
-//public enum Bodies { Red, Green, Blue, [System.ObsoleteAttribute] NumberOfTypes, [System.ObsoleteAttribute] None };
-//public enum OrnamentType { Candle, Flower, [System.ObsoleteAttribute] NumberOfTypes, [System.ObsoleteAttribute] None };
-
+[DefaultExecutionOrder(-200)]
 public class Task : MonoBehaviour
 {
     public GameObject PrefabTaskCard;
@@ -28,15 +25,16 @@ public class Task : MonoBehaviour
 
     TaskManager taskManager;
 
-    public TaskCard TaskCard { get => taskCard; private set => taskCard = value; }
-    public TaskManager TaskManager { get => taskManager; set => taskManager = value; }
-
     private float maxTimeInSeconds = 5f;
     private DateTime startTime;
 
     private bool initialised = false;
 
+    public TaskCard TaskCard { get => taskCard; private set => taskCard = value; }
+    public TaskManager TaskManager { get => taskManager; set => taskManager = value; }
+
     private void Start() {
+        TaskManager = TaskManager.GetInstance();
         Initialise();
     }
 
@@ -44,11 +42,20 @@ public class Task : MonoBehaviour
         if (initialised)
             return;
 
-        GameObject go = GameObject.Instantiate(PrefabTaskCard, transform.position, transform.rotation);
-        go.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+        GameObject go = GameObject.Instantiate(PrefabTaskCard, transform.position, transform.rotation, transform);
+        go.transform.localScale = new Vector3(5f, 5f, 5f);
         TaskCard = go.GetComponent<TaskCard>();
 
+        taskEnded = false;
         initialised = true;
+        gameObject.SetActive(false);
+    }
+
+    public void Activate(float maxTimeInSeconds) {
+        this.maxTimeInSeconds = maxTimeInSeconds;
+
+        gameObject.SetActive(true);
+        RefreshTaskCardIngredients();
     }
 
     private void Update() {
@@ -56,29 +63,31 @@ public class Task : MonoBehaviour
         float quotientCompleted = secondsElapsed / maxTimeInSeconds;
 
         if(quotientCompleted > 1f && !taskEnded) {
-            FailTask();
+            CompleteTask(false);
         }
         else {
             taskCard.UpdateTimerBar(quotientCompleted);
         }
     }
 
-    private void CompleteTask() {
+    private void CompleteTask(bool success) {
         // Clean up task card, etc?
-
-        //RefreshTaskCardIngredients();
-        TaskCard.TaskCompleted();
-        TaskManager.CompleteTask(this);
-    }
-
-    private void FailTask() {
+        if (taskEnded) return;
         taskEnded = true;
-        TaskCard.TaskFailed();
-        TaskManager.FailTask(this);
+
+        TaskManager.CompleteTask(this, success);
+        if (TaskManager.GetInstance().TasksAvailableToSelect()) {
+            //TaskCard.TaskCompleted();
+            gameObject.SetActive(false);
+        }
+        else {
+            RefreshTaskCardIngredients();
+        }
     }
 
     public void RefreshTaskCardIngredients() {
         // TODO: THIS SHOULD GENERATE A UNIQUE TASK?
+        TaskManager.GetInstance().TasksInProgress++;
 
         int headIndex = RandomManager.GetRandomNumber(0, (int)HeadType.NumberOfTypes);
         head = (HeadType)headIndex;
@@ -90,9 +99,7 @@ public class Task : MonoBehaviour
         ornamentType[1] = (OrnamentType)ornament2;
         int ornament3 = RandomManager.GetRandomNumber(0, (int)OrnamentType.NumberOfTypes);
         ornamentType[2] = (OrnamentType)ornament3;
-        //body = (BodyType)bodydIndex;
 
-        //TaskCard.SetTaskIngredients(ornament1, ornament2, ornament3, bodydIndex, headIndex);
         if (TaskManager.GetInstance().IncludeTreatments) {
             int treatmentIndex = RandomManager.GetRandomNumber(0, (int)TreatmentType.NumberOfTypes);
 
@@ -102,9 +109,10 @@ public class Task : MonoBehaviour
             TaskCard.SetTaskIngredients(ornament1, ornament2, ornament3, bodydIndex, headIndex);
         }
 
-        maxTimeInSeconds = RandomManager.GetRandomNumber(taskManager.TimeLimitInSecondsMin, taskManager.TimeLimitInSecondsMax);
+        //maxTimeInSeconds = RandomManager.GetRandomNumber(taskManager.TimeLimitInSecondsMin, taskManager.TimeLimitInSecondsMax);
 
         startTime = DateTime.Now;
+        taskEnded = false;
     }
 
     /// <summary>
@@ -135,7 +143,7 @@ public class Task : MonoBehaviour
                 }
             }
 
-            CompleteTask();
+            CompleteTask(true);
             return true;
         }
 

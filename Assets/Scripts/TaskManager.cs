@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,25 +10,23 @@ using UnityEngine.UI;
 
 [System.Serializable]
 public class EndOfGameStrings {
-    [TextArea(1, 2)] public string zeroCompletedTask = "You might have a very minor case of serious brain injury.";
-    [TextArea(1, 2)] public string oneCompletedTask = "You're fired!";
-    [TextArea(1, 2)] public string twoCompletedTasks = "Your success is a lie.";
-    [TextArea(1, 2)] public string threeCompletedTasks = "3.6 completed tasks, not great, not terrible.";
-    [TextArea(1, 2)] public string fourCompletedTasks = "Don't get cocky.";
-    [TextArea(1, 2)] public string fiveCompletedTasks = "I'm proud of you... son.";
+    [TextArea(1, 2)] public string s = "You are worth x completed tasks..";
+
+    public override string ToString() {
+        return s;
+    }
 }
 
 public class TaskManager : Singleton<TaskManager>
 {
     [Header("References")]
     public Task[] tasks;
-    [SerializeField] private EndOfGameStrings endOfGameStrings;
-
+    [SerializeField] private EndOfGameStrings[] endOfGameStrings = new EndOfGameStrings[6];
 
     public GameObject levelCompletedImage;
     public Text levelCompletedText;
-    Dictionary<Task, bool> completedTasks = new Dictionary<Task, bool>();
-    Dictionary<Task, bool> failedTasks = new Dictionary<Task, bool>();
+    [SerializeField] List<bool> completedTasks = new List<bool>();
+    private int tasksInProgress = 0;
 
     [Header("Settings")]
     [SerializeField] private bool includeTreatments = false;
@@ -38,79 +37,73 @@ public class TaskManager : Singleton<TaskManager>
     [SerializeField][Range(0, 600)]
     private int timeLimitInSecondsMax = 10;
 
+    private int maxNumberOfTasks;
 
     public int TimeLimitInSecondsMin { get => timeLimitInSecondsMin; private set => timeLimitInSecondsMin = value; }
     public int TimeLimitInSecondsMax { get => timeLimitInSecondsMax; private set => timeLimitInSecondsMax = value; }
     public bool IncludeTreatments { get => includeTreatments; private set => includeTreatments = value; }
+    public int TasksInProgress { get => tasksInProgress; set => tasksInProgress = value; }
 
-    private void Start() {
+    private void Awake() {
         SetInstance(this);
+    }
 
-        foreach (Task task in tasks) {
-            completedTasks[task] = false;
-            failedTasks[task] = false;
-            task.TaskManager = this;
-
-            task.Initialise();
-            task.RefreshTaskCardIngredients();
+    public bool ActivateTasks(int nrOfTasksToActivate, float maxTimeInSeconds, int maxNumberOfTasks) {
+        if(nrOfTasksToActivate > tasks.Length) {
+            Debug.LogError("TaskManager::ActivateTasks error: Attempting to activate more tasks than there are total cards available. Implement queue system? Ignoring the excess tasks");
         }
+
+        this.maxNumberOfTasks = maxNumberOfTasks;
+
+        for (int i = 0; i < nrOfTasksToActivate; i++) {
+            for(int j = 0; j < tasks.Length; j++) {
+                if(tasks[j].gameObject.activeSelf == false) {
+                    tasks[j].Activate(maxTimeInSeconds);
+                    break;
+                }
+
+                // Last task
+                if(j == tasks.Length - 1) {
+                    // We have checked all the tasks, they are all occupied
+                    Debug.LogError("TaskManager::ActivateTasks error: Attempting to activate more tasks than there are available tasks. Implement queue system? Ignoring the excess tasks");
+
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 
-    public void CompleteTask(Task task) {
-        completedTasks[task] = true;
-        CheckLevelCompletion();
-    }
-
-    public void FailTask(Task task) {
-        failedTasks[task] = true;
+    public void CompleteTask(Task task, bool success) {
+        completedTasks.Add(success);
+        TasksInProgress--;
         CheckLevelCompletion();
     }
 
     public bool CheckLevelCompletion() {
-        int nrOfCompletedTasks = 0;
-        int nrOfFailedTasks = 0;
+        int nrOfCompletedTasks = GetNrOfSuccessfulTasks();
+        int nrOfFailedTasks = GetNrOfFailedTasks();
 
-        foreach (Task task in tasks) {
-            if (!completedTasks[task]) {
-                if (!failedTasks[task]) {
-                    return false;
-                }
-                else {
-                    nrOfFailedTasks++;
-                }
-            }
-            else {
-                nrOfCompletedTasks++;
-            }
-        }
+        if (!CompletedAllTasks()) return false;
 
         string s = "You completed " + nrOfCompletedTasks + " tasks and failed " + nrOfFailedTasks + " tasks";
-        switch (nrOfCompletedTasks) {
-            case 0:
-                s += "\n" + endOfGameStrings.zeroCompletedTask;
-                break;
-            case 1:
-                s += "\n" + endOfGameStrings.oneCompletedTask;
-                break;
-            case 2:
-                s += "\n" + endOfGameStrings.twoCompletedTasks;
-                break;
-            case 3:
-                s += "\n" + endOfGameStrings.threeCompletedTasks;
-                break;
-            case 4:
-                s += "\n" + endOfGameStrings.fourCompletedTasks;
-                break;
-            case 5:
-                s += "\n" + endOfGameStrings.fiveCompletedTasks;
-                break;
-        }
+        s += "\n" + endOfGameStrings[nrOfCompletedTasks];
+
         levelCompletedText.text = s;
         Debug.Log(s);
 
         CompleteLevel();
         return true;
     }
+
+    public int GetNrOfSuccessfulTasks() { return completedTasks.Count(x => x == true); }
+    public int GetNrOfFailedTasks() { return completedTasks.Count(x => x == false); }
+    public int GetNrOfCompletedTasks() { return GetNrOfSuccessfulTasks() + GetNrOfFailedTasks(); }
+    public int TasksRemaniningToComplete() { return maxNumberOfTasks - GetNrOfCompletedTasks(); }
+    public int TasksRemaniningToSelect() { return maxNumberOfTasks - (GetNrOfCompletedTasks() + TasksInProgress); }
+    public bool CompletedAllTasks() { return TasksRemaniningToComplete() <= 0; }
+    public bool TasksAvailableToSelect() { return TasksRemaniningToSelect() <= 0; }
 
     private void CompleteLevel() {
         foreach (Task task in tasks) {

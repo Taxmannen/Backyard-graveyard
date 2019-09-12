@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public class RandomManager : Singleton<RandomManager>
 {
-    private void Start() {
+    private void Awake() {
         SetInstance(this);
     }
 

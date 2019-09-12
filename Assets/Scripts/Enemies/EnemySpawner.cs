@@ -18,31 +18,75 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField] private Transform enemyToSpawnPrefab;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        timeBetweenSpawn = startTimeBetweenEachSpawn;
-        StartCoroutine(spawn());
+    //New stuff
+    private Queue<EnemyWaves> enemyWaves = new Queue<EnemyWaves>();
+    float timeBetweenSpawns = 0.5f;
+
+    //// Start is called before the first frame update
+    //void Start()
+    //{
+    //    timeBetweenSpawn = startTimeBetweenEachSpawn;
+    //    StartCoroutine(spawn());
+    //}
+
+    //// Update is called once per frame
+    //void Update()
+    //{
+
+    //}
+
+
+    //private IEnumerator spawn()
+    //{
+    //    while(true)
+    //    {
+    //        Instantiate(enemyToSpawnPrefab, transform.position, transform.rotation);
+    //        yield return new WaitForSeconds(timeBetweenSpawn);
+
+    //        if(timeBetweenSpawn >= endTimeBetweenEachSpawn)
+    //        {
+    //            timeBetweenSpawn -= timeDecreaseBetweenEachSpawn;
+    //        }
+    //    }
+    //}
+
+    public void SetWaves(Queue<EnemyWaves> enemyWaves, float timeBetweenSpawns) {
+        this.enemyWaves = enemyWaves;
+        this.timeBetweenSpawns = timeBetweenSpawns;
+        StartSpawning();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void StartSpawning() {
+        if (enemyWaves != null && enemyWaves.Count > 0) {
+            EnemyWaves enemyWave = enemyWaves.Dequeue();
+            float delay = enemyWave.TimeUntilSpawn;
+            int amount = enemyWave.NrOfEnemies;
+
+            Debug.Log("Spawning " + amount + " things from " + name + " in " + delay + " seconds");
+
+            StartCoroutine(SpawnOnDelay(amount, delay));
+        }
     }
 
+    IEnumerator SpawnOnDelay(int nrOfEnemies, float delay) {
+        yield return new WaitForSecondsRealtime(delay);
+        StartCoroutine(Spawn(nrOfEnemies));
+    }
 
-    private IEnumerator spawn()
-    {
-        while(true)
-        {
+    private IEnumerator Spawn(int nrOfEnemies) {
+        for(int i = 0; i < nrOfEnemies; i++) {
             Instantiate(enemyToSpawnPrefab, transform.position, transform.rotation);
-            yield return new WaitForSeconds(timeBetweenSpawn);
+            yield return new WaitForSecondsRealtime(timeBetweenSpawns);
+        }
 
-            if(timeBetweenSpawn >= endTimeBetweenEachSpawn)
-            {
-                timeBetweenSpawn -= timeDecreaseBetweenEachSpawn;
-            }
+        if (enemyWaves != null && enemyWaves.Count > 0) {
+            EnemyWaves enemyWave = enemyWaves.Dequeue();
+            float delay = enemyWave.TimeUntilSpawn;
+            int amount = enemyWave.NrOfEnemies;
+
+            Debug.Log("Spawning " + amount + " things from " + name + " in " + delay + " seconds");
+
+            StartCoroutine(SpawnOnDelay(amount, delay));
         }
     }
 }

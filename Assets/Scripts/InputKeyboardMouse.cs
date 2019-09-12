@@ -41,12 +41,10 @@ public class InputKeyboardMouse : Singleton<InputKeyboardMouse>
     float rotationX;
     #endregion
 
-    private void Start() {
-        SetInstance(this);
-    }
-
     private void Awake() 
     {
+        SetInstance(this);
+
         fixedJoint = GetComponentInChildren<FixedJoint>();
 
         originalRotation = playerObject.transform.rotation;
