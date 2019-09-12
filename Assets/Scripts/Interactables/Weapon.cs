@@ -5,7 +5,7 @@ using Valve.VR;
 public class Weapon : Pickup
 {
     [Header("Weapon")]
-    [SerializeField] private int damagePerForce;
+    [SerializeField] private int damagePerForce = 3;
 
     private SteamVR_Behaviour_Pose pose = null;
 
