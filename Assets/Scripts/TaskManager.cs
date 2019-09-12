@@ -19,20 +19,25 @@ public class EndOfGameStrings {
 
 public class TaskManager : Singleton<TaskManager>
 {
+    [Header("References")]
     public Task[] tasks;
+    [SerializeField] private EndOfGameStrings endOfGameStrings;
+
+
     public GameObject levelCompletedImage;
     public Text levelCompletedText;
     Dictionary<Task, bool> completedTasks = new Dictionary<Task, bool>();
     Dictionary<Task, bool> failedTasks = new Dictionary<Task, bool>();
 
+    [Header("Settings")]
+    [SerializeField] private bool includeTreatments = false;
+
+    [Header("Timer")]
     [SerializeField][Range(0, 600)]
     private int timeLimitInSecondsMin = 5;
     [SerializeField][Range(0, 600)]
     private int timeLimitInSecondsMax = 10;
 
-    [SerializeField] private EndOfGameStrings endOfGameStrings;
-
-    [SerializeField] private bool includeTreatments = false;
 
     public int TimeLimitInSecondsMin { get => timeLimitInSecondsMin; private set => timeLimitInSecondsMin = value; }
     public int TimeLimitInSecondsMax { get => timeLimitInSecondsMax; private set => timeLimitInSecondsMax = value; }
