@@ -18,7 +18,7 @@ public class ObjectThiefObjectSearcher : MonoBehaviour
 
             if(possibleTarget != null)
             {
-                if (possibleTarget.GetPickupType() == targetType)
+                if (possibleTarget.GetPickupType() == targetType && realTarget != possibleTarget)
                 {
                     realTarget = possibleTarget;
                 }

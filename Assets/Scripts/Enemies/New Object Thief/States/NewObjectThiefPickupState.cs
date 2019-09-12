@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class NewObjectThiefPickupState : NewObjectThiefState
 {
+    private float timeBeforeTryingNewTarget;
+
 
     //Should be changed
     private float distanceToObjectBeforeStateChange;
@@ -17,6 +19,13 @@ public class NewObjectThiefPickupState : NewObjectThiefState
 
     public override void Enter(NewObjectThief objectThief)
     {
+        timeBeforeTryingNewTarget = objectThief.GetTimeBeforeTryingNewPickupTarget();
+
+        if (objectThief.debugStates)
+        {
+            Debug.Log("Entered Pickup State");
+        }
+
         distanceToObjectBeforeStateChange = objectThief.GetDistanceBeforeTargetIsPickedUp();
     }
 
@@ -37,6 +46,13 @@ public class NewObjectThiefPickupState : NewObjectThiefState
 
     public override NewObjectThiefState Update(NewObjectThief objectThief, float t)
     {
+        timeBeforeTryingNewTarget -= t;
+        if (timeBeforeTryingNewTarget < 0)
+        {
+            return new NewObjectThiefSearchState();
+        }
+
+
         float distanceToTarget = objectThief.GetDistanceToTarget(armPosition);
 
         if (distanceToTarget < distanceToObjectBeforeStateChange)
@@ -48,6 +64,10 @@ public class NewObjectThiefPickupState : NewObjectThiefState
             //Fulfix där fienden rör sig mot ett objekt med tagen "Out of Bounds". Används för att despawna fienden.
             objectThief.FindNewCurrentGameObjectWithTag("OutOfBounds");
 
+
+            //Fungerar inte eftersom olika zombies som tar samma objekt får olika outOfBounds
+            //objectThief.randomTargetArea.SetTargetPositionToOutOfBounds();
+            //objectThief.currentTargetObject = objectThief.randomTargetObject;
 
             return new NewObjectThiefMoveToTargetState();
         }

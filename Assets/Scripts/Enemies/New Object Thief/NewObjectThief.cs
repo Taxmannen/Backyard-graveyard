@@ -9,6 +9,7 @@ public class NewObjectThief : MonoBehaviour
 {
     [Header("Testing stuff")]
     [SerializeField] public bool stateMachineOn = true;
+    public bool debugStates = false;
 
     //Objects to target & Hold
     [Header("Object Check (DO NOT TOUCH!)")]
@@ -31,21 +32,28 @@ public class NewObjectThief : MonoBehaviour
     [SerializeField] private Rigidbody rigidBodyArm;
 
     [Header("Speed Settings")]
-    [SerializeField] private float movementSpeed = 50;
+    [SerializeField] private float movementSpeedRun = 50;
+    [SerializeField] private float movementSpeedSearch = 25;
     [SerializeField] private float armSpeed = 50;
 
     [Header("Distance Settings")]
     [SerializeField] private float distanceBeforeTargetIsReached = 3;
     [SerializeField] private float distanceBeforeTargetIsPickedUp = 0.5f;
 
+    [Header("Timers")]
+    [SerializeField] private float timeBeforeTryingNewPickupTarget = 2f;
+    [SerializeField] private float timeBeforeTryingNewTarget = 10f;
+
 
 
     private void Start()
     {
         //Change this? Should be the play-area in the beginning
-        currentTargetObject = GameObject.FindGameObjectWithTag("DistanceCheckForObjectThief");
+        //currentTargetObject = GameObject.FindGameObjectWithTag("DistanceCheckForObjectThief");
+        randomTargetArea.SetTargetPositionToPlayArea();
+        currentTargetObject = randomTargetObject;
 
-        if(stateMachineOn)
+        if (stateMachineOn)
         {
             currentState = new NewObjectThiefMoveToTargetState();
         }
@@ -60,12 +68,13 @@ public class NewObjectThief : MonoBehaviour
 
     private void Update()
     {
-        //Fullfix för om target-objekt försvinner
+        //Fullfix för om target-objekt försvinner.
         if(currentTargetObject == null)
         {
             returnedState = new NewObjectThiefMoveToTargetState();
             StateSwap();
-            currentTargetObject = GameObject.FindGameObjectWithTag("DistanceCheckForObjectThief");
+            randomTargetArea.SetTargetPositionToPlayArea();
+            currentTargetObject = randomTargetObject;
         }
 
         returnedState = currentState.Update(this, Time.deltaTime);
@@ -91,12 +100,23 @@ public class NewObjectThief : MonoBehaviour
     /*  MOVE BODYPART FUBNCTIONS  */
     public void Move(Vector3 moveAgainst)
     {
-        MovePart(rigidBodyMarionette, moveAgainst, movementSpeed);
+        MovePart(rigidBodyMarionette, moveAgainst, movementSpeedRun);
+    }
+
+    public void MoveSearch(Vector3 moveAgainst)
+    {
+        MovePart(rigidBodyMarionette, moveAgainst, movementSpeedSearch);
     }
 
     public void MoveArm(Vector3 moveAgainst)
     {
         MovePart(rigidBodyArm, moveAgainst, armSpeed);
+    }
+
+    public void Jump(float jumpForce)
+    {
+        rigidBodyMarionette.AddForce(new Vector3(0, jumpForce, 0));
+        //rigidBodyArm.AddForce(new Vector3(0, jumpForce, 0));
     }
 
     private void MovePart(Rigidbody rigidBodyToMove, Vector3 moveAgainst, float forceToMoveWith)
@@ -164,5 +184,18 @@ public class NewObjectThief : MonoBehaviour
         
         Destroy(gameObject);
     }
-    
+
+
+    /* TIMERS */
+
+    public float GetTimeBeforeTryingNewPickupTarget()
+    {
+        return timeBeforeTryingNewPickupTarget;
+    }
+
+    public float GetTimeBeforeTryingNewTarget()
+    {
+        return timeBeforeTryingNewTarget;
+    }
+
 }
