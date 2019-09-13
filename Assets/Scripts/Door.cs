@@ -29,7 +29,7 @@ public class Door : MonoBehaviour
     public IEnumerator DoorCooldown()
     {
         doorOnCooldown = true;
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         doorOnCooldown = false;
         yield return null;
     }
@@ -46,6 +46,7 @@ public class Door : MonoBehaviour
     {
         if (!doorOnCooldown && other.tag == "Player")
         {
+            StartCoroutine(DoorCooldown());
             StartCoroutine(targetDoor.DoorCooldown());
             StartCoroutine(CameraFade());
             StartCoroutine(TeleportPlayer(other));
