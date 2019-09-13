@@ -15,6 +15,7 @@ public class Hand : MonoBehaviour
     [Header("Debug")]
     [SerializeField] private Interactable currentInteractable;
     [SerializeField] private List<Interactable> contactInteractable = new List<Interactable>();
+    [SerializeField] private bool childObjectOnPickup = true;
 
     private SteamVR_Behaviour_Pose pose = null;
     private FixedJoint fixedJoint;
@@ -91,6 +92,9 @@ public class Hand : MonoBehaviour
 
             currentInteractable.ActiveHand = this;
             SetControllerMeshState(false);
+
+            if (childObjectOnPickup)
+                currentInteractable.transform.parent = Player.GetInstance().transform.root;
         }
     }
 
@@ -105,6 +109,9 @@ public class Hand : MonoBehaviour
         }
 
         fixedJoint.connectedBody = null;
+
+        if (childObjectOnPickup)
+            currentInteractable.transform.parent = null;
 
         currentInteractable.GetComponent<Pickup>()?.Drop();
         currentInteractable = null;
