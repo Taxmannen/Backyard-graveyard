@@ -1,8 +1,7 @@
-﻿Shader "Custom/Outline Shader"
+﻿/* https://github.com/IronWarrior/UnityOutlineShader/blob/master/Assets/Shaders/HiddenNormalsTexture.shader */
+
+Shader "Custom/Highlight Shader"
 {
-    Properties
-    {
-    }
     SubShader
     {
         Tags 

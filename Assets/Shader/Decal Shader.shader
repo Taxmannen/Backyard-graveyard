@@ -1,4 +1,6 @@
-﻿Shader "BlendedDecal"
+﻿/* https://wiki.unity3d.com/index.php/BlendedDecal */
+
+Shader "Custom/Decal Shader"
 {
 	Properties
 	{

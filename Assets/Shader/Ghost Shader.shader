@@ -1,4 +1,6 @@
-﻿Shader "Custom/Ghost Shader"
+﻿/* https://learn.unity.com/tutorial/writing-your-first-shader-in-unity */
+
+Shader "Custom/Ghost Shader"
 {
     Properties
     {
@@ -6,10 +8,6 @@
         _TintColor("Tint Color", Color) = (1,1,1,1)
         _Transparency("Transparency", Range(0.0,0.5)) = 0.25
         _CutoutThresh("Cutout Threshold", Range(0.0,1.0)) = 0.2
-        _Distance("Distance", Float) = 1
-        _Amplitude("Amplitude", Float) = 1
-        _Speed ("Speed", Float) = 1
-        _Amount("Amount", Range(0.0,1.0)) = 1
     }
 
     SubShader
@@ -45,15 +43,10 @@
             float4 _TintColor;
             float _Transparency;
             float _CutoutThresh;
-            float _Distance;
-            float _Amplitude;
-            float _Speed;
-            float _Amount;
 
             v2f vert (appdata v)
             {
                 v2f o;
-                v.vertex.x += sin(_Time.y * _Speed + v.vertex.y * _Amplitude) * _Distance * _Amount;
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 return o;
