@@ -11,7 +11,7 @@ public class Ornament : Pickup
     [SerializeField] private Vector3 snappedPosition;
     [SerializeField] private Vector3 snappedRotation;
 
-    private OrnamentContainer container;
+    private OrnamentPlacement placement;
     private Rigidbody rb;
     #endregion
 
@@ -23,12 +23,12 @@ public class Ornament : Pickup
         base.Start();
     }
 
-    public void PlaceOrnament(OrnamentContainer container, Vector3 position)
+    public void PlaceOrnament(OrnamentPlacement placement, Vector3 position)
     {
-        this.container = container;
+        this.placement = placement;
         rb.constraints = RigidbodyConstraints.FreezeAll;
         transform.position = position + snappedPosition;
-        transform.rotation = Quaternion.Euler(container.transform.eulerAngles + snappedRotation);
+        transform.rotation = Quaternion.Euler(placement.transform.eulerAngles + snappedRotation);
     }
 
     public override Interactable Interact()
@@ -39,11 +39,11 @@ public class Ornament : Pickup
     
     public void PickupOrnamentFromPlacement()
     {
-        if (container)
+        if (placement)
         {
             rb.constraints = RigidbodyConstraints.None;
-            container.RemoveOrnament();
-            container = null;
+            placement.RemoveOrnament();
+            placement = null;
         }
     }
 

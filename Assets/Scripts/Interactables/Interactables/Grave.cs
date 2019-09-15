@@ -12,8 +12,8 @@ public class Grave : Interactable
     [SerializeField] private GameObject dirtLayer;
     [SerializeField] private Transform dirtLayerParent;
 
-    [Header("Ornament Containers")]
-    [SerializeField] private OrnamentContainer[] ornamentContainers;
+    [Header("Ornament Placements")]
+    [SerializeField] private OrnamentPlacement[] ornamentPlacements;
 
     [Header("Body")]
     [SerializeField] private Body body = null; //For Debug!
@@ -22,6 +22,7 @@ public class Grave : Interactable
     private Vector3 bodyOffset = new Vector3(0, -0.5f, -0.125f);
     #endregion
 
+    #region Awake & OnTrigger
     private void Awake()
     {
         for (int i = 0; i < maxAmountOfDirtLayers; i++) AddDirt();
@@ -35,7 +36,9 @@ public class Grave : Interactable
             if (body != null && body.ActiveHand == null && body.Head?.ActiveHand == null) AddBody(body);
         }
     }
+    #endregion
 
+    #region Interact
     public override Interactable Interact()
     {
         if (dirtLayerList.Count > 0)
@@ -45,14 +48,13 @@ public class Grave : Interactable
         }
         else if (dirtLayerList.Count == 0 && body != null)
         {
-            Body currentBody = body;
-            currentBody.SetRigidbodyConstraints(false);
-            body = null;
-            return currentBody;
+            return RemoveBody();
         }
         else return null;
     }
+    #endregion
 
+    #region Body
     private void AddBody(Body newBody)
     {
         if (body == null && dirtLayerList.Count == 0)
@@ -61,9 +63,21 @@ public class Grave : Interactable
             body.transform.position = transform.position + (transform.rotation * bodyOffset);
             body.transform.rotation = Quaternion.Euler(transform.eulerAngles + new Vector3(90, 90, 90));
             body.SetRigidbodyConstraints(true);
+            body.IsInGrave = true;
         }
     }
 
+    private Body RemoveBody()
+    {
+        Body currentBody = body;
+        currentBody.SetRigidbodyConstraints(false);
+        currentBody.IsInGrave = false;
+        body = null;
+        return currentBody;
+    }
+    #endregion
+
+    #region Dirt
     public void AddDirt()
     {
         if (dirtLayerList.Count < maxAmountOfDirtLayers)
@@ -83,7 +97,9 @@ public class Grave : Interactable
         dirtLayerList.Remove(currentLayer);
         Destroy(currentLayer);
     }
+    #endregion
 
+    #region Grave
     public void ResetGrave()
     {
         if (body != null)
@@ -91,23 +107,26 @@ public class Grave : Interactable
             Destroy(body.gameObject);
             body = null;
         }
-        foreach (OrnamentContainer container in ornamentContainers) container.DestroyOrnament();
+        foreach (OrnamentPlacement placement in ornamentPlacements) placement.DestroyOrnament();
         for (int i = 0; i < (maxAmountOfDirtLayers - dirtLayerList.Count); i++) AddDirt(); //behövs ej??
     }
+    #endregion
 
+    #region Task
     public void CheckTaskCompletion()
     {
-        if (body == null || dirtLayerList.Count != maxAmountOfDirtLayers) return;
+        if (body == null || body.Head == null || dirtLayerList.Count != maxAmountOfDirtLayers) return;
+
         List<OrnamentType> ornamentType = new List<OrnamentType>();
-        foreach (OrnamentContainer container in ornamentContainers)
+        foreach (OrnamentPlacement placement in ornamentPlacements)
         {
-            Ornament ornament = container.PlacedOrnament;
+            Ornament ornament = placement.PlacedOrnament;
             if (ornament) ornamentType.Add(ornament.GetOrnamentType());
         }
 
-        if (body.Head != null)
+        Head head = body.Head;
+        if (head != null)
         {
-            Head head = body.Head;
             foreach (Task task in FindObjectOfType<TaskManager>().tasks)
             {
                 // Needs body.Treatment
@@ -120,4 +139,5 @@ public class Grave : Interactable
             }
         }
     }
+    #endregion
 }

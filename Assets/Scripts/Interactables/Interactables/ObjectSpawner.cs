@@ -8,10 +8,15 @@ public class ObjectSpawner : Interactable
     [SerializeField] private Vector3 position;
     [SerializeField] private Vector3 rotation;
     [SerializeField] private bool despawnWhenPutBack;
+    [SerializeField, Tooltip("Destroys the last spawned object when you spawn a new")] private bool onlyOneActive;
+
+    private GameObject lastSpawned = null;
 
     public override Interactable Interact()
     {
+        if (onlyOneActive) Destroy(lastSpawned);
         Pickup pickup = Instantiate(spawnPrefab, transform.position + position, Quaternion.Euler(transform.eulerAngles  + rotation)).GetComponent<Pickup>();
+        lastSpawned = pickup.gameObject;
         return pickup;
     }
 

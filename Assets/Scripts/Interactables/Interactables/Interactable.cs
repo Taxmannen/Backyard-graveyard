@@ -6,51 +6,72 @@ public enum MaterialType { Standard, Ghost, Outline }
 /* Script Made By Daniel, Edited By Petter */
 public class Interactable : MonoBehaviour
 {
+    #region Variables
     [Header("Highlight")]
     [SerializeField] protected MeshRenderer[] meshRenderers;
 
-    private Material outlineMaterial;
-    private Material ghostMaterial;
-    private List<Material[]> materials = new List<Material[]>();
+    protected List<Material[]> standardMaterials = new List<Material[]>();
+    private List<Material[]> outlineMaterials = new List<Material[]>();
+    private List<Material[]> ghostMaterials = new List<Material[]>();
+
     private MaterialType materialType = MaterialType.Standard;
 
     public Hand ActiveHand { get; set; } = null;
+    #endregion
 
     protected virtual void Start()
     {
-        outlineMaterial = Resources.Load<Material>("Materials/Outline Material");
-        ghostMaterial   = Resources.Load<Material>("Materials/Ghost Material");
-        for (int i = 0; i < meshRenderers.Length; i++) materials.Add(meshRenderers[i].materials);
         if (meshRenderers.Length == 0) Debug.LogError(gameObject.name + " " + "MESH RENDERER ÄR NULL!");
+        MaterialSetup();
     }
 
-    public void SetToOutlineMaterial(MaterialType matType)
+    public void SetToOutlineMaterial(MaterialType materialType)
     {
-        if (materialType == matType) return;
+        if (this.materialType == materialType) return;
         if (meshRenderers.Length > 0)
         {
             for (int i = 0; i < meshRenderers.Length; i++)
             {
-                MeshRenderer meshRender = meshRenderers[i];
-                if (meshRender)
+                if (meshRenderers[i] != null)
                 {
-                    if (matType == MaterialType.Standard) meshRender.materials = materials[i];
-                    else
+                    switch (materialType)
                     {
-                        Material[] newMaterial = new Material[meshRender.materials.Length];
-                        for (int j = 0; j < meshRender.materials.Length; j++)
-                        {
-                            if (matType == MaterialType.Outline) newMaterial[j] = outlineMaterial;
-                            else                                 newMaterial[j] = ghostMaterial;
-                        }
-                        meshRender.materials = newMaterial;
+                        case MaterialType.Standard:
+                            meshRenderers[i].materials = standardMaterials[i];
+                            break;
+                        case MaterialType.Outline:
+                            meshRenderers[i].materials = outlineMaterials[i];
+                            break;
+                        case MaterialType.Ghost:
+                            meshRenderers[i].materials = ghostMaterials[i];
+                            break;
                     }
                 }
             }
-            materialType = matType;
+            this.materialType = materialType;
         }
     }
 
+    private void MaterialSetup()
+    {
+        Material outlineMaterial = Resources.Load<Material>("Materials/Outline Material");
+        Material ghostMaterial = Resources.Load<Material>("Materials/Ghost Material");
+        foreach (MeshRenderer renderer in meshRenderers)
+        {
+            Material[] outlines = new Material[renderer.materials.Length];
+            Material[] ghosts = new Material[renderer.materials.Length];
+            for (int i = 0; i < outlines.Length; i++)
+            {
+                outlines[i] = outlineMaterial;
+                ghosts[i] = ghostMaterial;
+            }
+            standardMaterials.Add(renderer.materials);
+            outlineMaterials.Add(outlines);
+            ghostMaterials.Add(ghosts);
+        }
+    }
+
+    /* Fixa innan projektet är slut */
     public GameObject CreateGhostObject(Vector3 position, Vector3 rotation)
     {
         GameObject ghost = Instantiate(gameObject);
@@ -75,6 +96,6 @@ public class Interactable : MonoBehaviour
 
         return ghost;
     }
- 
+
     public virtual Interactable Interact() { return this; }
 }
