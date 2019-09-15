@@ -5,6 +5,7 @@ using UnityEngine;
 public class Painter : MonoBehaviour
 {
     #region Variables
+    [SerializeField] private GameObject decal;
     [SerializeField] private Transform rayTransform;
 
     private List<GameObject> contactObjects = new List<GameObject>();
@@ -24,7 +25,7 @@ public class Painter : MonoBehaviour
         Vector3 forward = rayTransform.TransformDirection(Vector3.forward);
         Debug.DrawRay(rayTransform.position, forward * distance, Color.green);
         if (contactObjects.Count > 0) Paint(forward);
-        if (Input.GetKey(KeyCode.Mouse0)) DebugPaint(); /* Remove before release */
+        //if (Input.GetKey(KeyCode.Mouse0)) DebugPaint(); /* Remove before release */
     }
 
     private void Paint(Vector3 forward)
@@ -58,6 +59,7 @@ public class Painter : MonoBehaviour
             if (!hitInfo.collider.isTrigger)
             {
                 GameObject paint = pool?.Get(hitInfo.point, Quaternion.FromToRotation(Vector3.up, hitInfo.normal), hitInfo.collider.transform);
+                //GameObject paint = Instantiate(decal, hitInfo.point, Quaternion.FromToRotation(Vector3.up, hitInfo.normal));
                 if (paint)
                 {
                     if (hitInfo.collider.gameObject.CompareTag("Interactable"))

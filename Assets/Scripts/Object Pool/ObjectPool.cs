@@ -4,13 +4,15 @@ using UnityEngine;
 /* Script Made By Daniel */
 public abstract class ObjectPool : MonoBehaviour
 {
+    #region Variables
     [SerializeField] private GameObject prefab;
     [SerializeField, Tooltip("The amount in pool")] private int amount;
     [SerializeField, Tooltip("Add more to the pool when empty")] private bool scalable;
     [SerializeField, Tooltip("Reuses first spawned object when empty")] private bool reusable;
 
     private Queue<GameObject> objects = new Queue<GameObject>();
-    private Queue<GameObject> usedObjects = new Queue<GameObject>();
+    [SerializeField, ReadOnly] private List<GameObject> usedObjects = new List<GameObject>();
+    #endregion
 
     protected void Setup()
     {
@@ -29,7 +31,8 @@ public abstract class ObjectPool : MonoBehaviour
         else
         {
             GameObject currentObject = objects.Dequeue();
-            if (reusable) usedObjects.Enqueue(currentObject);
+            //if (reusable) usedObjects.Enqueue(currentObject);
+            if (reusable) usedObjects.Add(currentObject);
 
             currentObject.transform.position = position;
             currentObject.transform.rotation = rotation;
@@ -41,7 +44,9 @@ public abstract class ObjectPool : MonoBehaviour
 
     public void ReturnToPool(GameObject objectToReturn)
     {
+        if (reusable) usedObjects.Remove(objectToReturn);
         objectToReturn.gameObject.SetActive(false);
+        objectToReturn.transform.SetParent(transform);
         objects.Enqueue(objectToReturn);
     }
 
@@ -58,7 +63,8 @@ public abstract class ObjectPool : MonoBehaviour
 
     private void UseOldest()
     {
-        GameObject oldObject = usedObjects.Dequeue();
+        GameObject oldObject = usedObjects[0];
+        usedObjects.RemoveAt(0);
         objects.Enqueue(oldObject);
         oldObject.SetActive(false);
     }

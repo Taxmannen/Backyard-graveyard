@@ -10,7 +10,6 @@ public class BodyPart : Pickup
 
     private List<Material[]> originalMaterials = new List<Material[]>();
     private List<Material[]> mummyMaterials = new List<Material[]>();
-    private List<GameObject> paintList = new List<GameObject>();
    
     public BodyPart ConnectedBodyPart { get; set; }
     #endregion
@@ -19,6 +18,11 @@ public class BodyPart : Pickup
     {
         base.Start();
         MaterialSetup();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.K)) ClearTreatments();
     }
 
     public void SetTreatment(TreatmentType treatmentType, GameObject paint = null)
@@ -37,8 +41,8 @@ public class BodyPart : Pickup
                 ConnectedBodyPart?.Mummify(true);
                 break;
             case TreatmentType.None:
-                ClearTreatment();
-                ConnectedBodyPart?.ClearTreatment();
+                ClearTreatments();
+                ConnectedBodyPart?.ClearTreatments();
                 break;
             default:
                 Debug.LogError("Something Went Wrong");
@@ -46,7 +50,7 @@ public class BodyPart : Pickup
         }
     }
 
-    private void ClearTreatment()
+    private void ClearTreatments()
     {
         MakeUp(false);
         WashUp(false);
@@ -54,17 +58,18 @@ public class BodyPart : Pickup
         treatmentType = TreatmentType.None;
     }
 
-
     private void MakeUp(bool paintState, GameObject paintObject = null)
     {
+        //paintObject.SetChild()
         if (paintState)
         {
             if (treatmentType != TreatmentType.MakeUp) treatmentType = TreatmentType.MakeUp;
-            paintList.Add(paintObject);
         }
         else
         {
-            foreach (GameObject paint in paintList) Destroy(paint);
+            PaintPool pool = PaintPool.Instance;
+            List<GameObject> paintList = GetAllDecals();
+            foreach (GameObject paint in paintList) pool.ReturnToPool(paint);
         }
     }
 
@@ -95,6 +100,16 @@ public class BodyPart : Pickup
             originalMaterials.Add(renderer.materials);
             mummyMaterials.Add(mummy);
         }
+    }
+
+    private List<GameObject> GetAllDecals()
+    {
+        List<GameObject> decalList = new List<GameObject>();
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (transform.GetChild(i).CompareTag("Decal")) decalList.Add(transform.GetChild(i).gameObject);
+        }
+        return decalList;
     }
 
     public TreatmentType GetTreatmentType() { return treatmentType; }
