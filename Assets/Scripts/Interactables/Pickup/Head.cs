@@ -3,7 +3,7 @@
 public enum HeadType { Red, Green, Blue, [System.ObsoleteAttribute] NumberOfTypes, [System.ObsoleteAttribute] None };
 
 /* Script Created By Petter */
-public class Head : Pickup
+public class Head : BodyPart
 {
     private HeadType headType;
 

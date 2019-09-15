@@ -3,7 +3,7 @@
 public enum BodyType { Red, Green, Blue, [System.ObsoleteAttribute] NumberOfTypes, [System.ObsoleteAttribute] None };
 
 /* Script Created By Petter and Helped By Daniel */
-public class Body : Pickup
+public class Body : BodyPart
 {
     [Header("Body")]
     [SerializeField] private BodyType bodyType;
@@ -16,11 +16,13 @@ public class Body : Pickup
 
     public Head Head { get; private set; }
 
+    public bool IsInGrave { get; set; } = false;
+
     private void Awake()
     {
         SetColor();
         Head newHead = Instantiate(headPrefab).GetComponent<Head>();
-        AttachHeadToCorrectPosition(newHead);
+        AttachHead(newHead);
     }
 
     protected override void Start()
@@ -49,7 +51,7 @@ public class Body : Pickup
 
                 else
                 {
-                    AttachHeadToCorrectPosition(head);
+                    AttachHead(head);
                     Destroy(ghostObject);
                 }
             }
@@ -64,16 +66,9 @@ public class Body : Pickup
             {
                 Destroy(ghostObject);
             }
-
             if (Head)
             {
-                if (fixedJoint != null)
-                {
-                    Destroy(gameObject.GetComponent<FixedJoint>());
-                    fixedJoint = null;
-                }
-                other.transform.SetParent(null);
-                Head = null;
+                DetachHead();
             }
         }
     }
@@ -95,8 +90,7 @@ public class Body : Pickup
         }
     }
 
-
-    private void AttachHeadToCorrectPosition(Head head)
+    private void AttachHead(Head head)
     {
         head.transform.position = headPosition.position;
         head.transform.rotation = transform.rotation;
@@ -110,7 +104,24 @@ public class Body : Pickup
         fixedJoint.connectedBody = head.gameObject.GetComponent<Rigidbody>();
 
         head.transform.SetParent(transform);
+        ConnectedBodyPart = head;
+        head.ConnectedBodyPart = this;
         Head = head;
+    }
+
+    private void DetachHead()
+    {
+        if (fixedJoint != null)
+        {
+            Destroy(gameObject.GetComponent<FixedJoint>());
+            fixedJoint = null;
+        }
+
+        ConnectedBodyPart = null;
+        Head.ConnectedBodyPart = null;
+
+        Head.transform.SetParent(null);
+        Head = null;
     }
 
     public void SetRigidbodyConstraints(bool setConstraints)
@@ -127,11 +138,6 @@ public class Body : Pickup
         }
     }
 
-    public BodyType GetBodyType() { return bodyType; }
 
-    public void Test()
-    {
-        ActiveHand = null;
-        if (Head != null) Head.ActiveHand = null;
-    }
+    public BodyType GetBodyType() { return bodyType; }
 }

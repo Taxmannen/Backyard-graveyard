@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 
-public enum TreatmentType { MakeUp, WashUp, Mummify, [System.ObsoleteAttribute] NumberOfTypes }
-
 /*
     What it’s used for: Treatments are parts of Tasks. Every body will require exactly one treatment. (Might want to lower the requirement to zero treatments, but never more).
     How it works
@@ -13,6 +11,8 @@ public enum TreatmentType { MakeUp, WashUp, Mummify, [System.ObsoleteAttribute] 
     Mummify - Cover the body in mummy-cloth. Can we add a mummy-material to any object that the cloth is applied to?
  */
 
+public enum TreatmentType { MakeUp, WashUp, Mummify, None, [System.ObsoleteAttribute] NumberOfTypes }
+
 /* Script Made By Daniel */
 public class Treatment : Pickup
 {
@@ -20,4 +20,14 @@ public class Treatment : Pickup
     [SerializeField] private TreatmentType treatmentType;
 
     public TreatmentType GetTreatmentType() { return treatmentType; }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (treatmentType == TreatmentType.MakeUp || treatmentType == TreatmentType.None) return;
+        if (other.CompareTag("Interactable"))
+        {
+            BodyPart bodyPart = other.GetComponent<BodyPart>();
+            if (bodyPart) bodyPart.SetTreatment(treatmentType);
+        }
+    }
 }
