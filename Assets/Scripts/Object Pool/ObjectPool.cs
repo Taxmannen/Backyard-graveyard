@@ -5,12 +5,9 @@ using UnityEngine;
 public abstract class ObjectPool : MonoBehaviour
 {
     [SerializeField] private GameObject prefab;
-    [SerializeField] private int amount;
-    [SerializeField] private bool scalable;
-    [SerializeField] private bool reusable;
-
-    [Header("Debug")]
-    [SerializeField] private int amountInPool;
+    [SerializeField, Tooltip("The amount in pool")] private int amount;
+    [SerializeField, Tooltip("Add more to the pool when empty")] private bool scalable;
+    [SerializeField, Tooltip("Reuses first spawned object when empty")] private bool reusable;
 
     private Queue<GameObject> objects = new Queue<GameObject>();
     private Queue<GameObject> usedObjects = new Queue<GameObject>();
@@ -20,20 +17,24 @@ public abstract class ObjectPool : MonoBehaviour
         AddObjects(amount);
     }
 
-    public GameObject Get()
+    public GameObject Get(Vector3 position, Quaternion rotation, Transform parent = null)
     {
-        if (amountInPool == 0)
+        if (objects.Count == 0)
         {
             if (scalable) AddObjects(1);
             else if (reusable) UseOldest();
         }
 
-        if (amountInPool == 0) return null;
+        if (objects.Count == 0) return null;
         else
         {
-            amountInPool--;
             GameObject currentObject = objects.Dequeue();
             if (reusable) usedObjects.Enqueue(currentObject);
+
+            currentObject.transform.position = position;
+            currentObject.transform.rotation = rotation;
+            currentObject.transform.SetParent(parent);
+            currentObject.SetActive(true);
             return currentObject;
         }
     }
@@ -52,7 +53,6 @@ public abstract class ObjectPool : MonoBehaviour
             newObject.transform.SetParent(transform);
             newObject.gameObject.SetActive(false);
             objects.Enqueue(newObject);
-            amountInPool++;
         }
     }
 
@@ -61,6 +61,5 @@ public abstract class ObjectPool : MonoBehaviour
         GameObject oldObject = usedObjects.Dequeue();
         objects.Enqueue(oldObject);
         oldObject.SetActive(false);
-        amountInPool++;
     }
 }

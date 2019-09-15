@@ -7,11 +7,10 @@ public class Painter : MonoBehaviour
     [SerializeField] private GameObject effect;
     [SerializeField] private Transform rayTransform;
 
-    [SerializeField] private List<GameObject> contactObjects = new List<GameObject>();
-
+    private List<GameObject> contactObjects = new List<GameObject>();
     private PaintPool pool;
+    private Vector3 lastPaintPos;
     private float distance = 0.06f;
-    //private Vector3 lastPaintPos; //Kanske
 
     private void Start()
     {
@@ -20,30 +19,29 @@ public class Painter : MonoBehaviour
 
     private void Update()
     {
-        Vector3 fwd = rayTransform.TransformDirection(Vector3.forward);
-        Debug.DrawRay(rayTransform.position, fwd * distance, Color.green);
-        if (contactObjects.Count > 0) Paint(fwd);
+        Vector3 forward = rayTransform.TransformDirection(Vector3.forward);
+        Debug.DrawRay(rayTransform.position, forward * distance, Color.green);
+        if (contactObjects.Count > 0) Paint(forward);
     }
 
-    private void Paint(Vector3 fwd)
+    private void Paint(Vector3 forward)
     {
-        if (Physics.Raycast(rayTransform.position, fwd, out RaycastHit rayHit, distance))
+        if (Physics.Raycast(rayTransform.position, forward, out RaycastHit rayHit, distance))
         {
             //Debug.Log(rayHit.collider.gameObject.name);
-            //float distance = (lastPaintPos - rayHit.point).sqrMagnitude;
-            if (!rayHit.collider.isTrigger /*&& distance > 1*/)
+            //float distanceBetweenPaint = (lastPaintPos - rayHit.point).sqrMagnitude;
+            if (!rayHit.collider.isTrigger /*&& distanceBetweenPaint > 1*/)
             {
-                GameObject paint = pool?.Get();
+                GameObject paint = pool?.Get(rayHit.point, Quaternion.FromToRotation(Vector3.up, rayHit.normal), rayHit.collider.transform);
                 if (paint)
                 {
-                   
-                    paint.SetActive(true);
-                    paint.transform.position = rayHit.point;
-                    paint.transform.rotation = Quaternion.FromToRotation(Vector3.up, rayHit.normal);
-                    paint.transform.SetParent(rayHit.collider.transform);
-                    //lastPaintPos = rayHit.point;
+                    if (rayHit.collider.CompareTag("Interactable"))
+                    {
+                        BodyPart bodyPart = GetComponent<BodyPart>();
+                        if (bodyPart) bodyPart.SetTreatment(TreatmentType.MakeUp, paint);
+                    }
+                    lastPaintPos = rayHit.point;
                 }
-                //GameObject paint = Instantiate(effect, rayHit.point, Quaternion.FromToRotation(Vector3.up, rayHit.normal));
             }
         }
     }

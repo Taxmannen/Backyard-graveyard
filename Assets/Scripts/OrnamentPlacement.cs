@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 /* Script Made By Daniel */
-public class OrnamentContainer : MonoBehaviour
+public class OrnamentPlacement : MonoBehaviour
 {
     [SerializeField] private Grave grave;
 
