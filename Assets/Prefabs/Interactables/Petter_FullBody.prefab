@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: ed70d22604b7a604cbd80cbf96fe5cc2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -92,7 +92,6 @@ GameObject:
   - component: {fileID: 4410019569351948739}
   - component: {fileID: 4410019569351948738}
   - component: {fileID: 4410019569351948748}
-  - component: {fileID: 8651167639604575304}
   m_Layer: 0
   m_Name: Petter_FullBody
   m_TagString: Interactable
@@ -177,23 +176,12 @@ MonoBehaviour:
   despawnTimeWhenOnGround: 0
   collisionTest: 0
   dropTime: 0.2
+  treatmentType: 3
   bodyType: 0
   bodyPrefab: {fileID: 4410019569351948750}
   headPrefab: {fileID: 5060645952705957100, guid: 1cf5b4ef40e7a9848a6306e41c117d46,
     type: 3}
   headPosition: {fileID: 6708845041535332153}
---- !u!114 &8651167639604575304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4410019569351948750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a687b70b8cd801b4eb879f4d45fcd725, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6708845041535332152
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ public class BodyPart : Pickup
 {
     #region Variables
     [Header("Treatment")]
-    [SerializeField] private TreatmentType treatmentType = TreatmentType.None;
+    [SerializeField, ReadOnly] private TreatmentType treatmentType = TreatmentType.None;
 
     private List<Material[]> originalMaterials = new List<Material[]>();
     private List<Material[]> mummyMaterials = new List<Material[]>();

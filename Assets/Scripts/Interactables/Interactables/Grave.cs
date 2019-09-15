@@ -16,7 +16,7 @@ public class Grave : Interactable
     [SerializeField] private OrnamentPlacement[] ornamentPlacements;
 
     [Header("Body")]
-    [SerializeField] private Body body = null; //For Debug!
+    [SerializeField, ReadOnly] private Body body = null;
 
     private List<GameObject> dirtLayerList = new List<GameObject>();
     private Vector3 bodyOffset = new Vector3(0, -0.5f, -0.125f);
