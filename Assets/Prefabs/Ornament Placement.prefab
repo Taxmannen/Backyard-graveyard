@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 1496700290}
   - component: {fileID: 4804054930346812937}
   m_Layer: 0
-  m_Name: Ornament Container
+  m_Name: Ornament Placement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

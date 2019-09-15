@@ -4,13 +4,16 @@ using UnityEngine;
 /* Script Made By Daniel */
 public class BodyPart : Pickup
 {
+    #region Variables
+    [Header("Treatment")]
+    [SerializeField] private TreatmentType treatmentType = TreatmentType.None;
+
     private List<Material[]> originalMaterials = new List<Material[]>();
     private List<Material[]> mummyMaterials = new List<Material[]>();
     private List<GameObject> paintList = new List<GameObject>();
-
-    public TreatmentType TreatmentType { get; set; } = TreatmentType.None;
-
+   
     public BodyPart ConnectedBodyPart { get; set; }
+    #endregion
 
     protected override void Start()
     {
@@ -48,7 +51,7 @@ public class BodyPart : Pickup
         MakeUp(false);
         WashUp(false);
         Mummify(false);
-        TreatmentType = TreatmentType.None;
+        treatmentType = TreatmentType.None;
     }
 
 
@@ -56,7 +59,7 @@ public class BodyPart : Pickup
     {
         if (paintState)
         {
-            if (TreatmentType != TreatmentType.MakeUp) TreatmentType = TreatmentType.MakeUp;
+            if (treatmentType != TreatmentType.MakeUp) treatmentType = TreatmentType.MakeUp;
             paintList.Add(paintObject);
         }
         else
@@ -68,7 +71,7 @@ public class BodyPart : Pickup
     private void WashUp(bool washUpState)
     {
         //Debug.Log(washUpState);
-        if (washUpState && TreatmentType != TreatmentType.WashUp) TreatmentType = TreatmentType.WashUp;
+        if (washUpState && treatmentType != TreatmentType.WashUp) treatmentType = TreatmentType.WashUp;
     }
 
     private void Mummify(bool mummifyState)
@@ -76,11 +79,10 @@ public class BodyPart : Pickup
         for (int i = 0; i < meshRenderers.Length; i++)
         {
             if (mummifyState) standardMaterials[i] = mummyMaterials[i];
-            else standardMaterials[i] = originalMaterials[i];
-
+            else              standardMaterials[i] = originalMaterials[i];
             meshRenderers[i].materials = standardMaterials[i];
         }
-        if (mummifyState && TreatmentType != TreatmentType.Mummify) TreatmentType = TreatmentType.Mummify;
+        if (mummifyState && treatmentType != TreatmentType.Mummify) treatmentType = TreatmentType.Mummify;
     }
 
     private void MaterialSetup()
@@ -94,4 +96,6 @@ public class BodyPart : Pickup
             mummyMaterials.Add(mummy);
         }
     }
+
+    public TreatmentType GetTreatmentType() { return treatmentType; }
 }
