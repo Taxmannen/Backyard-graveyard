@@ -28,11 +28,6 @@ public class Pickup : Interactable
         set { snapOnPickup = value; }
     }
 
-    public void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space)) ActiveHand?.Drop();
-    }
-
     public override Interactable Interact()
     {
         if (coroutine != null)
@@ -65,7 +60,6 @@ public class Pickup : Interactable
                     {
                         Collider[] colliders = GetComponentsInChildren<Collider>();
                         foreach (Collider collider in colliders) collider.enabled = false;
-                        //foreach (Collider collider in colliders) Physics.IgnoreCollision(other.gameObject.GetComponent<Collider>(), collider, true);
                     }
                     break;
                 case CollisionTest.Drop:
@@ -79,14 +73,8 @@ public class Pickup : Interactable
     {
         if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Static"))
         {
-            //Debug.Log(other.gameObject.name);
             switch (collisionTest)
             {
-                /*case CollisionTest.Collider:
-                    Collider[] colliders = GetComponentsInChildren<Collider>();
-                    foreach (Collider collider in colliders) collider.enabled = true;
-                    //foreach (Collider collider in colliders) Physics.IgnoreCollision(other.gameObject.GetComponent<Collider>(), collider, false);
-                    break;*/
                 case CollisionTest.Drop:
                     CancelInvoke("Drop");
                     break;
