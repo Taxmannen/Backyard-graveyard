@@ -24,15 +24,19 @@ public class Incinerator : MonoBehaviour
             {
                 case OrnamentType.Flower:
                     Debug.Log("Flower");
+                    //FlowerPool.GetInstance().ReturnToPool(other);
                     break;
                 case OrnamentType.Candle:
                     Debug.Log("Candle");
+                    //CandlePool.GetInstance().ReturnToPool(other);
                     break;
                 case OrnamentType.Heart:
                     Debug.Log("Heart");
+                    //HeartPool.GetInstance().ReturnToPool(other);
                     break;
                 case OrnamentType.Statue:
                     Debug.Log("Statue");
+                    //StatuePool.GetInstance().ReturnToPool(other);
                     break;
             }
             return true;

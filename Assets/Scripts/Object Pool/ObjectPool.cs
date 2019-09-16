@@ -14,10 +14,12 @@ public abstract class ObjectPool : Singleton<ObjectPool>
     [SerializeField, ReadOnly] private List<GameObject> usedObjects = new List<GameObject>();
 
     private Queue<GameObject> objects = new Queue<GameObject>();
+    private Vector3 scale;
     #endregion
 
     private void Awake()
     {
+        scale = prefab.transform.localScale;
         AddObjects(amount);
     }
 
@@ -36,7 +38,7 @@ public abstract class ObjectPool : Singleton<ObjectPool>
             if (reusable) usedObjects.Add(currentObject);
             currentObject.transform.position = position;
             currentObject.transform.rotation = rotation;
-            currentObject.transform.SetParent(parent);
+            SetObjectParent(currentObject.transform, parent);
             currentObject.SetActive(true);
             return currentObject;
         }
@@ -67,5 +69,12 @@ public abstract class ObjectPool : Singleton<ObjectPool>
         usedObjects.RemoveAt(0);
         objects.Enqueue(oldObject);
         oldObject.SetActive(false);
+    }
+
+    private void SetObjectParent(Transform objectTransform, Transform parent)
+    {
+        objectTransform.SetParent(null);
+        objectTransform.localScale = scale;
+        objectTransform.SetParent(parent);
     }
 }
