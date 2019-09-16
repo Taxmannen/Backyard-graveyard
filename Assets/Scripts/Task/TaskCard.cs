@@ -34,6 +34,7 @@ public class TaskCard : MonoBehaviour
     private float timerWidth;
     private float timerWidthMax = 2f;
     private float timerWidthMin = 0f;
+    public bool taskCompleted = false;
     private Color timerColor = new Color(0f, 255f, 0f);
 
 
@@ -127,11 +128,13 @@ public class TaskCard : MonoBehaviour
         //    taskCompletedImage.gameObject.SetActive(true);
         //}
         taskCompletedImage.gameObject.SetActive(true);
+        taskCompleted = true;
     }
 
 
     public void TaskFailed() {
         taskFailedImage.gameObject.SetActive(true);
+        taskCompleted = false;
     }
 
     public void Disable() {

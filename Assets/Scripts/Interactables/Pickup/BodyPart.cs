@@ -7,6 +7,8 @@ public class BodyPart : Pickup
     #region Variables
     [Header("Treatment")]
     [SerializeField, ReadOnly] private TreatmentType treatmentType = TreatmentType.None;
+    [SerializeField] private Transform[] paintParents;
+    [SerializeField] private ParticleSystem washParticleSystem;
 
     private List<Material[]> originalMaterials = new List<Material[]>();
     private List<Material[]> mummyMaterials = new List<Material[]>();
@@ -20,17 +22,12 @@ public class BodyPart : Pickup
         MaterialSetup();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.K)) ClearTreatments();
-    }
-
     public void SetTreatment(TreatmentType treatmentType, GameObject paint = null)
     {
         switch (treatmentType)
         {
             case TreatmentType.MakeUp:
-                MakeUp(true, paint);
+                MakeUp(true);
                 break;
             case TreatmentType.WashUp:
                 WashUp(true);
@@ -41,16 +38,23 @@ public class BodyPart : Pickup
                 ConnectedBodyPart?.Mummify(true);
                 break;
             case TreatmentType.None:
-                ClearTreatments();
-                ConnectedBodyPart?.ClearTreatments();
+                ClearAllTreatments();
+                ConnectedBodyPart?.ClearAllTreatments();
                 break;
             default:
                 Debug.LogError("Something Went Wrong");
                 break;
         }
     }
+    
+    private void ClearPreviousTreatments(TreatmentType treatmentType)
+    {
+        if (treatmentType != TreatmentType.MakeUp) MakeUp(false);
+        if (treatmentType != TreatmentType.WashUp) WashUp(false);
+        if (treatmentType != TreatmentType.Mummify) Mummify(false);
+    }
 
-    private void ClearTreatments()
+    private void ClearAllTreatments()
     {
         MakeUp(false);
         WashUp(false);
@@ -58,16 +62,19 @@ public class BodyPart : Pickup
         treatmentType = TreatmentType.None;
     }
 
-    private void MakeUp(bool paintState, GameObject paintObject = null)
+    private void MakeUp(bool paintState)
     {
-        //paintObject.SetChild()
         if (paintState)
         {
-            if (treatmentType != TreatmentType.MakeUp) treatmentType = TreatmentType.MakeUp;
+            if (treatmentType != TreatmentType.MakeUp)
+            {
+                treatmentType = TreatmentType.MakeUp;
+                ClearPreviousTreatments(treatmentType);
+            }
         }
         else
         {
-            PaintPool pool = PaintPool.Instance;
+            ObjectPool pool = PaintPool.GetInstance();
             List<GameObject> paintList = GetAllDecals();
             foreach (GameObject paint in paintList) pool.ReturnToPool(paint);
         }
@@ -75,19 +82,35 @@ public class BodyPart : Pickup
 
     private void WashUp(bool washUpState)
     {
-        //Debug.Log(washUpState);
-        if (washUpState && treatmentType != TreatmentType.WashUp) treatmentType = TreatmentType.WashUp;
+        if (washUpState)
+        {
+            if (treatmentType != TreatmentType.WashUp)
+            {
+                treatmentType = TreatmentType.WashUp;
+                ClearPreviousTreatments(treatmentType);
+                washParticleSystem.Play();
+            }
+        }
+        else washParticleSystem.Stop();
     }
 
     private void Mummify(bool mummifyState)
     {
+        if (mummifyState)
+        {
+            if (treatmentType != TreatmentType.Mummify)
+            {
+                treatmentType = TreatmentType.Mummify;
+                ClearPreviousTreatments(treatmentType);
+            }
+        }
+
         for (int i = 0; i < meshRenderers.Length; i++)
         {
             if (mummifyState) standardMaterials[i] = mummyMaterials[i];
             else              standardMaterials[i] = originalMaterials[i];
             meshRenderers[i].materials = standardMaterials[i];
         }
-        if (mummifyState && treatmentType != TreatmentType.Mummify) treatmentType = TreatmentType.Mummify;
     }
 
     private void MaterialSetup()
@@ -105,9 +128,12 @@ public class BodyPart : Pickup
     private List<GameObject> GetAllDecals()
     {
         List<GameObject> decalList = new List<GameObject>();
-        for (int i = 0; i < transform.childCount; i++)
+        foreach (Transform paintParent in paintParents)
         {
-            if (transform.GetChild(i).CompareTag("Decal")) decalList.Add(transform.GetChild(i).gameObject);
+            for (int i = 0; i < paintParent.childCount; i++)
+            {
+                if (paintParent.GetChild(i).CompareTag("Decal")) decalList.Add(paintParent.GetChild(i).gameObject);
+            }
         }
         return decalList;
     }

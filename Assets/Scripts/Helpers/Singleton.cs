@@ -11,7 +11,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour {
 
     public static T GetInstance() {
         if (instance == null) {
-            Debug.LogError("An instance of " + typeof(T) +
+            Debug.LogWarning("An instance of " + typeof(T) +
                    " is needed but instance is null." +
                    " Did you forget to set the instance in the Start() function?" +
                    " Attempting to find one in the scene anyway...");

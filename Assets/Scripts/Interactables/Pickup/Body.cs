@@ -11,7 +11,6 @@ public class Body : BodyPart
     [SerializeField] private GameObject headPrefab;
     [SerializeField] private Transform headPosition;
 
-    private GameObject ghostObject;
     private FixedJoint fixedJoint;
 
     public Head Head { get; private set; }
@@ -31,48 +30,6 @@ public class Body : BodyPart
         SnapOnPickup = false;
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        Head head = other.GetComponent<Head>();
-        if (!Head && other.CompareTag("Interactable") && head)
-        {
-            if (ghostObject == null)
-            {
-                ghostObject = other.GetComponent<Interactable>().CreateGhostObject(headPosition.position, transform.rotation.eulerAngles);
-                ghostObject.transform.SetParent(transform);
-            }
-
-            if (!head.ActiveHand || !ActiveHand)
-            {
-                if (!head.ActiveHand && !ActiveHand)
-                {
-                    return;
-                }
-
-                else
-                {
-                    AttachHead(head);
-                    Destroy(ghostObject);
-                }
-            }
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Interactable") && other.GetComponent<Head>())
-        {
-            if (ghostObject != null)
-            {
-                Destroy(ghostObject);
-            }
-            if (Head)
-            {
-                DetachHead();
-            }
-        }
-    }
-
     private void SetColor()
     {
         bodyType = (BodyType)Random.Range(0, 3);
@@ -90,7 +47,7 @@ public class Body : BodyPart
         }
     }
 
-    private void AttachHead(Head head)
+    public void AttachHead(Head head)
     {
         head.transform.position = headPosition.position;
         head.transform.rotation = transform.rotation;
@@ -109,7 +66,7 @@ public class Body : BodyPart
         Head = head;
     }
 
-    private void DetachHead()
+    public void DetachHead()
     {
         if (fixedJoint != null)
         {
@@ -140,4 +97,6 @@ public class Body : BodyPart
 
 
     public BodyType GetBodyType() { return bodyType; }
+
+    public Vector3 GetHeadPosition() { return headPosition.position; }
 }
