@@ -16,7 +16,7 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField] private float endTimeBetweenEachSpawn = 5f;
 
-    [SerializeField] private Transform enemyToSpawnPrefab;
+    [SerializeField] private ObjectPool objectPool;
 
     //New stuff
     private Queue<EnemyWaves> enemyWaves = new Queue<EnemyWaves>();
@@ -75,7 +75,8 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator Spawn(int nrOfEnemies) {
         for(int i = 0; i < nrOfEnemies; i++) {
-            Instantiate(enemyToSpawnPrefab, transform.position, transform.rotation);
+            //Instantiate(enemyToSpawnPrefab, transform.position, transform.rotation);
+            objectPool.Get(transform.position, transform.rotation);
             yield return new WaitForSecondsRealtime(timeBetweenSpawns);
         }
 
