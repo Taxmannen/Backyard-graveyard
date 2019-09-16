@@ -15,6 +15,7 @@ TagManager:
   - OutOfBounds
   - RandomTargetObject
   - Decal
+  - BodyPart
   layers:
   - Default
   - TransparentFX
