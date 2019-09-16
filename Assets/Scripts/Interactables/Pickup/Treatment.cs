@@ -16,7 +16,7 @@ public class Treatment : Pickup
         if (other.CompareTag("Interactable"))
         {
             BodyPart bodyPart = other.GetComponent<BodyPart>();
-            if (bodyPart && bodyPart.ActiveHand) bodyPart.SetTreatment(treatmentType);
+            if (bodyPart && ActiveHand) bodyPart.SetTreatment(treatmentType);
         }
     }
 }
