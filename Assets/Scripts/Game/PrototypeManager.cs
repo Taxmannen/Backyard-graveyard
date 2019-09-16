@@ -50,15 +50,17 @@ public class PrototypeManager : Singleton<PrototypeManager>
     [SerializeField] private GraveRobberWaves[] graveRobbersWaves;
     [SerializeField] private float timeBetweenGraveRobbers = 0.5f;
 
+    public int TotalNrOfTasks { get => totalNrOfTasks; private set => totalNrOfTasks = value; }
+
     private void Awake() {
         SetInstance(this);
     }
 
     void Start()
     {
-        if (initialNrOfTasks > totalNrOfTasks) throw new System.Exception("PrototypeManager Exception: totalNrOfTasks cannot be higer than initialNrOfTasks");
+        if (initialNrOfTasks > TotalNrOfTasks) throw new System.Exception("PrototypeManager Exception: totalNrOfTasks cannot be higer than initialNrOfTasks");
 
-        TaskManager.GetInstance().ActivateTasks(initialNrOfTasks, timePerTask, totalNrOfTasks);
+        TaskManager.GetInstance().ActivateTasks(initialNrOfTasks, timePerTask, TotalNrOfTasks);
 
         SetZombieWaves();
         SetGraveRobberWaves();
