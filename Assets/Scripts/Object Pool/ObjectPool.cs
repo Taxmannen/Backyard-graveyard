@@ -2,7 +2,7 @@
 using UnityEngine;
 
 /* Script Made By Daniel */
-public abstract class ObjectPool : MonoBehaviour
+public abstract class ObjectPool : Singleton<ObjectPool>
 {
     #region Variables
     [SerializeField] private GameObject prefab;
@@ -14,7 +14,7 @@ public abstract class ObjectPool : MonoBehaviour
     [SerializeField, ReadOnly] private List<GameObject> usedObjects = new List<GameObject>();
     #endregion
 
-    protected void Setup()
+    private void Awake()
     {
         AddObjects(amount);
     }
@@ -31,9 +31,7 @@ public abstract class ObjectPool : MonoBehaviour
         else
         {
             GameObject currentObject = objects.Dequeue();
-            //if (reusable) usedObjects.Enqueue(currentObject);
             if (reusable) usedObjects.Add(currentObject);
-
             currentObject.transform.position = position;
             currentObject.transform.rotation = rotation;
             currentObject.transform.SetParent(parent);
@@ -45,7 +43,7 @@ public abstract class ObjectPool : MonoBehaviour
     public void ReturnToPool(GameObject objectToReturn)
     {
         if (reusable) usedObjects.Remove(objectToReturn);
-        objectToReturn.gameObject.SetActive(false);
+        objectToReturn.SetActive(false);
         objectToReturn.transform.SetParent(transform);
         objects.Enqueue(objectToReturn);
     }
@@ -54,9 +52,9 @@ public abstract class ObjectPool : MonoBehaviour
     {
         for (int i = 0; i < count; i++)
         {
-            var newObject = Instantiate(prefab);
+            GameObject newObject = Instantiate(prefab);
             newObject.transform.SetParent(transform);
-            newObject.gameObject.SetActive(false);
+            newObject.SetActive(false);
             objects.Enqueue(newObject);
         }
     }

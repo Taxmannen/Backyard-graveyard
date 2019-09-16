@@ -67,7 +67,7 @@ public class BodyPart : Pickup
         }
         else
         {
-            PaintPool pool = PaintPool.Instance;
+            ObjectPool pool = PaintPool.GetInstance();
             List<GameObject> paintList = GetAllDecals();
             foreach (GameObject paint in paintList) pool.ReturnToPool(paint);
         }
