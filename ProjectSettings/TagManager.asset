@@ -46,7 +46,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Enemy
   - Ground
   m_SortingLayers:
   - name: Default

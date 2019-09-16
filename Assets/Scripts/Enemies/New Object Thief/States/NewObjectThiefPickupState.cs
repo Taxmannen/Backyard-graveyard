@@ -58,7 +58,7 @@ public class NewObjectThiefPickupState : NewObjectThiefState
         if (distanceToTarget < distanceToObjectBeforeStateChange)
         {
             //Sätt på hand och sätt objektet som hålls av zombien
-            objectThief.pickupHand.AddSpringJoint(objectThief.currentTargetObject.GetComponent<Rigidbody>());
+            objectThief.pickupHand.AddJoint(objectThief.currentTargetObject.GetComponent<Rigidbody>());
             objectThief.objectInHand = objectThief.currentTargetObject;
 
             //Fulfix där fienden rör sig mot ett objekt med tagen "Out of Bounds". Används för att despawna fienden.

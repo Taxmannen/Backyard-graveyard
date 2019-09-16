@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2685551561028514547}
   - component: {fileID: 2685551561028514546}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: RandomTargetObject
   m_TagString: RandomTargetObject
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 3088007685480102414}
   - component: {fileID: 3088007685480102412}
   - component: {fileID: 3088007685480102415}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: ObjectSearcher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 3088007685616627870}
   - component: {fileID: 3088007685616627869}
   - component: {fileID: 3088007685616627868}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: MarionetteString
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -197,7 +197,7 @@ GameObject:
   - component: {fileID: 3088007685712741567}
   - component: {fileID: 3088007685712741565}
   - component: {fileID: 3088007685712741564}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: Head
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -243,7 +243,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6dfbe1d861b52c74a85a20918c8766b2, type: 2}
+  - {fileID: 2100000, guid: 77a8bf2f77db969468d230634d0529db, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -304,7 +304,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: -0.87}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.0035631654, y: -0.00000023841858, z: 0.8289272}
+  m_ConnectedAnchor: {x: 0.0035633438, y: -0.00000023841858, z: 0.82892716}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -352,7 +352,7 @@ GameObject:
   - component: {fileID: 3088007685718226870}
   - component: {fileID: 3088007685718226867}
   - component: {fileID: 3088007685718226866}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: Body
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -400,7 +400,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e369fde49b28ae840beb37fd9397f39c, type: 2}
+  - {fileID: 2100000, guid: 77a8bf2f77db969468d230634d0529db, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -477,7 +477,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3088007685849901978}
   - component: {fileID: 3088007685849901957}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -527,7 +527,7 @@ GameObject:
   - component: {fileID: 3088007686144677300}
   - component: {fileID: 3088007686144677303}
   - component: {fileID: 3088007686144677302}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: OrnamentThief
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -612,7 +612,7 @@ GameObject:
   - component: {fileID: 3088007686898911140}
   - component: {fileID: 3088007686898911162}
   - component: {fileID: 3088007686898911141}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: HeadString
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -759,7 +759,7 @@ GameObject:
   - component: {fileID: 3088007686933844484}
   - component: {fileID: 3088007686933844487}
   - component: {fileID: 3088007686933844486}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: LeftArm
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -805,7 +805,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6dfbe1d861b52c74a85a20918c8766b2, type: 2}
+  - {fileID: 2100000, guid: 77a8bf2f77db969468d230634d0529db, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -853,7 +853,7 @@ CharacterJoint:
   m_Anchor: {x: 0.16, y: 0, z: 0.78}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.6707485, y: -0.0017529726, z: 0.59289736}
+  m_ConnectedAnchor: {x: 0.67074865, y: -0.0017528534, z: 0.59289736}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -912,7 +912,7 @@ GameObject:
   - component: {fileID: 3088007686985888948}
   - component: {fileID: 3088007686985888970}
   - component: {fileID: 3088007686985888949}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: OverString
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1060,7 +1060,7 @@ GameObject:
   - component: {fileID: 3088007687038147472}
   - component: {fileID: 3088007687038147478}
   - component: {fileID: 3088007687038147473}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: RightArm
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1107,7 +1107,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6dfbe1d861b52c74a85a20918c8766b2, type: 2}
+  - {fileID: 2100000, guid: 77a8bf2f77db969468d230634d0529db, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1155,7 +1155,7 @@ CharacterJoint:
   m_Anchor: {x: 0.16, y: 0, z: 0.78}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.66594356, y: 0.0013741255, z: 0.60527116}
+  m_ConnectedAnchor: {x: -0.66594374, y: 0.0013737679, z: 0.60527116}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -1214,7 +1214,7 @@ GameObject:
   - component: {fileID: 3088007687052433921}
   - component: {fileID: 3088007687052433927}
   - component: {fileID: 3088007687052433926}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: String2 (1)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1358,7 +1358,7 @@ GameObject:
   - component: {fileID: 3088007687393020067}
   - component: {fileID: 3088007687393020066}
   - component: {fileID: 3088007687393020077}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: Spring
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1453,7 +1453,7 @@ GameObject:
   - component: {fileID: 3088007687424479683}
   - component: {fileID: 3088007687424479686}
   - component: {fileID: 3088007687424479680}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: PickupHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1513,7 +1513,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.00000023953936, y: -0.0000015497208, z: -0.831}
+  m_ConnectedAnchor: {x: 0, y: 0.00000011920929, z: -0.831}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -1558,7 +1558,7 @@ GameObject:
   - component: {fileID: 3088007687448790666}
   - component: {fileID: 3088007687448790664}
   - component: {fileID: 3088007687448790667}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: String2 (1)
   m_TagString: Enemy
   m_Icon: {fileID: 0}

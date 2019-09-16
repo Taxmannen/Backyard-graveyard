@@ -176,13 +176,18 @@ public class NewObjectThief : MonoBehaviour
 
     public void Despawn()
     {
-        Debug.Log("DEspawned");
         if(objectInHand != null)
         {
             Destroy(objectInHand);
         }
         
         Destroy(gameObject);
+    }
+
+    public void DropItem()
+    {
+        pickupHand.DestroyJoint();
+        objectInHand = null;
     }
 
 
