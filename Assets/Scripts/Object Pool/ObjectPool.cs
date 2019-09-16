@@ -10,8 +10,10 @@ public abstract class ObjectPool : Singleton<ObjectPool>
     [SerializeField, Tooltip("Add more to the pool when empty")] private bool scalable;
     [SerializeField, Tooltip("Reuses first spawned object when empty")] private bool reusable;
 
-    private Queue<GameObject> objects = new Queue<GameObject>();
+    [Header("Debug")]
     [SerializeField, ReadOnly] private List<GameObject> usedObjects = new List<GameObject>();
+
+    private Queue<GameObject> objects = new Queue<GameObject>();
     #endregion
 
     private void Awake()
