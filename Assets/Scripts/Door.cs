@@ -8,9 +8,12 @@ public class Door : MonoBehaviour
 {
     public Door targetDoor;
     public bool doorOnCooldown = false;
+    private LoadingBar loadingBar;
 
     private Image cameraFadeImage;
     private Image cameraFadeCanvas;
+
+    private Collider player;
 
 
     private void Awake()
@@ -24,6 +27,8 @@ public class Door : MonoBehaviour
 
         cameraFadeImage.GetComponent<Canvas>().worldCamera = FindObjectOfType<Camera>();
         cameraFadeImage.CrossFadeAlpha(0f, 0f, false);
+
+        loadingBar = FindObjectOfType<LoadingBar>();
     }
 
     public IEnumerator DoorCooldown()
@@ -42,15 +47,46 @@ public class Door : MonoBehaviour
         yield return null;
     }
 
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (!doorOnCooldown && other.tag == "Player")
+    //    {
+    //        StartCoroutine(DoorCooldown());
+    //        StartCoroutine(targetDoor.DoorCooldown());
+    //        StartCoroutine(CameraFade());
+    //        StartCoroutine(TeleportPlayer(other));
+    //        //other.gameObject.transform.root.LookAt(targetDoor.transform);
+    //    }
+    //}
+
+    public void StartTeleportationSequence()
+    {
+        //StartCoroutine(DoorCooldown());
+        //StartCoroutine(targetDoor.DoorCooldown());
+        StartCoroutine(CameraFade());
+        StartCoroutine(TeleportPlayer(player));
+        //other.gameObject.transform.root.LookAt(targetDoor.transform);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (!doorOnCooldown && other.tag == "Player")
+        if (other.tag == "Player")
         {
-            StartCoroutine(DoorCooldown());
-            StartCoroutine(targetDoor.DoorCooldown());
-            StartCoroutine(CameraFade());
-            StartCoroutine(TeleportPlayer(other));
-            //other.gameObject.transform.root.LookAt(targetDoor.transform);
+            player = other;
+            foreach (LoadingBar loadingBar in FindObjectsOfType<LoadingBar>())
+            {
+                loadingBar.EmptyLoadingBar();
+            }
+            loadingBar = other.GetComponentInChildren<LoadingBar>();
+            loadingBar.StartLoadingBar(this);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            loadingBar.EmptyLoadingBar();
         }
     }
 
