@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3356986789486565870}
   - component: {fileID: 3356986789486565777}
   - component: {fileID: 3356986789486565776}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Statue
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -129,6 +129,7 @@ MonoBehaviour:
   shouldDespawnWhenOnGround: 0
   despawnTimeWhenOnGround: 0
   collisionTest: 0
+  dropTime: 0.2
   ornamentType: 2
   snappedPosition: {x: 0, y: 0.1, z: 0}
   snappedRotation: {x: 0, y: 0, z: 0}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2526846842270556627}
   - component: {fileID: 8508170324669912167}
   - component: {fileID: 6289533158858342803}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 4137098147119746291}
   - component: {fileID: 4137098147119746290}
   - component: {fileID: 2187847073836266636}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sledgehammer
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: 3461986938167672553}
   - component: {fileID: 3097021406046348967}
   - component: {fileID: 2876500994002653977}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

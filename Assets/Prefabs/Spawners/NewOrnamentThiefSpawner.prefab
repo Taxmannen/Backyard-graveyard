@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 652701250328941300}
   - component: {fileID: 652701250328941303}
+  - component: {fileID: 2569839527265381916}
   m_Layer: 0
   m_Name: NewOrnamentThiefSpawner
   m_TagString: Untagged
@@ -46,5 +47,21 @@ MonoBehaviour:
   startTimeBetweenEachSpawn: 10
   timeDecreaseBetweenEachSpawn: 1
   endTimeBetweenEachSpawn: 2
-  enemyToSpawnPrefab: {fileID: 3088007686144677300, guid: f9c979193169e3e49b0a4454667574ab,
-    type: 3}
+  objectPool: {fileID: 2569839527265381916}
+--- !u!114 &2569839527265381916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652701250328941302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b411f93091c1a7f4b945bd52dd7dda6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 3088007686144677297, guid: f9c979193169e3e49b0a4454667574ab, type: 3}
+  amount: 75
+  scalable: 0
+  reusable: 0
+  usedObjects: []

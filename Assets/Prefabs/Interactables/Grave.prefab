@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4184036993504260995}
-  m_Layer: 0
+  m_Layer: 29
   m_Name: Ornament Containers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 8695872206774074921}
   - component: {fileID: 3376274140732798061}
   - component: {fileID: 8695872206774074926}
-  m_Layer: 0
+  m_Layer: 29
   m_Name: Grave
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 8695872206971277844}
   - component: {fileID: 8695872206971277845}
   - component: {fileID: 8695872206971277850}
-  m_Layer: 0
+  m_Layer: 29
   m_Name: 'Left '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 8695872207005066814}
   - component: {fileID: 8695872207005066815}
   - component: {fileID: 8695872207005066812}
-  m_Layer: 0
+  m_Layer: 29
   m_Name: Up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -358,7 +358,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8695872207432562810}
-  m_Layer: 0
+  m_Layer: 29
   m_Name: Dirt Layers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -391,7 +391,7 @@ GameObject:
   - component: {fileID: 8695872207559482264}
   - component: {fileID: 8695872207559482265}
   - component: {fileID: 8695872207559482270}
-  m_Layer: 0
+  m_Layer: 29
   m_Name: Down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -483,7 +483,7 @@ GameObject:
   - component: {fileID: 8695872208163431078}
   - component: {fileID: 8695872208163431079}
   - component: {fileID: 8695872208163431076}
-  m_Layer: 0
+  m_Layer: 29
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -572,7 +572,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8695872208483951214}
-  m_Layer: 0
+  m_Layer: 29
   m_Name: Meshes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -609,6 +609,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ornament Placement (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4804054930346812942, guid: 36b501c6e5dd62a478e82e5113b9cbae,
+        type: 3}
+      propertyPath: m_Layer
+      value: 29
       objectReference: {fileID: 0}
     - target: {fileID: 4804054930346812933, guid: 36b501c6e5dd62a478e82e5113b9cbae,
         type: 3}
@@ -680,6 +685,10 @@ PrefabInstance:
       propertyPath: grave
       value: 
       objectReference: {fileID: 8695872206774074926}
+    - target: {fileID: 398334248, guid: 36b501c6e5dd62a478e82e5113b9cbae, type: 3}
+      propertyPath: m_Layer
+      value: 29
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36b501c6e5dd62a478e82e5113b9cbae, type: 3}
 --- !u!114 &8699760391194360622 stripped
@@ -711,6 +720,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ornament Placement (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4804054930346812942, guid: 36b501c6e5dd62a478e82e5113b9cbae,
+        type: 3}
+      propertyPath: m_Layer
+      value: 29
       objectReference: {fileID: 0}
     - target: {fileID: 4804054930346812933, guid: 36b501c6e5dd62a478e82e5113b9cbae,
         type: 3}
@@ -787,6 +801,10 @@ PrefabInstance:
       propertyPath: grave
       value: 
       objectReference: {fileID: 8695872206774074926}
+    - target: {fileID: 398334248, guid: 36b501c6e5dd62a478e82e5113b9cbae, type: 3}
+      propertyPath: m_Layer
+      value: 29
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36b501c6e5dd62a478e82e5113b9cbae, type: 3}
 --- !u!114 &8699760392357593376 stripped
@@ -818,6 +836,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ornament Placement
+      objectReference: {fileID: 0}
+    - target: {fileID: 4804054930346812942, guid: 36b501c6e5dd62a478e82e5113b9cbae,
+        type: 3}
+      propertyPath: m_Layer
+      value: 29
       objectReference: {fileID: 0}
     - target: {fileID: 4804054930346812933, guid: 36b501c6e5dd62a478e82e5113b9cbae,
         type: 3}
@@ -889,6 +912,10 @@ PrefabInstance:
       propertyPath: grave
       value: 
       objectReference: {fileID: 8695872206774074926}
+    - target: {fileID: 398334248, guid: 36b501c6e5dd62a478e82e5113b9cbae, type: 3}
+      propertyPath: m_Layer
+      value: 29
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36b501c6e5dd62a478e82e5113b9cbae, type: 3}
 --- !u!114 &8699760392911820536 stripped
@@ -920,6 +947,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GraveResetButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 7057870817972005994, guid: fa8716047a8edf34ab5e1a3d600c1d62,
+        type: 3}
+      propertyPath: m_Layer
+      value: 29
       objectReference: {fileID: 0}
     - target: {fileID: 7057870817972005993, guid: fa8716047a8edf34ab5e1a3d600c1d62,
         type: 3}
@@ -976,6 +1008,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7057870817629618238, guid: fa8716047a8edf34ab5e1a3d600c1d62,
+        type: 3}
+      propertyPath: m_Layer
+      value: 29
+      objectReference: {fileID: 0}
+    - target: {fileID: 490364752157291160, guid: fa8716047a8edf34ab5e1a3d600c1d62,
+        type: 3}
+      propertyPath: m_Layer
+      value: 29
+      objectReference: {fileID: 0}
+    - target: {fileID: 7728442785557955940, guid: fa8716047a8edf34ab5e1a3d600c1d62,
+        type: 3}
+      propertyPath: m_Layer
+      value: 29
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa8716047a8edf34ab5e1a3d600c1d62, type: 3}
 --- !u!4 &3496997656496279147 stripped
@@ -995,6 +1042,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: grave_stone
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 429538861c3a53541b6c9b19bd2967ed,
+        type: 3}
+      propertyPath: m_Layer
+      value: 29
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 429538861c3a53541b6c9b19bd2967ed,
         type: 3}

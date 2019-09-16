@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1550425813}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Lit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 7081553365740325115}
   - component: {fileID: -2550937773338855392}
   - component: {fileID: 7081553365740325108}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Candle_Stick
   m_TagString: Interactable
   m_Icon: {fileID: 0}

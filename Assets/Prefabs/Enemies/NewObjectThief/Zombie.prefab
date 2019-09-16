@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1780472922}
   - component: {fileID: 1780472923}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: RandomTargetObject
   m_TagString: RandomTargetObject
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 1125390057942414504}
   - component: {fileID: 1125390057942414510}
   - component: {fileID: 1125390057942414511}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: String2 (1)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 1125390057961944377}
   - component: {fileID: 1125390057961944383}
   - component: {fileID: 1125390057961944376}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: RightArm
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -356,7 +356,7 @@ GameObject:
   - component: {fileID: 1125390058070337571}
   - component: {fileID: 1125390058070337569}
   - component: {fileID: 1125390058070337570}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: String2 (1)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -500,7 +500,7 @@ GameObject:
   - component: {fileID: 1125390058113400682}
   - component: {fileID: 1125390058113400687}
   - component: {fileID: 1125390058113400681}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: PickupHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -606,7 +606,7 @@ GameObject:
   - component: {fileID: 1125390058149045770}
   - component: {fileID: 1125390058149045771}
   - component: {fileID: 1125390058149045764}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: Spring
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -700,7 +700,7 @@ GameObject:
   - component: {fileID: 1125390058547730973}
   - component: {fileID: 1125390058547731043}
   - component: {fileID: 1125390058547730972}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: OverString
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -848,7 +848,7 @@ GameObject:
   - component: {fileID: 1125390058595581101}
   - component: {fileID: 1125390058595581102}
   - component: {fileID: 1125390058595581103}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: LeftArm
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1001,7 +1001,7 @@ GameObject:
   - component: {fileID: 1125390058628540685}
   - component: {fileID: 1125390058628540691}
   - component: {fileID: 1125390058628540684}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: HeadString
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1145,7 +1145,7 @@ GameObject:
   - component: {fileID: 1125390058846829341}
   - component: {fileID: 1125390058846829342}
   - component: {fileID: 1125390058846829343}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: Zombie
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1231,7 +1231,7 @@ GameObject:
   - component: {fileID: 1125390059392769591}
   - component: {fileID: 1125390059392769588}
   - component: {fileID: 1125390059392769589}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: MarionetteString
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1309,7 +1309,7 @@ GameObject:
   - component: {fileID: 1125390059524183207}
   - component: {fileID: 1125390059524183205}
   - component: {fileID: 1125390059524183206}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: ObjectSearcher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1367,7 +1367,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1125390059693147443}
   - component: {fileID: 1125390059693147436}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1420,7 +1420,7 @@ GameObject:
   - component: {fileID: 1125390059824212502}
   - component: {fileID: 1125390059824212500}
   - component: {fileID: 1125390059824212501}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: Head
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1575,7 +1575,7 @@ GameObject:
   - component: {fileID: 1125390059830204703}
   - component: {fileID: 1125390059830204698}
   - component: {fileID: 1125390059830204699}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: Body
   m_TagString: Enemy
   m_Icon: {fileID: 0}

@@ -2,7 +2,7 @@
 using UnityEngine;
 
 /* Script Made By Daniel */
-public abstract class ObjectPool : MonoBehaviour
+public abstract class ObjectPool : Singleton<ObjectPool>
 {
     #region Variables
     [SerializeField] private GameObject prefab;
@@ -10,12 +10,16 @@ public abstract class ObjectPool : MonoBehaviour
     [SerializeField, Tooltip("Add more to the pool when empty")] private bool scalable;
     [SerializeField, Tooltip("Reuses first spawned object when empty")] private bool reusable;
 
-    private Queue<GameObject> objects = new Queue<GameObject>();
+    [Header("Debug")]
     [SerializeField, ReadOnly] private List<GameObject> usedObjects = new List<GameObject>();
+
+    private Queue<GameObject> objects = new Queue<GameObject>();
+    private Vector3 scale;
     #endregion
 
-    protected void Setup()
+    private void Awake()
     {
+        scale = prefab.transform.localScale;
         AddObjects(amount);
     }
 
@@ -31,12 +35,10 @@ public abstract class ObjectPool : MonoBehaviour
         else
         {
             GameObject currentObject = objects.Dequeue();
-            //if (reusable) usedObjects.Enqueue(currentObject);
             if (reusable) usedObjects.Add(currentObject);
-
             currentObject.transform.position = position;
             currentObject.transform.rotation = rotation;
-            currentObject.transform.SetParent(parent);
+            SetObjectParent(currentObject.transform, parent);
             currentObject.SetActive(true);
             return currentObject;
         }
@@ -45,7 +47,7 @@ public abstract class ObjectPool : MonoBehaviour
     public void ReturnToPool(GameObject objectToReturn)
     {
         if (reusable) usedObjects.Remove(objectToReturn);
-        objectToReturn.gameObject.SetActive(false);
+        objectToReturn.SetActive(false);
         objectToReturn.transform.SetParent(transform);
         objects.Enqueue(objectToReturn);
     }
@@ -54,9 +56,9 @@ public abstract class ObjectPool : MonoBehaviour
     {
         for (int i = 0; i < count; i++)
         {
-            var newObject = Instantiate(prefab);
+            GameObject newObject = Instantiate(prefab);
             newObject.transform.SetParent(transform);
-            newObject.gameObject.SetActive(false);
+            newObject.SetActive(false);
             objects.Enqueue(newObject);
         }
     }
@@ -67,5 +69,12 @@ public abstract class ObjectPool : MonoBehaviour
         usedObjects.RemoveAt(0);
         objects.Enqueue(oldObject);
         oldObject.SetActive(false);
+    }
+
+    private void SetObjectParent(Transform objectTransform, Transform parent)
+    {
+        objectTransform.SetParent(null);
+        objectTransform.localScale = scale;
+        objectTransform.SetParent(parent);
     }
 }

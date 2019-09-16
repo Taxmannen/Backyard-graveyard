@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2050584688491530359}
   - component: {fileID: 7002575530321752641}
   - component: {fileID: 3608135628285300408}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Petter_Body_Basic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 4410019569351948739}
   - component: {fileID: 4410019569351948738}
   - component: {fileID: 4410019569351948748}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Petter_FullBody
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -191,7 +191,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6708845041535332153}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HeadPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}

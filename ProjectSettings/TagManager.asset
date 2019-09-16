@@ -45,8 +45,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Grave
+  - Enemy
   - Ground
   m_SortingLayers:
   - name: Default
