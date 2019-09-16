@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3541818741423391777}
   - component: {fileID: 3541818741423391778}
+  - component: {fileID: 3339778840377501376}
   m_Layer: 0
   m_Name: NewZombieSpawner
   m_TagString: Untagged
@@ -46,5 +47,21 @@ MonoBehaviour:
   startTimeBetweenEachSpawn: 10
   timeDecreaseBetweenEachSpawn: 1
   endTimeBetweenEachSpawn: 2
-  enemyToSpawnPrefab: {fileID: 1125390058846829341, guid: 596d6b9d5eea32344b196fd440323303,
-    type: 3}
+  objectPool: {fileID: 3339778840377501376}
+--- !u!114 &3339778840377501376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3541818741423391779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f82c60d2e9e0164db7004b040837cdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 1125390058846829336, guid: 596d6b9d5eea32344b196fd440323303, type: 3}
+  amount: 75
+  scalable: 0
+  reusable: 0
+  usedObjects: []
