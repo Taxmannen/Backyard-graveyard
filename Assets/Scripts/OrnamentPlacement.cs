@@ -22,7 +22,7 @@ public class OrnamentPlacement : MonoBehaviour
             if (currentOrnamnet != null && currentOrnamnet.Snappable)
             {
                 if (ghost == null) ghost = currentOrnamnet.CreateGhostObject(transform.position + currentOrnamnet.GetPosition(), transform.eulerAngles + currentOrnamnet.GetRotation());
-                if (currentOrnamnet.ActiveHand == null)
+                if (currentOrnamnet.ActiveHand == null && !currentOrnamnet.ThiefIsHolding)
                 {
                     PlacedOrnament = currentOrnamnet;
                     PlacedOrnament.PlaceOrnament(this, transform.position);
