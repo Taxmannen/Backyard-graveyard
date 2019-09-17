@@ -16,6 +16,7 @@ TagManager:
   - RandomTargetObject
   - Decal
   - BodyPart
+  - FireHolder
   layers:
   - Default
   - TransparentFX
