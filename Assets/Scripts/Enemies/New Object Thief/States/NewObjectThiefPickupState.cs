@@ -64,11 +64,6 @@ public class NewObjectThiefPickupState : NewObjectThiefState
             //Fulfix där fienden rör sig mot ett objekt med tagen "Out of Bounds". Används för att despawna fienden.
             objectThief.FindNewCurrentGameObjectWithTag("OutOfBounds");
 
-
-            //Fungerar inte eftersom olika zombies som tar samma objekt får olika outOfBounds
-            //objectThief.randomTargetArea.SetTargetPositionToOutOfBounds();
-            //objectThief.currentTargetObject = objectThief.randomTargetObject;
-
             return new NewObjectThiefMoveToTargetState();
         }
 
