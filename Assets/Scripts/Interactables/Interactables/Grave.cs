@@ -107,7 +107,7 @@ public class Grave : Interactable
             Destroy(body.gameObject);
             body = null;
         }
-        foreach (OrnamentPlacement placement in ornamentPlacements) placement.DestroyOrnament();
+        foreach (OrnamentPlacement placement in ornamentPlacements) placement.ReturnOrnament();
         for (int i = 0; i < (maxAmountOfDirtLayers - dirtLayerList.Count); i++) AddDirt(); //behövs ej??
     }
     #endregion
@@ -120,7 +120,7 @@ public class Grave : Interactable
         List<OrnamentType> ornamentType = new List<OrnamentType>();
         foreach (OrnamentPlacement placement in ornamentPlacements)
         {
-            Ornament ornament = placement.PlacedOrnament;
+            Ornament ornament = placement.GetPlacedOrnament();
             if (ornament) ornamentType.Add(ornament.GetOrnamentType());
         }
 

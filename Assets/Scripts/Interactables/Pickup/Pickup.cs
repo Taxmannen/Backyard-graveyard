@@ -18,7 +18,6 @@ public class Pickup : Interactable
 
     [Header("Debug")]
     [SerializeField] private CollisionTest collisionTest;
-    [SerializeField] private float dropTime = 0.2f;
 
     private Coroutine coroutine;
 
@@ -63,7 +62,7 @@ public class Pickup : Interactable
                     }
                     break;
                 case CollisionTest.Drop:
-                    Invoke("Test", dropTime);
+                    ActiveHand?.Drop();
                     break;
             }
         }
@@ -76,7 +75,7 @@ public class Pickup : Interactable
             switch (collisionTest)
             {
                 case CollisionTest.Drop:
-                    CancelInvoke("Drop");
+                    ActiveHand?.Drop();
                     break;
             }
         }
@@ -93,13 +92,5 @@ public class Pickup : Interactable
         Destroy(gameObject);
     }
 
-    public PickupType GetPickupType()
-    {
-        return pickupType;
-    }
-
-    private void Test()
-    {
-        ActiveHand?.Drop();
-    }
+    public PickupType GetPickupType() { return pickupType; }
 }
