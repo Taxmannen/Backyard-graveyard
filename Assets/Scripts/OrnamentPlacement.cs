@@ -18,9 +18,9 @@ public class OrnamentPlacement : MonoBehaviour
     {
         if (PlacedOrnament == null && other.gameObject.CompareTag("Interactable"))
         {
-            if (other.gameObject.GetComponent<Ornament>() != null && other.gameObject.GetComponent<Ornament>().Snappable)
+            Ornament currentOrnamnet = other.gameObject.GetComponent<Ornament>();
+            if (currentOrnamnet != null && currentOrnamnet.Snappable)
             {
-                Ornament currentOrnamnet = other.gameObject.GetComponent<Ornament>();
                 if (ghost == null) ghost = currentOrnamnet.CreateGhostObject(transform.position + currentOrnamnet.GetPosition(), transform.eulerAngles + currentOrnamnet.GetRotation());
                 if (currentOrnamnet.ActiveHand == null)
                 {
@@ -54,6 +54,4 @@ public class OrnamentPlacement : MonoBehaviour
             RemoveOrnament();
         }
     }
-
-    //public Ornament GetPlacedOrnament() { return placedOrnament; }
 }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3467162729453346216}
   - component: {fileID: 3467162729453346223}
   - component: {fileID: 3467162729453346217}
+  - component: {fileID: 6137642953434572701}
   m_Layer: 0
   m_Name: HeartSpawner
   m_TagString: Interactable
@@ -27,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3467162729453346221}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.57, y: 0.184, z: -0.619}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5875019941049314731}
@@ -79,9 +80,28 @@ MonoBehaviour:
   - {fileID: 9218811631999413092}
   spawnPrefab: {fileID: 8855238130769159534, guid: 9e0bee56578a6cc4096cede666f3bd36,
     type: 3}
+  objectPool: {fileID: 6137642953434572701}
   position: {x: 0, y: 0, z: 0}
-  rotation: {x: 0, y: 0, z: 0}
+  rotation: {x: 270, y: 0, z: 0}
   despawnWhenPutBack: 1
+  onlyOneActive: 0
+--- !u!114 &6137642953434572701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3467162729453346221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eb1291a45033e64689dd3c08d3b685d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 8855238130769159534, guid: 9e0bee56578a6cc4096cede666f3bd36, type: 3}
+  amount: 25
+  scalable: 0
+  reusable: 1
+  usedObjects: []
 --- !u!1001 &1509540734587176625
 PrefabInstance:
   m_ObjectHideFlags: 0

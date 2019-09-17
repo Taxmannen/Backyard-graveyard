@@ -11,11 +11,14 @@ public class Ornament : Pickup
     [SerializeField] private Vector3 snappedPosition;
     [SerializeField] private Vector3 snappedRotation;
 
-    private OrnamentPlacement placement;
     private Rigidbody rb;
-    #endregion
+
+    public OrnamentPlacement Placement { get; private set; }
+
+    public bool ThiefIsHolding { get; set; } = false;
 
     public bool Snappable { get; set; } = true;
+    #endregion
 
     protected override void Start()
     {
@@ -25,7 +28,7 @@ public class Ornament : Pickup
 
     public void PlaceOrnament(OrnamentPlacement placement, Vector3 position)
     {
-        this.placement = placement;
+        Placement = placement;
         rb.constraints = RigidbodyConstraints.FreezeAll;
         transform.position = position + snappedPosition;
         transform.rotation = Quaternion.Euler(placement.transform.eulerAngles + snappedRotation);
@@ -33,17 +36,26 @@ public class Ornament : Pickup
 
     public override Interactable Interact()
     {
+        ThiefIsHolding = false;
         PickupOrnamentFromPlacement();
         return this;
     }
     
     public void PickupOrnamentFromPlacement()
     {
-        if (placement)
+        if (Placement)
         {
             rb.constraints = RigidbodyConstraints.None;
-            placement.RemoveOrnament();
-            placement = null;
+            Placement.RemoveOrnament();
+            Placement = null;
+        }
+    }
+    public void ThiefPickup()
+    {
+        if (Placement)
+        {
+            ThiefIsHolding = true;
+            PickupOrnamentFromPlacement();
         }
     }
 
