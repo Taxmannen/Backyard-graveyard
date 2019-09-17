@@ -48,8 +48,6 @@ public class NewObjectThief : MonoBehaviour
 
     private void Start()
     {
-        //Change this? Should be the play-area in the beginning
-        //currentTargetObject = GameObject.FindGameObjectWithTag("DistanceCheckForObjectThief");
         randomTargetArea.SetTargetPositionToPlayArea();
         currentTargetObject = randomTargetObject;
 
@@ -61,9 +59,8 @@ public class NewObjectThief : MonoBehaviour
         else{
             currentState = new NewObjectThiefEmptyStateForTesting();
         }
-        currentState.Enter(this);
 
-        
+        currentState.Enter(this);
     }
 
     private void Update()
@@ -71,11 +68,17 @@ public class NewObjectThief : MonoBehaviour
         //Fullfix för om target-objekt försvinner.
         if(currentTargetObject == null)
         {
-            returnedState = new NewObjectThiefMoveToTargetState();
+            returnedState = new NewObjectThiefSearchState();
             StateSwap();
-            randomTargetArea.SetTargetPositionToPlayArea();
-            currentTargetObject = randomTargetObject;
         }
+
+        //Fulfix för om hand-objektet försvinner
+        else if(currentTargetObject.tag == "OutOfBounds" && objectInHand == null)
+        {
+            returnedState = new NewObjectThiefSearchState();
+            StateSwap();
+        }
+
 
         returnedState = currentState.Update(this, Time.deltaTime);
         if (returnedState != null)
@@ -97,13 +100,13 @@ public class NewObjectThief : MonoBehaviour
     }
 
 
-    /*  MOVE BODYPART FUBNCTIONS  */
+    /*  MOVE BODYPART FUNCTIONS  */
     public void Move(Vector3 moveAgainst)
     {
         MovePart(rigidBodyMarionette, moveAgainst, movementSpeedRun);
     }
 
-    public void MoveSearch(Vector3 moveAgainst)
+    public void MoveDuringSearch(Vector3 moveAgainst)
     {
         MovePart(rigidBodyMarionette, moveAgainst, movementSpeedSearch);
     }

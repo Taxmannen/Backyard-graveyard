@@ -26,10 +26,10 @@ public class NewObjectThiefMoveToTargetState : NewObjectThiefState
             Debug.Log("Entered Move to Target State");
         }
 
-        if(objectThief.currentTargetObject == null)
-        {
-            objectThief.currentTargetObject = objectThief.randomTargetObject;
-        }
+        //if(objectThief.currentTargetObject == null)
+        //{
+        //    objectThief.currentTargetObject = objectThief.randomTargetObject;
+        //}
 
         if (objectThief.currentTargetObject.tag == "OutOfBounds" && objectThief.objectSearcher.GetTargetType() == PickupType.Body)
         {
@@ -61,10 +61,10 @@ public class NewObjectThiefMoveToTargetState : NewObjectThiefState
 
         timeBeforeTryingNewTarget -= t;
         
-        if(objectThief.currentTargetObject == null)
-        {
-            return new NewObjectThiefSearchState();
-        }
+        //if(objectThief.currentTargetObject == null)
+        //{
+        //    return new NewObjectThiefSearchState();
+        //}
 
         if (timeBeforeTryingNewTarget < 0)
         {
@@ -108,6 +108,8 @@ public class NewObjectThiefMoveToTargetState : NewObjectThiefState
             }
         }
 
+
+        //Check för om kroppen är i graven (Bör tas ut)
         if(objectThief.currentTargetObject.tag == "OutOfBounds" && objectThief.objectSearcher.GetTargetType() == PickupType.Body)
         { 
             if(objectThief.objectInHand != null)

@@ -43,7 +43,7 @@ public class NewObjectThiefSearchState : NewObjectThiefState
         marionetteStringPosition = objectThief.GetMarionetteStringPosition();
 
         directionToTarget = objectThief.GetDirectionToTarget(marionetteStringPosition);
-        objectThief.MoveSearch(directionToTarget);
+        objectThief.MoveDuringSearch(directionToTarget);
         objectThief.enemyJump.TryJump();
 
         return null;
