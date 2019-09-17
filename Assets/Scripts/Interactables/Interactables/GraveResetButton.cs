@@ -6,7 +6,7 @@ public class GraveResetButton : Interactable
 {
 
     private Grave grave;
-    private float cooldownTime = 3f;
+    private float cooldownTime = 2f;
     private bool onCooldown;
 
     private void Awake()
@@ -27,6 +27,7 @@ public class GraveResetButton : Interactable
 
     private IEnumerator Cooldown()
     {
+        onCooldown = true;
         yield return new WaitForSeconds(cooldownTime);
         onCooldown = false;
         gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 0.05f, gameObject.transform.position.z);
