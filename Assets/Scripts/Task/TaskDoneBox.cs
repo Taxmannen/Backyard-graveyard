@@ -28,7 +28,7 @@ public class TaskDoneBox : MonoBehaviour
     {
         levelComplete = false;
         baseOffset = new Vector3((0), (0.06f), (- 0.15f));
-        totalTasksForLevel = PrototypeManager.GetInstance().TotalNrOfTasks;
+        totalTasksForLevel = PrototypeManager.GetInstance().NrOfTasks;
         numberOfTasksCompleted = 0;
         UpdateCompletedTasksText();
     }
@@ -37,7 +37,8 @@ public class TaskDoneBox : MonoBehaviour
     {
         if (other.gameObject.GetComponent<TaskCard>().taskCompleted == true && !levelComplete)
         {
-            Destroy(other.gameObject);
+            //Destroy(other.gameObject);
+            other.GetComponent<TaskCard>().task.Reinitialise();
             CreateNewTaskCard();
             UpdateCompletedTasksText();
         }
@@ -52,6 +53,7 @@ public class TaskDoneBox : MonoBehaviour
         if (numberOfTasksCompleted == totalTasksForLevel)
         {
             levelComplete = true;
+            PrototypeManager.GetInstance().AdvanceWave();
         }
     }
 

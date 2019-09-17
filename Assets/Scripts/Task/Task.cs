@@ -38,6 +38,18 @@ public class Task : MonoBehaviour
         Initialise();
     }
 
+    public void Reinitialise() {
+        if (TaskManager.GetInstance().TasksAvailableToSelect()) {
+            TaskCard.gameObject.transform.position = transform.position;
+            TaskCard.gameObject.transform.localScale = new Vector3(5f, 5f, 5f);
+
+            ResetVars();
+            RefreshTaskCardIngredients();
+        }
+        else {
+            Destroy(gameObject);
+        }
+    }
     public void Initialise() {
         if (initialised)
             return;
@@ -45,7 +57,11 @@ public class Task : MonoBehaviour
         GameObject go = GameObject.Instantiate(PrefabTaskCard, transform.position, transform.rotation, transform);
         go.transform.localScale = new Vector3(5f, 5f, 5f);
         TaskCard = go.GetComponent<TaskCard>();
+        TaskCard.task = this;
 
+        ResetVars();
+    }
+    private void ResetVars() {
         taskEnded = false;
         initialised = true;
         gameObject.SetActive(false);
@@ -76,12 +92,18 @@ public class Task : MonoBehaviour
         taskEnded = true;
 
         TaskManager.CompleteTask(this, success);
+
+        if (success)
+            TaskCard.TaskCompleted();
+        else
+            TaskCard.TaskFailed();
+
         if (TaskManager.GetInstance().TasksAvailableToSelect()) {
-            //TaskCard.TaskCompleted();
-            gameObject.SetActive(false);
+            //Reinitialise();
+            //RefreshTaskCardIngredients();
         }
         else {
-            RefreshTaskCardIngredients();
+            //gameObject.SetActive(false);
         }
     }
 
@@ -112,7 +134,7 @@ public class Task : MonoBehaviour
         //maxTimeInSeconds = RandomManager.GetRandomNumber(taskManager.TimeLimitInSecondsMin, taskManager.TimeLimitInSecondsMax);
 
         startTime = DateTime.Now;
-        taskEnded = false;
+        //taskEnded = false;
     }
 
     /// <summary>

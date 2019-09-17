@@ -48,31 +48,27 @@ public class TaskManager : Singleton<TaskManager>
         SetInstance(this);
     }
 
-    public bool ActivateTasks(int nrOfTasksToActivate, float maxTimeInSeconds, int maxNumberOfTasks) {
-        if(nrOfTasksToActivate > tasks.Length) {
-            Debug.LogError("TaskManager::ActivateTasks error: Attempting to activate more tasks than there are total cards available. Implement queue system? Ignoring the excess tasks");
-        }
-
+    public void ActivateTasks(float maxTimeInSeconds, int maxNumberOfTasks) {
         this.maxNumberOfTasks = maxNumberOfTasks;
 
-        for (int i = 0; i < nrOfTasksToActivate; i++) {
-            for(int j = 0; j < tasks.Length; j++) {
-                if(tasks[j].gameObject.activeSelf == false) {
-                    tasks[j].Activate(maxTimeInSeconds);
-                    break;
-                }
+        for (int i = 0; i < maxNumberOfTasks; i++) {
+            Task task = GetAvailableTask();
 
-                // Last task
-                if(j == tasks.Length - 1) {
-                    // We have checked all the tasks, they are all occupied
-                    Debug.LogError("TaskManager::ActivateTasks error: Attempting to activate more tasks than there are available tasks. Implement queue system? Ignoring the excess tasks");
+            task.Activate(maxTimeInSeconds);
+        }
 
-                    return false;
-                }
+        return;
+    }
+
+    private Task GetAvailableTask() {
+        for (int j = 0; j < tasks.Length; j++) {
+            if (tasks[j].gameObject.activeSelf == false) {
+                return tasks[j];
             }
         }
 
-        return true;
+        // There were no more inactive tasks
+        return null;
     }
 
     public void CompleteTask(Task task, bool success) {
@@ -103,7 +99,7 @@ public class TaskManager : Singleton<TaskManager>
     public int TasksRemaniningToComplete() { return maxNumberOfTasks - GetNrOfCompletedTasks(); }
     public int TasksRemaniningToSelect() { return maxNumberOfTasks - (GetNrOfCompletedTasks() + TasksInProgress); }
     public bool CompletedAllTasks() { return TasksRemaniningToComplete() <= 0; }
-    public bool TasksAvailableToSelect() { return TasksRemaniningToSelect() <= 0; }
+    public bool TasksAvailableToSelect() { return TasksRemaniningToSelect() > 0; }
 
     private void CompleteLevel() {
         foreach (Task task in tasks) {

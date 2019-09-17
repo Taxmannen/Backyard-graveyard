@@ -37,6 +37,8 @@ public class TaskCard : MonoBehaviour
     public bool taskCompleted = false;
     private Color timerColor = new Color(0f, 255f, 0f);
 
+    public Task task;
+
 
     public void UpdateTimerBar(float timerPercent)
     {
