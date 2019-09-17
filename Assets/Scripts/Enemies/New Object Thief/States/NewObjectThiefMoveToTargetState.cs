@@ -15,6 +15,8 @@ public class NewObjectThiefMoveToTargetState : NewObjectThiefState
     private Vector3 marionetteStringPosition;
     private Vector3 directionToTarget;
 
+    private Body body;
+
     public override void Enter(NewObjectThief objectThief)
     {
         timeBeforeTryingNewTarget = objectThief.GetTimeBeforeTryingNewTarget();
@@ -22,6 +24,16 @@ public class NewObjectThiefMoveToTargetState : NewObjectThiefState
         if (objectThief.debugStates)
         {
             Debug.Log("Entered Move to Target State");
+        }
+
+        //if(objectThief.currentTargetObject == null)
+        //{
+        //    objectThief.currentTargetObject = objectThief.randomTargetObject;
+        //}
+
+        if (objectThief.currentTargetObject.tag == "OutOfBounds" && objectThief.objectSearcher.GetTargetType() == PickupType.Body)
+        {
+            body = objectThief.objectInHand.GetComponent<Body>();
         }
 
         distanceToTargetBeforeStateChange = objectThief.GetDistanceBeforeTargetIsReached();
@@ -49,9 +61,13 @@ public class NewObjectThiefMoveToTargetState : NewObjectThiefState
 
         timeBeforeTryingNewTarget -= t;
         
+        //if(objectThief.currentTargetObject == null)
+        //{
+        //    return new NewObjectThiefSearchState();
+        //}
+
         if (timeBeforeTryingNewTarget < 0)
         {
-            Debug.Log(objectThief.currentTargetObject.tag);
             if (objectThief.currentTargetObject.tag == "RandomTargetObject" && objectThief.objectInHand == null)
             {
                 return new NewObjectThiefSearchState();
@@ -65,9 +81,10 @@ public class NewObjectThiefMoveToTargetState : NewObjectThiefState
 
             if (objectThief.currentTargetObject.tag == "OutOfBounds" && objectThief.objectInHand != null)
             {
-                Debug.Log("Jumped");
+                
                 objectThief.Jump(2000);
                 return new NewObjectThiefMoveToTargetState();
+                
             }
         }
 
@@ -89,6 +106,25 @@ public class NewObjectThiefMoveToTargetState : NewObjectThiefState
             {
                 objectThief.Despawn();
             }
+        }
+
+
+        //Check för om kroppen är i graven (Bör tas ut)
+        if(objectThief.currentTargetObject.tag == "OutOfBounds" && objectThief.objectSearcher.GetTargetType() == PickupType.Body)
+        { 
+            if(objectThief.objectInHand != null)
+            {
+                if(objectThief.objectInHand.tag == "Interactable")
+                {
+                    if (body.IsInGrave)
+                    {
+                        objectThief.Jump(2000);
+                        objectThief.pickupHand.DestroyJoint();
+                        return new NewObjectThiefSearchState();
+                    }
+                }
+            }
+            
         }
 
         return null;

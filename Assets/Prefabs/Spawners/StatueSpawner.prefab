@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3467162729453346216}
   - component: {fileID: 3467162729453346223}
   - component: {fileID: 3467162729453346217}
+  - component: {fileID: 2153136465004613769}
   m_Layer: 0
   m_Name: StatueSpawner
   m_TagString: Interactable
@@ -27,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3467162729453346221}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.57, y: 0.184, z: -0.619}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5569355079075253682}
@@ -79,9 +80,28 @@ MonoBehaviour:
   - {fileID: 7146611431700990845}
   spawnPrefab: {fileID: 6753012008339751067, guid: 54e571ad9f677b849b6d781f4f2b27f3,
     type: 3}
-  position: {x: 0, y: 0, z: 0}
-  rotation: {x: 0, y: 0, z: 0}
+  objectPool: {fileID: 2153136465004613769}
+  position: {x: 0, y: 0.1, z: 0}
+  rotation: {x: 0, y: 50, z: 0}
   despawnWhenPutBack: 1
+  onlyOneActive: 0
+--- !u!114 &2153136465004613769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3467162729453346221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9aaf3bd8058e5f44b69a2b5b82e9b95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 6753012008339751067, guid: 54e571ad9f677b849b6d781f4f2b27f3, type: 3}
+  amount: 25
+  scalable: 0
+  reusable: 1
+  usedObjects: []
 --- !u!1001 &590224581899708072
 PrefabInstance:
   m_ObjectHideFlags: 0

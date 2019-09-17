@@ -164,11 +164,11 @@ public class InputKeyboardMouse : Singleton<InputKeyboardMouse>
                 currentInteractable.transform.rotation = Quaternion.Euler(hand.transform.eulerAngles);
             }
 
-            if (pickup is Ornament) {
+            /*if (pickup is Ornament) {
                 wasSnappable = ((Ornament)pickup).Snappable;
                 ((Ornament)pickup).Snappable = false;
             }
-
+            */
             Rigidbody targetBody = currentInteractable.GetComponent<Rigidbody>();
             fixedJoint.connectedBody = targetBody;
         }
@@ -178,11 +178,11 @@ public class InputKeyboardMouse : Singleton<InputKeyboardMouse>
     {
         if (!currentInteractable) return;
 
-        Pickup pickup = currentInteractable?.GetComponent<Pickup>();
+        /*Pickup pickup = currentInteractable?.GetComponent<Pickup>();
         if (pickup is Ornament) {
             ((Ornament)pickup).Snappable = wasSnappable;
             wasSnappable = false;
-        }
+        }*/
 
         Rigidbody targetBody = currentInteractable.GetComponent<Rigidbody>();
         targetBody.velocity = Vector3.zero;

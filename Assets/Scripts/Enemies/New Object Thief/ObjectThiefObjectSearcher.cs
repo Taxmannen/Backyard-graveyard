@@ -9,6 +9,11 @@ public class ObjectThiefObjectSearcher : MonoBehaviour
     private Pickup possibleTarget;
     [HideInInspector] public Pickup realTarget;
 
+    [HideInInspector] private Body bodyTarget;
+    [HideInInspector] private Ornament ornamentTarget;
+
+
+
     private void OnTriggerEnter(Collider other)
     {
         //Behöver ändras helt och hållet
@@ -16,7 +21,20 @@ public class ObjectThiefObjectSearcher : MonoBehaviour
         {
             possibleTarget = other.GetComponent<Pickup>();
 
-            if(possibleTarget != null)
+            if(targetType == PickupType.Body)
+            {
+                bodyTarget = other.GetComponent<Body>();
+
+                if (possibleTarget != null && bodyTarget != null)
+                {
+                    if (possibleTarget.GetPickupType() == targetType && realTarget != possibleTarget && !bodyTarget.IsInGrave)
+                    {
+                        realTarget = possibleTarget;
+                    }
+                }
+            }
+
+            else if (possibleTarget != null)
             {
                 if (possibleTarget.GetPickupType() == targetType && realTarget != possibleTarget)
                 {
@@ -24,10 +42,23 @@ public class ObjectThiefObjectSearcher : MonoBehaviour
                 }
             }
 
-            
+            //if(targetType == PickupType.Ornament)
+            //{
+
+            //}
+
+
+
+
+
         }
 
         
+    }
+
+    public PickupType GetTargetType()
+    {
+        return targetType;
     }
 
     

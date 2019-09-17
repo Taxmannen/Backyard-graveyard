@@ -549,6 +549,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8543513b228d53d49836ef5e76fd9290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectSearcher: {fileID: 1125390059524183206}
+  newObjectThief: {fileID: 1125390058846829342}
 --- !u!144 &1125390058113400681
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -1186,7 +1188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateMachineOn: 1
-  debugStates: 1
+  debugStates: 0
   currentTargetObject: {fileID: 0}
   objectInHand: {fileID: 0}
   randomTargetObject: {fileID: 1780472921}
