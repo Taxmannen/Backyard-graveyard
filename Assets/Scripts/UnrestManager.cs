@@ -20,12 +20,17 @@ public class UnrestManager : Singleton<UnrestManager>
         SetInstance(this);
     }
 
+    private void Update()
+    {
+        Debug.Log("Current Unrest(Update): " + CurrentUnrest);
+    }
+
     //For other classes to call when unrest is updated
     public void UpdateUnrest(int plusOrMinusValue)
     {
         CurrentUnrest += plusOrMinusValue;
         Mathf.Clamp(CurrentUnrest, minUnrest, maxUnrest);
         OnUnrestChange?.Invoke(CurrentUnrest);
-        Debug.Log("Current Unrest: " + CurrentUnrest);
+        Debug.Log("Current Unrest(Function): " + CurrentUnrest);
     }
 }
