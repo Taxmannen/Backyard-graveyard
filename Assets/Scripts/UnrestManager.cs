@@ -25,6 +25,6 @@ public class UnrestManager : Singleton<UnrestManager>
     {
         CurrentUnrest += plusOrMinusValue;
         OnUnrestChange?.Invoke(CurrentUnrest);
-        Debug.Log(CurrentUnrest);
+        Debug.Log("Current Unrest: " + CurrentUnrest);
     }
 }
