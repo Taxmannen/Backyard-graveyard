@@ -94,10 +94,11 @@ public class NewObjectThiefSearchState : NewObjectThiefState
         return null;
     }
 
-    private NewObjectThiefMoveToTargetState SetTargetToObjectFound(NewObjectThief objectThief)
+    private NewObjectThiefState SetTargetToObjectFound(NewObjectThief objectThief)
     {
         objectThief.currentTargetObject = objectThief.objectSearcher.realTarget.gameObject;
         return new NewObjectThiefMoveToTargetState();
+        
     }
 
     private void SetTargetToRandomPositionAndResetSearchTimer(NewObjectThief objectThief)

@@ -20,6 +20,7 @@ public class EnemyHealth : MonoBehaviour
             {
                 Destroy(stringGameObjects[i]);
             }
+            UnrestManager.GetInstance().UpdateUnrest(+1);
             
         } /*Destroy(gameObject);*/
     }

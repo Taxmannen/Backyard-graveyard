@@ -13,15 +13,19 @@ MonoBehaviour:
   m_Name: Wave.1.1
   m_EditorClassIdentifier: 
   zombieWaves:
-  - nrOfEnemies: 1
+  - nrOfEnemies: 3
     timeUntilSpawn: 15
   - nrOfEnemies: 2
     timeUntilSpawn: 30
+  - nrOfEnemies: 2
+    timeUntilSpawn: 30
+  timeBetweenZombies: 0.5
   graveRobberWaves:
   - nrOfEnemies: 1
     timeUntilSpawn: 15
   - nrOfEnemies: 2
     timeUntilSpawn: 30
+  timeBetweenGraveRobbers: 0.5
   timeLimit: 0
   timelimitForWave: 0
   nrOfTasks: 5

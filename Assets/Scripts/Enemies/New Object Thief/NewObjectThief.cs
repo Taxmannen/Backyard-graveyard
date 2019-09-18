@@ -119,7 +119,6 @@ public class NewObjectThief : MonoBehaviour
     public void Jump(float jumpForce)
     {
         rigidBodyMarionette.AddForce(new Vector3(0, jumpForce, 0));
-        //rigidBodyArm.AddForce(new Vector3(0, jumpForce, 0));
     }
 
     private void MovePart(Rigidbody rigidBodyToMove, Vector3 moveAgainst, float forceToMoveWith)
@@ -172,7 +171,7 @@ public class NewObjectThief : MonoBehaviour
 
 
     /*  FIND OBJECT  */
-    public void FindNewCurrentGameObjectWithTag(string tag)
+    public void FindNewCurrentTargetObjectWithTag(string tag)
     {
         currentTargetObject = GameObject.FindGameObjectWithTag(tag);
     }
