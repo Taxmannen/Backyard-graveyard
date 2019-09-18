@@ -39,6 +39,8 @@ public class TaskManager : Singleton<TaskManager>
 
     private int maxNumberOfTasks;
 
+    private int unrestValueChange;
+
     public int TimeLimitInSecondsMin { get => timeLimitInSecondsMin; private set => timeLimitInSecondsMin = value; }
     public int TimeLimitInSecondsMax { get => timeLimitInSecondsMax; private set => timeLimitInSecondsMax = value; }
     public bool IncludeTreatments { get => includeTreatments; private set => includeTreatments = value; }
@@ -75,6 +77,8 @@ public class TaskManager : Singleton<TaskManager>
         completedTasks.Add(success);
         TasksInProgress--;
         CheckLevelCompletion();
+        unrestValueChange = success ? 1 : -1;
+        UnrestManager.GetInstance().UpdateUnrest(unrestValueChange);
     }
 
     public bool CheckLevelCompletion() {
