@@ -21,6 +21,7 @@ public class ObjectThiefObjectSearcher : MonoBehaviour
 
             if(possibleTarget != null)
             {
+
                 if (targetType == PickupType.Body)
                 {
                     CheckIfBodyAndIfInGrave(other);
@@ -29,6 +30,7 @@ public class ObjectThiefObjectSearcher : MonoBehaviour
                 {
                     SetTargetIfSameTypeAndNotSameAsLastTarget();
                 }
+
             }
         }
     }

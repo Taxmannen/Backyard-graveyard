@@ -5,9 +5,10 @@ using UnityEngine;
 
 /* Code by Christopher Tåqvist */
 
-public class NewObjectThiefMoveToTargetState : NewObjectThiefState
+public class NewObjectThiefFleeState : NewObjectThiefState
 {
-    private float timeBeforeTryingNewTarget;
+
+    private float timeBeforeJump;
 
     //Change this to trigger-area later?
     private float distanceToTargetBeforeStateChange;
@@ -17,23 +18,19 @@ public class NewObjectThiefMoveToTargetState : NewObjectThiefState
 
     public override void Enter(NewObjectThief objectThief)
     {
-        timeBeforeTryingNewTarget = objectThief.GetTimeBeforeTryingNewTarget();
+        timeBeforeJump = objectThief.GetTimeBeforeTryingNewTarget();
         distanceToTargetBeforeStateChange = objectThief.GetDistanceBeforeTargetIsReached();
 
         if (objectThief.debugStates)
         {
-            Debug.Log("Entered Move to Target State");
+            Debug.Log("Entered Flee-State");
         }
     }
-
-
 
     public override void Exit(NewObjectThief objectThief)
     {
 
     }
-
-
 
     public override NewObjectThiefState FixedUpdate(NewObjectThief objectThief, float t)
     {
@@ -54,35 +51,23 @@ public class NewObjectThiefMoveToTargetState : NewObjectThiefState
         objectThief.enemyJump.TryJump();
     }
 
-
-
     public override NewObjectThiefState Update(NewObjectThief objectThief, float t)
     {
         float distanceToTarget = objectThief.GetDistanceToTarget(marionetteStringPosition);
 
-        timeBeforeTryingNewTarget -= t;
-
-        if (timeBeforeTryingNewTarget < 0)
+        timeBeforeJump -= t;
+        if (timeBeforeJump <= 0)
         {
-            return new NewObjectThiefSearchState();
+            objectThief.Jump(2000);
+            timeBeforeJump = objectThief.GetTimeBeforeTryingNewTarget();
         }
 
         if (distanceToTarget < distanceToTargetBeforeStateChange)
         {
-            if (objectThief.currentTargetObject.tag == "Interactable")
-            {
-                return new NewObjectThiefPickupState();
-            }
-
-            if (objectThief.currentTargetObject.tag == "RandomTargetObject")
-            {
-                return new NewObjectThiefSearchState();
-            }
+            objectThief.Despawn();
         }
 
         return null;
     }
-
-    
 
 }
