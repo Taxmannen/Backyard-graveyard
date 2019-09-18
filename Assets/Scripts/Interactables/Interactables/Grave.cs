@@ -129,8 +129,7 @@ public class Grave : Interactable
         {
             foreach (Task task in FindObjectOfType<TaskManager>().tasks)
             {
-                // Needs body.Treatment
-                if (task.CheckTask(head.GetHeadType(), body.GetBodyType(), ornamentType, TreatmentType.Mummify))
+                if (task.CheckTask(head.GetHeadType(), body.GetBodyType(), ornamentType, body.GetTreatmentType(), head.GetTreatmentType()))
                 {
                     Debug.Log("TaskGrave: FINISHED TASK, AWW YEAH");
                     ResetGrave();

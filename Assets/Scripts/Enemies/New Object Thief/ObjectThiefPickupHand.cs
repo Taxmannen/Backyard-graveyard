@@ -4,38 +4,51 @@ using UnityEngine;
 
 public class ObjectThiefPickupHand : MonoBehaviour
 {
-    private ConfigurableJoint joint;
     [SerializeField] private ObjectThiefObjectSearcher objectSearcher;
     [SerializeField] private NewObjectThief newObjectThief;
     private Ornament ornament;
+    private ConfigurableJoint joint;
 
-    public void AddJoint(Rigidbody rigidBody)
+    public void PickupObject(Rigidbody objectRigidBody)
     {
         if(objectSearcher.GetTargetType() == PickupType.Ornament)
         {
-            DetachOrnamentFromPlacement();
+            SetOrnamentAsHeldByThiefAndDetachFromPlacement();
         }
 
-        joint = gameObject.AddComponent(typeof(ConfigurableJoint)) as ConfigurableJoint;
-        joint.xMotion = ConfigurableJointMotion.Locked;
-        joint.yMotion = ConfigurableJointMotion.Locked;
-        joint.zMotion = ConfigurableJointMotion.Locked;
-        joint.connectedBody = rigidBody;
+        AddJoint(objectRigidBody);
+    }
+
+    private void SetOrnamentAsHeldByThiefAndDetachFromPlacement()
+    {
+        ornament = newObjectThief.currentTargetObject.GetComponent<Ornament>();
+        ornament.ThiefIsHolding = true;
+        DetachOrnamentFromPlacement();
     }
 
     private void DetachOrnamentFromPlacement()
     {
-        ornament = newObjectThief.currentTargetObject.GetComponent<Ornament>();
-
         if(ornament.Placement)
         {
-            //ornament.ThiefPickup();
+            ornament.PickupOrnamentFromPlacement();
         }
+    }
+
+    private void AddJoint(Rigidbody objectRigidBody)
+    {
+        joint = gameObject.AddComponent(typeof(ConfigurableJoint)) as ConfigurableJoint;
+        joint.xMotion = ConfigurableJointMotion.Locked;
+        joint.yMotion = ConfigurableJointMotion.Locked;
+        joint.zMotion = ConfigurableJointMotion.Locked;
+        joint.connectedBody = objectRigidBody;
     }
 
     public void DestroyJoint()
     {
-
+        if(ornament != null)
+        {
+            ornament.ThiefIsHolding = false;
+        }
         Destroy(joint);
     }
 }

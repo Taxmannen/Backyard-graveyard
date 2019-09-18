@@ -144,14 +144,14 @@ public class Task : MonoBehaviour
     /// <param name="body"></param>
     /// <param name="OrnamentType"></param>
     /// <returns>Returns true if the task completed this frame</returns>
-    public bool CheckTask(HeadType head, BodyType body, List<OrnamentType> OrnamentType, TreatmentType treatment) {
+    public bool CheckTask(HeadType head, BodyType body, List<OrnamentType> OrnamentType, TreatmentType bodyTreatment, TreatmentType headTreatment) {
         if (taskEnded) {
             Debug.Log("Completed");
             return false;
         }
 
         Debug.Log("Checking stuff, our head " + this.head + " == " + head + " our body " + this.body + " == " + body);
-        if (this.head == head && this.body == body && (!TaskManager.GetInstance().IncludeTreatments || this.treatment == treatment)) {
+        if (this.head == head && this.body == body && (!TaskManager.GetInstance().IncludeTreatments || bodyTreatment == treatment || headTreatment == treatment)) {
             //correct body, check OrnamentType
 
             List<OrnamentType> tmpOrnamentType = new List<OrnamentType>(OrnamentType);
