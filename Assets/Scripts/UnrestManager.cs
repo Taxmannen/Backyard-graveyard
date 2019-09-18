@@ -10,9 +10,9 @@ public class UnrestManager : Singleton<UnrestManager>
 
     public static event Action<int> OnUnrestChange;
 
-    [SerializeField] private int startingUnrest;
-    private int minUnrest = 1;
-    private int maxUnrest = 20;
+    [SerializeField] private int startingUnrest = 10;
+    [SerializeField] private int minUnrest = 0;
+    [SerializeField] private int maxUnrest = 20;
     public int CurrentUnrest { get; private set; }
 
     private void Awake()
@@ -27,6 +27,5 @@ public class UnrestManager : Singleton<UnrestManager>
         CurrentUnrest += plusOrMinusValue;
         CurrentUnrest = Mathf.Clamp(CurrentUnrest, minUnrest, maxUnrest);
         OnUnrestChange?.Invoke(CurrentUnrest);
-        Debug.Log("Current Unrest(Function): " + CurrentUnrest);
     }
 }
