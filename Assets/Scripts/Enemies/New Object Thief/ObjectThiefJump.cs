@@ -7,7 +7,6 @@ public class ObjectThiefJump : MonoBehaviour
     [Header("Components (DO NOT TOUCH)")]
     [SerializeField] private EnemyGroundCheck groundCheck;
     [SerializeField] private Rigidbody rigidBodyToJump;
-    [SerializeField] private ConstantForce constantForce;
     
     [Header("Jump Settings")]
     [SerializeField] private float jumpForce = 100;

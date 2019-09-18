@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class EnemyGroundCheck : MonoBehaviour
 {
     [SerializeField] private float checkRate = 0.5f;

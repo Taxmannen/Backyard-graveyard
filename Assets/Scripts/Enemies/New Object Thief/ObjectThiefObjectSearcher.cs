@@ -6,60 +6,57 @@ public class ObjectThiefObjectSearcher : MonoBehaviour
 {
     [SerializeField] PickupType targetType;
 
+    [HideInInspector] private Body bodyTarget;
+
     private Pickup possibleTarget;
     [HideInInspector] public Pickup realTarget;
-
-    [HideInInspector] private Body bodyTarget;
-    [HideInInspector] private Ornament ornamentTarget;
-
 
 
     private void OnTriggerEnter(Collider other)
     {
-        //Behöver ändras helt och hållet
+        //Behöver ändras helt och hållet(?)
         if (other.tag == "Interactable")
         {
             possibleTarget = other.GetComponent<Pickup>();
 
-            if(targetType == PickupType.Body)
+            if(possibleTarget != null)
             {
-                bodyTarget = other.GetComponent<Body>();
-
-                if (possibleTarget != null && bodyTarget != null)
+                if (targetType == PickupType.Body)
                 {
-                    if (possibleTarget.GetPickupType() == targetType && realTarget != possibleTarget && !bodyTarget.IsInGrave)
-                    {
-                        realTarget = possibleTarget;
-                    }
+                    CheckIfBodyAndIfInGrave(other);
+                }
+                else
+                {
+                    SetTargetIfSameTypeAndNotSameAsLastTarget();
                 }
             }
-
-            else if (possibleTarget != null)
-            {
-                if (possibleTarget.GetPickupType() == targetType && realTarget != possibleTarget)
-                {
-                    realTarget = possibleTarget;
-                }
-            }
-
-            //if(targetType == PickupType.Ornament)
-            //{
-
-            //}
-
-
-
-
-
         }
-
-        
     }
+
+    private void CheckIfBodyAndIfInGrave(Collider other)
+    {
+        bodyTarget = other.GetComponent<Body>();
+
+        if (bodyTarget != null)
+        {
+            if(!bodyTarget.IsInGrave)
+            {
+                SetTargetIfSameTypeAndNotSameAsLastTarget();
+            }
+        }
+    }
+
+    private void SetTargetIfSameTypeAndNotSameAsLastTarget()
+    {
+        if (possibleTarget.GetPickupType() == targetType && realTarget != possibleTarget)
+        {
+            realTarget = possibleTarget;
+        }
+    }
+
 
     public PickupType GetTargetType()
     {
         return targetType;
     }
-
-    
 }

@@ -7,29 +7,10 @@ public class NewObjectThiefRandomTargetArea : MonoBehaviour
     [SerializeField] private Vector2 minDistancePoint;
     [SerializeField] private Vector2 maxDistancePoint;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Z))
-        {
-            SetTargetPositionToPlayArea();
-        }
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            SetTargetPositionToOutOfBounds();
-        }
-    }
-
     public void SetTargetPositionToPlayArea()
     {
         float randomValueX = Random.Range(minDistancePoint.x, maxDistancePoint.x);
         float randomValueY = Random.Range(minDistancePoint.y, maxDistancePoint.y);
-
         transform.position = new Vector3(randomValueX, 0, randomValueY);
     }
 
