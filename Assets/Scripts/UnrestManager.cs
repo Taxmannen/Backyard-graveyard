@@ -18,6 +18,7 @@ public class UnrestManager : Singleton<UnrestManager>
     private void Awake()
     {
         SetInstance(this);
+        CurrentUnrest = startingUnrest;
     }
 
     private void Update()
