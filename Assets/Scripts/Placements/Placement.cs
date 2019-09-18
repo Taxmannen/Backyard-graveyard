@@ -48,6 +48,8 @@ public class Placement : MonoBehaviour
             rb.constraints = RigidbodyConstraints.FreezeAll;
             placedObject.transform.position = position;
             placedObject.transform.rotation = Quaternion.Euler(rotation);
+            TaskCard taskCard = placedObject.GetComponent<TaskCard>();
+            if (taskCard) taskCard.ScaleTaskCard(false);
         }
     }
 
@@ -57,6 +59,8 @@ public class Placement : MonoBehaviour
         {
             Rigidbody rb = placedObject.GetComponent<Rigidbody>();
             rb.constraints = RigidbodyConstraints.None;
+            TaskCard taskCard = placedObject.GetComponent<TaskCard>();
+            if (taskCard) taskCard.ScaleTaskCard(true);
             placedObject = null;
         }
     }
