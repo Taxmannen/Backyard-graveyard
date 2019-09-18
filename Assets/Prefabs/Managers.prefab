@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1617469186783753671}
   - component: {fileID: 1617469186783753528}
   - component: {fileID: 1617469186783753529}
+  - component: {fileID: 3925921413017823899}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -76,3 +77,15 @@ MonoBehaviour:
   currentWave: 0
   zombieSpawner: {fileID: 0}
   graveRobberSpawner: {fileID: 0}
+--- !u!114 &3925921413017823899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617469186783753531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62640485be7f7604fbb0580200a2845a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
