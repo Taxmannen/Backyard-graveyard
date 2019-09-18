@@ -34,7 +34,7 @@ public class Door : MonoBehaviour
     public IEnumerator DoorCooldown()
     {
         doorOnCooldown = true;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.5f);
         doorOnCooldown = false;
         yield return null;
     }
@@ -62,7 +62,7 @@ public class Door : MonoBehaviour
     public void StartTeleportationSequence()
     {
         //StartCoroutine(DoorCooldown());
-        //StartCoroutine(targetDoor.DoorCooldown());
+        StartCoroutine(targetDoor.DoorCooldown());
         StartCoroutine(CameraFade());
         StartCoroutine(TeleportPlayer(player));
         //other.gameObject.transform.root.LookAt(targetDoor.transform);
@@ -70,7 +70,7 @@ public class Door : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (!doorOnCooldown && other.tag == "Player")
         {
             player = other;
             foreach (LoadingBar loadingBar in FindObjectsOfType<LoadingBar>())
