@@ -18,11 +18,7 @@ public class UnrestManager : Singleton<UnrestManager>
     private void Awake()
     {
         SetInstance(this);
-    }
-
-    private void Update()
-    {
-        Debug.Log("Current Unrest(Update): " + CurrentUnrest);
+        CurrentUnrest = startingUnrest;
     }
 
     //For other classes to call when unrest is updated
