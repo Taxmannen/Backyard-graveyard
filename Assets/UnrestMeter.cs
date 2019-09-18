@@ -15,6 +15,16 @@ public class UnrestMeter : MonoBehaviour
 
     private int unrestValue;
 
+    private void OnEnable()
+    {
+        UnrestManager.OnUnrestChange += UpdateUnrestMeter;
+    }
+
+    private void OnDisable()
+    {
+        UnrestManager.OnUnrestChange -= UpdateUnrestMeter;
+    }
+
 
     public void UpdateUnrestMeter(int unrest)
     {
