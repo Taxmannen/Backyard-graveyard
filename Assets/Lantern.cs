@@ -22,7 +22,7 @@ public class Lantern : MonoBehaviour
             if (secondsThatTheLanternHasBeenLit >= secondsLitForUnrestDecrease)
             {
                 secondsThatTheLanternHasBeenLit = 0f;
-                Debug.Log("Unrest goes down by one");
+                UnrestManager.GetInstance().UpdateUnrest(-1);
             }
         }
         else
