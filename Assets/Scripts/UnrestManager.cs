@@ -18,7 +18,6 @@ public class UnrestManager : Singleton<UnrestManager>
     private void Awake()
     {
         SetInstance(this);
-        CurrentUnrest = startingUnrest;
     }
 
     private void Update()
@@ -30,7 +29,7 @@ public class UnrestManager : Singleton<UnrestManager>
     public void UpdateUnrest(int plusOrMinusValue)
     {
         CurrentUnrest += plusOrMinusValue;
-        Mathf.Clamp(CurrentUnrest, minUnrest, maxUnrest);
+        CurrentUnrest = Mathf.Clamp(CurrentUnrest, minUnrest, maxUnrest);
         OnUnrestChange?.Invoke(CurrentUnrest);
         Debug.Log("Current Unrest(Function): " + CurrentUnrest);
     }
