@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 670224309865224971, guid: 5233fa980e7d3764bbcc0a40472d10e2, type: 3}
+  - {fileID: -6478536213147159724, guid: 5233fa980e7d3764bbcc0a40472d10e2, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -129,7 +129,6 @@ MonoBehaviour:
   shouldDespawnWhenOnGround: 0
   despawnTimeWhenOnGround: 0
   collisionTest: 0
-  dropTime: 0.2
   ornamentType: 2
   snappedPosition: {x: 0, y: 0.1, z: 0}
   snappedRotation: {x: 0, y: 0, z: 0}
