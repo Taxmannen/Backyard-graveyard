@@ -29,7 +29,7 @@ public class TaskManager : Singleton<TaskManager>
     private int tasksInProgress = 0;
 
     [Header("Settings")]
-    [SerializeField] private bool includeTreatments = false;
+    [SerializeField] private bool includeTreatments = true;
 
     [Header("Timer")]
     [SerializeField][Range(0, 600)]

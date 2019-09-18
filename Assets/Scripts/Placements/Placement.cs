@@ -3,9 +3,41 @@
 /* Script Made By Daniel */
 public class Placement : MonoBehaviour
 {
+    [SerializeField] protected PickupType placementType;
+
     [Header("Debug")]
-    [SerializeField, ReadOnly] protected GameObject placedObject;
-    [SerializeField, ReadOnly] protected GameObject ghost;
+    [SerializeField, ReadOnly] protected GameObject placedObject = null;
+    [SerializeField, ReadOnly] protected GameObject ghost = null;
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (placedObject == null && other.gameObject.CompareTag("Interactable"))
+        {
+            PlaceablePickup placeablePickup = other.gameObject.GetComponent<PlaceablePickup>();
+            if (placeablePickup != null && placeablePickup.GetPickupType() == placementType && !placeablePickup.ThiefIsHolding)
+            {
+                if (!ghost)
+                {
+                    ghost = placeablePickup.CreateGhostObject(transform.position + placeablePickup.GetPosition(), transform.eulerAngles + placeablePickup.GetRotation());
+                }
+                if (!placeablePickup.ActiveHand && !placeablePickup.Placement)
+                {
+                    placeablePickup.Placement = this;
+                    PlaceObject(other.gameObject, transform.position + placeablePickup.GetPosition(), transform.eulerAngles + placeablePickup.GetRotation());
+                    DestroyGhost();
+                    if (placeablePickup is Ornament) (this as OrnamentPlacement).CheckGraveCompletion();
+                }
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (ghost != null && other.gameObject.CompareTag("Interactable"))
+        {
+            if (other.gameObject.GetComponent<Pickup>().GetPickupType() == placementType) DestroyGhost();
+        }
+    }
 
     public void PlaceObject(GameObject objectToPlace, Vector3 position, Vector3 rotation)
     {

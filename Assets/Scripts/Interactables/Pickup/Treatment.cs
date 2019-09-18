@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public enum TreatmentType { MakeUp, WashUp, Mummify, None, [System.ObsoleteAttribute] NumberOfTypes }
+public enum TreatmentType { MakeUp, WashUp, Mummify, [System.ObsoleteAttribute] NumberOfTypes, None }
 
 /* Script Made By Daniel */
 public class Treatment : Pickup

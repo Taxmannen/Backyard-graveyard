@@ -3,7 +3,7 @@ using UnityEngine;
 
 public enum CollisionTest { None, Drop, Collider }
 
-public enum PickupType { Other, Weapon, Ornament, Head, Body }
+public enum PickupType { Other, Weapon, Ornament, Head, Body, TaskCard, None }
 
 /* Script Made By Daniel */
 [RequireComponent(typeof(Rigidbody))]
