@@ -13,7 +13,7 @@ public class FireHolder : MonoBehaviour
     private float burningTime = 60f;
     private float timeSinceLit;
 
-    private void Start()
+    private void Awake()
     {
         fireParticleSystem = GetComponentInChildren<ParticleSystem>().gameObject;
         fireParticleSystem.SetActive(false);
