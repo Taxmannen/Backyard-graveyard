@@ -36,12 +36,15 @@ public class NewObjectThiefPickupState : NewObjectThiefState
 
     public override NewObjectThiefState FixedUpdate(NewObjectThief objectThief, float t)
     {
-        armPosition = objectThief.GetArmPosition();
-
-        directionToTarget = objectThief.GetDirectionToTarget(armPosition);
+        SetDirectionToTarget(objectThief);
         objectThief.MoveArm(directionToTarget);
-
         return null;
+    }
+
+    private void SetDirectionToTarget(NewObjectThief objectThief)
+    {
+        armPosition = objectThief.GetArmPosition();
+        directionToTarget = objectThief.GetDirectionToTarget(armPosition);
     }
 
     public override NewObjectThiefState Update(NewObjectThief objectThief, float t)
@@ -52,22 +55,39 @@ public class NewObjectThiefPickupState : NewObjectThiefState
             return new NewObjectThiefSearchState();
         }
 
-
         float distanceToTarget = objectThief.GetDistanceToTarget(armPosition);
-
         if (distanceToTarget < distanceToObjectBeforeStateChange)
         {
-            //Sätt på hand och sätt objektet som hålls av zombien
-            objectThief.pickupHand.PickupObject(objectThief.currentTargetObject.GetComponent<Rigidbody>());
-            objectThief.objectInHand = objectThief.currentTargetObject;
+            PickupObject(objectThief);
 
             //Fulfix där fienden rör sig mot ett objekt med tagen "Out of Bounds". Används för att despawna fienden.
-            objectThief.FindNewCurrentGameObjectWithTag("OutOfBounds");
+            objectThief.FindNewCurrentTargetObjectWithTag("OutOfBounds");
 
-            return new NewObjectThiefMoveToTargetState();
+            return GoToCorrectFleeState(objectThief);
         }
 
         return null;
+    }
+
+    private void PickupObject(NewObjectThief objectThief)
+    {
+        //Pickup object
+        objectThief.pickupHand.PickupObject(objectThief.currentTargetObject.GetComponent<Rigidbody>());
+
+        //flytta denna till scriptet PickupObject() i pickupHand? (Sätter objektet i handen till objektet som togs upp)
+        objectThief.objectInHand = objectThief.currentTargetObject;
+    }
+
+    private NewObjectThiefState GoToCorrectFleeState(NewObjectThief objectThief)
+    {
+        if (objectThief.objectSearcher.GetTargetType() == PickupType.Body)
+        {
+            return new NewObjectThiefFleeWithBodyState();
+        }
+        else
+        {
+            return new NewObjectThiefFleeState();
+        }
     }
 
 

@@ -5,24 +5,29 @@ using UnityEngine;
 public class FireHolder : MonoBehaviour
 {
     [SerializeField] private MeshRenderer fireMaterial;
-    [SerializeField] private Material white;
-    [SerializeField] private Material green;
+    [SerializeField] private Material unlitMaterial;
+    [SerializeField] private Material litMaterial;
 
     public bool isLit;
-    private float burningTime = 10f;
+    private GameObject fireParticleSystem;
+    private float burningTime = 60f;
     private float timeSinceLit;
+
+    private void Start()
+    {
+        fireParticleSystem = GetComponentInChildren<ParticleSystem>().gameObject;
+        fireParticleSystem.SetActive(false);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("collision");
         if (other.tag == "FireHolder")
         {
             FireHolder otherFireHolder = other.GetComponent<FireHolder>();
-            Debug.Log("right tag");
             if (isLit && !otherFireHolder.isLit)
             {
-                Debug.Log("Running coroutine");
-                other.GetComponent<FireHolder>().LightUp();
+                otherFireHolder.LightUp();
+                LightUp();
             }
         }
     }
@@ -35,10 +40,12 @@ public class FireHolder : MonoBehaviour
     private IEnumerator StartBurning()
     {
         isLit = true;
-        fireMaterial.material = green;
+        fireParticleSystem.SetActive(true);
+        fireMaterial.material = litMaterial;
         yield return new WaitForSeconds(burningTime);
-        fireMaterial.material = white;
         isLit = false;
+        fireParticleSystem.SetActive(false);
+        fireMaterial.material = unlitMaterial;
         yield return null;
     }
 }
