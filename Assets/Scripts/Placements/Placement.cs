@@ -8,6 +8,7 @@ public class Placement : MonoBehaviour
     [Header("Debug")]
     [SerializeField, ReadOnly] protected GameObject placedObject = null;
     [SerializeField, ReadOnly] protected GameObject ghost = null;
+    
 
     private void OnTriggerStay(Collider other)
     {
@@ -23,9 +24,8 @@ public class Placement : MonoBehaviour
                 if (!placeablePickup.ActiveHand && !placeablePickup.Placement)
                 {
                     placeablePickup.Placement = this;
-                    PlaceObject(other.gameObject, transform.position + placeablePickup.GetPosition(), transform.eulerAngles + placeablePickup.GetRotation());
+                    PlaceObject(placeablePickup, transform.position + placeablePickup.GetPosition(), transform.eulerAngles + placeablePickup.GetRotation());
                     DestroyGhost();
-                    if (placeablePickup is Ornament) (this as OrnamentPlacement).CheckGraveCompletion();
                 }
             }
         }
@@ -39,17 +39,25 @@ public class Placement : MonoBehaviour
         }
     }
 
-    public void PlaceObject(GameObject objectToPlace, Vector3 position, Vector3 rotation)
+    public void PlaceObject(PlaceablePickup objectToPlace, Vector3 position, Vector3 rotation)
     {
         if (!placedObject)
         {
-            placedObject = objectToPlace;
+            placedObject = objectToPlace.gameObject;
             Rigidbody rb = placedObject.GetComponent<Rigidbody>();
             rb.constraints = RigidbodyConstraints.FreezeAll;
             placedObject.transform.position = position;
             placedObject.transform.rotation = Quaternion.Euler(rotation);
-            TaskCard taskCard = placedObject.GetComponent<TaskCard>();
-            if (taskCard) taskCard.ScaleTaskCard(false);
+            if (objectToPlace is Ornament)
+            {
+                (this as OrnamentPlacement).CheckGraveCompletion();
+                (this as OrnamentPlacement).SetUnrestIEnumerator(true);
+            }
+            else
+            {
+                TaskCard taskCard = placedObject.GetComponent<TaskCard>();
+                if (taskCard) taskCard.ScaleTaskCard(false);
+            }
         }
     }
 
@@ -59,8 +67,17 @@ public class Placement : MonoBehaviour
         {
             Rigidbody rb = placedObject.GetComponent<Rigidbody>();
             rb.constraints = RigidbodyConstraints.None;
-            TaskCard taskCard = placedObject.GetComponent<TaskCard>();
-            if (taskCard) taskCard.ScaleTaskCard(true);
+        
+            //Test Petter
+            if (placedObject.GetComponent<Ornament>())
+            {
+                (this as OrnamentPlacement).SetUnrestIEnumerator(false);
+            }
+            else
+            {
+                TaskCard taskCard = placedObject.GetComponent<TaskCard>();
+                if (taskCard) taskCard.ScaleTaskCard(true);
+            }
             placedObject = null;
         }
     }
