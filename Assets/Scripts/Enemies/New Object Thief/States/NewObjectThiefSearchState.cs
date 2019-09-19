@@ -8,8 +8,6 @@ using UnityEngine;
 //Kopierar just nu sjukt mycket från MoveToTargetState. Kan säkert bryta ut en del grejer
 public class NewObjectThiefSearchState : NewObjectThiefState
 {
-    private Vector3 marionetteStringPosition;
-    private Vector3 directionToTarget;
 
     private GameObject lastTargetObject;
 
@@ -44,23 +42,23 @@ public class NewObjectThiefSearchState : NewObjectThiefState
 
     public override NewObjectThiefState FixedUpdate(NewObjectThief objectThief, float t)
     {
-        SetDirectionToTarget(objectThief);
-        MoveTowardsTarget(objectThief);
+        //SetDirectionToTarget(objectThief);
+        objectThief.MoveToTargetDuringSearch();
 
         return null;
     }
 
-    private void SetDirectionToTarget(NewObjectThief objectThief)
-    {
-        marionetteStringPosition = objectThief.GetMarionetteStringPosition();
-        directionToTarget = objectThief.GetDirectionToTarget(marionetteStringPosition);
-    }
+    //private void SetDirectionToTarget(NewObjectThief objectThief)
+    //{
+    //    marionetteStringPosition = objectThief.GetMarionetteStringPosition();
+    //    directionToTarget = objectThief.GetDirectionToTarget(marionetteStringPosition);
+    //}
 
-    private void MoveTowardsTarget(NewObjectThief objectThief)
-    {
-        objectThief.MoveDuringSearch(directionToTarget);
-        objectThief.enemyJump.TryJump();
-    }
+    //private void MoveTowardsTarget(NewObjectThief objectThief)
+    //{
+    //    objectThief.MoveToTargetDuringSearch(directionToTarget);
+    //    objectThief.enemyJump.TryJump();
+    //}
 
 
 
@@ -77,7 +75,7 @@ public class NewObjectThiefSearchState : NewObjectThiefState
         else
         {
             //When the enemy gets close enough to a random point on the map, a new random point will be set.
-            float distanceToTarget = objectThief.GetDistanceToTarget(marionetteStringPosition);
+            float distanceToTarget = objectThief.GetDistanceToTarget(objectThief.GetMarionetteStringPosition());
             if (distanceToTarget < distanceToTargetBeforeNewSearch)
             {
                 SetTargetToRandomPositionAndResetSearchTimer(objectThief);

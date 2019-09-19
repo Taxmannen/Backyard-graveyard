@@ -41,12 +41,12 @@ public class NewObjectThiefFleeWithBodyState : NewObjectThiefFleeState
 
     private NewObjectThiefState DropBodyWhenPlacedInGrave(NewObjectThief objectThief)
     {
-        //Check för om kroppen placeras i graven när zombien har tagit tag i den (Bör tas ut?)
+        //Check för om kroppen placeras i graven när zombien har tagit tag i den (Bryt ut och gör så detta enbart görs när den stoppas in istället för att kolla hela tiden.)
         if (objectThief.objectInHand != null)
         {
             if (body.IsInGrave)
             {
-                objectThief.Jump(2000);
+                objectThief.enemyJump.FleeJump();
                 objectThief.pickupHand.DestroyJoint();
                 return new NewObjectThiefSearchState();
             }

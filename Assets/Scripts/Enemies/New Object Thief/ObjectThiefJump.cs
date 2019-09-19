@@ -6,10 +6,12 @@ public class ObjectThiefJump : MonoBehaviour
 {
     [Header("Components (DO NOT TOUCH)")]
     [SerializeField] private EnemyGroundCheck groundCheck;
-    [SerializeField] private Rigidbody rigidBodyToJump;
+    [SerializeField] private Rigidbody bodyRigidBody;
+    [SerializeField] private Rigidbody marionetteRigidBody;
     
     [Header("Jump Settings")]
     [SerializeField] private float jumpForce = 100;
+    [SerializeField] private float fleeJumpForce = 2000;
 
     /*JumpCheck*/
     private bool canJump = false;
@@ -19,20 +21,25 @@ public class ObjectThiefJump : MonoBehaviour
     {
         if (groundCheck.GetGrounded() && canJump)
         {
-            Jump();
+            Jump(jumpForce, bodyRigidBody);
             canJump = false;
         }
 
-        if (rigidBodyToJump.velocity.y < 0)
+        if (bodyRigidBody.velocity.y < 0)
         {
             canJump = true;
         }
     }
 
-
-    private void Jump()
+    public void FleeJump()
     {
-        rigidBodyToJump.AddForce(0, jumpForce, 0);
+        Jump(fleeJumpForce, marionetteRigidBody);
+    }
+
+
+    private void Jump(float jumpForce, Rigidbody rigidBody)
+    {
+        rigidBody.AddForce(0, jumpForce, 0);
     }
 
     

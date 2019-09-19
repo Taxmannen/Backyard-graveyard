@@ -11,15 +11,15 @@ public class NewObjectThiefFleeState : NewObjectThiefState
     private float timeBeforeJump;
 
     //Change this to trigger-area later?
-    private float distanceToTargetBeforeStateChange;
-
-    private Vector3 marionetteStringPosition;
-    private Vector3 directionToTarget;
+    private float distanceBeforeEnemyDespawn;
 
     public override void Enter(NewObjectThief objectThief)
     {
+        //Fulfix där fienden rör sig mot ett objekt med tagen "Out of Bounds". Används för att despawna fienden.
+        objectThief.FindNewCurrentTargetObjectWithTag("Player");
+
         timeBeforeJump = objectThief.GetTimeBeforeTryingNewTarget();
-        distanceToTargetBeforeStateChange = objectThief.GetDistanceBeforeTargetIsReached();
+        distanceBeforeEnemyDespawn = objectThief.GetDistanceBeforeEnemyDespawn();
 
         if (objectThief.debugStates)
         {
@@ -34,37 +34,38 @@ public class NewObjectThiefFleeState : NewObjectThiefState
 
     public override NewObjectThiefState FixedUpdate(NewObjectThief objectThief, float t)
     {
-        SetDirectionToTarget(objectThief);
-        MoveTowardsTarget(objectThief);
+        //SetDirectionToTarget(objectThief);
+        //MoveAwayFromTarget(objectThief);
+        objectThief.MoveAwayFromTarget();
         return null;
     }
 
     private void SetDirectionToTarget(NewObjectThief objectThief)
     {
-        marionetteStringPosition = objectThief.GetMarionetteStringPosition();
-        directionToTarget = objectThief.GetDirectionToTarget(marionetteStringPosition);
+        //marionetteStringPosition = objectThief.GetMarionetteStringPosition();
+        //directionAwayFromTarget = -objectThief.GetDirectionToTarget(marionetteStringPosition);
     }
 
-    private void MoveTowardsTarget(NewObjectThief objectThief)
+    private void MoveAwayFromTarget(NewObjectThief objectThief)
     {
-        objectThief.Move(directionToTarget);
-        objectThief.enemyJump.TryJump();
+        //objectThief.MoveToTarget(directionAwayFromTarget);
+        //objectThief.enemyJump.TryJump();
     }
 
     public override NewObjectThiefState Update(NewObjectThief objectThief, float t)
     {
-        float distanceToTarget = objectThief.GetDistanceToTarget(marionetteStringPosition);
+        float distanceToTarget = objectThief.GetDistanceToTarget(objectThief.GetMarionetteStringPosition());
 
         timeBeforeJump -= t;
         if (timeBeforeJump <= 0)
         {
-            objectThief.Jump(2000);
+            objectThief.enemyJump.FleeJump();
             timeBeforeJump = objectThief.GetTimeBeforeTryingNewTarget();
         }
 
-        if (distanceToTarget < distanceToTargetBeforeStateChange)
+        if (distanceToTarget > distanceBeforeEnemyDespawn)
         {
-            objectThief.Despawn();
+            objectThief.DespawnDuringFlee();
         }
 
         return null;

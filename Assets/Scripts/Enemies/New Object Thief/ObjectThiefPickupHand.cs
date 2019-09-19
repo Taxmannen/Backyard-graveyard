@@ -13,20 +13,20 @@ public class ObjectThiefPickupHand : MonoBehaviour
     {
         if(objectSearcher.GetTargetType() == PickupType.Ornament)
         {
-            SetOrnamentAsHeldByThiefAndDetachFromPlacement();
+            SetOrnamentAsHeldByThiefAndDetachFromPlacementIfPlaced();
         }
 
         AddJoint(objectRigidBody);
     }
 
-    private void SetOrnamentAsHeldByThiefAndDetachFromPlacement()
+    private void SetOrnamentAsHeldByThiefAndDetachFromPlacementIfPlaced()
     {
         ornament = newObjectThief.currentTargetObject.GetComponent<Ornament>();
         ornament.ThiefIsHolding = true;
         DetachOrnamentFromPlacement();
     }
 
-    private void DetachOrnamentFromPlacement()
+    public void DetachOrnamentFromPlacement()
     {
         if(ornament.Placement)
         {

@@ -37,12 +37,16 @@ public class NewObjectThief : MonoBehaviour
     [SerializeField] private float armSpeed = 50;
 
     [Header("Distance Settings")]
-    [SerializeField] private float distanceBeforeTargetIsReached = 3;
+    [SerializeField] private float distanceBeforeTargetIsReached = 3f;
     [SerializeField] private float distanceBeforeTargetIsPickedUp = 0.5f;
+    [SerializeField] private float distanceBeforeEnemyDespawn = 20f;
 
     [Header("Timers")]
     [SerializeField] private float timeBeforeTryingNewPickupTarget = 2f;
     [SerializeField] private float timeBeforeTryingNewTarget = 10f;
+
+    //Används för fulfixen för om objekt försvinner
+    private bool isDead = false;
 
 
 
@@ -65,20 +69,24 @@ public class NewObjectThief : MonoBehaviour
 
     private void Update()
     {
-        //Fullfix för om target-objekt försvinner.
-        if(currentTargetObject == null)
+        
+        //Fulfixar
+        if(!isDead)
         {
-            returnedState = new NewObjectThiefSearchState();
-            StateSwap();
-        }
+            //Fullfix för om target-objekt försvinner.
+            if (currentTargetObject == null)
+            {
+                returnedState = new NewObjectThiefSearchState();
+                StateSwap();
+            }
 
-        //Fulfix för om hand-objektet försvinner
-        else if(currentTargetObject.tag == "OutOfBounds" && objectInHand == null)
-        {
-            returnedState = new NewObjectThiefSearchState();
-            StateSwap();
+            //Fulfix för om hand-objektet försvinner
+            else if (currentTargetObject.tag == "OutOfBounds" && objectInHand == null)
+            {
+                returnedState = new NewObjectThiefSearchState();
+                StateSwap();
+            }
         }
-
 
         returnedState = currentState.Update(this, Time.deltaTime);
         if (returnedState != null)
@@ -101,24 +109,31 @@ public class NewObjectThief : MonoBehaviour
 
 
     /*  MOVE BODYPART FUNCTIONS  */
-    public void Move(Vector3 moveAgainst)
+    public void MoveToTarget()
     {
-        MovePart(rigidBodyMarionette, moveAgainst, movementSpeedRun);
+        Vector3 directionToTarget = GetDirectionToTarget(rigidBodyMarionette.transform.position);
+        enemyJump.TryJump();
+        MovePart(rigidBodyMarionette, directionToTarget, movementSpeedRun);
     }
 
-    public void MoveDuringSearch(Vector3 moveAgainst)
+    public void MoveAwayFromTarget()
     {
-        MovePart(rigidBodyMarionette, moveAgainst, movementSpeedSearch);
+        Vector3 directionAwayFromTarget = -GetDirectionToTarget(rigidBodyMarionette.transform.position);
+        enemyJump.TryJump();
+        MovePart(rigidBodyMarionette, directionAwayFromTarget, movementSpeedRun);
     }
 
-    public void MoveArm(Vector3 moveAgainst)
+    public void MoveToTargetDuringSearch()
     {
-        MovePart(rigidBodyArm, moveAgainst, armSpeed);
+        Vector3 directionToTarget = GetDirectionToTarget(rigidBodyMarionette.transform.position);
+        enemyJump.TryJump();
+        MovePart(rigidBodyMarionette, directionToTarget, movementSpeedSearch);
     }
 
-    public void Jump(float jumpForce)
+    public void MoveArm()
     {
-        rigidBodyMarionette.AddForce(new Vector3(0, jumpForce, 0));
+        Vector3 directionToTarget = GetDirectionToTarget(rigidBodyArm.transform.position);
+        MovePart(rigidBodyArm, directionToTarget, armSpeed);
     }
 
     private void MovePart(Rigidbody rigidBodyToMove, Vector3 moveAgainst, float forceToMoveWith)
@@ -133,13 +148,22 @@ public class NewObjectThief : MonoBehaviour
     /*  DIRECTIONS & POSITIONS  */
     public Vector3 GetDirectionToTarget(Vector3 bodyPartToMovePosition)
     {
-        Vector3 directionToTarget = currentTargetObject.transform.position - bodyPartToMovePosition;
-        return directionToTarget;
+        if(currentTargetObject != null)
+        {
+            Vector3 directionToTarget = currentTargetObject.transform.position - bodyPartToMovePosition;
+            return directionToTarget;
+        }
+        else
+        {
+            Debug.Log("no current target. Couldn't get direction");
+            return new Vector3(0, 0, 0);
+        }
+        
     }
 
-    public float GetDistanceToTarget(Vector3 bodyPartToMovePosition)
+    public float GetDistanceToTarget(Vector3 fromPosition)
     {
-        return Vector3.Distance(bodyPartToMovePosition, currentTargetObject.transform.position);
+        return Vector3.Distance(fromPosition, currentTargetObject.transform.position);
     }
 
     public Vector3 GetTargetPosition()
@@ -162,6 +186,11 @@ public class NewObjectThief : MonoBehaviour
         return distanceBeforeTargetIsReached;
     }
 
+    public float GetDistanceBeforeEnemyDespawn()
+    {
+        return distanceBeforeEnemyDespawn;
+    }
+
     public float GetDistanceBeforeTargetIsPickedUp()
     {
         return distanceBeforeTargetIsPickedUp;
@@ -176,7 +205,7 @@ public class NewObjectThief : MonoBehaviour
         currentTargetObject = GameObject.FindGameObjectWithTag(tag);
     }
 
-    public void Despawn()
+    public void DespawnDuringFlee()
     {
         if(objectInHand != null)
         {
@@ -190,6 +219,13 @@ public class NewObjectThief : MonoBehaviour
     {
         pickupHand.DestroyJoint();
         objectInHand = null;
+    }
+
+    public void GoToDeathState()
+    {
+        isDead = true;
+        returnedState = new NewObjectThiefDeathState();
+        StateSwap();
     }
 
 
