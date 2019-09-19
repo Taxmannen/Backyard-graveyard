@@ -18,6 +18,7 @@ TagManager:
   - BodyPart
   - FireHolder
   - Button Trigger
+  - Button Limiter
   layers:
   - Default
   - TransparentFX

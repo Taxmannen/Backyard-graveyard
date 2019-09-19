@@ -10,12 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 5619528087056540058}
   - component: {fileID: 5619528087056540059}
+  - component: {fileID: 791590288638982}
   m_Layer: 28
   m_Name: Player Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &5619528087056540058
 Transform:
@@ -44,3 +45,11 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &791590288638982
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5619528087056540053}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}

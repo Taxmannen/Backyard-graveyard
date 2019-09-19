@@ -2,7 +2,7 @@
 using System;
 
 /* Script Made By Daniel */
-public enum Direction { Left, Right }
+public enum ChangeTrack { PreviousTrack, NextTrack }
 
 [RequireComponent(typeof(AudioSource))]
 public class MusicPlayer : MonoBehaviour
@@ -32,16 +32,16 @@ public class MusicPlayer : MonoBehaviour
         }
     }
 
-    public void ChangeTrack(Direction dir)
+    public void ChangeSong(ChangeTrack changeTrack)
     {
         if (tracks.Length > 0)
         {
-            if (dir == Direction.Left)
+            if (changeTrack == ChangeTrack.PreviousTrack)
             {
                 if (currentTrackNumber > 0) currentTrackNumber--;
                 else currentTrackNumber = tracks.Length - 1;
             }
-            else if (dir == Direction.Right)
+            else if (changeTrack == ChangeTrack.NextTrack)
             {
                 if (currentTrackNumber < tracks.Length - 1) currentTrackNumber++;
                 else currentTrackNumber = 0;
