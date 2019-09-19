@@ -19,6 +19,9 @@ public class EndOfGameStrings {
 
 public class TaskManager : Singleton<TaskManager>
 {
+    [Header("Settings")]
+    [SerializeField] private bool taskManagerSpawnsTasks = false;
+
     [Header("References")]
     public Task[] tasks;
     [SerializeField] private EndOfGameStrings[] endOfGameStrings = new EndOfGameStrings[6];
@@ -37,21 +40,34 @@ public class TaskManager : Singleton<TaskManager>
     [SerializeField][Range(0, 600)]
     private int timeLimitInSecondsMax = 10;
 
-    private int maxNumberOfTasks;
-
     private int unrestValueChange;
+
+    private float maxTimeInSeconds;
+    private int maxNumberOfTasks, minNrOfOrnaments, maxNrOfOrnaments;
 
     public int TimeLimitInSecondsMin { get => timeLimitInSecondsMin; private set => timeLimitInSecondsMin = value; }
     public int TimeLimitInSecondsMax { get => timeLimitInSecondsMax; private set => timeLimitInSecondsMax = value; }
     public bool IncludeTreatments { get => includeTreatments; private set => includeTreatments = value; }
     public int TasksInProgress { get => tasksInProgress; set => tasksInProgress = value; }
+    public bool TaskManagerSpawnsTasks { get => taskManagerSpawnsTasks; private set => taskManagerSpawnsTasks = value; }
+    public float MaxTimeInSeconds { get => maxTimeInSeconds; set => maxTimeInSeconds = value; }
+    public int MaxNumberOfTasks { get => maxNumberOfTasks; set => maxNumberOfTasks = value; }
+    public int MinNrOfOrnaments { get => minNrOfOrnaments; set => minNrOfOrnaments = value; }
+    public int MaxNrOfOrnaments { get => maxNrOfOrnaments; set => maxNrOfOrnaments = value; }
 
     private void Awake() {
         SetInstance(this);
     }
 
     public void ActivateTasks(float maxTimeInSeconds, int maxNumberOfTasks, int minNrOfOrnaments, int maxNrOfOrnaments) {
+        this.MaxNumberOfTasks = maxNumberOfTasks;
+
+        if (!TaskManagerSpawnsTasks) return;
+
+        this.maxTimeInSeconds = maxTimeInSeconds;
         this.maxNumberOfTasks = maxNumberOfTasks;
+        this.minNrOfOrnaments = minNrOfOrnaments;
+        this.maxNrOfOrnaments = maxNrOfOrnaments;
 
         for (int i = 0; i < maxNumberOfTasks; i++) {
             Task task = GetAvailableTask();
@@ -101,8 +117,8 @@ public class TaskManager : Singleton<TaskManager>
     public int GetNrOfSuccessfulTasks() { return completedTasks.Count(x => x == true); }
     public int GetNrOfFailedTasks() { return completedTasks.Count(x => x == false); }
     public int GetNrOfCompletedTasks() { return GetNrOfSuccessfulTasks() + GetNrOfFailedTasks(); }
-    public int TasksRemaniningToComplete() { return maxNumberOfTasks - GetNrOfCompletedTasks(); }
-    public int TasksRemaniningToSelect() { return maxNumberOfTasks - (GetNrOfCompletedTasks() + TasksInProgress); }
+    public int TasksRemaniningToComplete() { return MaxNumberOfTasks - GetNrOfCompletedTasks(); }
+    public int TasksRemaniningToSelect() { return MaxNumberOfTasks - (GetNrOfCompletedTasks() + TasksInProgress); }
     public bool CompletedAllTasks() { return TasksRemaniningToComplete() <= 0; }
     public bool TasksAvailableToSelect() { return TasksRemaniningToSelect() > 0; }
 

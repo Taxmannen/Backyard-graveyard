@@ -43,6 +43,9 @@ public class Task : MonoBehaviour
 
     private void Start() {
         TaskManager = TaskManager.GetInstance();
+        if (!TaskManager.TaskManagerSpawnsTasks) {
+            Activate(TaskManager.MaxTimeInSeconds, TaskManager.MinNrOfOrnaments, TaskManager.MaxNrOfOrnaments);
+        }
         //Initialise();
     }
 
@@ -88,7 +91,14 @@ public class Task : MonoBehaviour
         this.maxNrOfOrnaments = maxNrOfOrnaments;
 
         gameObject.SetActive(true);
-        RefreshTaskCardIngredients();
+        if (TaskManager.GetInstance().TasksAvailableToSelect()) {
+            //Reinitialise();
+            RefreshTaskCardIngredients();
+        }
+        else {
+            Debug.LogError("Task error: No tasks available to do");
+            Destroy(this);
+        }
     }
 
     private void Update() {
