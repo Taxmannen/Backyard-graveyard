@@ -14,6 +14,7 @@ public class UnrestManager : Singleton<UnrestManager>
     [SerializeField] private int minUnrest = 0;
     [SerializeField] private int maxUnrest = 20;
     public int CurrentUnrest { get; private set; }
+    public int MaxUnrest { get => maxUnrest; private set => maxUnrest = value; }
 
     private void Awake()
     {
@@ -25,7 +26,7 @@ public class UnrestManager : Singleton<UnrestManager>
     public void UpdateUnrest(int plusOrMinusValue)
     {
         CurrentUnrest += plusOrMinusValue;
-        CurrentUnrest = Mathf.Clamp(CurrentUnrest, minUnrest, maxUnrest);
+        CurrentUnrest = Mathf.Clamp(CurrentUnrest, minUnrest, MaxUnrest);
         OnUnrestChange?.Invoke(CurrentUnrest);
         Debug.Log(CurrentUnrest);
     }
