@@ -42,8 +42,8 @@ public class PrototypeManager : Singleton<PrototypeManager>
 {
     [Header("Levels")]
     [SerializeField] private LevelSO[] levels;
-    [SerializeField] private int currentLevel;
-    [SerializeField] private int currentWave;
+    [SerializeField] private int currentLevel = -1;
+    [SerializeField] private int currentWave = -1;
     [SerializeField] private bool clearInteractablesOnPickup = false;
 
     [Header("References")]
@@ -58,13 +58,11 @@ public class PrototypeManager : Singleton<PrototypeManager>
         SetInstance(this);
 
         if (levels[0] == null) throw new System.Exception("No levels set in PrototypeManager");
-
-        SetLevel(levels[0]);
     }
 
     void Start()
     {
-        TaskManager.GetInstance().ActivateTasks(GetCurrentWave().timePerTask, GetCurrentWave().nrOfTasks);
+        TaskManager.GetInstance().ActivateTasks(GetCurrentWave().timePerTask, GetCurrentWave().nrOfTasks, GetCurrentWave().minNrOfOrnamnets, GetCurrentWave().maxNrOfOrnamnets);
 
         SetEnemySpawnerProperties();
     }
@@ -87,8 +85,18 @@ public class PrototypeManager : Singleton<PrototypeManager>
         }
     }
 
-    public void CompleteWave() { AdvanceWave(); }
+    public void CompleteWave() {
+        if(GetCurrentWave().PauseAfterCompletedWave) {
+            //Pause
+
+            if(GetCurrentWave().clearAllObjectPoolsOnPause)
+                GameManager.GetInstance().ClearAllObjectPools();
+        }
+        else AdvanceWave(); // Just continue
+    }
     public void AdvanceWave() {
+        if(currentLevel < 0 || currentWave < 0) SetLevel(levels[0]);
+
         if (levels[currentLevel].gameWaves[currentWave + 1] == null) {
             AdvanceLevel();
         }
@@ -96,11 +104,10 @@ public class PrototypeManager : Singleton<PrototypeManager>
             currentWave++;
 
             try { TaskManager.GetInstance().ResetTasks(); } catch(System.Exception e) { Debug.LogError(e); }
-            if (clearInteractablesOnPickup) GameManager.GetInstance().ClearAllInteractables();
 
             waveStartTime = DateTime.Now;
 
-            TaskManager.GetInstance().ActivateTasks(GetCurrentWave().timePerTask, GetCurrentWave().nrOfTasks);
+            TaskManager.GetInstance().ActivateTasks(GetCurrentWave().timePerTask, GetCurrentWave().nrOfTasks, GetCurrentWave().minNrOfOrnamnets, GetCurrentWave().maxNrOfOrnamnets);
         }
     }
 

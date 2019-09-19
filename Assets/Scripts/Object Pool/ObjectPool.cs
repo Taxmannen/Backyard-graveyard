@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 /* Script Made By Daniel */
 public abstract class ObjectPool : Singleton<ObjectPool>
@@ -50,6 +51,17 @@ public abstract class ObjectPool : Singleton<ObjectPool>
         objectToReturn.SetActive(false);
         objectToReturn.transform.SetParent(transform);
         objects.Enqueue(objectToReturn);
+    }
+
+    //Simon
+    public void ReturnAllObjects() {
+        var activeObjects = objects
+            .Where(item => item.gameObject.activeSelf)
+            .Select(item => item.gameObject);
+
+        foreach(GameObject go in activeObjects) {
+            ReturnToPool(go);
+        }
     }
 
     private void AddObjects(int count)

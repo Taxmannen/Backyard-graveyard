@@ -31,6 +31,8 @@ public class Task : MonoBehaviour
 
     private float maxTimeInSeconds = 5f;
     private DateTime startTime;
+    private int minNrOfOrnaments;
+    private int maxNrOfOrnaments;
 
     private bool initialised = false;
 
@@ -76,10 +78,12 @@ public class Task : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void Activate(float maxTimeInSeconds) {
+    public void Activate(float maxTimeInSeconds, int minNrOfOrnaments, int maxNrOfOrnaments) {
         Initialise();
 
         this.maxTimeInSeconds = maxTimeInSeconds;
+        this.minNrOfOrnaments = minNrOfOrnaments;
+        this.maxNrOfOrnaments = maxNrOfOrnaments;
 
         gameObject.SetActive(true);
         RefreshTaskCardIngredients();
@@ -126,12 +130,12 @@ public class Task : MonoBehaviour
         head = (HeadType)headIndex;
         int bodydIndex = RandomManager.GetRandomNumber(0, (int)BodyType.NumberOfTypes);
         body = (BodyType)bodydIndex;
-        int ornament1 = RandomManager.GetRandomNumber(0, (int)OrnamentType.NumberOfTypes);
-        ornamentType[0] = (OrnamentType)ornament1;
-        int ornament2 = RandomManager.GetRandomNumber(0, (int)OrnamentType.NumberOfTypes);
-        ornamentType[1] = (OrnamentType)ornament2;
-        int ornament3 = RandomManager.GetRandomNumber(0, (int)OrnamentType.NumberOfTypes);
-        ornamentType[2] = (OrnamentType)ornament3;
+
+        int nrOfOrnaments = RandomManager.GetRandomNumber(minNrOfOrnaments, maxNrOfOrnaments);
+        ornamentType = new OrnamentType[nrOfOrnaments]; 
+        for (int i = 0; i < nrOfOrnaments; i++) {
+            ornamentType[i] = (OrnamentType)RandomManager.GetRandomNumber(0, (int)OrnamentType.NumberOfTypes);
+        }
 
         if (TaskManager.GetInstance().IncludeTreatments) {
             int treatmentIndex = RandomManager.GetRandomNumber(0, (int)TreatmentType.NumberOfTypes);

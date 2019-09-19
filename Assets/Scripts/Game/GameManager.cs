@@ -27,7 +27,11 @@ public class GameManager : Singleton<GameManager>
         PauseEvent?.Invoke(state);
     }
 
-    public void ClearAllInteractables() {
-        throw new NotImplementedException();
+    //Simon
+    public void ClearAllObjectPools() {
+        ObjectPool[] objectPools = GameObject.FindObjectsOfType<ObjectPool>();
+        foreach(ObjectPool objectPool in objectPools) {
+            objectPool.ReturnAllObjects();
+        }
     }
 }

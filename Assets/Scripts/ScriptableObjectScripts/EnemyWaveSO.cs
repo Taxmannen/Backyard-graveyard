@@ -17,6 +17,10 @@ public class EnemyWaveSO : ScriptableObject
     public int nrOfTasks = 5;
     public float timePerTask = 10 * 60; // 10 minutes * 60 seconds per minute
     [Range(0, 100)] public int chanceOfCorrectBodyCombination;
+    public bool PauseAfterCompletedWave;
+    public bool clearAllObjectPoolsOnPause;
+    [Range(0, 3)] public int minNrOfOrnamnets;
+    [Range(0, 3)] public int maxNrOfOrnamnets;
 
     [Header("Enemy waves")]
     public int nrOfSpawnsPerWave = 1;

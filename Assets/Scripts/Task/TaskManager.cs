@@ -50,14 +50,14 @@ public class TaskManager : Singleton<TaskManager>
         SetInstance(this);
     }
 
-    public void ActivateTasks(float maxTimeInSeconds, int maxNumberOfTasks) {
+    public void ActivateTasks(float maxTimeInSeconds, int maxNumberOfTasks, int minNrOfOrnaments, int maxNrOfOrnaments) {
         this.maxNumberOfTasks = maxNumberOfTasks;
 
         for (int i = 0; i < maxNumberOfTasks; i++) {
             Task task = GetAvailableTask();
 
             if(task.gameObject.activeSelf == false)
-                task.Activate(maxTimeInSeconds);
+                task.Activate(maxTimeInSeconds, minNrOfOrnaments, maxNrOfOrnaments);
         }
 
         return;
