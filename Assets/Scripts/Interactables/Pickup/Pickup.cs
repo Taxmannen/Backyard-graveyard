@@ -16,10 +16,15 @@ public class Pickup : Interactable
     [SerializeField] protected bool shouldDespawnWhenOnGround;
     [SerializeField] protected float despawnTimeWhenOnGround;
 
-    [Header("Debug")]
-    [SerializeField] private CollisionTest collisionTest;
-
+    private CollisionManager collisionManager;
+    private Collider[] colliders;
     private Coroutine coroutine;
+
+    private void Awake()
+    {
+        collisionManager = CollisionManager.GetInstance();
+        colliders = GetComponentsInChildren<Collider>();
+    }
 
     public bool SnapOnPickup
     {
@@ -34,13 +39,13 @@ public class Pickup : Interactable
             StopCoroutine(coroutine);
             coroutine = null;
         }
+        if (collisionManager.GetCollisionTest()) collisionManager.SetColliderState(colliders, true);
         return this;
     }
 
     public virtual void Drop()
     {
-        Collider[] colliders = GetComponentsInChildren<Collider>();
-        foreach (Collider collider in colliders) collider.enabled = true;
+        if (collisionManager.GetCollisionTest()) collisionManager.SetColliderState(colliders, false);
         ActiveHand = null;
     }
 
@@ -49,35 +54,6 @@ public class Pickup : Interactable
         if (other.gameObject.tag == "Ground" && ActiveHand == null && shouldDespawnWhenOnGround)
         {
             if (coroutine == null) coroutine = StartCoroutine(DestoryMe());
-        }
-        if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Static"))
-        {
-            switch (collisionTest)
-            {
-                case CollisionTest.Collider:
-                    if (ActiveHand)
-                    {
-                        Collider[] colliders = GetComponentsInChildren<Collider>();
-                        foreach (Collider collider in colliders) collider.enabled = false;
-                    }
-                    break;
-                case CollisionTest.Drop:
-                    ActiveHand?.Drop();
-                    break;
-            }
-        }
-    }
-
-    private void OnCollisionExit(Collision other)
-    {
-        if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Static"))
-        {
-            switch (collisionTest)
-            {
-                case CollisionTest.Drop:
-                    ActiveHand?.Drop();
-                    break;
-            }
         }
     }
 
