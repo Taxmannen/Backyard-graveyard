@@ -9,6 +9,8 @@ public class LoadingBar : MonoBehaviour
     private float loadingBarFillAmount;
     private Image loadingBarImage;
 
+    private Door triggeringDoor;
+
 
     private void Start()
     {
@@ -23,6 +25,11 @@ public class LoadingBar : MonoBehaviour
 
     public void EmptyLoadingBar()
     {
+        if (triggeringDoor != null)
+        {
+            triggeringDoor.fenceDoor.transform.rotation = triggeringDoor.closedTransform.rotation;
+            triggeringDoor = null;
+        }
         StopAllCoroutines();
         loadingBarFillAmount = 0f;
         loadingBarImage.fillAmount = loadingBarFillAmount;
@@ -30,12 +37,17 @@ public class LoadingBar : MonoBehaviour
 
     private IEnumerator FillLoadingBar(Door triggeringDoor)
     {
-        while (loadingBarFillAmount < 1f)
+        this.triggeringDoor = triggeringDoor;
+        while (loadingBarFillAmount <= 1f)
         {
             loadingBarFillAmount += 0.01f;
             loadingBarImage.fillAmount = loadingBarFillAmount;
+            
+            triggeringDoor.fenceDoor.transform.rotation = Quaternion.Lerp(triggeringDoor.closedTransform.rotation, triggeringDoor.openTransform.rotation, loadingBarFillAmount);
+
             yield return new WaitForSeconds(0.01f);
         }
+        triggeringDoor.fenceDoor.transform.rotation = triggeringDoor.openTransform.rotation;
         triggeringDoor.StartTeleportationSequence();
         EmptyLoadingBar();
         yield return null;
