@@ -200,4 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a26737b6f0a48104f807a38fad3e3610, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  placementType: 2
+  placedObject: {fileID: 0}
+  ghost: {fileID: 0}
   grave: {fileID: 0}
