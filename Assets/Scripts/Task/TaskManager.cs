@@ -56,7 +56,8 @@ public class TaskManager : Singleton<TaskManager>
         for (int i = 0; i < maxNumberOfTasks; i++) {
             Task task = GetAvailableTask();
 
-            task?.Activate(maxTimeInSeconds);
+            if(task.gameObject.activeSelf == false)
+                task.Activate(maxTimeInSeconds);
         }
 
         return;

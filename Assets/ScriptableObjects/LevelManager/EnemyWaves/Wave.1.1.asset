@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91a6c921c795c1b4fbb0dce86fba4c26, type: 3}
   m_Name: Wave.1.1
   m_EditorClassIdentifier: 
-  timeLimit: 1
+  timeLimit: 0
   timelimitForWave: 5
   timeBetweenEnemySpawns: 5
-  nrOfTasks: 1
+  nrOfTasks: 5
   timePerTask: 600
+  chanceOfCorrectBodyCombination: 0
   nrOfSpawnsPerWave: 3
   unrestModifier: 0

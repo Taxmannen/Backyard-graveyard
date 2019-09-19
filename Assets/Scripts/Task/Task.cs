@@ -77,6 +77,8 @@ public class Task : MonoBehaviour
     }
 
     public void Activate(float maxTimeInSeconds) {
+        Initialise();
+
         this.maxTimeInSeconds = maxTimeInSeconds;
 
         gameObject.SetActive(true);
