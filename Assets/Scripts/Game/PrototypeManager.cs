@@ -108,7 +108,7 @@ public class PrototypeManager : Singleton<PrototypeManager>
         for (int i = 0; i < levels[currentLevel].gameWaves[currentWave].zombieWaves.Length; i++) {
             zombieWavesQueue.Enqueue(levels[currentLevel].gameWaves[currentWave].zombieWaves[i]);
         }
-        zombieSpawner.SetWaves(zombieWavesQueue, levels[currentLevel].gameWaves[currentWave].timeBetweenZombies);
+        zombieSpawner?.SetWaves(zombieWavesQueue, levels[currentLevel].gameWaves[currentWave].timeBetweenZombies);
     }
 
     private void SetGraveRobberWaves() {
@@ -116,6 +116,6 @@ public class PrototypeManager : Singleton<PrototypeManager>
         for (int i = 0; i < levels[currentLevel].gameWaves[currentWave].graveRobberWaves.Length; i++) {
             graveRobberWavesQueue.Enqueue(levels[currentLevel].gameWaves[currentWave].graveRobberWaves[i]);
         }
-        graveRobberSpawner.SetWaves(graveRobberWavesQueue, levels[currentLevel].gameWaves[currentWave].timeBetweenZombies);
+        graveRobberSpawner?.SetWaves(graveRobberWavesQueue, levels[currentLevel].gameWaves[currentWave].timeBetweenZombies);
     }
 }

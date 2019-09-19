@@ -17,6 +17,7 @@ TagManager:
   - Decal
   - BodyPart
   - FireHolder
+  - Button Trigger
   layers:
   - Default
   - TransparentFX

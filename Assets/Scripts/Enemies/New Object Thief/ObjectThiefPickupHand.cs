@@ -30,7 +30,8 @@ public class ObjectThiefPickupHand : MonoBehaviour
     {
         if(ornament.Placement)
         {
-            ornament.PickupOrnamentFromPlacement();
+            //ornament.PickupOrnamentFromPlacement();
+            ornament.PickupObjectFromPlacement();
         }
     }
 
