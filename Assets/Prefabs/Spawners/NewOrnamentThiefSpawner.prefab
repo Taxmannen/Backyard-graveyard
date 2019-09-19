@@ -44,10 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6e83e1af4c8e284bb3eba0e47a92587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTimeBetweenEachSpawn: 10
-  timeDecreaseBetweenEachSpawn: 1
-  endTimeBetweenEachSpawn: 2
-  objectPool: {fileID: 2569839527265381916}
+  enemySpawnLocations: []
 --- !u!114 &2569839527265381916
 MonoBehaviour:
   m_ObjectHideFlags: 0

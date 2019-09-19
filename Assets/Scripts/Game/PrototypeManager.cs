@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -43,27 +44,15 @@ public class PrototypeManager : Singleton<PrototypeManager>
     [SerializeField] private LevelSO[] levels;
     [SerializeField] private int currentLevel;
     [SerializeField] private int currentWave;
+    [SerializeField] private bool clearInteractablesOnPickup = false;
 
     [Header("References")]
-    [SerializeField] private EnemySpawner zombieSpawner;
-    [SerializeField] private EnemySpawner graveRobberSpawner;
+    //[SerializeField] private EnemySpawner zombieSpawner;
+    //[SerializeField] private EnemySpawner graveRobberSpawner;
 
-    //[Header("Tasks")]
-    //[SerializeField] private int nrOfTasks = 5;
-    //[SerializeField] private int nrOfOrnaments = int.MaxValue; //Unused
-    //[SerializeField] private float timePerTask = 10 * 60; // 10 minutes * 60 seconds per minute
+    private DateTime waveStartTime;
 
-    //[Header("Zombies")]
-    ////[SerializeField] private int totalNrOfZombies = 3;
-    //[SerializeField] private ZombieWaves[] zombieWaves;
-    //[SerializeField] private float timeBetweenZombies = 0.5f;
-
-    //[Header("GraveRobbers")]
-    ////[SerializeField] private int totalNrOfGraveRobbers = 2;
-    //[SerializeField] private GraveRobberWaves[] graveRobbersWaves;
-    //[SerializeField] private float timeBetweenGraveRobbers = 0.5f;
-
-    public int NrOfTasks { get => levels[currentLevel].gameWaves[currentWave].nrOfTasks; private set => levels[currentLevel].gameWaves[currentWave].nrOfTasks = value; }
+    public int NrOfTasks { get => GetCurrentWave().nrOfTasks; private set => GetCurrentWave().nrOfTasks = value; }
 
     private void Awake() {
         SetInstance(this);
@@ -75,11 +64,22 @@ public class PrototypeManager : Singleton<PrototypeManager>
 
     void Start()
     {
-        TaskManager.GetInstance().ActivateTasks(levels[currentLevel].gameWaves[currentWave].timePerTask, levels[currentLevel].gameWaves[currentWave].nrOfTasks);
+        TaskManager.GetInstance().ActivateTasks(GetCurrentWave().timePerTask, GetCurrentWave().nrOfTasks);
 
-        SetZombieWaves();
-        SetGraveRobberWaves();
+        SetEnemySpawnerProperties();
     }
+
+    private void Update() {
+        if(
+            GetCurrentWave().timeLimit == true &&
+            (DateTime.Now - waveStartTime).TotalSeconds > GetCurrentWave().timelimitForWave) {
+            Debug.Log("Time limit over: you are Lose game?", this);
+            //Lose game here
+        }
+    }
+
+    private LevelSO GetCurrentLevel() { return levels[currentLevel]; }
+    private EnemyWaveSO GetCurrentWave() { return levels[currentLevel].gameWaves[currentWave]; }
 
     public void AdvanceLevel() {
         if(levels[currentLevel + 1] == null) {
@@ -93,6 +93,11 @@ public class PrototypeManager : Singleton<PrototypeManager>
         }
         else {
             currentWave++;
+
+            try { TaskManager.GetInstance().ResetTasks(); } catch(System.Exception e) { Debug.LogError(e); }
+            if (clearInteractablesOnPickup) GameManager.GetInstance().ClearAllInteractables();
+
+            waveStartTime = DateTime.Now;
         }
     }
 
@@ -101,21 +106,10 @@ public class PrototypeManager : Singleton<PrototypeManager>
         if (levels[currentWave].gameWaves[0] == null) throw new System.Exception("No levels set in currentLevel");
 
         currentWave = 0;
+        waveStartTime = DateTime.Now;
     }
 
-    private void SetZombieWaves() {
-        Queue<EnemyWaves> zombieWavesQueue = new Queue<EnemyWaves>();
-        for (int i = 0; i < levels[currentLevel].gameWaves[currentWave].zombieWaves.Length; i++) {
-            zombieWavesQueue.Enqueue(levels[currentLevel].gameWaves[currentWave].zombieWaves[i]);
-        }
-        zombieSpawner?.SetWaves(zombieWavesQueue, levels[currentLevel].gameWaves[currentWave].timeBetweenZombies);
-    }
-
-    private void SetGraveRobberWaves() {
-        Queue<EnemyWaves> graveRobberWavesQueue = new Queue<EnemyWaves>();
-        for (int i = 0; i < levels[currentLevel].gameWaves[currentWave].graveRobberWaves.Length; i++) {
-            graveRobberWavesQueue.Enqueue(levels[currentLevel].gameWaves[currentWave].graveRobberWaves[i]);
-        }
-        graveRobberSpawner?.SetWaves(graveRobberWavesQueue, levels[currentLevel].gameWaves[currentWave].timeBetweenZombies);
+    private void SetEnemySpawnerProperties() {
+        EnemySpawner.GetInstance()?.SetWavesProperties(GetCurrentWave().timeBetweenEnemySpawns, GetCurrentWave().unrestModifier, GetCurrentWave().nrOfSpawnsPerWave);
     }
 }

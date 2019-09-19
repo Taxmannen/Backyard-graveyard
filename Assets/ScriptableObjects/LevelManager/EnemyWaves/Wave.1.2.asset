@@ -12,13 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91a6c921c795c1b4fbb0dce86fba4c26, type: 3}
   m_Name: Wave.1.2
   m_EditorClassIdentifier: 
-  zombieWaves:
-  - nrOfEnemies: 2
-    timeUntilSpawn: 15
-  - nrOfEnemies: 3
-    timeUntilSpawn: 30
-  graveRobberWaves:
-  - nrOfEnemies: 2
-    timeUntilSpawn: 15
-  - nrOfEnemies: 3
-    timeUntilSpawn: 30
+  timeLimit: 0
+  timelimitForWave: 60
+  timeBetweenEnemySpawns: 5
+  nrOfTasks: 5
+  timePerTask: 600
+  unrestModifier: 0

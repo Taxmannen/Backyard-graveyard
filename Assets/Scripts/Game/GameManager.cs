@@ -26,4 +26,8 @@ public class GameManager : Singleton<GameManager>
         else        Time.timeScale = 1;
         PauseEvent?.Invoke(state);
     }
+
+    public void ClearAllInteractables() {
+        throw new NotImplementedException();
+    }
 }
