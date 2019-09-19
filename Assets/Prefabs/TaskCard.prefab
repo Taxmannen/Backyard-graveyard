@@ -1586,7 +1586,7 @@ Transform:
   m_GameObject: {fileID: 6120881116044642905}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 6120881114564293871}
   - {fileID: 1549033658897626899}
@@ -1733,7 +1733,6 @@ MonoBehaviour:
   snapOnPickup: 1
   shouldDespawnWhenOnGround: 0
   despawnTimeWhenOnGround: 0
-  collisionTest: 0
   snappedPosition: {x: 0, y: -0.19, z: 0.06}
   snappedRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &7009350503707033692
