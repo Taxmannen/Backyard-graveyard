@@ -63,9 +63,18 @@ public class TaskCard : MonoBehaviour
 
     private void SetOrnamentType(int Ornament01Type, int Ornament02Type, int Ornament03Type)
     {
-        OrnamentTypelot01Image.sprite = OrnamentTypeprites[Ornament01Type];
-        OrnamentTypelot02Image.sprite = OrnamentTypeprites[Ornament02Type];
-        OrnamentTypelot03Image.sprite = OrnamentTypeprites[Ornament03Type];
+        if (Ornament01Type == (int)OrnamentType.None)
+            OrnamentTypelot01Image.sprite = null;
+        else
+            OrnamentTypelot01Image.sprite = OrnamentTypeprites[Ornament01Type];
+        if (Ornament02Type == (int)OrnamentType.None)
+            OrnamentTypelot02Image.sprite = null;
+        else
+            OrnamentTypelot02Image.sprite = OrnamentTypeprites[Ornament02Type];
+        if (Ornament03Type == (int)OrnamentType.None)
+            OrnamentTypelot03Image.sprite = null;
+        else
+            OrnamentTypelot03Image.sprite = OrnamentTypeprites[Ornament03Type];
     }
 
     private void SetBody(int BodyType)

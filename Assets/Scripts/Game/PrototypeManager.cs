@@ -62,6 +62,9 @@ public class PrototypeManager : Singleton<PrototypeManager>
 
     void Start()
     {
+        //This swhould not happen here pls
+        //Make start functrion or somth smh
+        SetLevel(levels[0]);
         TaskManager.GetInstance().ActivateTasks(GetCurrentWave().timePerTask, GetCurrentWave().nrOfTasks, GetCurrentWave().minNrOfOrnamnets, GetCurrentWave().maxNrOfOrnamnets);
 
         SetEnemySpawnerProperties();

@@ -134,19 +134,23 @@ public class Task : MonoBehaviour
         body = (BodyType)bodydIndex;
 
         int nrOfOrnaments = RandomManager.GetRandomNumber(minNrOfOrnaments, maxNrOfOrnaments);
-        ornamentType = new OrnamentType[nrOfOrnaments]; 
-        for (int i = 0; i < nrOfOrnaments; i++) {
-            ornamentType[i] = (OrnamentType)RandomManager.GetRandomNumber(0, (int)OrnamentType.NumberOfTypes);
+        //Debug.LogError($"Fetching random number {minNrOfOrnaments}:{maxNrOfOrnaments} and getting {nrOfOrnaments}");
+        //ornamentType = new OrnamentType[(int)OrnamentType.NumberOfTypes]; 
+        for (int i = 0; i < 3; i++) {
+            if (i < nrOfOrnaments)
+                ornamentType[i] = (OrnamentType)RandomManager.GetRandomNumber(0, (int)OrnamentType.NumberOfTypes);
+            else
+                ornamentType[i] = OrnamentType.None;
         }
 
         if (TaskManager.GetInstance().IncludeTreatments) {
             int treatmentIndex = RandomManager.GetRandomNumber(0, (int)TreatmentType.NumberOfTypes);
             treatment = (TreatmentType)treatmentIndex;
 
-            TaskCard.SetTaskIngredients(ornament1, ornament2, ornament3, bodydIndex, headIndex, treatmentIndex);
+            TaskCard.SetTaskIngredients((int)ornamentType[0], (int)ornamentType[1], (int)ornamentType[2], bodydIndex, headIndex, treatmentIndex);
         }
         else {
-            TaskCard.SetTaskIngredients(ornament1, ornament2, ornament3, bodydIndex, headIndex);
+            TaskCard.SetTaskIngredients((int)ornamentType[0], (int)ornamentType[1], (int)ornamentType[2], bodydIndex, headIndex);
         }
 
         //maxTimeInSeconds = RandomManager.GetRandomNumber(taskManager.TimeLimitInSecondsMin, taskManager.TimeLimitInSecondsMax);
@@ -162,7 +166,7 @@ public class Task : MonoBehaviour
     /// <param name="body"></param>
     /// <param name="OrnamentType"></param>
     /// <returns>Returns true if the task completed this frame</returns>
-    public bool CheckTask(HeadType head, BodyType body, List<OrnamentType> OrnamentType, TreatmentType bodyTreatment, TreatmentType headTreatment) {
+    public bool CheckTask(HeadType head, BodyType body, List<OrnamentType> ornamentType, TreatmentType bodyTreatment, TreatmentType headTreatment) {
         if (taskEnded) {
             Debug.Log("Completed");
             return false;
@@ -172,12 +176,13 @@ public class Task : MonoBehaviour
         if (this.Head == head && this.Body == body && (!TaskManager.GetInstance().IncludeTreatments || bodyTreatment == treatment || headTreatment == treatment)) {
             //correct body, check OrnamentType
 
-            List<OrnamentType> tmpOrnamentType = new List<OrnamentType>(OrnamentType);
+            List<OrnamentType> tmpOrnamentType = new List<OrnamentType>(ornamentType);
             foreach(OrnamentType ornament in this.ornamentType) {
-                if (!tmpOrnamentType.Contains(ornament)) {
+                if (!tmpOrnamentType.Contains(ornament) && (ornament != OrnamentType.None)) {
                     Debug.Log("OrnamentType did not contain: " + ornament);
                     return false;
                 }
+                else if (ornament == OrnamentType.None) { }
                 else {
                     tmpOrnamentType.Remove(ornament);
                 }
