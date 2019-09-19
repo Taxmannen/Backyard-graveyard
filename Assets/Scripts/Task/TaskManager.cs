@@ -115,4 +115,8 @@ public class TaskManager : Singleton<TaskManager>
         // Disable all InteractableObjects
         DisableAllObjectsOfType.DisableAllObjects<Interactable>();
     }
+
+    public void ResetTasks() {
+        throw new System.NotImplementedException();
+    }
 }

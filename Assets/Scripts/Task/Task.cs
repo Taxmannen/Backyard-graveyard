@@ -14,14 +14,18 @@ using UnityEngine;
 public class Task : MonoBehaviour
 {
     public GameObject PrefabTaskCard;
-    [SerializeField] private TaskCard taskCard;
+    [SerializeField, ReadOnly] private TaskCard taskCard;
+    [SerializeField] private Transform taskCardStartPos;
 
-    [SerializeField]  private HeadType head;
-    [SerializeField]  private BodyType body;
-    [SerializeField]  private OrnamentType[] ornamentType = new OrnamentType[3];
-    [SerializeField]  private TreatmentType treatment;
+    [Header("Debug")]
+    [SerializeField, ReadOnly] private HeadType head;
+    [SerializeField, ReadOnly] private BodyType body;
+    [SerializeField, ReadOnly] private OrnamentType[] ornamentType = new OrnamentType[3];
+    [SerializeField, ReadOnly] private TreatmentType treatment;
+    [SerializeField, ReadOnly] private bool instantiateNewTaskCards = true;
 
     private bool taskEnded = false;
+
 
     TaskManager taskManager;
 
@@ -40,7 +44,7 @@ public class Task : MonoBehaviour
 
     public void Reinitialise() {
         if (TaskManager.GetInstance().TasksAvailableToSelect()) {
-            TaskCard.gameObject.transform.position = transform.position;
+            TaskCard.gameObject.transform.position = taskCardStartPos.position;
             TaskCard.gameObject.transform.localScale = new Vector3(5f, 5f, 5f);
 
             ResetVars();
@@ -54,10 +58,15 @@ public class Task : MonoBehaviour
         if (initialised)
             return;
 
-        GameObject go = GameObject.Instantiate(PrefabTaskCard, transform.position, transform.rotation, transform);
-        go.transform.localScale = new Vector3(5f, 5f, 5f);
-        TaskCard = go.GetComponent<TaskCard>();
-        TaskCard.task = this;
+        if(TaskCard == null || instantiateNewTaskCards) {
+            GameObject go = GameObject.Instantiate(PrefabTaskCard, taskCardStartPos.position, Quaternion.identity);
+            //go.transform.localScale = new Vector3(5f, 5f, 5f);
+            TaskCard = go.GetComponent<TaskCard>();
+            TaskCard.task = this;
+        }
+        else{
+            TaskCard.gameObject.SetActive(true);
+        }
 
         ResetVars();
     }
