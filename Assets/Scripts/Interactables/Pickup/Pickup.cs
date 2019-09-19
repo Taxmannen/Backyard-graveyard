@@ -9,16 +9,17 @@ public enum PickupType { Other, Weapon, Ornament, Head, Body, TaskCard, None }
 [RequireComponent(typeof(Rigidbody))]
 public class Pickup : Interactable
 {
+    #region Variables
     [Header("Pickup")]
     [SerializeField] private PickupType pickupType;
     [SerializeField] private bool snapOnPickup;
-    //[SerializeField] protected bool snapWhenThrow;
     [SerializeField] protected bool shouldDespawnWhenOnGround;
     [SerializeField] protected float despawnTimeWhenOnGround;
 
     private CollisionManager collisionManager;
     private Collider[] colliders;
     private Coroutine coroutine;
+    #endregion
 
     private void Awake()
     {

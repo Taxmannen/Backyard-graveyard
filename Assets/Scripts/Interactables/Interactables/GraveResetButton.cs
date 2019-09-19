@@ -1,10 +1,8 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GraveResetButton : Interactable
 {
-
     private Grave grave;
     private float cooldownTime = 2f;
     private bool onCooldown;

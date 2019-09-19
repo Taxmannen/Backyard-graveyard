@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System;
 
-/* Script Made By Daniel */
 public enum ChangeTrack { PreviousTrack, NextTrack }
 
+/* Script Made By Daniel */
 [RequireComponent(typeof(AudioSource))]
 public class MusicPlayer : MonoBehaviour
 {

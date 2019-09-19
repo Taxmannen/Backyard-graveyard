@@ -16,7 +16,8 @@ public class Player : Singleton<Player>
     public KeyCode reenableObjectsKey;
     public KeyCode disableObjectsKey;
 
-    private void Start() {
+    private void Start()
+    {
         SetInstance(this);
     }
 
@@ -35,6 +36,7 @@ public class Player : Singleton<Player>
         }
     }
 
+    // Made By Simon
     private void Update() {
         if (Input.GetKeyUp(restartKey)) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         if (Input.GetKeyUp(reenableObjectsKey)) DisableAllObjectsOfType.EnableAllDisabledObjects<Interactable>();

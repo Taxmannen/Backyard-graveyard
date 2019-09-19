@@ -53,17 +53,6 @@ public abstract class ObjectPool : Singleton<ObjectPool>
         objects.Enqueue(objectToReturn);
     }
 
-    //Simon
-    public void ReturnAllObjects() {
-        var activeObjects = objects
-            .Where(item => item.gameObject.activeSelf)
-            .Select(item => item.gameObject);
-
-        foreach(GameObject go in activeObjects) {
-            ReturnToPool(go);
-        }
-    }
-
     private void AddObjects(int count)
     {
         for (int i = 0; i < count; i++)
@@ -88,5 +77,18 @@ public abstract class ObjectPool : Singleton<ObjectPool>
         objectTransform.SetParent(null);
         objectTransform.localScale = scale;
         objectTransform.SetParent(parent);
+    }
+
+    //Simon
+    public void ReturnAllObjects()
+    {
+        var activeObjects = objects
+            .Where(item => item.gameObject.activeSelf)
+            .Select(item => item.gameObject);
+
+        foreach (GameObject go in activeObjects)
+        {
+            ReturnToPool(go);
+        }
     }
 }

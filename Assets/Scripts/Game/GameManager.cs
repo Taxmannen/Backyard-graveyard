@@ -9,7 +9,8 @@ public class GameManager : Singleton<GameManager>
 
     private bool paused;
 
-    private void Awake() {
+    private void Awake()
+    {
         SetInstance(this);
     }
 

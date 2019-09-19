@@ -7,8 +7,8 @@ public class OrnamentPlacement : Placement
     [Header("Ornament Placement")]
     [SerializeField] private Grave grave;
 
-    //Test Petter
-    private float timeOnGroundBeforeUnrestIncrease = 5f; //Change to 15 sec
+    //Petters Variables
+    private float timeOnGroundBeforeUnrestIncrease = 15f;
     private Coroutine coroutine;
     private int value = 1;
 

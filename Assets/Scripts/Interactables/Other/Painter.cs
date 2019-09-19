@@ -12,7 +12,7 @@ public class Painter : MonoBehaviour
     private List<GameObject> contactObjects = new List<GameObject>();
     private PaintPool pool;
     private Vector3 lastPaintPos;
-    private float distance = 0.06f;
+    private float rayDistance = 0.06f;
     private float minDistance = 0.000025f;
     #endregion
 
@@ -23,15 +23,14 @@ public class Painter : MonoBehaviour
 
     private void Update()
     {
-        Vector3 forward = rayTransform.TransformDirection(Vector3.forward);
-        Debug.DrawRay(rayTransform.position, forward * distance, Color.green);
-        if (contactObjects.Count > 0) Paint(forward);
-        //if (Input.GetKey(KeyCode.Mouse0)) DebugPaint(); /* Remove before release */
+        if (contactObjects.Count > 0) Paint();
     }
 
-    private void Paint(Vector3 forward)
+    private void Paint()
     {
-        if (Physics.Raycast(rayTransform.position, forward, out RaycastHit rayHit, distance, layers, QueryTriggerInteraction.Ignore))
+        Vector3 forward = rayTransform.TransformDirection(Vector3.forward);
+        //Debug.DrawRay(rayTransform.position, forward * distance, Color.green);
+        if (Physics.Raycast(rayTransform.position, forward, out RaycastHit rayHit, rayDistance, layers, QueryTriggerInteraction.Ignore))
         {
             //Debug.Log(rayHit.collider.gameObject.name);
             float distanceBetweenPaint = (lastPaintPos - rayHit.point).sqrMagnitude;
@@ -46,29 +45,6 @@ public class Painter : MonoBehaviour
                         if (bodyPart) bodyPart.SetTreatment(TreatmentType.MakeUp);
                     }
                     lastPaintPos = rayHit.point;
-                }
-            }
-        }
-    }
-
-    /* Remove before release */
-    private void DebugPaint()
-    {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hitInfo, 100f))
-        {
-            if (!hitInfo.collider.isTrigger)
-            {
-                GameObject paint = pool?.Get(hitInfo.point, Quaternion.FromToRotation(Vector3.up, hitInfo.normal), hitInfo.collider.transform);
-                //GameObject paint = Instantiate(decal, hitInfo.point, Quaternion.FromToRotation(Vector3.up, hitInfo.normal));
-                if (paint)
-                {
-                    if (hitInfo.collider.gameObject.CompareTag("Interactable"))
-                    {
-                        BodyPart bodyPart = hitInfo.collider.GetComponent<BodyPart>();
-                        if (bodyPart) bodyPart.SetTreatment(TreatmentType.MakeUp, paint);
-                    }
-                    lastPaintPos = hitInfo.point;
                 }
             }
         }

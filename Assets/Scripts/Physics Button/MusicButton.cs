@@ -11,7 +11,7 @@ public class MusicButton : MonoBehaviour
 
     private Vector3 position;
     private bool canTrigger = true;
-    private bool hasCollided;
+    private bool hasCollided = false;
 
     private void FixedUpdate()
     {
@@ -42,15 +42,15 @@ public class MusicButton : MonoBehaviour
         {
             case ButtonAction.Play:
                 musicPlayer.PlayAndPause();
-                Debug.Log("Play");
+                //Debug.Log("Play");
                 break;
             case ButtonAction.PreviousTrack:
                 musicPlayer.ChangeSong(ChangeTrack.PreviousTrack);
-                Debug.Log("Previous Track");
+                //Debug.Log("Previous Track");
                 break;
             case ButtonAction.NextTrack:
                 musicPlayer.ChangeSong(ChangeTrack.NextTrack);
-                Debug.Log("Next Track");
+                //Debug.Log("Next Track");
                 break;
             default:
                 Debug.LogError("Something Went Wrong");

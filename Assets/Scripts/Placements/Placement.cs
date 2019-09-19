@@ -9,7 +9,6 @@ public class Placement : MonoBehaviour
     [SerializeField, ReadOnly] protected GameObject placedObject = null;
     [SerializeField, ReadOnly] protected GameObject ghost = null;
     
-
     private void OnTriggerStay(Collider other)
     {
         if (placedObject == null && other.gameObject.CompareTag("Interactable"))
@@ -68,10 +67,10 @@ public class Placement : MonoBehaviour
             Rigidbody rb = placedObject.GetComponent<Rigidbody>();
             rb.constraints = RigidbodyConstraints.None;
         
-            //Test Petter
+         
             if (placedObject.GetComponent<Ornament>())
             {
-                (this as OrnamentPlacement).SetUnrestIEnumerator(false);
+                (this as OrnamentPlacement).SetUnrestIEnumerator(false); //Made By Petter
             }
             else
             {
