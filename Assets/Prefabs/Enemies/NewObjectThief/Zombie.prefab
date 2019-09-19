@@ -1203,6 +1203,7 @@ MonoBehaviour:
   armSpeed: 50
   distanceBeforeTargetIsReached: 3
   distanceBeforeTargetIsPickedUp: 0.5
+  distanceBeforeEnemyDespawn: 20
   timeBeforeTryingNewPickupTarget: 2
   timeBeforeTryingNewTarget: 5
 --- !u!114 &1125390058846829343
@@ -1218,9 +1219,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundCheck: {fileID: 1125390059693147436}
-  rigidBodyToJump: {fileID: 1125390059830204703}
-  constantForce: {fileID: 1125390059392769588}
+  bodyRigidBody: {fileID: 1125390059830204703}
+  marionetteRigidBody: {fileID: 1125390059392769591}
   jumpForce: 100
+  fleeJumpForce: 2000
 --- !u!1 &1125390059392769584
 GameObject:
   m_ObjectHideFlags: 0
@@ -1692,3 +1694,4 @@ MonoBehaviour:
   stringGameObjects:
   - {fileID: 1125390059392769584}
   - {fileID: 1125390058149045765}
+  objectThief: {fileID: 1125390058846829342}

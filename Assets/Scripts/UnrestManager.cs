@@ -27,5 +27,6 @@ public class UnrestManager : Singleton<UnrestManager>
         CurrentUnrest += plusOrMinusValue;
         CurrentUnrest = Mathf.Clamp(CurrentUnrest, minUnrest, maxUnrest);
         OnUnrestChange?.Invoke(CurrentUnrest);
+        Debug.Log(CurrentUnrest);
     }
 }

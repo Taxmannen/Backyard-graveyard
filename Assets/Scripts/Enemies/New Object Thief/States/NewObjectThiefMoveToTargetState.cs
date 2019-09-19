@@ -12,9 +12,6 @@ public class NewObjectThiefMoveToTargetState : NewObjectThiefState
     //Change this to trigger-area later?
     private float distanceToTargetBeforeStateChange;
 
-    private Vector3 marionetteStringPosition;
-    private Vector3 directionToTarget;
-
     public override void Enter(NewObjectThief objectThief)
     {
         timeBeforeTryingNewTarget = objectThief.GetTimeBeforeTryingNewTarget();
@@ -37,28 +34,28 @@ public class NewObjectThiefMoveToTargetState : NewObjectThiefState
 
     public override NewObjectThiefState FixedUpdate(NewObjectThief objectThief, float t)
     {
-        SetDirectionToTarget(objectThief);
-        MoveTowardsTarget(objectThief);
+        //SetDirectionToTarget(objectThief);
+        objectThief.MoveToTarget();
         return null;
     }
 
-    private void SetDirectionToTarget(NewObjectThief objectThief)
-    {
-        marionetteStringPosition = objectThief.GetMarionetteStringPosition();
-        directionToTarget = objectThief.GetDirectionToTarget(marionetteStringPosition);
-    }
+    //private void SetDirectionToTarget(NewObjectThief objectThief)
+    //{
+    //    marionetteStringPosition = objectThief.GetMarionetteStringPosition();
+    //    directionToTarget = objectThief.GetDirectionToTarget(marionetteStringPosition);
+    //}
 
-    private void MoveTowardsTarget(NewObjectThief objectThief)
-    {
-        objectThief.Move(directionToTarget);
-        objectThief.enemyJump.TryJump();
-    }
+    //private void MoveTowardsTarget(NewObjectThief objectThief)
+    //{
+    //    objectThief.MoveToTarget(directionToTarget);
+    //    objectThief.enemyJump.TryJump();
+    //}
 
 
 
     public override NewObjectThiefState Update(NewObjectThief objectThief, float t)
     {
-        float distanceToTarget = objectThief.GetDistanceToTarget(marionetteStringPosition);
+        float distanceToTarget = objectThief.GetDistanceToTarget(objectThief.GetMarionetteStringPosition());
 
         timeBeforeTryingNewTarget -= t;
 

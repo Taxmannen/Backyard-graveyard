@@ -15,9 +15,12 @@ public class MusicPlayer : MonoBehaviour
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
-        audioSource.clip = tracks[0].GetAudioClip();
-        audioSource.volume = tracks[0].GetVolume();
-        audioSource.Play();
+        if (tracks.Length > 0)
+        {
+            audioSource.clip = tracks[0].GetAudioClip();
+            audioSource.volume = tracks[0].GetVolume();
+            audioSource.Play();
+        }
     }
 
     public void PlayAndPause()
@@ -45,6 +48,7 @@ public class MusicPlayer : MonoBehaviour
             }
             audioSource.clip = tracks[currentTrackNumber].GetAudioClip();
             audioSource.volume = tracks[currentTrackNumber].GetVolume();
+            audioSource.Play();
         }
     }
 

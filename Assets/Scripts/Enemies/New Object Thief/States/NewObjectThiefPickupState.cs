@@ -13,9 +13,6 @@ public class NewObjectThiefPickupState : NewObjectThiefState
     //Should be changed
     private float distanceToObjectBeforeStateChange;
 
-    private Vector3 armPosition;
-    private Vector3 directionToTarget;
-
 
     public override void Enter(NewObjectThief objectThief)
     {
@@ -36,16 +33,16 @@ public class NewObjectThiefPickupState : NewObjectThiefState
 
     public override NewObjectThiefState FixedUpdate(NewObjectThief objectThief, float t)
     {
-        SetDirectionToTarget(objectThief);
-        objectThief.MoveArm(directionToTarget);
+        //SetDirectionToTarget(objectThief);
+        objectThief.MoveArm();
         return null;
     }
 
-    private void SetDirectionToTarget(NewObjectThief objectThief)
-    {
-        armPosition = objectThief.GetArmPosition();
-        directionToTarget = objectThief.GetDirectionToTarget(armPosition);
-    }
+    //private void SetDirectionToTarget(NewObjectThief objectThief)
+    //{
+    //    armPosition = objectThief.GetArmPosition();
+    //    directionToTarget = objectThief.GetDirectionToTarget(armPosition);
+    //}
 
     public override NewObjectThiefState Update(NewObjectThief objectThief, float t)
     {
@@ -55,14 +52,10 @@ public class NewObjectThiefPickupState : NewObjectThiefState
             return new NewObjectThiefSearchState();
         }
 
-        float distanceToTarget = objectThief.GetDistanceToTarget(armPosition);
+        float distanceToTarget = objectThief.GetDistanceToTarget(objectThief.GetArmPosition());
         if (distanceToTarget < distanceToObjectBeforeStateChange)
         {
             PickupObject(objectThief);
-
-            //Fulfix där fienden rör sig mot ett objekt med tagen "Out of Bounds". Används för att despawna fienden.
-            objectThief.FindNewCurrentTargetObjectWithTag("OutOfBounds");
-
             return GoToCorrectFleeState(objectThief);
         }
 
@@ -83,6 +76,10 @@ public class NewObjectThiefPickupState : NewObjectThiefState
         if (objectThief.objectSearcher.GetTargetType() == PickupType.Body)
         {
             return new NewObjectThiefFleeWithBodyState();
+        }
+        else if(objectThief.objectSearcher.GetTargetType() == PickupType.Ornament)
+        {
+            return new NewObjectThiefFleeWithOrnamentState();
         }
         else
         {
