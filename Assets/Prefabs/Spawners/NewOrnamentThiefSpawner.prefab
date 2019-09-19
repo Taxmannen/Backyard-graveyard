@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 652701250328941300}
-  - component: {fileID: 652701250328941303}
   - component: {fileID: 2569839527265381916}
   m_Layer: 0
   m_Name: NewOrnamentThiefSpawner
@@ -32,19 +31,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &652701250328941303
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 652701250328941302}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6e83e1af4c8e284bb3eba0e47a92587, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemySpawnLocations: []
 --- !u!114 &2569839527265381916
 MonoBehaviour:
   m_ObjectHideFlags: 0
