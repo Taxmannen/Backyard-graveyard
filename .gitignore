@@ -4,7 +4,7 @@
 [Bb]uild/
 [Bb]uilds/
 /Assets/AssetStoreTools*
-/Assets/=Test=-/*
+/Assets/-=Test=-/*
 /Assets/-=Test=-.meta
 
 # Visual Studio cache directory
