@@ -1708,8 +1708,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9c12670a40893544a9c676c42218bdea, type: 3}
   TreatmentSprites:
   - {fileID: 21300000, guid: 66b8a1bdb4fa3a144967b623950a4e7d, type: 3}
-  - {fileID: 21300000, guid: 7e6f70a4e77081f4ca68a4ba63ff1f57, type: 3}
   - {fileID: 21300000, guid: 4ccb686631c009b41bbeae06e98429ab, type: 3}
+  - {fileID: 21300000, guid: 7e6f70a4e77081f4ca68a4ba63ff1f57, type: 3}
   taskCompletedImage: {fileID: 4109342618497726613}
   taskFailedImage: {fileID: 4810072535817708267}
   timerImage: {fileID: 4310205551068021343}

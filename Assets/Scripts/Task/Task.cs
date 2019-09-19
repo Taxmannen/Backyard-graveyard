@@ -16,10 +16,10 @@ public class Task : MonoBehaviour
     public GameObject PrefabTaskCard;
     [SerializeField] private TaskCard taskCard;
 
-    private HeadType head;
-    private BodyType body;
-    private OrnamentType[] ornamentType = new OrnamentType[3];
-    private TreatmentType treatment;
+    [SerializeField]  private HeadType head;
+    [SerializeField]  private BodyType body;
+    [SerializeField]  private OrnamentType[] ornamentType = new OrnamentType[3];
+    [SerializeField]  private TreatmentType treatment;
 
     private bool taskEnded = false;
 
@@ -124,6 +124,7 @@ public class Task : MonoBehaviour
 
         if (TaskManager.GetInstance().IncludeTreatments) {
             int treatmentIndex = RandomManager.GetRandomNumber(0, (int)TreatmentType.NumberOfTypes);
+            treatment = (TreatmentType)treatmentIndex;
 
             TaskCard.SetTaskIngredients(ornament1, ornament2, ornament3, bodydIndex, headIndex, treatmentIndex);
         }
