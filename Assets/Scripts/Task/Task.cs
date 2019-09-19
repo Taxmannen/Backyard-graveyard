@@ -66,7 +66,7 @@ public class Task : MonoBehaviour
         //    return;
 
         if(TaskCard == null || instantiateNewTaskCards) {
-            GameObject go = GameObject.Instantiate(PrefabTaskCard, taskCardStartPos.position, Quaternion.identity);
+            GameObject go = GameObject.Instantiate(PrefabTaskCard, transform.position, Quaternion.identity);
             //go.transform.localScale = new Vector3(5f, 5f, 5f);
             TaskCard = go.GetComponent<TaskCard>();
             TaskCard.task = this;
@@ -96,8 +96,9 @@ public class Task : MonoBehaviour
             RefreshTaskCardIngredients();
         }
         else {
-            Debug.LogError("Task error: No tasks available to do");
-            Destroy(this);
+            Debug.LogWarning("Task error: No tasks available to do");
+            Destroy(taskCard.gameObject);
+            Destroy(this.gameObject);
         }
     }
 
@@ -109,7 +110,7 @@ public class Task : MonoBehaviour
             CompleteTask(false);
         }
         else {
-            taskCard.UpdateTimerBar(quotientCompleted);
+            taskCard?.UpdateTimerBar(quotientCompleted);
         }
     }
 

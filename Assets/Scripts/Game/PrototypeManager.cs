@@ -58,13 +58,17 @@ public class PrototypeManager : Singleton<PrototypeManager>
         SetInstance(this);
 
         if (levels[0] == null) throw new System.Exception("No levels set in PrototypeManager");
+
+        currentLevel = 0;
+        currentWave = 0;
+        SetLevel(levels[0]);
     }
 
     void Start()
     {
         //This swhould not happen here pls
         //Make start functrion or somth smh
-        SetLevel(levels[0]);
+        AdvanceWave();
         TaskManager.GetInstance().ActivateTasks(GetCurrentWave().timePerTask, GetCurrentWave().nrOfTasks, GetCurrentWave().minNrOfOrnamnets, GetCurrentWave().maxNrOfOrnamnets);
 
         SetEnemySpawnerProperties();

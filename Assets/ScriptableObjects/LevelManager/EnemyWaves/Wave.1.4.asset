@@ -17,5 +17,6 @@ MonoBehaviour:
   timeBetweenEnemySpawns: 5
   nrOfTasks: 5
   timePerTask: 600
+  chanceOfCorrectBodyCombination: 95
   nrOfSpawnsPerWave: 1
   unrestModifier: 0

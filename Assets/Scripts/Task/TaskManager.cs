@@ -50,10 +50,10 @@ public class TaskManager : Singleton<TaskManager>
     public bool IncludeTreatments { get => includeTreatments; private set => includeTreatments = value; }
     public int TasksInProgress { get => tasksInProgress; set => tasksInProgress = value; }
     public bool TaskManagerSpawnsTasks { get => taskManagerSpawnsTasks; private set => taskManagerSpawnsTasks = value; }
-    public float MaxTimeInSeconds { get => maxTimeInSeconds; set => maxTimeInSeconds = value; }
-    public int MaxNumberOfTasks { get => maxNumberOfTasks; set => maxNumberOfTasks = value; }
-    public int MinNrOfOrnaments { get => minNrOfOrnaments; set => minNrOfOrnaments = value; }
-    public int MaxNrOfOrnaments { get => maxNrOfOrnaments; set => maxNrOfOrnaments = value; }
+    public float MaxTimeInSeconds { get => maxTimeInSeconds; private set => maxTimeInSeconds = value; }
+    public int MaxNumberOfTasks { get => maxNumberOfTasks; private set => maxNumberOfTasks = value; }
+    public int MinNrOfOrnaments { get => minNrOfOrnaments; private set => minNrOfOrnaments = value; }
+    public int MaxNrOfOrnaments { get => maxNrOfOrnaments; private set => maxNrOfOrnaments = value; }
 
     private void Awake() {
         SetInstance(this);
@@ -62,12 +62,12 @@ public class TaskManager : Singleton<TaskManager>
     public void ActivateTasks(float maxTimeInSeconds, int maxNumberOfTasks, int minNrOfOrnaments, int maxNrOfOrnaments) {
         this.MaxNumberOfTasks = maxNumberOfTasks;
 
-        if (!TaskManagerSpawnsTasks) return;
-
         this.maxTimeInSeconds = maxTimeInSeconds;
         this.maxNumberOfTasks = maxNumberOfTasks;
         this.minNrOfOrnaments = minNrOfOrnaments;
         this.maxNrOfOrnaments = maxNrOfOrnaments;
+
+        if (!TaskManagerSpawnsTasks) return;
 
         for (int i = 0; i < maxNumberOfTasks; i++) {
             Task task = GetAvailableTask();

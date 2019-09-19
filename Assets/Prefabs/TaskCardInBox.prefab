@@ -1482,6 +1482,7 @@ MonoBehaviour:
   taskFailedImage: {fileID: 2700516762774290561}
   timerImage: {fileID: 6659147987642687541}
   taskCompleted: 0
+  task: {fileID: 0}
 --- !u!1 &3696147139037906005
 GameObject:
   m_ObjectHideFlags: 0
