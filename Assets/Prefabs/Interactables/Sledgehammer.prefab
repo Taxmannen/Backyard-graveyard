@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8508170324669912167}
   - component: {fileID: 6289533158858342803}
   m_Layer: 8
-  m_Name: Cube.001
+  m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,7 +57,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 670224309865224971, guid: 13efcef524c927e4cbe0e6a42736f483, type: 3}
+  - {fileID: 2100000, guid: 58f5fdd07e8d4384db61dd5fcb1d4bac, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -190,7 +190,6 @@ MonoBehaviour:
   shouldDespawnWhenOnGround: 0
   despawnTimeWhenOnGround: 0
   collisionTest: 0
-  dropTime: 0.2
   damagePerForce: 3
 --- !u!1 &8880844880468426660
 GameObject:
@@ -204,7 +203,7 @@ GameObject:
   - component: {fileID: 3097021406046348967}
   - component: {fileID: 2876500994002653977}
   m_Layer: 8
-  m_Name: Cube
+  m_Name: Shaft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -249,7 +248,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 670224309865224971, guid: 13efcef524c927e4cbe0e6a42736f483, type: 3}
+  - {fileID: 2100000, guid: ef80a8eadf755c9419b44d956226a975, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
