@@ -32,7 +32,17 @@ public class Body : BodyPart
 
     private void SetColor()
     {
-        bodyType = (BodyType)Random.Range(0, 3);
+        BodyType taskBodyType = TaskManager.GetInstance().tasks[RandomManager.GetRandomNumber(0, TaskManager.GetInstance().tasks.Length)].Body;
+        int randomChanceForMatch = RandomManager.GetRandomNumber(0, 101);
+        if (randomChanceForMatch < PrototypeManager.GetInstance().GetCurrentWave().chanceOfCorrectBodyCombination)
+        {
+            bodyType = taskBodyType;
+        }
+        else
+        {
+            bodyType = (BodyType)Random.Range(0, 3);
+        }
+        
         if (bodyType == BodyType.Blue)
         {
             gameObject.GetComponentInChildren<MeshRenderer>().material.color = Color.blue;
