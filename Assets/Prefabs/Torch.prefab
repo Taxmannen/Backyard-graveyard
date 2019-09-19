@@ -130,9 +130,8 @@ MonoBehaviour:
   - {fileID: 574326487724076678}
   pickupType: 0
   snapOnPickup: 1
-  shouldDespawnWhenOnGround: 0
-  despawnTimeWhenOnGround: 0
-  collisionTest: 0
+  shouldDespawnWhenOnGround: 1
+  despawnTimeWhenOnGround: 0.1
 --- !u!114 &4201540419473863251
 MonoBehaviour:
   m_ObjectHideFlags: 0

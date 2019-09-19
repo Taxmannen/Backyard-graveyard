@@ -29,9 +29,12 @@ public class LoadingBar : MonoBehaviour
         {
             if (triggeringDoor.targetDoor.doorOnCooldown)
             {
-                triggeringDoor.CloseDoorGently();
+                triggeringDoor.DoorPairClosingSequence();
             }
-            triggeringDoor.fenceDoor.transform.rotation = triggeringDoor.closedTransform.rotation;
+            else
+            {
+                triggeringDoor.fenceDoor.transform.rotation = triggeringDoor.closedTransform.rotation;
+            }
             triggeringDoor = null;
         }
         StopAllCoroutines();

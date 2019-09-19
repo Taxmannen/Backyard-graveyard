@@ -104,21 +104,23 @@ public class Door : MonoBehaviour
         yield return null;
     }
 
-    public void CloseDoorGently()
+    public void DoorPairClosingSequence()
     {
-        StartCoroutine(CloseDoorGentlyLerp());
+        StartCoroutine(DoorPairClosingSequenceLerp());
     }
 
-    private IEnumerator CloseDoorGentlyLerp()
+    private IEnumerator DoorPairClosingSequenceLerp()
     {
         float i = 0f;
         while (i <= 1)
         {
             i += 0.01f;
-            fenceDoor.transform.rotation = Quaternion.Lerp(openTransform.rotation, closedTransform.rotation, i);
+            targetDoor.fenceDoor.transform.rotation = Quaternion.Lerp(openTransform.rotation, closedTransform.rotation, i);
             
             yield return new WaitForSeconds(0.01f);
         }
+        targetDoor.fenceDoor.transform.rotation = closedTransform.rotation;
+        fenceDoor.transform.rotation = closedTransform.rotation;
         yield return null;
     }
 }

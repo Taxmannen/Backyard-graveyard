@@ -15,8 +15,16 @@ public class FireHolder : MonoBehaviour
 
     private void Awake()
     {
-        fireParticleSystem = GetComponentInChildren<ParticleSystem>().gameObject;
-        fireParticleSystem.SetActive(false);
+        try
+        {
+            fireParticleSystem = GetComponentInChildren<ParticleSystem>().gameObject;
+            fireParticleSystem.SetActive(false);
+        }
+        catch (System.Exception)
+        {
+            Debug.LogWarning("FireHolder in " + transform.root.name + " is missing it's Particle System");
+            //throw;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
