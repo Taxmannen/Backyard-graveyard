@@ -38,6 +38,8 @@ public class Task : MonoBehaviour
 
     public TaskCard TaskCard { get => taskCard; private set => taskCard = value; }
     public TaskManager TaskManager { get => taskManager; set => taskManager = value; }
+    public HeadType Head { get => head; private set => head = value; }
+    public BodyType Body { get => body; private set => body = value; }
 
     private void Start() {
         TaskManager = TaskManager.GetInstance();
@@ -127,7 +129,7 @@ public class Task : MonoBehaviour
         TaskManager.GetInstance().TasksInProgress++;
 
         int headIndex = RandomManager.GetRandomNumber(0, (int)HeadType.NumberOfTypes);
-        head = (HeadType)headIndex;
+        Head = (HeadType)headIndex;
         int bodydIndex = RandomManager.GetRandomNumber(0, (int)BodyType.NumberOfTypes);
         body = (BodyType)bodydIndex;
 
@@ -166,8 +168,8 @@ public class Task : MonoBehaviour
             return false;
         }
 
-        Debug.Log("Checking stuff, our head " + this.head + " == " + head + " our body " + this.body + " == " + body);
-        if (this.head == head && this.body == body && (!TaskManager.GetInstance().IncludeTreatments || bodyTreatment == treatment || headTreatment == treatment)) {
+        Debug.Log("Checking stuff, our head " + this.Head + " == " + head + " our body " + this.Body + " == " + body);
+        if (this.Head == head && this.Body == body && (!TaskManager.GetInstance().IncludeTreatments || bodyTreatment == treatment || headTreatment == treatment)) {
             //correct body, check OrnamentType
 
             List<OrnamentType> tmpOrnamentType = new List<OrnamentType>(OrnamentType);

@@ -16,7 +16,17 @@ public class Head : BodyPart
     {
         MeshRenderer[] meshRenderer = GetComponentsInChildren<MeshRenderer>();
 
-        headType = (HeadType)Random.Range(0, 3);
+        HeadType taskHeadType = TaskManager.GetInstance().tasks[RandomManager.GetRandomNumber(0, TaskManager.GetInstance().tasks.Length)].Head;
+        int randomChanceForMatch = RandomManager.GetRandomNumber(0, 101);
+        if (randomChanceForMatch < PrototypeManager.GetInstance().GetCurrentWave().chanceOfCorrectBodyCombination)
+        {
+            headType = taskHeadType;
+        }
+        else
+        {
+            headType = (HeadType)Random.Range(0, 3);
+        }
+
         for (int i = 0; i < meshRenderer.Length; i++)
         {
             if (headType == HeadType.Blue)

@@ -15,6 +15,10 @@ public class Door : MonoBehaviour
 
     private Collider player;
 
+    public GameObject fenceDoor;
+    public Transform openTransform;
+    public Transform closedTransform;
+
 
     private void Awake()
     {
@@ -79,6 +83,7 @@ public class Door : MonoBehaviour
             }
             loadingBar = other.GetComponentInChildren<LoadingBar>();
             loadingBar.StartLoadingBar(this);
+            fenceDoor.transform.rotation = openTransform.rotation;
         }
     }
 
@@ -87,6 +92,7 @@ public class Door : MonoBehaviour
         if (other.tag == "Player")
         {
             loadingBar.EmptyLoadingBar();
+            fenceDoor.transform.rotation = closedTransform.rotation;
         }
     }
 
