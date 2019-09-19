@@ -15,3 +15,5 @@ MonoBehaviour:
   gameWaves:
   - {fileID: 11400000, guid: 60dc0269c850f9242ba52618e7404f88, type: 2}
   - {fileID: 11400000, guid: 03d8ec5899649e6419ed5ac002a0a1b7, type: 2}
+  - {fileID: 11400000, guid: a960c16419abd394696ffa299de0ed29, type: 2}
+  - {fileID: 11400000, guid: 6985b41a3cd51d647b3e4f154f76c257, type: 2}

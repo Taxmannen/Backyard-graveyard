@@ -78,8 +78,8 @@ public class PrototypeManager : Singleton<PrototypeManager>
         }
     }
 
-    private LevelSO GetCurrentLevel() { return levels[currentLevel]; }
-    private EnemyWaveSO GetCurrentWave() { return levels[currentLevel].gameWaves[currentWave]; }
+    public LevelSO GetCurrentLevel() { return levels[currentLevel]; }
+    public EnemyWaveSO GetCurrentWave() { return levels[currentLevel].gameWaves[currentWave]; }
 
     public void AdvanceLevel() {
         if(levels[currentLevel + 1] == null) {
@@ -87,6 +87,7 @@ public class PrototypeManager : Singleton<PrototypeManager>
         }
     }
 
+    public void CompleteWave() { AdvanceWave(); }
     public void AdvanceWave() {
         if (levels[currentLevel].gameWaves[currentWave + 1] == null) {
             AdvanceLevel();
@@ -98,6 +99,8 @@ public class PrototypeManager : Singleton<PrototypeManager>
             if (clearInteractablesOnPickup) GameManager.GetInstance().ClearAllInteractables();
 
             waveStartTime = DateTime.Now;
+
+            TaskManager.GetInstance().ActivateTasks(GetCurrentWave().timePerTask, GetCurrentWave().nrOfTasks);
         }
     }
 

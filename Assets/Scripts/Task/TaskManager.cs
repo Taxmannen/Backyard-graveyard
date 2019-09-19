@@ -56,7 +56,7 @@ public class TaskManager : Singleton<TaskManager>
         for (int i = 0; i < maxNumberOfTasks; i++) {
             Task task = GetAvailableTask();
 
-            task.Activate(maxTimeInSeconds);
+            task?.Activate(maxTimeInSeconds);
         }
 
         return;
@@ -113,10 +113,13 @@ public class TaskManager : Singleton<TaskManager>
         levelCompletedImage.SetActive(true);
 
         // Disable all InteractableObjects
-        DisableAllObjectsOfType.DisableAllObjects<Interactable>();
+        //DisableAllObjectsOfType.DisableAllObjects<Interactable>();
+        PrototypeManager.GetInstance().CompleteWave();
     }
 
     public void ResetTasks() {
-        throw new System.NotImplementedException();
+        foreach(Task task in tasks) {
+            task.gameObject.SetActive(false);
+        }
     }
 }

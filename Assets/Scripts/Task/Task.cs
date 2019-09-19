@@ -39,7 +39,7 @@ public class Task : MonoBehaviour
 
     private void Start() {
         TaskManager = TaskManager.GetInstance();
-        Initialise();
+        //Initialise();
     }
 
     public void Reinitialise() {
@@ -55,8 +55,8 @@ public class Task : MonoBehaviour
         }
     }
     public void Initialise() {
-        if (initialised)
-            return;
+        //if (initialised)
+        //    return;
 
         if(TaskCard == null || instantiateNewTaskCards) {
             GameObject go = GameObject.Instantiate(PrefabTaskCard, taskCardStartPos.position, Quaternion.identity);
