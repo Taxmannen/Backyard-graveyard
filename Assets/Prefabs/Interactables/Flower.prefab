@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6409169832057533273}
   - component: {fileID: 6409169832057533287}
   - component: {fileID: 8372090216666589025}
+  - component: {fileID: 4548326993207537577}
   m_Layer: 8
   m_Name: Flower
   m_TagString: Interactable
@@ -121,9 +122,21 @@ MonoBehaviour:
   shouldDespawnWhenOnGround: 0
   despawnTimeWhenOnGround: 0
   collisionTest: 0
-  ornamentType: 1
   snappedPosition: {x: 0, y: 0, z: 0}
   snappedRotation: {x: 0, y: 90, z: 0}
+  ornamentType: 1
+--- !u!114 &4548326993207537577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3157057524480144718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0406957f5cf97b46b65484faabe3af2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2932795042876963793
 PrefabInstance:
   m_ObjectHideFlags: 0
