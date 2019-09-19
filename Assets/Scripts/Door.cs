@@ -103,4 +103,22 @@ public class Door : MonoBehaviour
         other.gameObject.transform.root.position = targetDoor.transform.position - relativePositionToDoor;
         yield return null;
     }
+
+    public void CloseDoorGently()
+    {
+        StartCoroutine(CloseDoorGentlyLerp());
+    }
+
+    private IEnumerator CloseDoorGentlyLerp()
+    {
+        float i = 0f;
+        while (i <= 1)
+        {
+            i += 0.01f;
+            fenceDoor.transform.rotation = Quaternion.Lerp(openTransform.rotation, closedTransform.rotation, i);
+            
+            yield return new WaitForSeconds(0.01f);
+        }
+        yield return null;
+    }
 }
