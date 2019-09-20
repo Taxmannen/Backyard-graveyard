@@ -25,9 +25,12 @@ public class UnrestManager : Singleton<UnrestManager>
     //For other classes to call when unrest is updated
     public void UpdateUnrest(int plusOrMinusValue)
     {
-        CurrentUnrest += plusOrMinusValue;
-        CurrentUnrest = Mathf.Clamp(CurrentUnrest, minUnrest, MaxUnrest);
-        OnUnrestChange?.Invoke(CurrentUnrest);
-        Debug.Log(CurrentUnrest);
+        if (PlayButton.isPlaying)
+        {
+            CurrentUnrest += plusOrMinusValue;
+            CurrentUnrest = Mathf.Clamp(CurrentUnrest, minUnrest, MaxUnrest);
+            OnUnrestChange?.Invoke(CurrentUnrest);
+            Debug.Log(CurrentUnrest);
+        }
     }
 }
