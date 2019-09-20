@@ -17,8 +17,9 @@ public class Body : BodyPart
 
     public bool IsInGrave { get; set; } = false;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         SetColor();
         Head newHead = Instantiate(headPrefab).GetComponent<Head>();
         AttachHead(newHead);

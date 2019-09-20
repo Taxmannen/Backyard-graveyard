@@ -21,7 +21,7 @@ public class Pickup : Interactable
     private Coroutine coroutine;
     #endregion
 
-    private void Awake()
+    protected virtual void Awake()
     {
         collisionManager = CollisionManager.GetInstance();
         colliders = GetComponentsInChildren<Collider>();
@@ -40,13 +40,13 @@ public class Pickup : Interactable
             StopCoroutine(coroutine);
             coroutine = null;
         }
-        if (collisionManager.GetCollisionTest()) collisionManager.SetColliderState(colliders, true);
+        if (collisionManager && collisionManager.GetCollisionTest()) collisionManager.SetColliderState(colliders, true);
         return this;
     }
 
     public virtual void Drop()
     {
-        if (collisionManager.GetCollisionTest()) collisionManager.SetColliderState(colliders, false);
+        if (collisionManager && collisionManager.GetCollisionTest()) collisionManager.SetColliderState(colliders, false);
         ActiveHand = null;
     }
 
