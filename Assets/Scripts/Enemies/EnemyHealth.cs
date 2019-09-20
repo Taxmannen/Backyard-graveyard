@@ -3,7 +3,7 @@
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] private int fullHealth;
-    [SerializeField] private GameObject[] stringGameObjects;
+    
     [SerializeField] private NewObjectThief objectThief;
 
     private int currentHealth;
@@ -17,14 +17,11 @@ public class EnemyHealth : MonoBehaviour
     {
         currentHealth -= dmg;
         if (currentHealth <= 0) {
-            objectThief.GoToDeathState();
-            for (int i = 0; i < stringGameObjects.Length; i++)
-            {
-                Destroy(stringGameObjects[i]);
-            }
-            
-            UnrestManager.GetInstance().UpdateUnrest(+1);
-            
+            objectThief.Die();
         } /*Destroy(gameObject);*/
     }
+
+
+    //Alla dessa grejer borde göras i ObjectThief
+    
 }

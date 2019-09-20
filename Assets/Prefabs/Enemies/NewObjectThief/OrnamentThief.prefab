@@ -464,9 +464,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fullHealth: 2
-  stringGameObjects:
-  - {fileID: 3088007685616627865}
-  - {fileID: 3088007687393020076}
   objectThief: {fileID: 3088007686144677303}
 --- !u!1 &3088007685849901956
 GameObject:
@@ -528,6 +525,7 @@ GameObject:
   - component: {fileID: 3088007686144677300}
   - component: {fileID: 3088007686144677303}
   - component: {fileID: 3088007686144677302}
+  - component: {fileID: 4118509358576957065}
   m_Layer: 30
   m_Name: OrnamentThief
   m_TagString: Enemy
@@ -579,6 +577,9 @@ MonoBehaviour:
   randomTargetArea: {fileID: 2685551561028514546}
   rigidBodyMarionette: {fileID: 3088007685616627870}
   rigidBodyArm: {fileID: 3088007687424479683}
+  marionetteStringGameObjects:
+  - {fileID: 3088007685616627865}
+  - {fileID: 3088007687393020076}
   movementSpeedRun: 50
   movementSpeedSearch: 25
   armSpeed: 50
@@ -587,6 +588,7 @@ MonoBehaviour:
   distanceBeforeEnemyDespawn: 20
   timeBeforeTryingNewPickupTarget: 2
   timeBeforeTryingNewTarget: 5
+  despawnAfterDeathTime: 10
 --- !u!114 &3088007686144677302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -604,6 +606,19 @@ MonoBehaviour:
   marionetteRigidBody: {fileID: 3088007685616627870}
   jumpForce: 100
   fleeJumpForce: 2000
+--- !u!114 &4118509358576957065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3088007686144677297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17f439d89772fb24bac2aa85feb29c74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectThief: {fileID: 3088007686144677303}
 --- !u!1 &3088007686898911143
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,10 +26,55 @@ public class NewObjectThief : MonoBehaviour
     public ObjectThiefPickupHand pickupHand;
     public ObjectThiefObjectSearcher objectSearcher;
     public NewObjectThiefRandomTargetArea randomTargetArea;
+    public EnemyMarionette enemyMarionette;
 
     [Header("Rigidbodies to Control (DO NOT TOUCH)")]
     [SerializeField] private Rigidbody rigidBodyMarionette;
     [SerializeField] private Rigidbody rigidBodyArm;
+
+
+
+
+
+    [Header("Transforms relative to object (DO NOT TOUCH)")]
+    [SerializeField] private Transform[] relativeTransforms;
+    private Vector3[] relativeStartPositions;
+    private Quaternion[] relativeStartRotations;
+
+    private void SetRelativeStartPosAndRotations()
+    {
+        relativeStartPositions = new Vector3[relativeTransforms.Length];
+        relativeStartRotations = new Quaternion[relativeTransforms.Length];
+
+        for(int i = 0; i < relativeTransforms.Length; i++)
+        {
+            relativeStartPositions[i] = relativeTransforms[i].localPosition;
+            relativeStartRotations[i] = relativeTransforms[i].localRotation;
+        }
+    }
+
+    public void RestartAllPositions()
+    {
+        for (int i = 0; i < relativeTransforms.Length; i++)
+        {
+            relativeTransforms[i].localPosition = relativeStartPositions[i];
+            relativeTransforms[i].localRotation = relativeStartRotations[i];
+        }
+    }
+
+    private void OnDisable()
+    {
+        //RestartAllPositions();
+    }
+
+
+
+
+
+
+    [Header("GameObjects (DO NOT TOUCH)")]
+    [SerializeField] private GameObject[] marionetteStringGameObjects;
+
 
     [Header("Speed Settings")]
     [SerializeField] private float movementSpeedRun = 50;
@@ -44,14 +89,65 @@ public class NewObjectThief : MonoBehaviour
     [Header("Timers")]
     [SerializeField] private float timeBeforeTryingNewPickupTarget = 2f;
     [SerializeField] private float timeBeforeTryingNewTarget = 10f;
+    [SerializeField] private float despawnAfterDeathTime = 10f;
 
     //Används för fulfixen för om objekt försvinner
     private bool isDead = false;
 
 
+    private void Awake()
+    {
+        //rigidBody = GetComponent<Rigidbody>();
+    }
 
+    //Ta bort start?
     private void Start()
     {
+        SetRelativeStartPosAndRotations();
+
+
+        /*The following code isn't needed as it's running during OnEnable??*/
+        //randomTargetArea.SetTargetPositionToPlayArea();
+        //currentTargetObject = randomTargetObject;
+
+        //if (stateMachineOn)
+        //{
+        //    currentState = new NewObjectThiefMoveToTargetState();
+        //}
+        
+        //else{
+        //    currentState = new NewObjectThiefEmptyStateForTesting();
+        //}
+
+        //currentState.Enter(this);
+    }
+
+    private void OnEnable()
+    {
+
+        //Enable and set marionette at correct position again.
+        ToggleMarionetteStrings(true);
+        //transform.position = new Vector3(transform.position.x, 3, transform.position.z);
+        //rigidBodyMarionette.velocity = new Vector3(0, 0, 0);
+        //rigidBodyArm.velocity = new Vector3(0, 0, 0);
+
+        //for (int i = 0; i < marionetteStringGameObjects.Length; i++)
+        //{
+
+        //    marionetteStringGameObjects[0].transform.localPosition = new Vector3(0, 1.398f, 0);
+        //    marionetteStringGameObjects[1].transform.localPosition = new Vector3(0, 0, 0);
+
+        //}
+
+        if(relativeStartPositions != null)
+        {
+            RestartAllPositions();
+        }
+        
+        //Fullösning för att få de att ställa sig upp när de spawnas om de råkar vara liggandes när de despawnade.
+        rigidBodyMarionette.AddForce(new Vector3(0, 500, 0));
+        //transform.position = new Vector3(0, 5, 0);
+
         randomTargetArea.SetTargetPositionToPlayArea();
         currentTargetObject = randomTargetObject;
 
@@ -59,12 +155,15 @@ public class NewObjectThief : MonoBehaviour
         {
             currentState = new NewObjectThiefMoveToTargetState();
         }
-        
-        else{
+
+        else
+        {
             currentState = new NewObjectThiefEmptyStateForTesting();
         }
 
         currentState.Enter(this);
+
+        
     }
 
     private void Update()
@@ -209,10 +308,29 @@ public class NewObjectThief : MonoBehaviour
     {
         if(objectInHand != null)
         {
-            Destroy(objectInHand);
+            //Destroy(objectInHand);
+            PoolManager.ReturnPickup(objectInHand.GetComponent<Pickup>());
         }
+
+        ReturnToObjectPool();
+        //Destroy(gameObject);
         
-        Destroy(gameObject);
+    }
+
+    public void ReturnToObjectPool()
+    {
+        if (objectSearcher.GetTargetType() == PickupType.Ornament)
+        {
+            PoolManager.ReturnEnemy(gameObject, EnemyType.OrnamentTheif);
+        }
+        else if (objectSearcher.GetTargetType() == PickupType.Body)
+        {
+            PoolManager.ReturnEnemy(gameObject, EnemyType.Zombie);
+        }
+        else
+        {
+            Debug.Log("Couldn't return enemy to pool!");
+        }
     }
 
     public void DropItem()
@@ -221,11 +339,20 @@ public class NewObjectThief : MonoBehaviour
         objectInHand = null;
     }
 
-    public void GoToDeathState()
+    public void Die()
     {
         isDead = true;
         returnedState = new NewObjectThiefDeathState();
         StateSwap();
+    }
+
+    public void ToggleMarionetteStrings(bool active)
+    {
+        //for (int i = 0; i < marionetteStringGameObjects.Length; i++)
+        //{
+            //stringGameObjects[i]
+            marionetteStringGameObjects[0].SetActive(active);
+        //}
     }
 
 
@@ -239,6 +366,11 @@ public class NewObjectThief : MonoBehaviour
     public float GetTimeBeforeTryingNewTarget()
     {
         return timeBeforeTryingNewTarget;
+    }
+
+    public float GetDespawnAfterDeathTime()
+    {
+        return despawnAfterDeathTime;
     }
 
 }
