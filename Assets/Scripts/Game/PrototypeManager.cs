@@ -56,6 +56,7 @@ public class PrototypeManager : Singleton<PrototypeManager>
     [Header("References")]
     //[SerializeField] private EnemySpawner zombieSpawner;
     //[SerializeField] private EnemySpawner graveRobberSpawner;
+    [SerializeField] private PlayButton playButton;
 
     private DateTime waveStartTime;
 
@@ -70,6 +71,7 @@ public class PrototypeManager : Singleton<PrototypeManager>
         currentLevel = 0;
         currentWave = 0;
         SetLevel(levels[0]);
+        PlayButton.PlayEvent += StartNewGame;
     }
 
     void Start()
@@ -87,6 +89,7 @@ public class PrototypeManager : Singleton<PrototypeManager>
             (DateTime.Now - waveStartTime).TotalSeconds > GetCurrentWave().timelimitForWave)
         {
             Debug.Log("Time limit over: you are Lose game?", this);
+            playButton.EnableButton();
             //Lose game here
         }
     }
@@ -99,6 +102,7 @@ public class PrototypeManager : Singleton<PrototypeManager>
         if (levels[currentLevel + 1] == null)
         {
             Debug.Log("No more levels! You are win!");
+            playButton.EnableButton();
         }
     }
 
@@ -139,9 +143,6 @@ public class PrototypeManager : Singleton<PrototypeManager>
     {
         Debug.Log("Setting properties for wave " + currentWave);
 
-        if (GetCurrentWave().clearAllObjectPoolsOnPause)
-            GameManager.GetInstance().ClearAllObjectPools();
-
         try { TaskManager.GetInstance().ResetTasks(); } catch (System.Exception e) { Debug.LogError(e); }
 
         waveStartTime = DateTime.Now;
@@ -162,6 +163,12 @@ public class PrototypeManager : Singleton<PrototypeManager>
     private void SetEnemySpawnerProperties()
     {
         EnemySpawner.GetInstance()?.SetWavesProperties(GetCurrentWave().timeBetweenEnemySpawns, GetCurrentWave().unrestModifier, GetCurrentWave().nrOfSpawnsPerWave);
+    }
+
+    private void StartNewGame()
+    {
+        SetLevel(levels[0]);
+        AdvanceWave();
     }
 
     public void Test()

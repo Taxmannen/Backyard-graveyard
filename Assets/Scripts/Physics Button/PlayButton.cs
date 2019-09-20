@@ -1,13 +1,22 @@
-﻿/* Script Made By Daniel */
+﻿using System;
 using UnityEngine;
 
+/* Script Made By Daniel */
 public class PlayButton : PhysicsButton
 {
+    [SerializeField] private GameObject button;
+    public static event Action PlayEvent;
+    public static bool isPlaying;
+
     protected override void ButtonPush()
     {
-        //Start Game
-        Debug.Log("Play");
-        PrototypeManager.GetInstance().AdvanceWave();
-        base.ButtonPush();
+        PlayEvent?.Invoke();
+        isPlaying = true;
+        button.SetActive(false);
+    }
+
+    public void EnableButton()
+    {
+        button.SetActive(true);
     }
 }
