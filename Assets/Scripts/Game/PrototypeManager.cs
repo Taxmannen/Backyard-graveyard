@@ -84,6 +84,8 @@ public class PrototypeManager : Singleton<PrototypeManager>
 
     private void Update()
     {
+        if (!PlayButton.isPlaying) return;
+
         if (
             GetCurrentWave().timeLimit == true &&
             (DateTime.Now - waveStartTime).TotalSeconds > GetCurrentWave().timelimitForWave)

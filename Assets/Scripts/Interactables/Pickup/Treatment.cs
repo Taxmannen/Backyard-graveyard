@@ -6,7 +6,7 @@ public enum TreatmentType { MakeUp, WashUp, Mummify, [System.ObsoleteAttribute] 
 public class Treatment : Pickup
 {
     [Header("Treathment")]
-    [SerializeField] private TreatmentType treatmentType;
+    [SerializeField] private TreatmentType treatmentType = TreatmentType.None;
 
     public TreatmentType GetTreatmentType() { return treatmentType; }
 

@@ -13,8 +13,9 @@ using UnityEngine;
 [DefaultExecutionOrder(-200)]
 public class Task : MonoBehaviour
 {
-    public GameObject PrefabTaskCard;
-    [SerializeField, ReadOnly] private TaskCard taskCard;
+    //public GameObject PrefabTaskCard;
+    //[SerializeField, ReadOnly] private TaskCard taskCard;
+    [SerializeField] private TaskCard myTaskCard;
     [SerializeField] private Transform taskCardStartPos;
 
     [Header("Debug")]
@@ -37,7 +38,8 @@ public class Task : MonoBehaviour
 
     private bool initialised = false;
 
-    public TaskCard TaskCard { get => taskCard; private set => taskCard = value; }
+    //public TaskCard TaskCard { get => taskCard; private set => taskCard = value; }
+    public TaskCard MyTaskCard { get => myTaskCard; private set => myTaskCard = value; }
     public TaskManager TaskManager { get => taskManager; set => taskManager = value; }
     public HeadType Head { get => head; private set => head = value; }
     public BodyType Body { get => body; private set => body = value; }
@@ -48,13 +50,14 @@ public class Task : MonoBehaviour
             TaskManager.tasks.Add(this);
             Activate(TaskManager.MaxTimeInSeconds, TaskManager.MinNrOfOrnaments, TaskManager.MaxNrOfOrnaments, TaskManager.ChanceOfTreatment);
         }
+        MyTaskCard.task = this;
         //Initialise();
     }
 
     public void Reinitialise() {
         if (TaskManager.GetInstance().TasksAvailableToSelect()) {
-            TaskCard.gameObject.transform.position = taskCardStartPos.position;
-            TaskCard.gameObject.transform.localScale = new Vector3(5f, 5f, 5f);
+            myTaskCard.gameObject.transform.position = taskCardStartPos.position;
+            myTaskCard.gameObject.transform.localScale = new Vector3(5f, 5f, 5f);
 
             ResetVars();
             if (TaskManager.GetInstance().TasksAvailableToSelect()) {
@@ -64,7 +67,7 @@ public class Task : MonoBehaviour
             else {
                 Debug.LogWarning("Task error: No tasks available to do");
                 TaskManager.tasks.Remove(this);
-                Destroy(taskCard.gameObject);
+                Destroy(myTaskCard.gameObject);
                 Destroy(this.gameObject);
             }
         }
@@ -76,16 +79,17 @@ public class Task : MonoBehaviour
         //if (initialised)
         //    return;
 
-        if(TaskCard == null || instantiateNewTaskCards) {
-            GameObject go = GameObject.Instantiate(PrefabTaskCard, transform.position, Quaternion.identity);
-            //go.transform.localScale = new Vector3(5f, 5f, 5f);
-            TaskCard = go.GetComponent<TaskCard>();
-            TaskCard.task = this;
-        }
-        else{
-            TaskCard.gameObject.SetActive(true);
-        }
+        //if(TaskCard == null || instantiateNewTaskCards) {
+        //    GameObject go = GameObject.Instantiate(PrefabTaskCard, transform.position, Quaternion.identity);
+        //    //go.transform.localScale = new Vector3(5f, 5f, 5f);
+        //    TaskCard = go.GetComponent<TaskCard>();
+        //    TaskCard.task = this;
+        //}
+        //else{
+        //    TaskCard.gameObject.SetActive(true);
+        //}
 
+        myTaskCard.gameObject.SetActive(true);
         ResetVars();
     }
     private void ResetVars() {
@@ -110,7 +114,7 @@ public class Task : MonoBehaviour
         else {
             Debug.LogWarning("Task error: No tasks available to do");
             TaskManager.tasks.Remove(this);
-            Destroy(taskCard.gameObject);
+            Destroy(myTaskCard.gameObject);
             Destroy(this.gameObject);
         }
     }
@@ -123,7 +127,7 @@ public class Task : MonoBehaviour
             CompleteTask(false);
         }
         else {
-            taskCard?.UpdateTimerBar(quotientCompleted);
+            myTaskCard?.UpdateTimerBar(quotientCompleted);
         }
     }
 
@@ -135,9 +139,9 @@ public class Task : MonoBehaviour
         TaskManager.CompleteTask(this, success);
 
         if (success)
-            TaskCard.TaskCompleted();
+            myTaskCard.TaskCompleted();
         else
-            TaskCard.TaskFailed();
+            myTaskCard.TaskFailed();
 
         if (TaskManager.GetInstance().TasksAvailableToSelect()) {
             //Reinitialise();
@@ -168,14 +172,23 @@ public class Task : MonoBehaviour
         }
 
         if (TaskManager.GetInstance().IncludeTreatments) {
-            int treatmentIndex = RandomManager.GetRandomNumber(0, (int)TreatmentType.NumberOfTypes);
-            treatment = (TreatmentType)treatmentIndex;
-
             bool includeTreatment = RandomManager.GetRandomNumber(0, 101) < chanceOfTreatment;
-            TaskCard.SetTaskIngredients((int)ornamentType[0], (int)ornamentType[1], (int)ornamentType[2], bodydIndex, headIndex, treatmentIndex, includeTreatment);
+
+            int treatmentIndex = 0;
+            if (includeTreatment)
+            {
+                treatmentIndex = RandomManager.GetRandomNumber(0, (int)TreatmentType.NumberOfTypes);
+                treatment = (TreatmentType)treatmentIndex;
+            }
+            else
+            {
+                treatment = TreatmentType.None;
+            }
+
+            myTaskCard.SetTaskIngredients((int)ornamentType[0], (int)ornamentType[1], (int)ornamentType[2], bodydIndex, headIndex, treatmentIndex, includeTreatment);
         }
         else {
-            TaskCard.SetTaskIngredients((int)ornamentType[0], (int)ornamentType[1], (int)ornamentType[2], bodydIndex, headIndex);
+            myTaskCard.SetTaskIngredients((int)ornamentType[0], (int)ornamentType[1], (int)ornamentType[2], bodydIndex, headIndex);
         }
 
         //maxTimeInSeconds = RandomManager.GetRandomNumber(taskManager.TimeLimitInSecondsMin, taskManager.TimeLimitInSecondsMax);

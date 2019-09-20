@@ -38,12 +38,18 @@ public class TaskDoneBox : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other == null) return;
+        if (other.gameObject == null) return;
+        if (other.gameObject.GetComponent<TaskCard>() == null) return;
+        if (other.gameObject.GetComponent<TaskCard>().taskCompleted == null) return;
+
         if (other.gameObject.GetComponent<TaskCard>().taskCompleted == true && !levelComplete)
         {
             //Destroy(other.gameObject);
-            other.GetComponent<TaskCard>().task.Reinitialise(); // Should ww really respawn the same task again? Or do we let the player interact with the task spawn to get a new task.
+            //other.GetComponent<TaskCard>().task.Reinitialise(); // Should ww really respawn the same task again? Or do we let the player interact with the task spawn to get a new task.
             CreateNewTaskCard();
             UpdateCompletedTasksText();
+            Destroy(other.gameObject);
         }
     }
 

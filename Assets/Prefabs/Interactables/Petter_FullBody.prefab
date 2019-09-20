@@ -235,8 +235,7 @@ MonoBehaviour:
   snapOnPickup: 1
   shouldDespawnWhenOnGround: 0
   despawnTimeWhenOnGround: 0
-  collisionTest: 0
-  treatmentType: 3
+  treatmentType: 4
   paintParents:
   - {fileID: 2050584688491530359}
   washParticleSystem: {fileID: 407327546483965305}
@@ -257,6 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0406957f5cf97b46b65484faabe3af2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeOnGroundBeforeUnrestIncrease: 15
 --- !u!1 &6708845041535332152
 GameObject:
   m_ObjectHideFlags: 0

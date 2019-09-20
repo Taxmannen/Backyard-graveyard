@@ -126,7 +126,7 @@ public class TaskManager : Singleton<TaskManager>
 
     private void CompleteLevel() {
         foreach (Task task in tasks) {
-            task.TaskCard.Disable();
+            task.MyTaskCard?.Disable();
         }
 
         levelCompletedImage.SetActive(true);

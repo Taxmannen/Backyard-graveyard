@@ -6,7 +6,7 @@ public class BodyPart : Pickup
 {
     #region Variables
     [Header("Treatment")]
-    [SerializeField, ReadOnly] private TreatmentType treatmentType = TreatmentType.None;
+    [SerializeField] private TreatmentType treatmentType = TreatmentType.None;
     [SerializeField] private Transform[] paintParents;
     [SerializeField] private ParticleSystem washParticleSystem;
 
