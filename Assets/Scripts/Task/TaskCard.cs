@@ -14,8 +14,11 @@ public class TaskCard : MonoBehaviour
     public Image bodyImage;
 
     public Image OrnamentTypelot01Image;
+    public Image OrnamentTypelot01Container;
     public Image OrnamentTypelot02Image;
+    public Image OrnamentTypelot02Container;
     public Image OrnamentTypelot03Image;
+    public Image OrnamentTypelot03Container;
 
     public Image treatmentImage;
 
@@ -63,18 +66,36 @@ public class TaskCard : MonoBehaviour
 
     private void SetOrnamentType(int Ornament01Type, int Ornament02Type, int Ornament03Type)
     {
-        if (Ornament01Type == (int)OrnamentType.None)
+        if (Ornament01Type == (int)OrnamentType.None) {
             OrnamentTypelot01Image.sprite = null;
-        else
+            OrnamentTypelot01Image.gameObject.SetActive(false);
+            OrnamentTypelot01Container.gameObject.SetActive(false);
+        }
+        else {
+            OrnamentTypelot01Image.gameObject.SetActive(true);
+            OrnamentTypelot01Container.gameObject.SetActive(true);
             OrnamentTypelot01Image.sprite = OrnamentTypeprites[Ornament01Type];
-        if (Ornament02Type == (int)OrnamentType.None)
+        }
+        if (Ornament02Type == (int)OrnamentType.None) {
             OrnamentTypelot02Image.sprite = null;
-        else
+            OrnamentTypelot02Image.gameObject.SetActive(false);
+            OrnamentTypelot02Container.gameObject.SetActive(false);
+        }
+        else {
+            OrnamentTypelot02Image.gameObject.SetActive(true);
+            OrnamentTypelot02Container.gameObject.SetActive(true);
             OrnamentTypelot02Image.sprite = OrnamentTypeprites[Ornament02Type];
-        if (Ornament03Type == (int)OrnamentType.None)
+        }
+        if (Ornament03Type == (int)OrnamentType.None) {
             OrnamentTypelot03Image.sprite = null;
-        else
+            OrnamentTypelot03Image.gameObject.SetActive(false);
+            OrnamentTypelot03Container.gameObject.SetActive(false);
+        }
+        else {
+            OrnamentTypelot03Image.gameObject.SetActive(true);
+            OrnamentTypelot03Container.gameObject.SetActive(true);
             OrnamentTypelot03Image.sprite = OrnamentTypeprites[Ornament03Type];
+        }
     }
 
     private void SetBody(int BodyType)
