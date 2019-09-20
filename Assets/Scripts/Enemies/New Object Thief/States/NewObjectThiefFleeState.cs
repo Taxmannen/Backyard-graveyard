@@ -16,7 +16,8 @@ public class NewObjectThiefFleeState : NewObjectThiefState
     public override void Enter(NewObjectThief objectThief)
     {
         //Fulfix där fienden rör sig mot ett objekt med tagen "Out of Bounds". Används för att despawna fienden.
-        objectThief.FindNewCurrentTargetObjectWithTag("Player");
+        //objectThief.FindNewCurrentTargetObjectWithTag("Player");
+        objectThief.currentTargetObject = objectThief.randomTargetObject;
 
         timeBeforeJump = objectThief.GetTimeBeforeTryingNewTarget();
         distanceBeforeEnemyDespawn = objectThief.GetDistanceBeforeEnemyDespawn();

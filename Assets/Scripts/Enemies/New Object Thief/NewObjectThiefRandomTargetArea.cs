@@ -6,11 +6,33 @@ public class NewObjectThiefRandomTargetArea : MonoBehaviour
 {
     [SerializeField] private Vector2 minDistancePoint;
     [SerializeField] private Vector2 maxDistancePoint;
+    [SerializeField] private float midPointOfDeliveryRoomX;
+    private float randomRoom;
+
+    private void Start()
+    {
+        randomRoom = Random.Range(0, 10);
+    }
+
+    private void OnEnable()
+    {
+        randomRoom = Random.Range(0, 10);
+    }
 
     public void SetTargetPositionToPlayArea()
     {
-        float randomValueX = Random.Range(minDistancePoint.x, maxDistancePoint.x);
+        
+        float randomValueX;
+
+        randomValueX = Random.Range(minDistancePoint.x, maxDistancePoint.x);
+        if (randomRoom > 5)
+        {
+            randomValueX += midPointOfDeliveryRoomX;
+        }
+
+        
         float randomValueY = Random.Range(minDistancePoint.y, maxDistancePoint.y);
+
         transform.position = new Vector3(randomValueX, 0, randomValueY);
     }
 

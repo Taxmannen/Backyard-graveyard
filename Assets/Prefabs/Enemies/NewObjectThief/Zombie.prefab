@@ -1147,6 +1147,7 @@ GameObject:
   - component: {fileID: 1125390058846829341}
   - component: {fileID: 1125390058846829342}
   - component: {fileID: 1125390058846829343}
+  - component: {fileID: 177033394692247799}
   m_Layer: 30
   m_Name: Zombie
   m_TagString: Enemy
@@ -1198,6 +1199,9 @@ MonoBehaviour:
   randomTargetArea: {fileID: 1780472923}
   rigidBodyMarionette: {fileID: 1125390059392769591}
   rigidBodyArm: {fileID: 1125390058113400682}
+  marionetteStringGameObjects:
+  - {fileID: 1125390059392769584}
+  - {fileID: 1125390058149045765}
   movementSpeedRun: 50
   movementSpeedSearch: 25
   armSpeed: 50
@@ -1206,6 +1210,7 @@ MonoBehaviour:
   distanceBeforeEnemyDespawn: 20
   timeBeforeTryingNewPickupTarget: 2
   timeBeforeTryingNewTarget: 5
+  despawnAfterDeathTime: 10
 --- !u!114 &1125390058846829343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1223,6 +1228,19 @@ MonoBehaviour:
   marionetteRigidBody: {fileID: 1125390059392769591}
   jumpForce: 100
   fleeJumpForce: 2000
+--- !u!114 &177033394692247799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125390058846829336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17f439d89772fb24bac2aa85feb29c74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectThief: {fileID: 1125390058846829342}
 --- !u!1 &1125390059392769584
 GameObject:
   m_ObjectHideFlags: 0
@@ -1691,7 +1709,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fullHealth: 2
-  stringGameObjects:
-  - {fileID: 1125390059392769584}
-  - {fileID: 1125390058149045765}
   objectThief: {fileID: 1125390058846829342}
