@@ -1,7 +1,7 @@
 ﻿/* Script Made By Daniel */
 using UnityEngine;
 
-public class StartButton : PhysicsButton
+public class PlayButton : PhysicsButton
 {
     protected override void ButtonPush()
     {

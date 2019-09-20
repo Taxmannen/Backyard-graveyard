@@ -18,8 +18,8 @@ MonoBehaviour:
   nrOfTasks: 5
   timePerTask: 600
   chanceOfCorrectBodyCombination: 95
-  PauseAfterCompletedWave: 0
-  clearAllObjectPoolsOnPause: 0
+  PauseAfterCompletedWave: 1
+  clearAllObjectPoolsOnPause: 1
   minNrOfOrnamnets: 0
   maxNrOfOrnamnets: 2
   nrOfSpawnsPerWave: 1

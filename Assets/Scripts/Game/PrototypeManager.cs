@@ -68,10 +68,10 @@ public class PrototypeManager : Singleton<PrototypeManager>
     {
         //This swhould not happen here pls
         //Make start functrion or somth smh
-        AdvanceWave();
+        //AdvanceWave();
         //TaskManager.GetInstance().ActivateTasks(GetCurrentWave().timePerTask, GetCurrentWave().nrOfTasks, GetCurrentWave().minNrOfOrnamnets, GetCurrentWave().maxNrOfOrnamnets);
 
-        SetEnemySpawnerProperties();
+       
     }
 
     private void Update() {
@@ -95,9 +95,6 @@ public class PrototypeManager : Singleton<PrototypeManager>
     public void CompleteWave() {
         if(GetCurrentWave().PauseAfterCompletedWave) {
             //Pause
-
-            if(GetCurrentWave().clearAllObjectPoolsOnPause)
-                GameManager.GetInstance().ClearAllObjectPools();
         }
         else AdvanceWave(); // Just continue
     }
@@ -108,12 +105,15 @@ public class PrototypeManager : Singleton<PrototypeManager>
             AdvanceLevel();
         }
         else {
+            if (GetCurrentWave().clearAllObjectPoolsOnPause)
+                GameManager.GetInstance().ClearAllObjectPools();
             currentWave++;
 
             try { TaskManager.GetInstance().ResetTasks(); } catch(System.Exception e) { Debug.LogError(e); }
 
             waveStartTime = DateTime.Now;
-
+            SetEnemySpawnerProperties();
+         
             TaskManager.GetInstance().ActivateTasks(GetCurrentWave().timePerTask, GetCurrentWave().nrOfTasks, GetCurrentWave().minNrOfOrnamnets, GetCurrentWave().maxNrOfOrnamnets);
         }
     }
@@ -129,4 +129,5 @@ public class PrototypeManager : Singleton<PrototypeManager>
     private void SetEnemySpawnerProperties() {
         EnemySpawner.GetInstance()?.SetWavesProperties(GetCurrentWave().timeBetweenEnemySpawns, GetCurrentWave().unrestModifier, GetCurrentWave().nrOfSpawnsPerWave);
     }
+
 }

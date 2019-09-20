@@ -36,7 +36,7 @@ public abstract class ObjectPool : MonoBehaviour
         else
         {
             GameObject currentObject = objects.Dequeue();
-            if (reusable) usedObjects.Add(currentObject);
+            usedObjects.Add(currentObject);
             currentObject.transform.position = position;
             currentObject.transform.rotation = rotation;
             SetObjectParent(currentObject.transform, parent);
@@ -47,7 +47,7 @@ public abstract class ObjectPool : MonoBehaviour
 
     public void ReturnToPool(GameObject objectToReturn)
     {
-        if (reusable) usedObjects.Remove(objectToReturn);
+        usedObjects.Remove(objectToReturn);
         objectToReturn.SetActive(false);
         objectToReturn.transform.SetParent(transform);
         objects.Enqueue(objectToReturn);
@@ -82,13 +82,9 @@ public abstract class ObjectPool : MonoBehaviour
     //Simon
     public void ReturnAllObjects()
     {
-        var activeObjects = objects
-            .Where(item => item.gameObject.activeSelf)
-            .Select(item => item.gameObject);
-
-        foreach (GameObject go in activeObjects)
+        for (int i = 0; i < usedObjects.Count; i++)
         {
-            ReturnToPool(go);
+            ReturnToPool(usedObjects[i]);
         }
     }
 }
