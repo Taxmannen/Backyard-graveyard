@@ -31,7 +31,7 @@ public class ObjectSpawner : Interactable
             if (other.name == string.Format("{0}(Clone)", spawnPrefab.name))
             {
                 Pickup pickup = other.GetComponent<Pickup>();
-                if (pickup && pickup.ActiveHand == null) ReturnObject(pickup);
+                if (pickup && pickup.ActiveHand == null) ReturnObject(pickup.gameObject);
             }
         }
     }
@@ -44,7 +44,7 @@ public class ObjectSpawner : Interactable
 
     private Pickup PickupWithoutObjectPool()
     {
-        if (onlyOneActive) ReturnObject(lastSpawned.GetComponent<Pickup>());
+        if (onlyOneActive) ReturnObject(lastSpawned);
         Pickup pickup = Instantiate(spawnPrefab, transform.position + position, Quaternion.Euler(transform.eulerAngles + rotation)).GetComponent<Pickup>();
         lastSpawned = pickup.gameObject;
         spawnedObjects.Add(pickup.gameObject);
@@ -58,11 +58,11 @@ public class ObjectSpawner : Interactable
         return pickup.GetComponent<Pickup>();
     }
 
-    private void ReturnObject(Pickup pickup)
+    private void ReturnObject(GameObject pickup)
     {
-        spawnedObjects.Remove(pickup.gameObject);
-        if (objectPool) PoolManager.ReturnPickup(pickup);
-        else Destroy(pickup.gameObject);
+        spawnedObjects.Remove(pickup);
+        if (objectPool) PoolManager.ReturnPickup(pickup.GetComponent<Pickup>());
+        else Destroy(pickup);
     }
 
     private void ReplayGame()

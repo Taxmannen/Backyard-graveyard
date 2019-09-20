@@ -6,6 +6,7 @@ public class PlayButton : PhysicsButton
 {
     [SerializeField] private GameObject button;
     public static event Action PlayEvent;
+    public static event Action StopEvent;
     public static bool isPlaying;
 
     protected override void ButtonPush()
@@ -15,8 +16,13 @@ public class PlayButton : PhysicsButton
         button.SetActive(false);
     }
 
-    public void EnableButton()
+    public void StopPlaying()
     {
-        button.SetActive(true);
+        if (isPlaying)
+        {
+            StopEvent?.Invoke();
+            isPlaying = false;
+            button.SetActive(true);
+        }
     }
 }

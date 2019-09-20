@@ -89,7 +89,7 @@ public class PrototypeManager : Singleton<PrototypeManager>
             (DateTime.Now - waveStartTime).TotalSeconds > GetCurrentWave().timelimitForWave)
         {
             Debug.Log("Time limit over: you are Lose game?", this);
-            playButton.EnableButton();
+            playButton.StopPlaying();
             //Lose game here
         }
     }
@@ -102,7 +102,7 @@ public class PrototypeManager : Singleton<PrototypeManager>
         if (levels[currentLevel + 1] == null)
         {
             Debug.Log("No more levels! You are win!");
-            playButton.EnableButton();
+            playButton.StopPlaying();
         }
     }
 
