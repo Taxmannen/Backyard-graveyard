@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Linq;
 
 /* Script Made By Daniel */
-public abstract class ObjectPool : Singleton<ObjectPool>
+public abstract class ObjectPool : MonoBehaviour
 {
     #region Variables
     [SerializeField] private GameObject prefab;

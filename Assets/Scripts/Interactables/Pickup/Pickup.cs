@@ -69,7 +69,6 @@ public class Pickup : Interactable
                 {
                     rb.AddForce(-rb.velocity);
                     rb.velocity = Vector3.zero;
-                    Debug.Log("NU");
                 }
             }
         }
