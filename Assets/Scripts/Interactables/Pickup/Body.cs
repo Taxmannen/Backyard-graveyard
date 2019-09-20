@@ -32,10 +32,11 @@ public class Body : BodyPart
 
     private void SetColor()
     {
-        BodyType taskBodyType = TaskManager.GetInstance().tasks[RandomManager.GetRandomNumber(0, TaskManager.GetInstance().tasks.Length)].Body;
+        bool availableTasks = TaskManager.GetInstance().tasks != null && TaskManager.GetInstance().tasks.Count > 0;
         int randomChanceForMatch = RandomManager.GetRandomNumber(0, 101);
-        if (randomChanceForMatch < PrototypeManager.GetInstance().GetCurrentWave().chanceOfCorrectBodyCombination)
+        if (availableTasks && randomChanceForMatch < PrototypeManager.GetInstance().GetCurrentWave().chanceOfCorrectBodyCombination)
         {
+            BodyType taskBodyType = TaskManager.GetInstance().tasks[RandomManager.GetRandomNumber(0, TaskManager.GetInstance().tasks.Count)].Body;
             bodyType = taskBodyType;
         }
         else

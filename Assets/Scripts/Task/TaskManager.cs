@@ -23,7 +23,7 @@ public class TaskManager : Singleton<TaskManager>
     [SerializeField] private bool taskManagerSpawnsTasks = false;
 
     [Header("References")]
-    public Task[] tasks;
+    public List<Task> tasks;
     [SerializeField] private EndOfGameStrings[] endOfGameStrings = new EndOfGameStrings[6];
 
     public GameObject levelCompletedImage;
@@ -80,7 +80,7 @@ public class TaskManager : Singleton<TaskManager>
     }
 
     private Task GetAvailableTask() {
-        for (int j = 0; j < tasks.Length; j++) {
+        for (int j = 0; j < tasks.Count; j++) {
             if (tasks[j].gameObject.activeSelf == false) {
                 return tasks[j];
             }

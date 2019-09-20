@@ -16,10 +16,11 @@ public class Head : BodyPart
     {
         MeshRenderer[] meshRenderer = GetComponentsInChildren<MeshRenderer>();
 
-        HeadType taskHeadType = TaskManager.GetInstance().tasks[RandomManager.GetRandomNumber(0, TaskManager.GetInstance().tasks.Length)].Head;
+        bool availableTasks = TaskManager.GetInstance().tasks != null && TaskManager.GetInstance().tasks.Count > 0;
         int randomChanceForMatch = RandomManager.GetRandomNumber(0, 101);
-        if (randomChanceForMatch < PrototypeManager.GetInstance().GetCurrentWave().chanceOfCorrectBodyCombination)
+        if (availableTasks && randomChanceForMatch < PrototypeManager.GetInstance().GetCurrentWave().chanceOfCorrectBodyCombination)
         {
+            HeadType taskHeadType = TaskManager.GetInstance().tasks[RandomManager.GetRandomNumber(0, TaskManager.GetInstance().tasks.Count)].Head;
             headType = taskHeadType;
         }
         else

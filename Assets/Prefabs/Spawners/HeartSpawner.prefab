@@ -100,7 +100,7 @@ MonoBehaviour:
   prefab: {fileID: 8855238130769159534, guid: 9e0bee56578a6cc4096cede666f3bd36, type: 3}
   amount: 25
   scalable: 0
-  reusable: 1
+  reusable: 0
   usedObjects: []
 --- !u!1001 &1509540734587176625
 PrefabInstance:

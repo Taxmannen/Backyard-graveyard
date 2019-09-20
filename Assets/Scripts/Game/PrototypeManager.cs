@@ -69,7 +69,7 @@ public class PrototypeManager : Singleton<PrototypeManager>
         //This swhould not happen here pls
         //Make start functrion or somth smh
         AdvanceWave();
-        TaskManager.GetInstance().ActivateTasks(GetCurrentWave().timePerTask, GetCurrentWave().nrOfTasks, GetCurrentWave().minNrOfOrnamnets, GetCurrentWave().maxNrOfOrnamnets);
+        //TaskManager.GetInstance().ActivateTasks(GetCurrentWave().timePerTask, GetCurrentWave().nrOfTasks, GetCurrentWave().minNrOfOrnamnets, GetCurrentWave().maxNrOfOrnamnets);
 
         SetEnemySpawnerProperties();
     }

@@ -44,6 +44,7 @@ public class Task : MonoBehaviour
     private void Start() {
         TaskManager = TaskManager.GetInstance();
         if (!TaskManager.TaskManagerSpawnsTasks) {
+            TaskManager.tasks.Add(this);
             Activate(TaskManager.MaxTimeInSeconds, TaskManager.MinNrOfOrnaments, TaskManager.MaxNrOfOrnaments);
         }
         //Initialise();
@@ -97,6 +98,7 @@ public class Task : MonoBehaviour
         }
         else {
             Debug.LogWarning("Task error: No tasks available to do");
+            TaskManager.tasks.Remove(this);
             Destroy(taskCard.gameObject);
             Destroy(this.gameObject);
         }
