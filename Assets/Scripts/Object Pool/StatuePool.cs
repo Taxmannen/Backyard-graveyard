@@ -1,1 +1,8 @@
-﻿public class StatuePool : ObjectPool { }
+﻿public class StatuePool : ObjectPool
+{
+    protected override void Awake()
+    {
+        SetInstance(this);
+        base.Awake();
+    }
+}

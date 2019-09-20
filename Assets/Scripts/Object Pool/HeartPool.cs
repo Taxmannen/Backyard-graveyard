@@ -1,1 +1,8 @@
-﻿public class HeartPool : ObjectPool { }
+﻿public class HeartPool : ObjectPool
+{
+    protected override void Awake()
+    {
+        SetInstance(this);
+        base.Awake();
+    }
+}

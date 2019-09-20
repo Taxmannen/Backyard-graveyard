@@ -18,7 +18,7 @@ public abstract class ObjectPool : Singleton<ObjectPool>
     private Vector3 scale;
     #endregion
 
-    private void Awake()
+    protected virtual void Awake()
     {
         scale = prefab.transform.localScale;
         AddObjects(amount);
