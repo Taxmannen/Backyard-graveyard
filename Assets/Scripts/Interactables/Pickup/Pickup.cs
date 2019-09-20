@@ -65,11 +65,14 @@ public class Pickup : Interactable
             if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Static"))
             {
                 Rigidbody rb = this.GetComponent<Rigidbody>();
-                if (rb.velocity.sqrMagnitude >= Vector3.zero.sqrMagnitude)
+                rb.isKinematic = true;
+                rb.isKinematic = false;
+                /*if (rb.velocity.sqrMagnitude >= Vector3.zero.sqrMagnitude)
                 {
                     rb.AddForce(-rb.velocity);
                     rb.velocity = Vector3.zero;
-                }
+                    Debug.Log(rb.velocity);
+                }*/
             }
         }
     }
