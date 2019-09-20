@@ -71,7 +71,6 @@ public class PrototypeManager : Singleton<PrototypeManager>
         //AdvanceWave();
         //TaskManager.GetInstance().ActivateTasks(GetCurrentWave().timePerTask, GetCurrentWave().nrOfTasks, GetCurrentWave().minNrOfOrnamnets, GetCurrentWave().maxNrOfOrnamnets);
 
-       
     }
 
     private void Update() {

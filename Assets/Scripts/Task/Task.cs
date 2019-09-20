@@ -56,7 +56,16 @@ public class Task : MonoBehaviour
             TaskCard.gameObject.transform.localScale = new Vector3(5f, 5f, 5f);
 
             ResetVars();
-            RefreshTaskCardIngredients();
+            if (TaskManager.GetInstance().TasksAvailableToSelect()) {
+                //Reinitialise();
+                RefreshTaskCardIngredients();
+            }
+            else {
+                Debug.LogWarning("Task error: No tasks available to do");
+                TaskManager.tasks.Remove(this);
+                Destroy(taskCard.gameObject);
+                Destroy(this.gameObject);
+            }
         }
         else {
             Destroy(gameObject);

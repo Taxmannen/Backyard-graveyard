@@ -41,7 +41,7 @@ public class TaskDoneBox : MonoBehaviour
         if (other.gameObject.GetComponent<TaskCard>().taskCompleted == true && !levelComplete)
         {
             //Destroy(other.gameObject);
-            other.GetComponent<TaskCard>().task.Reinitialise();
+            other.GetComponent<TaskCard>().task.Reinitialise(); // Should ww really respawn the same task again? Or do we let the player interact with the task spawn to get a new task.
             CreateNewTaskCard();
             UpdateCompletedTasksText();
         }
