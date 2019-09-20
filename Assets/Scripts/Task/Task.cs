@@ -33,6 +33,7 @@ public class Task : MonoBehaviour
     private DateTime startTime;
     private int minNrOfOrnaments;
     private int maxNrOfOrnaments;
+    private float chanceOfTreatment;
 
     private bool initialised = false;
 
@@ -45,7 +46,7 @@ public class Task : MonoBehaviour
         TaskManager = TaskManager.GetInstance();
         if (!TaskManager.TaskManagerSpawnsTasks) {
             TaskManager.tasks.Add(this);
-            Activate(TaskManager.MaxTimeInSeconds, TaskManager.MinNrOfOrnaments, TaskManager.MaxNrOfOrnaments);
+            Activate(TaskManager.MaxTimeInSeconds, TaskManager.MinNrOfOrnaments, TaskManager.MaxNrOfOrnaments, TaskManager.ChanceOfTreatment);
         }
         //Initialise();
     }
@@ -93,10 +94,11 @@ public class Task : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void Activate(float maxTimeInSeconds, int minNrOfOrnaments, int maxNrOfOrnaments) {
+    public void Activate(float maxTimeInSeconds, int minNrOfOrnaments, int maxNrOfOrnaments, float includeTreatment) {
         Initialise();
 
         this.maxTimeInSeconds = maxTimeInSeconds;
+        this.chanceOfTreatment = includeTreatment;
         this.minNrOfOrnaments = minNrOfOrnaments;
         this.maxNrOfOrnaments = maxNrOfOrnaments;
 
@@ -155,7 +157,7 @@ public class Task : MonoBehaviour
         int bodydIndex = RandomManager.GetRandomNumber(0, (int)BodyType.NumberOfTypes);
         body = (BodyType)bodydIndex;
 
-        int nrOfOrnaments = RandomManager.GetRandomNumber(minNrOfOrnaments, maxNrOfOrnaments);
+        int nrOfOrnaments = RandomManager.GetRandomNumber(minNrOfOrnaments, maxNrOfOrnaments + 1);
         //Debug.LogError($"Fetching random number {minNrOfOrnaments}:{maxNrOfOrnaments} and getting {nrOfOrnaments}");
         //ornamentType = new OrnamentType[(int)OrnamentType.NumberOfTypes]; 
         for (int i = 0; i < 3; i++) {
@@ -169,7 +171,8 @@ public class Task : MonoBehaviour
             int treatmentIndex = RandomManager.GetRandomNumber(0, (int)TreatmentType.NumberOfTypes);
             treatment = (TreatmentType)treatmentIndex;
 
-            TaskCard.SetTaskIngredients((int)ornamentType[0], (int)ornamentType[1], (int)ornamentType[2], bodydIndex, headIndex, treatmentIndex);
+            bool includeTreatment = RandomManager.GetRandomNumber(0, 101) < chanceOfTreatment;
+            TaskCard.SetTaskIngredients((int)ornamentType[0], (int)ornamentType[1], (int)ornamentType[2], bodydIndex, headIndex, treatmentIndex, includeTreatment);
         }
         else {
             TaskCard.SetTaskIngredients((int)ornamentType[0], (int)ornamentType[1], (int)ornamentType[2], bodydIndex, headIndex);

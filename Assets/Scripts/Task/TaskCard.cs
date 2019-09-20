@@ -21,6 +21,7 @@ public class TaskCard : MonoBehaviour
     public Image OrnamentTypelot03Container;
 
     public Image treatmentImage;
+    public GameObject treatmentContainer;
 
     public Sprite[] HeadTypeprites;
     public Sprite[] bodySprites;
@@ -56,12 +57,23 @@ public class TaskCard : MonoBehaviour
         SetHead(HeadType);
     }
 
-    public void SetTaskIngredients(int Ornament01Type, int Ornament02Type, int Ornament03Type, int BodyType, int HeadType, int treatmentIndex)
+    public void SetTaskIngredients(int Ornament01Type, int Ornament02Type, int Ornament03Type, int BodyType, int HeadType, int treatmentIndex, bool includeTreatment)
     {
         SetOrnamentType(Ornament01Type, Ornament02Type, Ornament03Type);
         SetBody(BodyType);
         SetHead(HeadType);
-        SetTreatment(treatmentIndex);
+
+        if (!includeTreatment)
+        {
+            treatmentImage.gameObject.SetActive(false);
+            treatmentContainer.gameObject.SetActive(false);
+        }
+        else
+        {
+            treatmentImage.gameObject.SetActive(true);
+            treatmentContainer.gameObject.SetActive(true);
+            SetTreatment(treatmentIndex);
+        }
     }
 
     private void SetOrnamentType(int Ornament01Type, int Ornament02Type, int Ornament03Type)

@@ -42,7 +42,7 @@ public class TaskManager : Singleton<TaskManager>
 
     private int unrestValueChange;
 
-    private float maxTimeInSeconds;
+    private float maxTimeInSeconds, chanceOfTreatment;
     private int maxNumberOfTasks, minNrOfOrnaments, maxNrOfOrnaments;
 
     public int TimeLimitInSecondsMin { get => timeLimitInSecondsMin; private set => timeLimitInSecondsMin = value; }
@@ -51,6 +51,7 @@ public class TaskManager : Singleton<TaskManager>
     public int TasksInProgress { get => tasksInProgress; set => tasksInProgress = value; }
     public bool TaskManagerSpawnsTasks { get => taskManagerSpawnsTasks; private set => taskManagerSpawnsTasks = value; }
     public float MaxTimeInSeconds { get => maxTimeInSeconds; private set => maxTimeInSeconds = value; }
+    public float ChanceOfTreatment { get => chanceOfTreatment; private set => chanceOfTreatment = value; }
     public int MaxNumberOfTasks { get => maxNumberOfTasks; private set => maxNumberOfTasks = value; }
     public int MinNrOfOrnaments { get => minNrOfOrnaments; private set => minNrOfOrnaments = value; }
     public int MaxNrOfOrnaments { get => maxNrOfOrnaments; private set => maxNrOfOrnaments = value; }
@@ -59,10 +60,11 @@ public class TaskManager : Singleton<TaskManager>
         SetInstance(this);
     }
 
-    public void ActivateTasks(float maxTimeInSeconds, int maxNumberOfTasks, int minNrOfOrnaments, int maxNrOfOrnaments) {
+    public void ActivateTasks(float maxTimeInSeconds, int maxNumberOfTasks, int minNrOfOrnaments, int maxNrOfOrnaments, float chanceOfTreatment) {
         this.MaxNumberOfTasks = maxNumberOfTasks;
 
         this.maxTimeInSeconds = maxTimeInSeconds;
+        this.chanceOfTreatment = chanceOfTreatment;
         this.maxNumberOfTasks = maxNumberOfTasks;
         this.minNrOfOrnaments = minNrOfOrnaments;
         this.maxNrOfOrnaments = maxNrOfOrnaments;
@@ -73,7 +75,7 @@ public class TaskManager : Singleton<TaskManager>
             Task task = GetAvailableTask();
 
             if(task != null && task.gameObject.activeSelf == false)
-                task.Activate(maxTimeInSeconds, minNrOfOrnaments, maxNrOfOrnaments);
+                task.Activate(maxTimeInSeconds, minNrOfOrnaments, maxNrOfOrnaments, chanceOfTreatment);
         }
 
         return;

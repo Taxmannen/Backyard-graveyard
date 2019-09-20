@@ -7,34 +7,41 @@ using UnityEngine;
 /// <author>Simon</author>
 /// </summary>
 [System.Serializable]
-public class GameWave {
+public class GameWave
+{
     [SerializeField] private ZombieWaves[] zombieWaves;
     [SerializeField] private GraveRobberWaves[] graveRobberWaves;
 }
 
 [System.Serializable]
-public class EnemyWaves {
+public class EnemyWaves
+{
     [SerializeField] protected int nrOfEnemies = 5;
     [SerializeField] protected float timeUntilSpawn;
 
     public int NrOfEnemies { get => nrOfEnemies; private set => nrOfEnemies = value; }
     public float TimeUntilSpawn { get => timeUntilSpawn; private set => timeUntilSpawn = value; }
 
-    public EnemyWaves(int nrOfEnemies, float timeUntilSpawn) {
+    public EnemyWaves(int nrOfEnemies, float timeUntilSpawn)
+    {
         this.nrOfEnemies = nrOfEnemies;
         this.timeUntilSpawn = timeUntilSpawn;
     }
 }
 
 [System.Serializable]
-public class ZombieWaves : EnemyWaves {
-    public ZombieWaves(int nrOfEnemies, float timeUntilSpawn) : base(nrOfEnemies, timeUntilSpawn){
+public class ZombieWaves : EnemyWaves
+{
+    public ZombieWaves(int nrOfEnemies, float timeUntilSpawn) : base(nrOfEnemies, timeUntilSpawn)
+    {
     }
 }
 
 [System.Serializable]
-public class GraveRobberWaves : EnemyWaves {
-    public GraveRobberWaves(int nrOfEnemies, float timeUntilSpawn) : base(nrOfEnemies, timeUntilSpawn){
+public class GraveRobberWaves : EnemyWaves
+{
+    public GraveRobberWaves(int nrOfEnemies, float timeUntilSpawn) : base(nrOfEnemies, timeUntilSpawn)
+    {
     }
 }
 
@@ -54,7 +61,8 @@ public class PrototypeManager : Singleton<PrototypeManager>
 
     public int NrOfTasks { get => GetCurrentWave().nrOfTasks; private set => GetCurrentWave().nrOfTasks = value; }
 
-    private void Awake() {
+    private void Awake()
+    {
         SetInstance(this);
 
         if (levels[0] == null) throw new System.Exception("No levels set in PrototypeManager");
@@ -70,13 +78,14 @@ public class PrototypeManager : Singleton<PrototypeManager>
         //Make start functrion or somth smh
         //AdvanceWave();
         //TaskManager.GetInstance().ActivateTasks(GetCurrentWave().timePerTask, GetCurrentWave().nrOfTasks, GetCurrentWave().minNrOfOrnamnets, GetCurrentWave().maxNrOfOrnamnets);
-
     }
 
-    private void Update() {
-        if(
+    private void Update()
+    {
+        if (
             GetCurrentWave().timeLimit == true &&
-            (DateTime.Now - waveStartTime).TotalSeconds > GetCurrentWave().timelimitForWave) {
+            (DateTime.Now - waveStartTime).TotalSeconds > GetCurrentWave().timelimitForWave)
+        {
             Debug.Log("Time limit over: you are Lose game?", this);
             //Lose game here
         }
@@ -85,39 +94,64 @@ public class PrototypeManager : Singleton<PrototypeManager>
     public LevelSO GetCurrentLevel() { return levels[currentLevel]; }
     public EnemyWaveSO GetCurrentWave() { return levels[currentLevel].gameWaves[currentWave]; }
 
-    public void AdvanceLevel() {
-        if(levels[currentLevel + 1] == null) {
+    public void AdvanceLevel()
+    {
+        if (levels[currentLevel + 1] == null)
+        {
             Debug.Log("No more levels! You are win!");
         }
     }
 
-    public void CompleteWave() {
-        if(GetCurrentWave().PauseAfterCompletedWave) {
+    public void CompleteWave()
+    {
+        if (GetCurrentWave().PauseAfterCompletedWave)
+        {
             //Pause
         }
         else AdvanceWave(); // Just continue
     }
-    public void AdvanceWave() {
-        if(currentLevel < 0 || currentWave < 0) SetLevel(levels[0]);
+    public void AdvanceWave()
+    {
+        //Initiate the first wave
+        if (currentLevel < 0 || currentWave < 0)
+        {
+            SetLevel(levels[0]);
+            SetWaveProperties();
+            return;
+        }
 
-        if (levels[currentLevel].gameWaves[currentWave + 1] == null) {
+        // No more waves in this level, move on to the next level
+        try
+        {
+            bool b = levels[currentLevel].gameWaves[currentWave + 1] == null;
+        }
+        catch (Exception e)
+        {
             AdvanceLevel();
+            return;
         }
-        else {
-            if (GetCurrentWave().clearAllObjectPoolsOnPause)
-                GameManager.GetInstance().ClearAllObjectPools();
-            currentWave++;
 
-            try { TaskManager.GetInstance().ResetTasks(); } catch(System.Exception e) { Debug.LogError(e); }
-
-            waveStartTime = DateTime.Now;
-            SetEnemySpawnerProperties();
-         
-            TaskManager.GetInstance().ActivateTasks(GetCurrentWave().timePerTask, GetCurrentWave().nrOfTasks, GetCurrentWave().minNrOfOrnamnets, GetCurrentWave().maxNrOfOrnamnets);
-        }
+        currentWave++;
+        SetWaveProperties();
     }
 
-    void SetLevel(LevelSO levelSO) {
+    private void SetWaveProperties()
+    {
+        Debug.Log("Setting properties for wave " + currentWave);
+
+        if (GetCurrentWave().clearAllObjectPoolsOnPause)
+            GameManager.GetInstance().ClearAllObjectPools();
+
+        try { TaskManager.GetInstance().ResetTasks(); } catch (System.Exception e) { Debug.LogError(e); }
+
+        waveStartTime = DateTime.Now;
+        SetEnemySpawnerProperties();
+
+        TaskManager.GetInstance().ActivateTasks(GetCurrentWave().timePerTask, GetCurrentWave().nrOfTasks, GetCurrentWave().minNrOfOrnamnets, GetCurrentWave().maxNrOfOrnamnets, GetCurrentWave().chanceOfTreatment);
+    }
+
+    void SetLevel(LevelSO levelSO)
+    {
         levels[currentWave] = levelSO;
         if (levels[currentWave].gameWaves[0] == null) throw new System.Exception("No levels set in currentLevel");
 
@@ -125,8 +159,18 @@ public class PrototypeManager : Singleton<PrototypeManager>
         waveStartTime = DateTime.Now;
     }
 
-    private void SetEnemySpawnerProperties() {
+    private void SetEnemySpawnerProperties()
+    {
         EnemySpawner.GetInstance()?.SetWavesProperties(GetCurrentWave().timeBetweenEnemySpawns, GetCurrentWave().unrestModifier, GetCurrentWave().nrOfSpawnsPerWave);
     }
 
+    public void Test()
+    {
+        float t = 12;
+    }
+
+    public void NewTest()
+    {
+
+    }
 }

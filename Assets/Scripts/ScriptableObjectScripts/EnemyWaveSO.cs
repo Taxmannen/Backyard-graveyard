@@ -21,6 +21,7 @@ public class EnemyWaveSO : ScriptableObject
     public bool clearAllObjectPoolsOnPause;
     [Range(0, 3)] public int minNrOfOrnamnets;
     [Range(0, 3)] public int maxNrOfOrnamnets;
+    [Range(0, 100)] public int chanceOfTreatment;
 
     [Header("Enemy waves")]
     public int nrOfSpawnsPerWave = 1;

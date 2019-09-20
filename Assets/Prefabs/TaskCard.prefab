@@ -1696,6 +1696,7 @@ MonoBehaviour:
   OrnamentTypelot03Image: {fileID: 6120881114990553080}
   OrnamentTypelot03Container: {fileID: 6120881115899029049}
   treatmentImage: {fileID: 6161917352318477770}
+  treatmentContainer: {fileID: 1456671924707766202}
   HeadTypeprites:
   - {fileID: 21300000, guid: fcc79ff6963515349ad3d75dc3bd7249, type: 3}
   - {fileID: 21300000, guid: 44757773e1f3c9c42b4870ea5dd127df, type: 3}
