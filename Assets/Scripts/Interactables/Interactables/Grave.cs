@@ -18,22 +18,39 @@ public class Grave : Interactable
     [Header("Body")]
     [SerializeField, ReadOnly] private Body body = null;
 
+    [Header("Debug")]
+    //[SerializeField] private List<GameObject> objectsInGrave = new List<GameObject>();
+
     private List<GameObject> dirtLayerList = new List<GameObject>();
     private Vector3 bodyOffset = new Vector3(0, -0.5f, -0.125f);
+    private Vector3 bodyPickup = new Vector3(0, 0.5f, -0.125f); //Tveksamt
     #endregion
 
-    #region Awake & OnTrigger
+    #region Awake
     private void Awake()
     {
+        PlayButton.PlayEvent += ClearBodyAndAddDirt;
         for (int i = 0; i < maxAmountOfDirtLayers; i++) AddDirt();
     }
+    #endregion
+
+    #region On Trigger
+    /*private void OnTriggerEnter(Collider other)
+    {
+        if (!other.isTrigger && other.CompareTag("Interactable")) objectsInGrave.Add(other.gameObject);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (!other.isTrigger && other.CompareTag("Interactable")) objectsInGrave.Remove(other.gameObject);
+    }*/
 
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Interactable") && body == null)
         {
             Body body = other.GetComponent<Body>();
-            if (body != null && body.ActiveHand == null && body.Head?.ActiveHand == null) AddBody(body);
+            if (body && !body.ActiveHand && !body.Head?.ActiveHand) AddBody(body);
         }
     }
     #endregion
@@ -46,7 +63,7 @@ public class Grave : Interactable
             RemoveDirt();
             return Instantiate(dirt).GetComponent<Interactable>();
         }
-        else if (dirtLayerList.Count == 0 && body != null)
+        else if (dirtLayerList.Count == 0 && body)
         {
             return RemoveBody();
         }
@@ -72,13 +89,14 @@ public class Grave : Interactable
         Body currentBody = body;
         currentBody.SetRigidbodyConstraints(false);
         currentBody.IsInGrave = false;
+        currentBody.transform.position = transform.position + (transform.rotation * bodyPickup);
         body = null;
         return currentBody;
     }
     #endregion
 
     #region Dirt
-    public void AddDirt()
+    public void AddDirt(GameObject dirt = null)
     {
         if (dirtLayerList.Count < maxAmountOfDirtLayers)
         {
@@ -86,6 +104,7 @@ public class Grave : Interactable
             GameObject current = Instantiate(dirtLayer, dirtLayerParent);
             current.transform.localScale = new Vector3(current.transform.localScale.x, 1 / (float)maxAmountOfDirtLayers, current.transform.localScale.z);
             current.transform.localPosition = new Vector3(0, (-0.5f + (scale / 2)) + (scale * dirtLayerList.Count), 0);
+            //if (dirt) objectsInGrave.Remove(dirt);
             dirtLayerList.Add(current);
         }
         if (dirtLayerList.Count == maxAmountOfDirtLayers) CheckTaskCompletion();
@@ -102,12 +121,17 @@ public class Grave : Interactable
     #region Grave
     public void ResetGrave()
     {
+        ClearBodyAndAddDirt();
+        foreach (OrnamentPlacement placement in ornamentPlacements) placement.ReturnOrnament();
+    }
+
+    private void ClearBodyAndAddDirt()
+    {
         if (body != null)
         {
             Destroy(body.gameObject);
             body = null;
         }
-        foreach (OrnamentPlacement placement in ornamentPlacements) placement.ReturnOrnament();
         for (int i = 0; i < (maxAmountOfDirtLayers - dirtLayerList.Count); i++) AddDirt(); //behövs ej??
     }
     #endregion

@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 3073540760668419220, guid: a63e519607986f64a85cd34d43f78cf0,
         type: 3}
       propertyPath: m_Name
-      value: Sledgehammer (1)
+      value: Sledgehammer Small
       objectReference: {fileID: 0}
     - target: {fileID: 2088598003375261319, guid: a63e519607986f64a85cd34d43f78cf0,
         type: 3}

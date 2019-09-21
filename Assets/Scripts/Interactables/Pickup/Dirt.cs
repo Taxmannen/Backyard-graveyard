@@ -10,7 +10,7 @@ public class Dirt : Pickup
             Grave grave = other.gameObject.GetComponent<Grave>();
             if (!ActiveHand)
             {
-                grave.GetComponent<Grave>().AddDirt();
+                grave.GetComponent<Grave>().AddDirt(gameObject);
                 Destroy(gameObject);
             } 
         }

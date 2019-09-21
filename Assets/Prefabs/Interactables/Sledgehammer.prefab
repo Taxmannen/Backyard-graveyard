@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2526846842270556627}
   - component: {fileID: 8508170324669912167}
   - component: {fileID: 6289533158858342803}
+  - component: {fileID: 6823894397571042266}
   m_Layer: 8
   m_Name: Head
   m_TagString: Untagged
@@ -78,6 +79,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &6823894397571042266
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778041971137449400}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4493585093827132993, guid: 13efcef524c927e4cbe0e6a42736f483, type: 3}
 --- !u!1 &3073540760668419220
 GameObject:
   m_ObjectHideFlags: 0
@@ -87,7 +102,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2088598003375261319}
-  - component: {fileID: 3073540760668419223}
   - component: {fileID: 3073540760668419222}
   - component: {fileID: 4137098147119746291}
   - component: {fileID: 4137098147119746290}
@@ -108,26 +122,13 @@ Transform:
   m_GameObject: {fileID: 3073540760668419220}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.565, y: 0.111, z: -1.06}
-  m_LocalScale: {x: 0.49999997, y: 0.49999994, z: 0.5}
+  m_LocalScale: {x: 0.49999997, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 3461986938167672553}
   - {fileID: 2526846842270556627}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3073540760668419223
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3073540760668419220}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.1, y: 0.38, z: 0.4}
-  m_Center: {x: -0.05, y: 0, z: 1.4}
 --- !u!65 &3073540760668419222
 BoxCollider:
   m_ObjectHideFlags: 0
