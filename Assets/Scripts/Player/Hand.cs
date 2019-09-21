@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Valve.VR;
@@ -103,7 +104,8 @@ public class Hand : MonoBehaviour
         if (!currentInteractable) return;
         Rigidbody targetBody = currentInteractable.GetComponent<Rigidbody>();
 
-        if(FindObjectOfType<Player>().GetPlayMode() == Playmode.VR) {
+        if (FindObjectOfType<Player>().GetPlayMode() == Playmode.VR)
+        {
             targetBody.velocity = pose.GetVelocity();
             targetBody.angularVelocity = pose.GetAngularVelocity();
         }
@@ -111,7 +113,10 @@ public class Hand : MonoBehaviour
         fixedJoint.connectedBody = null;
 
         if (childObjectOnPickup)
-            currentInteractable.transform.parent = null;
+        {
+            try { currentInteractable.transform.SetParent(null); }
+            catch { Exception e; }
+        }
 
         currentInteractable.GetComponent<Pickup>()?.Drop();
         currentInteractable = null;

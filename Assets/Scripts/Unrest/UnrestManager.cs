@@ -13,6 +13,10 @@ public class UnrestManager : Singleton<UnrestManager>
     [SerializeField] private int startingUnrest = 10;
     [SerializeField] private int minUnrest = 0;
     [SerializeField] private int maxUnrest = 20;
+
+    [Header("Debug")]
+    [SerializeField] private bool debugMode;
+
     public int CurrentUnrest { get; private set; }
     public int MaxUnrest { get => maxUnrest; private set => maxUnrest = value; }
 
@@ -30,7 +34,7 @@ public class UnrestManager : Singleton<UnrestManager>
             CurrentUnrest += plusOrMinusValue;
             CurrentUnrest = Mathf.Clamp(CurrentUnrest, minUnrest, MaxUnrest);
             OnUnrestChange?.Invoke(CurrentUnrest);
-            Debug.Log(CurrentUnrest);
+            if (debugMode) Debug.Log(CurrentUnrest);
         }
     }
 }

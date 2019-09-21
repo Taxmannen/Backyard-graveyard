@@ -66,11 +66,12 @@ public class Placement : MonoBehaviour
         {
             Rigidbody rb = placedObject.GetComponent<Rigidbody>();
             rb.constraints = RigidbodyConstraints.None;
-        
-         
-            if (placedObject.GetComponent<Ornament>())
+
+            Ornament ornament = placedObject.GetComponent<Ornament>();
+            if (ornament)
             {
                 (this as OrnamentPlacement).SetUnrestIEnumerator(false); //Made By Petter
+                ornament.Placement = null;
             }
             else
             {
