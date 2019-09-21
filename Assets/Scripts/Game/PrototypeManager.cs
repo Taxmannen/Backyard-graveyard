@@ -56,8 +56,8 @@ public class PrototypeManager : Singleton<PrototypeManager>
     [Header("References")]
     //[SerializeField] private EnemySpawner zombieSpawner;
     //[SerializeField] private EnemySpawner graveRobberSpawner;
-    [SerializeField] private PlayButton playButton;
 
+    private PlayButton playButton;
     private DateTime waveStartTime;
 
     public int NrOfTasks { get => GetCurrentWave().nrOfTasks; private set => GetCurrentWave().nrOfTasks = value; }
@@ -71,6 +71,7 @@ public class PrototypeManager : Singleton<PrototypeManager>
         currentLevel = 0;
         currentWave = 0;
         SetLevel(levels[0]);
+        playButton = PlayButton.GetInstance();
         PlayButton.PlayEvent += StartNewGame;
     }
 
@@ -91,7 +92,7 @@ public class PrototypeManager : Singleton<PrototypeManager>
             (DateTime.Now - waveStartTime).TotalSeconds > GetCurrentWave().timelimitForWave)
         {
             Debug.Log("Time limit over: you are Lose game?", this);
-            playButton.StopPlaying();
+            //playButton.StopPlaying();
             //Lose game here
         }
     }
