@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3467162729453346222}
   - component: {fileID: 3467162729453346216}
   - component: {fileID: 3467162729453346223}
-  - component: {fileID: 3467162729453346217}
+  - component: {fileID: 605548348}
   - component: {fileID: 8643755926445113300}
   m_Layer: 0
   m_Name: Flower Spawner
@@ -64,7 +64,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.3, y: 0.4, z: 0.3}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3467162729453346217
+--- !u!114 &605548348
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -73,18 +73,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 3467162729453346221}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 397a9f98814fa3441b3491a4b1e9096f, type: 3}
+  m_Script: {fileID: 11500000, guid: dbe2b230927e86e4ca6c231e117df3b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderers:
   - {fileID: 6557501895911691844}
   spawnPrefab: {fileID: 3157057524480144718, guid: d512dea7ceb4ba7418b831d3bd16789e,
     type: 3}
-  objectPool: {fileID: 8643755926445113300}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0}
   despawnWhenPutBack: 1
   onlyOneActive: 0
+  spawnedObjects: []
 --- !u!114 &8643755926445113300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,7 +101,9 @@ MonoBehaviour:
   amount: 25
   scalable: 0
   reusable: 1
+  spawner: {fileID: 605548348}
   usedObjects: []
+  amountLeftInPool: 0
 --- !u!1 &4844812409142403736
 GameObject:
   m_ObjectHideFlags: 0

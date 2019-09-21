@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5074841555523207443}
   - component: {fileID: 5074841555523207440}
   - component: {fileID: 5074841555523207441}
-  - component: {fileID: 5074841555523207446}
+  - component: {fileID: 1521810178}
   - component: {fileID: -617140608141143518}
   m_Layer: 0
   m_Name: Candle Spawner
@@ -31,7 +31,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 5074841556131113451}
   - {fileID: 6687871813708789525}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -65,7 +64,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.3, y: 0.4, z: 0.3}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5074841555523207446
+--- !u!114 &1521810178
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -74,18 +73,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 5074841555523207447}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 397a9f98814fa3441b3491a4b1e9096f, type: 3}
+  m_Script: {fileID: 11500000, guid: dbe2b230927e86e4ca6c231e117df3b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderers:
   - {fileID: 8266242970126217690}
   spawnPrefab: {fileID: 1254065932924604926, guid: dc91eb5b6a2845040947f1afd534117e,
     type: 3}
-  objectPool: {fileID: -617140608141143518}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -90, y: 0, z: 0}
   despawnWhenPutBack: 1
   onlyOneActive: 0
+  spawnedObjects: []
 --- !u!114 &-617140608141143518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,85 +101,9 @@ MonoBehaviour:
   amount: 25
   scalable: 0
   reusable: 1
+  spawner: {fileID: 1521810178}
   usedObjects: []
---- !u!1 &5074841556131113448
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5074841556131113451}
-  - component: {fileID: 5074841556131113445}
-  - component: {fileID: 5074841556131113450}
-  m_Layer: 0
-  m_Name: Flower Model
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &5074841556131113451
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5074841556131113448}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.01, y: 0.0100000035, z: 0.06000003}
-  m_Children: []
-  m_Father: {fileID: 5074841555523207443}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!33 &5074841556131113445
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5074841556131113448}
-  m_Mesh: {fileID: 2203189564342145700, guid: 4adc0435c4b68044db86deee92852261, type: 3}
---- !u!23 &5074841556131113450
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5074841556131113448}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 68e1a4ea9b8e401448a2710347c144d2, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  amountLeftInPool: 0
 --- !u!1 &7677315905786955014
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,7 +134,7 @@ Transform:
   m_LocalScale: {x: 0.016666668, y: 0.016666671, z: 0.08333335}
   m_Children: []
   m_Father: {fileID: 5074841555523207443}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &2417044609201507619
 MeshFilter:

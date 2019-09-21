@@ -1,4 +1,4 @@
-﻿public class CandlePool : ObjectPool
+﻿public class CandlePool : ObjectPoolOrnament
 {
     private static CandlePool instance;
 

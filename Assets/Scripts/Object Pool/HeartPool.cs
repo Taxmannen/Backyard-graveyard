@@ -1,4 +1,4 @@
-﻿public class HeartPool : ObjectPool
+﻿public class HeartPool : ObjectPoolOrnament
 {
     private static HeartPool instance;
 

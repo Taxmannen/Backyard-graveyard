@@ -1,4 +1,4 @@
-﻿public class FlowerPool : ObjectPool
+﻿public class FlowerPool : ObjectPoolOrnament
 {
     private static FlowerPool instance;
 

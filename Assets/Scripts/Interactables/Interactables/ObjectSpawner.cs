@@ -7,17 +7,17 @@ public class ObjectSpawner : Interactable
     #region Variables
     [Header("Spawner")]
     [SerializeField] private GameObject spawnPrefab;
-    [SerializeField] private ObjectPool objectPool;
-    [SerializeField] private Vector3 position;
-    [SerializeField] private Vector3 rotation;
+    [SerializeField] protected Vector3 position;
+    [SerializeField] protected Vector3 rotation;
     [SerializeField] private bool despawnWhenPutBack;
     [SerializeField, Tooltip("Destroys the last spawned object when you spawn a new")] private bool onlyOneActive;
 
-    private List<GameObject> spawnedObjects = new List<GameObject>();
+    [Header("Debug")]
+    [SerializeField, ReadOnly] protected List<GameObject> spawnedObjects = new List<GameObject>();
     private GameObject lastSpawned = null;
     #endregion
 
-    private void Awake()
+    protected virtual void Awake()
     {
         PlayButton.PlayEvent += ReplayGame;
     }
@@ -38,11 +38,10 @@ public class ObjectSpawner : Interactable
 
     public override Interactable Interact()
     {
-        if (objectPool) return PickupWithObjectPool();
-        else return PickupWithoutObjectPool();
+        return SpawnObject();
     }
 
-    private Pickup PickupWithoutObjectPool()
+    protected virtual Pickup SpawnObject()
     {
         if (onlyOneActive) ReturnObject(lastSpawned);
         Pickup pickup = Instantiate(spawnPrefab, transform.position + position, Quaternion.Euler(transform.eulerAngles + rotation)).GetComponent<Pickup>();
@@ -51,30 +50,23 @@ public class ObjectSpawner : Interactable
         return pickup;
     }
 
-    private Pickup PickupWithObjectPool()
-    {
-        GameObject pickup = objectPool.Get(transform.position + position, Quaternion.Euler(transform.eulerAngles + rotation), null);
-        spawnedObjects.Add(pickup);
-        return pickup.GetComponent<Pickup>();
-    }
-
-    private void ReturnObject(GameObject pickup)
+    protected virtual void ReturnObject(GameObject pickup)
     {
         spawnedObjects.Remove(pickup);
-        if (objectPool) PoolManager.ReturnPickup(pickup.GetComponent<Pickup>());
-        else Destroy(pickup);
+        Destroy(pickup);
     }
 
-    private void ReplayGame()
+    protected virtual void ReplayGame()
     {
         for (int i = 0; i < spawnedObjects.Count; i++)
         {
-            if (spawnedObjects[i] != null)
-            {
-                if (objectPool) objectPool.ReturnToPool(spawnedObjects[i]);
-                else Destroy(spawnedObjects[i]);
-            }
+            if (spawnedObjects[i] != null) Destroy(spawnedObjects[i]);
         }
         spawnedObjects = new List<GameObject>();
+    }
+
+    public void RemoveFromSpawnedObjects(GameObject spawnedObject)
+    {
+        spawnedObjects.Remove(spawnedObject);
     }
 }
