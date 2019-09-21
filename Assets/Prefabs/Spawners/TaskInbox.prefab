@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4902855810044610063}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.306, y: 0.156, z: -0.173}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.3, y: 0.1, z: 0.3}
   m_Children:
   - {fileID: 1599073886162260907}
@@ -110,11 +110,11 @@ MonoBehaviour:
   - {fileID: 4902855810044610098}
   spawnPrefab: {fileID: 4410019569351948750, guid: 661a96f52f475164ea110a3e179a175d,
     type: 3}
-  objectPool: {fileID: 0}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0}
   despawnWhenPutBack: 0
   onlyOneActive: 0
+  spawnedObjects: []
 --- !u!1 &5172026167137564420
 GameObject:
   m_ObjectHideFlags: 0
