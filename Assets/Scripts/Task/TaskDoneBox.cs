@@ -45,33 +45,33 @@ public class TaskDoneBox : MonoBehaviour
     {
         if (other == null) return;
         if (other.gameObject == null) return;
+        //if (other.CompareTag("Interactable")) return;
         TaskCard taskCard = other.gameObject.GetComponent<TaskCard>();
         if (taskCard == null) return;
 
         if (taskCard.taskCompleted == true && !levelComplete)
         {
-            //Destroy(other.gameObject);
-            //other.GetComponent<TaskCard>().task.Reinitialise(); // Should ww really respawn the same task again? Or do we let the player interact with the task spawn to get a new task.
-
+            taskCard.taskCompleted = false;
             CreateNewTaskCard();
             UpdateCompletedTasksText();
-            Destroy(other.gameObject);
+            Destroy(other.gameObject); 
             TaskManager.GetInstance().CheckLevelCompletion();
         }
     }
 
     private void CreateNewTaskCard()
     {
+        if (numberOfTasksCompleted == totalTasksForLevel)
+        {
+            levelComplete = true;
+            if (PrototypeManager.GetInstance().GetCurrentWave().PauseAfterCompletedWave) PrototypeManager.GetInstance().AdvanceWave();
+        }
+
         Vector3 newOffset = new Vector3(baseOffset.x, baseOffset.y + (numberOfTasksCompleted * 0.01f), baseOffset.z);
         GameObject newcard = Instantiate(taskCardInBox, newCardParent.transform);
         objectsInBox.Add(newcard);
         newcard.transform.position = newCardParent.transform.position + (transform.rotation * newOffset);
         numberOfTasksCompleted++;
-        if (numberOfTasksCompleted == totalTasksForLevel)
-        {
-            levelComplete = true;
-            if(PrototypeManager.GetInstance().GetCurrentWave().PauseAfterCompletedWave) PrototypeManager.GetInstance().AdvanceWave();
-        }
     }
 
     private void UpdateCompletedTasksText()
