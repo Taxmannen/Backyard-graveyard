@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 /// <summary>
 /// <author>Kristoffer</author>
-/// <edits>Simon</edits>
+/// <edits>Simon & Tåqvist</edits>
 /// </summary>
 public class TaskCard : MonoBehaviour
 {
@@ -42,7 +42,6 @@ public class TaskCard : MonoBehaviour
     private Color timerColor = new Color(0f, 255f, 0f);
 
     public Task task;
-
 
     public void UpdateTimerBar(float timerPercent)
     {
@@ -198,5 +197,35 @@ public class TaskCard : MonoBehaviour
         //OrnamentTypelot01Image.gameObject.SetActive(false);
         //OrnamentTypelot02Image.gameObject.SetActive(false);
         //OrnamentTypelot03Image.gameObject.SetActive(false);
+    }
+
+
+
+    [SerializeField] private Interactable interactable;
+    private Transform veryNiceBoxTransform;
+    private Coroutine coroutine;
+    [SerializeField] private float respawnTimeWhenPlacedOnGround = 3;
+
+    private void OnCollisionStay(Collision other)
+    {
+        if (other.gameObject.tag == "Ground" && interactable.ActiveHand == null && coroutine == null)
+        {
+            StartReturnToBoxCoroutine();
+        }
+    }
+
+    public void StartReturnToBoxCoroutine()
+    {
+        coroutine = StartCoroutine("ReturnToNiceBoxAfterSeconds");
+    }
+
+    private IEnumerator ReturnToNiceBoxAfterSeconds()
+    {
+        yield return new WaitForSeconds(respawnTimeWhenPlacedOnGround);
+        //Play Poof
+        veryNiceBoxTransform = GameObject.FindGameObjectWithTag("VeryNiceBoxRespawn").transform;
+        transform.position = new Vector3(veryNiceBoxTransform.position.x, veryNiceBoxTransform.position.y, veryNiceBoxTransform.position.z);
+        coroutine = null;
+        yield return null;
     }
 }

@@ -38,7 +38,7 @@ public class Door : MonoBehaviour
     public IEnumerator DoorCooldown()
     {
         doorOnCooldown = true;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.75f);
         doorOnCooldown = false;
         yield return null;
     }
@@ -114,7 +114,7 @@ public class Door : MonoBehaviour
         float i = 0f;
         while (i <= 1)
         {
-            i += 0.01f;
+            i += 0.02f;
             targetDoor.fenceDoor.transform.rotation = Quaternion.Lerp(openTransform.rotation, closedTransform.rotation, i);
             
             yield return new WaitForSeconds(0.01f);
