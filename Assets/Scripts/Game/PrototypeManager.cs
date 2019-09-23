@@ -49,8 +49,8 @@ public class PrototypeManager : Singleton<PrototypeManager>
 {
     [Header("Levels")]
     [SerializeField] private LevelSO[] levels;
-    [SerializeField] private int currentLevel = -1;
-    [SerializeField] private int currentWave = -1;
+    [SerializeField, ReadOnly] private int currentLevel = -1;
+    [SerializeField, ReadOnly] private int currentWave = -1;
     [SerializeField] private bool clearInteractablesOnPickup = false;
 
     [Header("References")]
@@ -110,21 +110,17 @@ public class PrototypeManager : Singleton<PrototypeManager>
 
     public void AdvanceLevel()
     {
-        try
+        if(CurrentLevel + 1 < levels.Length)
         {
-            LevelSO tmp = levels[CurrentLevel + 1];
+            CurrentLevel++;
+            currentWave = 0;
+            SetWaveProperties();
         }
-        catch(Exception e)
+        else
         {
             Debug.Log("No more levels! You are win!");
             playButton.StopPlaying();
-
-            return;
         }
-
-        CurrentLevel++;
-        currentWave = 0;
-        SetWaveProperties();
     }
 
     public void CompleteWave()
@@ -138,29 +134,18 @@ public class PrototypeManager : Singleton<PrototypeManager>
     }
     public void AdvanceWave()
     {
-        ////Initiate the first wave
-        //if (currentLevel < 0 || currentWave < 0)
-        //{
-        //    SetLevel(0);
-        //    SetWaveProperties();
-        //    return;
-        //}
-
-        // No more waves in this level, move on to the next level
-        try
+        if(currentWave + 1 < GetCurrentLevel().gameWaves.Length)
         {
-            bool b = levels[CurrentLevel].gameWaves[currentWave + 1] == null;
+            //taskDoneBox.Reset();
+            currentWave++;
+            SetWaveProperties();
+            taskDoneBox.Reset();
         }
-        catch (Exception e)
+        else
         {
+            // No more waves in this level, move on to the next level
             AdvanceLevel();
-            return;
         }
-
-        taskDoneBox.Reset();
-        currentWave++;
-        SetWaveProperties();
-        taskDoneBox.Reset();
     }
 
     private void SetWaveProperties()
