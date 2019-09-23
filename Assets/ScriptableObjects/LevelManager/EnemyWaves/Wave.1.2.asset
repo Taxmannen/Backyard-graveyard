@@ -15,12 +15,13 @@ MonoBehaviour:
   timeLimit: 1
   timelimitForWave: 60
   timeBetweenEnemySpawns: 15
-  nrOfTasks: 5
+  nrOfTasks: 1
   timePerTask: 600
   chanceOfCorrectBodyCombination: 85
   PauseAfterCompletedWave: 0
   clearAllObjectPoolsOnPause: 0
   minNrOfOrnamnets: 0
   maxNrOfOrnamnets: 3
+  chanceOfTreatment: 0
   nrOfSpawnsPerWave: 1
   unrestModifier: 6

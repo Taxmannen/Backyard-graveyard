@@ -54,6 +54,7 @@ public class PrototypeManager : Singleton<PrototypeManager>
     [SerializeField] private bool clearInteractablesOnPickup = false;
 
     [Header("References")]
+    public TaskDoneBox taskDoneBox;
     //[SerializeField] private EnemySpawner zombieSpawner;
     //[SerializeField] private EnemySpawner graveRobberSpawner;
 
@@ -61,6 +62,13 @@ public class PrototypeManager : Singleton<PrototypeManager>
     private DateTime waveStartTime;
 
     public int NrOfTasks { get => GetCurrentWave().nrOfTasks; private set => GetCurrentWave().nrOfTasks = value; }
+    public int CurrentLevel {
+        get => currentLevel;
+        set {
+            Debug.Log($"Setting currentLevel from {currentLevel} to {value}");
+            currentLevel = value;
+        }
+    }
 
     private void Awake()
     {
@@ -68,9 +76,9 @@ public class PrototypeManager : Singleton<PrototypeManager>
 
         if (levels[0] == null) throw new System.Exception("No levels set in PrototypeManager");
 
-        currentLevel = 0;
-        currentWave = 0;
-        SetLevel(levels[0]);
+        //CurrentLevel = 0;
+        //currentWave = 0;
+        //SetLevel(0);
         playButton = PlayButton.GetInstance();
         PlayButton.PlayEvent += StartNewGame;
     }
@@ -97,16 +105,26 @@ public class PrototypeManager : Singleton<PrototypeManager>
         }
     }
 
-    public LevelSO GetCurrentLevel() { return levels[currentLevel]; }
-    public EnemyWaveSO GetCurrentWave() { return levels[currentLevel].gameWaves[currentWave]; }
+    public LevelSO GetCurrentLevel() { return levels[CurrentLevel]; }
+    public EnemyWaveSO GetCurrentWave() { return levels[CurrentLevel].gameWaves[currentWave]; }
 
     public void AdvanceLevel()
     {
-        if (levels[currentLevel + 1] == null)
+        try
+        {
+            LevelSO tmp = levels[CurrentLevel + 1];
+        }
+        catch(Exception e)
         {
             Debug.Log("No more levels! You are win!");
             playButton.StopPlaying();
+
+            return;
         }
+
+        CurrentLevel++;
+        currentWave = 0;
+        SetWaveProperties();
     }
 
     public void CompleteWave()
@@ -114,23 +132,24 @@ public class PrototypeManager : Singleton<PrototypeManager>
         if (GetCurrentWave().PauseAfterCompletedWave)
         {
             //Pause
+            playButton.StopPlaying();
         }
         else AdvanceWave(); // Just continue
     }
     public void AdvanceWave()
     {
-        //Initiate the first wave
-        if (currentLevel < 0 || currentWave < 0)
-        {
-            SetLevel(levels[0]);
-            SetWaveProperties();
-            return;
-        }
+        ////Initiate the first wave
+        //if (currentLevel < 0 || currentWave < 0)
+        //{
+        //    SetLevel(0);
+        //    SetWaveProperties();
+        //    return;
+        //}
 
         // No more waves in this level, move on to the next level
         try
         {
-            bool b = levels[currentLevel].gameWaves[currentWave + 1] == null;
+            bool b = levels[CurrentLevel].gameWaves[currentWave + 1] == null;
         }
         catch (Exception e)
         {
@@ -140,6 +159,7 @@ public class PrototypeManager : Singleton<PrototypeManager>
 
         currentWave++;
         SetWaveProperties();
+        taskDoneBox.Reset();
     }
 
     private void SetWaveProperties()
@@ -154,14 +174,28 @@ public class PrototypeManager : Singleton<PrototypeManager>
         TaskManager.GetInstance().ActivateTasks(GetCurrentWave().timePerTask, GetCurrentWave().nrOfTasks, GetCurrentWave().minNrOfOrnamnets, GetCurrentWave().maxNrOfOrnamnets, GetCurrentWave().chanceOfTreatment);
     }
 
-    void SetLevel(LevelSO levelSO)
-    {
-        levels[currentWave] = levelSO;
-        if (levels[currentWave].gameWaves[0] == null) throw new System.Exception("No levels set in currentLevel");
+    //void SetLevel(LevelSO levelSO)
+    //{
+    //    levels[currentWave] = levelSO;
+    //    if (levels[currentWave].gameWaves[0] == null) throw new System.Exception("No levels set in currentLevel");
 
-        currentWave = 0;
-        waveStartTime = DateTime.Now;
-    }
+    //    currentWave = 0;
+    //    waveStartTime = DateTime.Now;
+    //}
+
+    //void SetLevel(int nr)
+    //{
+    //    try { LevelSO tmp = levels[nr]; }
+    //    catch (Exception e) { Debug.Log("No level"); }
+    //    try { EnemyWaveSO tmp = levels[nr].gameWaves[0]; }
+    //    catch (Exception e){ Debug.Log("No more waves!"); }
+
+    //    CurrentLevel = nr;
+    //    Debug.Log($"Setting level to {nr}");
+    //    currentWave = 0;
+    //    waveStartTime = DateTime.Now;
+    //    SetWaveProperties();
+    //}
 
     private void SetEnemySpawnerProperties()
     {
@@ -170,17 +204,7 @@ public class PrototypeManager : Singleton<PrototypeManager>
 
     private void StartNewGame()
     {
-        SetLevel(levels[0]);
-        AdvanceWave();
-    }
-
-    public void Test()
-    {
-        float t = 12;
-    }
-
-    public void NewTest()
-    {
-
+        AdvanceLevel();
+        //AdvanceWave();
     }
 }

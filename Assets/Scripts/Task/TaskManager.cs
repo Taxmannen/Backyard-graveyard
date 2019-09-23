@@ -9,10 +9,12 @@ using UnityEngine.UI;
 /// </summary>
 
 [System.Serializable]
-public class EndOfGameStrings {
+public class EndOfGameStrings
+{
     [TextArea(1, 2)] public string s = "You are worth x completed tasks..";
 
-    public override string ToString() {
+    public override string ToString()
+    {
         return s;
     }
 }
@@ -35,15 +37,19 @@ public class TaskManager : Singleton<TaskManager>
     [SerializeField] private bool includeTreatments = true;
 
     [Header("Timer")]
-    [SerializeField][Range(0, 600)]
+    [SerializeField]
+    [Range(0, 600)]
     private int timeLimitInSecondsMin = 5;
-    [SerializeField][Range(0, 600)]
+    [SerializeField]
+    [Range(0, 600)]
     private int timeLimitInSecondsMax = 10;
 
     private int unrestValueChange;
 
-    private float maxTimeInSeconds, chanceOfTreatment;
-    private int maxNumberOfTasks, minNrOfOrnaments, maxNrOfOrnaments;
+    [Header("Debug")]
+    //comment
+    [SerializeField, ReadOnly] private float maxTimeInSeconds, chanceOfTreatment;
+    [SerializeField, ReadOnly] private int maxNumberOfTasks, minNrOfOrnaments, maxNrOfOrnaments;
 
     public int TimeLimitInSecondsMin { get => timeLimitInSecondsMin; private set => timeLimitInSecondsMin = value; }
     public int TimeLimitInSecondsMax { get => timeLimitInSecondsMax; private set => timeLimitInSecondsMax = value; }
@@ -56,34 +62,47 @@ public class TaskManager : Singleton<TaskManager>
     public int MinNrOfOrnaments { get => minNrOfOrnaments; private set => minNrOfOrnaments = value; }
     public int MaxNrOfOrnaments { get => maxNrOfOrnaments; private set => maxNrOfOrnaments = value; }
 
-    private void Awake() {
+    private void Awake()
+    {
         SetInstance(this);
     }
 
-    public void ActivateTasks(float maxTimeInSeconds, int maxNumberOfTasks, int minNrOfOrnaments, int maxNrOfOrnaments, float chanceOfTreatment) {
-        this.MaxNumberOfTasks = maxNumberOfTasks;
+    public void ActivateTasks(float maxTimeInSeconds, int maxNumberOfTasks, int minNrOfOrnaments, int maxNrOfOrnaments, float chanceOfTreatment)
+    {
+        Reset();
 
         this.maxTimeInSeconds = maxTimeInSeconds;
-        this.chanceOfTreatment = chanceOfTreatment;
         this.maxNumberOfTasks = maxNumberOfTasks;
         this.minNrOfOrnaments = minNrOfOrnaments;
         this.maxNrOfOrnaments = maxNrOfOrnaments;
+        this.chanceOfTreatment = chanceOfTreatment;
 
         if (!TaskManagerSpawnsTasks) return;
 
-        for (int i = 0; i < maxNumberOfTasks; i++) {
+        for (int i = 0; i < maxNumberOfTasks; i++)
+        {
             Task task = GetAvailableTask();
 
-            if(task != null && task.gameObject.activeSelf == false)
+            if (task != null && task.gameObject.activeSelf == false)
                 task.Activate(maxTimeInSeconds, minNrOfOrnaments, maxNrOfOrnaments, chanceOfTreatment);
         }
 
         return;
     }
 
-    private Task GetAvailableTask() {
-        for (int j = 0; j < tasks.Count; j++) {
-            if (tasks[j].gameObject.activeSelf == false) {
+    public void Reset()
+    {
+        completedTasks.Clear();
+        levelCompletedImage.SetActive(false);
+        levelCompletedText.gameObject.SetActive(false);
+    }
+
+    private Task GetAvailableTask()
+    {
+        for (int j = 0; j < tasks.Count; j++)
+        {
+            if (tasks[j].gameObject.activeSelf == false)
+            {
                 return tasks[j];
             }
         }
@@ -92,25 +111,24 @@ public class TaskManager : Singleton<TaskManager>
         return null;
     }
 
-    public void CompleteTask(Task task, bool success) {
+    public void CompleteTask(Task task, bool success)
+    {
         completedTasks.Add(success);
         TasksInProgress--;
-        CheckLevelCompletion();
+        //CheckLevelCompletion();
         unrestValueChange = success ? 1 : -1;
         UnrestManager.GetInstance().UpdateUnrest(unrestValueChange);
     }
 
-    public bool CheckLevelCompletion() {
+    public bool CheckLevelCompletion()
+    {
         int nrOfCompletedTasks = GetNrOfSuccessfulTasks();
         int nrOfFailedTasks = GetNrOfFailedTasks();
 
-        if (!CompletedAllTasks()) return false;
-
         string s = "You completed " + nrOfCompletedTasks + " tasks and failed " + nrOfFailedTasks + " tasks";
-        s += "\n" + endOfGameStrings[nrOfCompletedTasks];
-
-        levelCompletedText.text = s;
         Debug.Log(s);
+
+        if (!CompletedAllTasks()) return false;
 
         CompleteLevel();
         return true;
@@ -124,8 +142,10 @@ public class TaskManager : Singleton<TaskManager>
     public bool CompletedAllTasks() { return TasksRemaniningToComplete() <= 0; }
     public bool TasksAvailableToSelect() { return TasksRemaniningToSelect() > 0; }
 
-    private void CompleteLevel() {
-        foreach (Task task in tasks) {
+    private void CompleteLevel()
+    {
+        foreach (Task task in tasks)
+        {
             task.MyTaskCard?.Disable();
         }
 
@@ -136,9 +156,19 @@ public class TaskManager : Singleton<TaskManager>
         PrototypeManager.GetInstance().CompleteWave();
     }
 
-    public void ResetTasks() {
-        foreach(Task task in tasks) {
-            task.gameObject.SetActive(false);
+    public void ResetTasks()
+    {
+        for (int i = 0; i < tasks.Count; i++)
+        {
+            Task task = tasks[i];
+            if (task == null)
+            {
+                tasks.Remove(task);
+            }
+            else
+            {
+                task.gameObject.SetActive(false);
+            }
         }
     }
 }

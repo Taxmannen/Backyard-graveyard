@@ -143,13 +143,13 @@ public class Task : MonoBehaviour
         else
             myTaskCard.TaskFailed();
 
-        if (TaskManager.GetInstance().TasksAvailableToSelect()) {
-            //Reinitialise();
-            //RefreshTaskCardIngredients();
-        }
-        else {
-            //gameObject.SetActive(false);
-        }
+        //if (TaskManager.GetInstance().TasksAvailableToSelect()) {
+        //    //Reinitialise();
+        //    //RefreshTaskCardIngredients();
+        //}
+        //else {
+        //    //gameObject.SetActive(false);
+        //}
     }
 
     public void RefreshTaskCardIngredients() {

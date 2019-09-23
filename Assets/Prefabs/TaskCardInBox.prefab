@@ -1370,7 +1370,7 @@ GameObject:
   - component: {fileID: 6034976595515463117}
   m_Layer: 0
   m_Name: TaskCardInBox
-  m_TagString: Interactable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1458,9 +1458,13 @@ MonoBehaviour:
   headImage: {fileID: 3696147137399046466}
   bodyImage: {fileID: 3696147138386592837}
   OrnamentTypelot01Image: {fileID: 3696147137857415784}
+  OrnamentTypelot01Container: {fileID: 0}
   OrnamentTypelot02Image: {fileID: 3696147138235139609}
+  OrnamentTypelot02Container: {fileID: 0}
   OrnamentTypelot03Image: {fileID: 3696147137781302674}
+  OrnamentTypelot03Container: {fileID: 0}
   treatmentImage: {fileID: 3619031406679852960}
+  treatmentContainer: {fileID: 0}
   HeadTypeprites:
   - {fileID: 21300000, guid: fcc79ff6963515349ad3d75dc3bd7249, type: 3}
   - {fileID: 21300000, guid: 44757773e1f3c9c42b4870ea5dd127df, type: 3}

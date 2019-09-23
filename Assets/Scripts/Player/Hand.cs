@@ -161,7 +161,7 @@ public class Hand : MonoBehaviour
     {
         foreach (Interactable interactable in contactInteractable)
         {
-            interactable.SetToOutlineMaterial(MaterialType.Standard);
+            interactable?.SetToOutlineMaterial(MaterialType.Standard);
         }
         if (!GetNearestInteractable()?.ActiveHand) GetNearestInteractable()?.SetToOutlineMaterial(MaterialType.Outline);
     }

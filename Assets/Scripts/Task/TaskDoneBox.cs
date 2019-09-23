@@ -17,36 +17,45 @@ public class TaskDoneBox : MonoBehaviour
     [SerializeField] GameObject newCardParent;
 
     [Header("Level Related")]
-    int totalTasksForLevel;
-    int numberOfTasksCompleted;
+    [SerializeField, ReadOnly] int totalTasksForLevel;
+    [SerializeField, ReadOnly] int numberOfTasksCompleted;
     public bool levelComplete { get; private set; }
 
     [Header("Other")]
-    private List<GameObject> objectsInBox = new List<GameObject>();
+    [SerializeField, ReadOnly] private List<GameObject> objectsInBox = new List<GameObject>();
     private Vector3 baseOffset;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        Reset();
+    }
+
+    public void Reset()
+    {
+        Debug.Log("I AM RESETTING TASKDONEBOX NOW NOW NOW NOW");
+
         levelComplete = false;
-        baseOffset = new Vector3((0), (0.06f), (- 0.15f));
-        totalTasksForLevel = PrototypeManager.GetInstance().NrOfTasks;
+        baseOffset = new Vector3((0), (0.06f), (-0.15f));
+        totalTasksForLevel = PrototypeManager.GetInstance().NrOfTasks; // this line is probably a bug
         numberOfTasksCompleted = 0;
-        UpdateCompletedTasksText();
+        ClearObjectsInBox();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other == null) return;
         if (other.gameObject == null) return;
-        if (other.gameObject.GetComponent<TaskCard>() == null) return;
-        if (other.gameObject.GetComponent<TaskCard>().taskCompleted == null) return;
+        TaskCard taskCard = other.gameObject.GetComponent<TaskCard>();
+        if (taskCard == null) return;
 
-        if (other.gameObject.GetComponent<TaskCard>().taskCompleted == true && !levelComplete)
+        if (taskCard.taskCompleted == true && !levelComplete)
         {
             //Destroy(other.gameObject);
             //other.GetComponent<TaskCard>().task.Reinitialise(); // Should ww really respawn the same task again? Or do we let the player interact with the task spawn to get a new task.
+
+            TaskManager.GetInstance().CheckLevelCompletion();
             CreateNewTaskCard();
             UpdateCompletedTasksText();
             Destroy(other.gameObject);
@@ -63,7 +72,7 @@ public class TaskDoneBox : MonoBehaviour
         if (numberOfTasksCompleted == totalTasksForLevel)
         {
             levelComplete = true;
-            PrototypeManager.GetInstance().AdvanceWave();
+            if(PrototypeManager.GetInstance().GetCurrentWave().PauseAfterCompletedWave) PrototypeManager.GetInstance().AdvanceWave();
         }
     }
 
