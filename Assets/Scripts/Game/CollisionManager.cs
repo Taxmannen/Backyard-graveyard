@@ -20,14 +20,11 @@ public class CollisionManager : Singleton<CollisionManager>
 
     public void SetColliderState(Collider[] colliders, bool state)
     {
-        Debug.Log(colliders[0].gameObject.name + " " + state);
         foreach (Collider collider in allColliders)
         {
             foreach (Collider pickupCollider in colliders) Physics.IgnoreCollision(collider, pickupCollider, state);
         }
     }
-
-    public bool GetCollisionTest() { return collisionTest; }
 
     private Collider[] GetColliders(string tag)
     {
@@ -36,4 +33,6 @@ public class CollisionManager : Singleton<CollisionManager>
         for (int i = 0; i < staticObjects.Length; i++) colliders[i] = staticObjects[i].GetComponent<Collider>();
         return colliders;
     }
+
+    public bool GetCollisionTest() { return collisionTest; }
 }
