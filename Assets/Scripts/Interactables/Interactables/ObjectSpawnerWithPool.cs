@@ -20,9 +20,11 @@ public class ObjectSpawnerWithPool : ObjectSpawner
         return pickup.GetComponent<Pickup>();
     }
 
-    protected override void ReturnObject(GameObject pickup)
+    protected override void ReturnObject(GameObject pickupObject)
     {
-        PoolManager.ReturnPickup(pickup.GetComponent<Pickup>());
+        Pickup pickup = pickupObject.GetComponent<Pickup>();
+        if (pickup.ActiveHand) pickup.ActiveHand.Drop();
+        PoolManager.ReturnPickup(pickup);
     }
 
     protected override void ReplayGame()
