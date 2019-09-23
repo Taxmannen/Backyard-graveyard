@@ -47,7 +47,7 @@ public class LoadingBar : MonoBehaviour
         this.triggeringDoor = triggeringDoor;
         while (loadingBarFillAmount <= 1f)
         {
-            loadingBarFillAmount += 0.01f;
+            loadingBarFillAmount += 0.015f;
             loadingBarImage.fillAmount = loadingBarFillAmount;
             
             triggeringDoor.fenceDoor.transform.rotation = Quaternion.Lerp(triggeringDoor.closedTransform.rotation, triggeringDoor.openTransform.rotation, loadingBarFillAmount);
