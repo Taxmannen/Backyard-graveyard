@@ -38,7 +38,7 @@ public class ObjectSpawner : Interactable
 
     public override Interactable Interact()
     {
-        return SpawnObject();
+        return SpawnObject().Interact();
     }
 
     protected virtual Pickup SpawnObject()

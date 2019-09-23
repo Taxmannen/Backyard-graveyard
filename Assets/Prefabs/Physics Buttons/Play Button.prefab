@@ -529,7 +529,7 @@ GameObject:
   - component: {fileID: 8407048694262890614}
   m_Layer: 28
   m_Name: Min Position
-  m_TagString: Untagged
+  m_TagString: Static
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

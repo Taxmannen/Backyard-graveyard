@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4184036993504260995}
   m_Layer: 29
-  m_Name: Ornament Containers
+  m_Name: Ornament Placements
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -942,6 +942,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8695872208483951214}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: 429538861c3a53541b6c9b19bd2967ed,
+        type: 3}
+      propertyPath: m_Name
+      value: grave_stone
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 429538861c3a53541b6c9b19bd2967ed,
+        type: 3}
+      propertyPath: m_Layer
+      value: 29
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 429538861c3a53541b6c9b19bd2967ed,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1011,21 +1021,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 429538861c3a53541b6c9b19bd2967ed,
-        type: 3}
-      propertyPath: m_Name
-      value: grave_stone
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 429538861c3a53541b6c9b19bd2967ed,
-        type: 3}
-      propertyPath: m_Layer
-      value: 29
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 429538861c3a53541b6c9b19bd2967ed,
-        type: 3}
-      propertyPath: m_TagString
-      value: Static
       objectReference: {fileID: 0}
     - target: {fileID: -1504981713932161579, guid: 429538861c3a53541b6c9b19bd2967ed,
         type: 3}

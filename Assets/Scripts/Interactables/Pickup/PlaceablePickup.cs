@@ -1,6 +1,7 @@
 ﻿/* Script Made By Daniel */
 using UnityEngine;
 
+/* Script Made By Daniel */
 public class PlaceablePickup : Pickup
 {
     [Header("Placeable Pickup")]
@@ -14,7 +15,7 @@ public class PlaceablePickup : Pickup
     public override Interactable Interact()
     {
         PickupObjectFromPlacement();
-        return this;
+        return base.Interact();
     }
 
     public void PickupObjectFromPlacement()
