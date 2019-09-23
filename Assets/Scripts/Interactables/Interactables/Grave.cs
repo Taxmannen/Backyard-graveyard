@@ -19,7 +19,7 @@ public class Grave : Interactable
     [SerializeField, ReadOnly] private Body body = null;
 
     [Header("Debug")]
-    //[SerializeField] private List<GameObject> objectsInGrave = new List<GameObject>();
+    [SerializeField] private List<Pickup> objectsInGrave = new List<Pickup>();
 
     private List<GameObject> dirtLayerList = new List<GameObject>();
     private Vector3 bodyOffset = new Vector3(0, -0.5f, -0.125f);
@@ -35,15 +35,23 @@ public class Grave : Interactable
     #endregion
 
     #region On Trigger
-    /*private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (!other.isTrigger && other.CompareTag("Interactable")) objectsInGrave.Add(other.gameObject);
+        if (!other.isTrigger && other.CompareTag("Interactable"))
+        {
+            Pickup pickup = other.GetComponent<Pickup>();
+            if (pickup && pickup.GetPickupType() != PickupType.TaskCard) objectsInGrave.Add(pickup); 
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (!other.isTrigger && other.CompareTag("Interactable")) objectsInGrave.Remove(other.gameObject);
-    }*/
+        if (!other.isTrigger && other.CompareTag("Interactable"))
+        {
+            Pickup pickup = other.GetComponent<Pickup>();
+            if (pickup && pickup.GetPickupType() != PickupType.TaskCard) objectsInGrave.Remove(pickup);
+        }
+    }
 
     private void OnTriggerStay(Collider other)
     {
@@ -96,7 +104,7 @@ public class Grave : Interactable
     #endregion
 
     #region Dirt
-    public void AddDirt(GameObject dirt = null)
+    public void AddDirt(Dirt dirt = null)
     {
         if (dirtLayerList.Count < maxAmountOfDirtLayers)
         {
@@ -104,7 +112,7 @@ public class Grave : Interactable
             GameObject current = Instantiate(dirtLayer, dirtLayerParent);
             current.transform.localScale = new Vector3(current.transform.localScale.x, 1 / (float)maxAmountOfDirtLayers, current.transform.localScale.z);
             current.transform.localPosition = new Vector3(0, (-0.5f + (scale / 2)) + (scale * dirtLayerList.Count), 0);
-            //if (dirt) objectsInGrave.Remove(dirt);
+            if (dirt) objectsInGrave.Remove(dirt);
             dirtLayerList.Add(current);
         }
         if (dirtLayerList.Count == maxAmountOfDirtLayers) CheckTaskCompletion();
@@ -132,7 +140,16 @@ public class Grave : Interactable
             Destroy(body.gameObject);
             body = null;
         }
-        for (int i = 0; i < (maxAmountOfDirtLayers - dirtLayerList.Count); i++) AddDirt(); //behövs ej??
+        for (int i = 0; i < (maxAmountOfDirtLayers - dirtLayerList.Count); i++) AddDirt();
+        foreach (Pickup pickup in objectsInGrave)
+        {
+            if (!pickup.ActiveHand)
+            {
+                if (pickup.GetPickupType() == PickupType.Ornament) PoolManager.ReturnPickup(pickup);
+                else Destroy(pickup.gameObject);
+            }
+        }
+        objectsInGrave.Clear();
     }
     #endregion
 
