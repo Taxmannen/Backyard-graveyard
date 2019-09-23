@@ -204,6 +204,7 @@ public class TaskCard : MonoBehaviour
     [SerializeField] private Interactable interactable;
     private Transform veryNiceBoxTransform;
     private Coroutine coroutine;
+    [SerializeField] private float respawnTimeWhenPlacedOnGround = 3;
 
     private void OnCollisionStay(Collision other)
     {
@@ -220,7 +221,7 @@ public class TaskCard : MonoBehaviour
 
     private IEnumerator ReturnToNiceBoxAfterSeconds()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(respawnTimeWhenPlacedOnGround);
         //Play Poof
         veryNiceBoxTransform = GameObject.FindGameObjectWithTag("VeryNiceBoxRespawn").transform;
         transform.position = new Vector3(veryNiceBoxTransform.position.x, veryNiceBoxTransform.position.y, veryNiceBoxTransform.position.z);
