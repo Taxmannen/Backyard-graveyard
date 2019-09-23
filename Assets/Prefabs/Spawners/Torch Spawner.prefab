@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 7339179976312121506}
   - component: {fileID: 7339179976312121508}
   m_Layer: 0
-  m_Name: TorchSpawner
+  m_Name: Torch Spawner
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -236,7 +236,7 @@ MonoBehaviour:
   meshRenderers:
   - {fileID: 6077054383088253733}
   - {fileID: 6077054384672306553}
-  spawnPrefab: {fileID: 574326487724076679, guid: e93b4b26c9ce27247adfe56caaf08d52,
+  spawnPrefab: {fileID: 7341431876073968253, guid: 4c1cc4e6578655f42ac8eb50b6e026a2,
     type: 3}
   position: {x: 0, y: 0.1, z: 0}
   rotation: {x: 0, y: 50, z: 0}
