@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
 /* Script made by Petter */
+/* Edited by Tåqvist */
 public class Incinerator : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
