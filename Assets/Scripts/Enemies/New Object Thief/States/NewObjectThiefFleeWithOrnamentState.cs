@@ -28,6 +28,12 @@ public class NewObjectThiefFleeWithOrnamentState : NewObjectThiefFleeState
 
     public override NewObjectThiefState Update(NewObjectThief objectThief, float t)
     {
+        //Check för att kolla om objektet i handen blir inaktivt.
+        if (objectThief.objectInHand.activeInHierarchy == false)
+        {
+            return new NewObjectThiefSearchState();
+        }
+
         base.Update(objectThief, t);
         //TakeOrnamentWhenPlacedOnPlacement(objectThief);
         return null;

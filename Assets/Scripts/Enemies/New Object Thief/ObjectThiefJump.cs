@@ -8,7 +8,8 @@ public class ObjectThiefJump : MonoBehaviour
     [SerializeField] private EnemyGroundCheck groundCheck;
     [SerializeField] private Rigidbody bodyRigidBody;
     [SerializeField] private Rigidbody marionetteRigidBody;
-    
+    //private Rigidbody pickupObjectRigidBody;
+
     [Header("Jump Settings")]
     [SerializeField] private float jumpForce = 100;
     [SerializeField] private float fleeJumpForce = 2000;
@@ -31,9 +32,14 @@ public class ObjectThiefJump : MonoBehaviour
         }
     }
 
-    public void FleeJump()
+    public void FleeJump(Rigidbody pickupRigidBody)
     {
         Jump(fleeJumpForce, marionetteRigidBody);
+        if(pickupRigidBody != null)
+        {
+            Jump(fleeJumpForce, pickupRigidBody);
+        }
+        
     }
 
 

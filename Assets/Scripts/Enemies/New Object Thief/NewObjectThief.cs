@@ -180,11 +180,12 @@ public class NewObjectThief : MonoBehaviour
             }
 
             //Fulfix för om hand-objektet försvinner
-            else if (currentTargetObject.tag == "OutOfBounds" && objectInHand == null)
-            {
-                returnedState = new NewObjectThiefSearchState();
-                StateSwap();
-            }
+            //else if (currentTargetObject.tag == "OutOfBounds" && (objectInHand == null || objectInHand.activeInHierarchy == false))
+            //{
+            //    objectInHand = null;
+            //    returnedState = new NewObjectThiefSearchState();
+            //    StateSwap();
+            //}
         }
 
         returnedState = currentState.Update(this, Time.deltaTime);

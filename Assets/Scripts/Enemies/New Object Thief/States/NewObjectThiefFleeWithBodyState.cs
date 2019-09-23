@@ -34,6 +34,12 @@ public class NewObjectThiefFleeWithBodyState : NewObjectThiefFleeState
 
     public override NewObjectThiefState Update(NewObjectThief objectThief, float t)
     {
+        //Check för att kolla om objektet i handen förstörs.
+        if (objectThief.objectInHand == false)
+        {
+            return new NewObjectThiefSearchState();
+        }
+
         base.Update(objectThief, t);
 
         return DropBodyWhenPlacedInGrave(objectThief);
@@ -46,7 +52,7 @@ public class NewObjectThiefFleeWithBodyState : NewObjectThiefFleeState
         {
             if (body.IsInGrave)
             {
-                objectThief.enemyJump.FleeJump();
+                objectThief.enemyJump.FleeJump(null);
                 objectThief.pickupHand.DestroyJoint();
                 return new NewObjectThiefSearchState();
             }

@@ -53,14 +53,24 @@ public class NewObjectThiefFleeState : NewObjectThiefState
         //objectThief.enemyJump.TryJump();
     }
 
+
+    private Rigidbody objectInHandRigidBody;
     public override NewObjectThiefState Update(NewObjectThief objectThief, float t)
     {
+
         float distanceToTarget = objectThief.GetDistanceToTarget(objectThief.GetMarionetteStringPosition());
 
         timeBeforeJump -= t;
         if (timeBeforeJump <= 0)
         {
-            objectThief.enemyJump.FleeJump();
+            //Reference to the object in the hand
+            if(objectInHandRigidBody == null)
+            {
+                objectInHandRigidBody = objectThief.objectInHand.GetComponent<Rigidbody>();
+            }
+
+            //Jumps, and adds a force to the object in the hand as well.
+            objectThief.enemyJump.FleeJump(objectInHandRigidBody);
             timeBeforeJump = objectThief.GetTimeBeforeTryingNewTarget();
         }
 

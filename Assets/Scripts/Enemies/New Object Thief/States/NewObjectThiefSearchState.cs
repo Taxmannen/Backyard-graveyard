@@ -22,7 +22,21 @@ public class NewObjectThiefSearchState : NewObjectThiefState
         }
 
         //Sets the last target before changing the current target
-        lastTargetObject = objectThief.currentTargetObject;
+        if(objectThief.currentTargetObject.tag != "RandomTargetObject")
+        {
+            lastTargetObject = objectThief.currentTargetObject;
+        }
+        else if(objectThief.objectInHand != null)
+        {
+            lastTargetObject = objectThief.objectInHand;
+            objectThief.objectInHand = null;
+            //objectThief.currentTargetObject = null;
+        }
+        else
+        {
+            Debug.Log("Didn't add any last target");
+        }
+        
 
         objectThief.randomTargetArea.SetTargetPositionToPlayArea();
         objectThief.currentTargetObject = objectThief.randomTargetObject;
