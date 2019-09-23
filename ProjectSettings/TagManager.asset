@@ -19,6 +19,7 @@ TagManager:
   - FireHolder
   - Button Trigger
   - Button Limiter
+  - VeryNiceBoxRespawn
   layers:
   - Default
   - TransparentFX
@@ -45,7 +46,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - GhostFloatLayer
   - 
   - Button
   - Player Collider

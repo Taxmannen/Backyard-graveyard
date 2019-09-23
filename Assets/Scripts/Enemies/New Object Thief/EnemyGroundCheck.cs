@@ -9,6 +9,7 @@ public class EnemyGroundCheck : MonoBehaviour
     [SerializeField] private float groundHeight = 0.5f;
     [SerializeField] private float heightOffSet = 0.25f;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask floatLayer;
 
     private bool grounded = false;
 
