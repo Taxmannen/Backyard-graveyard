@@ -9,6 +9,11 @@ public class CollisionManager : Singleton<CollisionManager>
 
     private List<Collider> allColliders = new List<Collider>();
 
+    private void Awake()
+    {
+        SetInstance(this);
+    }
+
     private void Start()
     {
         allColliders.AddRange(staticColliders);
