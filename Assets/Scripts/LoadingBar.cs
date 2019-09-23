@@ -8,6 +8,7 @@ public class LoadingBar : MonoBehaviour
 {
     private float loadingBarFillAmount;
     private Image loadingBarImage;
+    public bool isBeingLoaded = false;
 
     private Door triggeringDoor;
 
@@ -16,6 +17,7 @@ public class LoadingBar : MonoBehaviour
     {
         loadingBarImage = GetComponentInChildren<Image>();
         loadingBarFillAmount = loadingBarImage.fillAmount;
+        isBeingLoaded = false;
     }
 
     public void StartLoadingBar(Door triggeringDoor)
@@ -38,12 +40,14 @@ public class LoadingBar : MonoBehaviour
             triggeringDoor = null;
         }
         StopAllCoroutines();
+        isBeingLoaded = false;
         loadingBarFillAmount = 0f;
         loadingBarImage.fillAmount = loadingBarFillAmount;
     }
 
     private IEnumerator FillLoadingBar(Door triggeringDoor)
     {
+        isBeingLoaded = true;
         this.triggeringDoor = triggeringDoor;
         while (loadingBarFillAmount <= 1f)
         {
