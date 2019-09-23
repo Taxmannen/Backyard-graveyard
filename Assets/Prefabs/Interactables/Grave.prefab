@@ -165,7 +165,6 @@ MonoBehaviour:
   - {fileID: 8699760391194360622}
   - {fileID: 8699760392357593376}
   body: {fileID: 0}
-  objectsInGrave: []
 --- !u!1 &8695872206971277848
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,7 +179,7 @@ GameObject:
   - component: {fileID: 8695872206971277850}
   m_Layer: 29
   m_Name: 'Left '
-  m_TagString: Untagged
+  m_TagString: Static
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -272,7 +271,7 @@ GameObject:
   - component: {fileID: 8695872207005066812}
   m_Layer: 29
   m_Name: Up
-  m_TagString: Untagged
+  m_TagString: Static
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -394,7 +393,7 @@ GameObject:
   - component: {fileID: 8695872207559482270}
   m_Layer: 29
   m_Name: Down
-  m_TagString: Untagged
+  m_TagString: Static
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -486,7 +485,7 @@ GameObject:
   - component: {fileID: 8695872208163431076}
   m_Layer: 29
   m_Name: Right
-  m_TagString: Untagged
+  m_TagString: Static
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -944,16 +943,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8695872206774074927}
     m_Modifications:
-    - target: {fileID: 7057870817972005994, guid: fa8716047a8edf34ab5e1a3d600c1d62,
-        type: 3}
-      propertyPath: m_Name
-      value: GraveResetButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 7057870817972005994, guid: fa8716047a8edf34ab5e1a3d600c1d62,
-        type: 3}
-      propertyPath: m_Layer
-      value: 29
-      objectReference: {fileID: 0}
     - target: {fileID: 7057870817972005993, guid: fa8716047a8edf34ab5e1a3d600c1d62,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1009,6 +998,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7057870817972005994, guid: fa8716047a8edf34ab5e1a3d600c1d62,
+        type: 3}
+      propertyPath: m_Name
+      value: GraveResetButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 7057870817972005994, guid: fa8716047a8edf34ab5e1a3d600c1d62,
+        type: 3}
+      propertyPath: m_Layer
+      value: 29
+      objectReference: {fileID: 0}
     - target: {fileID: 7057870817629618238, guid: fa8716047a8edf34ab5e1a3d600c1d62,
         type: 3}
       propertyPath: m_Layer
@@ -1039,16 +1038,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8695872208483951214}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 429538861c3a53541b6c9b19bd2967ed,
-        type: 3}
-      propertyPath: m_Name
-      value: grave_stone
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 429538861c3a53541b6c9b19bd2967ed,
-        type: 3}
-      propertyPath: m_Layer
-      value: 29
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 429538861c3a53541b6c9b19bd2967ed,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1118,6 +1107,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 429538861c3a53541b6c9b19bd2967ed,
+        type: 3}
+      propertyPath: m_Name
+      value: grave_stone
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 429538861c3a53541b6c9b19bd2967ed,
+        type: 3}
+      propertyPath: m_Layer
+      value: 29
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 429538861c3a53541b6c9b19bd2967ed,
+        type: 3}
+      propertyPath: m_TagString
+      value: Static
       objectReference: {fileID: 0}
     - target: {fileID: -1504981713932161579, guid: 429538861c3a53541b6c9b19bd2967ed,
         type: 3}
