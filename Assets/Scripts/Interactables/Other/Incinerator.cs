@@ -7,11 +7,21 @@ public class Incinerator : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Interactable"))
         {
-            Pickup pickup = other.GetComponent<Pickup>();
-            if (!PoolManager.ReturnPickup(pickup))
+            TaskCard taskCard;
+            if (taskCard = other.GetComponent<TaskCard>())
             {
-                Destroy(other.gameObject);
+                taskCard.StartReturnToBoxCoroutine();
             }
+
+            else
+            {
+                Pickup pickup = other.GetComponent<Pickup>();
+                if (!PoolManager.ReturnPickup(pickup))
+                {
+                    Destroy(other.gameObject);
+                }
+            }
+            
         }
     }
 }
