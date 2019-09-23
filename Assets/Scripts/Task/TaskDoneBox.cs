@@ -34,8 +34,6 @@ public class TaskDoneBox : MonoBehaviour
 
     public void Reset()
     {
-        Debug.Log("I AM RESETTING TASKDONEBOX NOW NOW NOW NOW");
-
         levelComplete = false;
         baseOffset = new Vector3((0), (0.06f), (-0.15f));
         totalTasksForLevel = PrototypeManager.GetInstance().NrOfTasks; // this line is probably a bug
@@ -55,10 +53,10 @@ public class TaskDoneBox : MonoBehaviour
             //Destroy(other.gameObject);
             //other.GetComponent<TaskCard>().task.Reinitialise(); // Should ww really respawn the same task again? Or do we let the player interact with the task spawn to get a new task.
 
-            TaskManager.GetInstance().CheckLevelCompletion();
             CreateNewTaskCard();
             UpdateCompletedTasksText();
             Destroy(other.gameObject);
+            TaskManager.GetInstance().CheckLevelCompletion();
         }
     }
 
@@ -87,9 +85,10 @@ public class TaskDoneBox : MonoBehaviour
     //If LevelManager needs to emty the box when changing level.
     public void ClearObjectsInBox()
     {
-        foreach (var card in objectsInBox)
+        for (int i = 0; i < objectsInBox.Count; i++)
         {
-            Destroy(card);
+            //GameObject card = objectsInBox[i];
+            Destroy(objectsInBox[i]);
         }
 
         if (objectsInBox != null)

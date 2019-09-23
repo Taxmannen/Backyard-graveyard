@@ -157,6 +157,7 @@ public class PrototypeManager : Singleton<PrototypeManager>
             return;
         }
 
+        taskDoneBox.Reset();
         currentWave++;
         SetWaveProperties();
         taskDoneBox.Reset();

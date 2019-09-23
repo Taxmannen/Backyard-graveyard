@@ -23,5 +23,5 @@ MonoBehaviour:
   minNrOfOrnamnets: 0
   maxNrOfOrnamnets: 2
   chanceOfTreatment: 0
-  nrOfSpawnsPerWave: 1
+  nrOfSpawnsPerWave: 3
   unrestModifier: 6
