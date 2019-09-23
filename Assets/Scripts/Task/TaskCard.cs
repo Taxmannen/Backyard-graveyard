@@ -188,7 +188,7 @@ public class TaskCard : MonoBehaviour
 
     public void Disable() {
         foreach (Image image in GetComponentsInChildren<Image>()) {
-            image.gameObject.SetActive(false);
+            image?.gameObject?.SetActive(false);
         }
 
         //headImage.gameObject.SetActive(false);

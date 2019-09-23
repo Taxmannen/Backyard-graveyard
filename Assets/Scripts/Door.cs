@@ -79,7 +79,11 @@ public class Door : MonoBehaviour
             player = other;
             foreach (LoadingBar loadingBar in FindObjectsOfType<LoadingBar>())
             {
-                loadingBar.EmptyLoadingBar();
+                //loadingBar.EmptyLoadingBar();
+                if (loadingBar.isBeingLoaded)
+                {
+                    return;
+                }
             }
             loadingBar = other.GetComponentInChildren<LoadingBar>();
             loadingBar.StartLoadingBar(this);
