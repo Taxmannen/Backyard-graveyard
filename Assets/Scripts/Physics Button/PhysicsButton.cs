@@ -10,7 +10,7 @@ public class PhysicsButton : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!hasCollided) position = transform.localPosition;
+        if (!hasCollided) position = transform.position;
     }
 
     private void OnCollisionEnter(Collision other)
@@ -22,7 +22,7 @@ public class PhysicsButton : MonoBehaviour
         if (other.gameObject.CompareTag("Button Limiter"))
         {
             hasCollided = true;
-            transform.localPosition = position;
+            transform.position = position;
         }
     }
 

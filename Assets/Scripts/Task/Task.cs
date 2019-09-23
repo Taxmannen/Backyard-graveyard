@@ -27,7 +27,6 @@ public class Task : MonoBehaviour
 
     private bool taskEnded = false;
 
-
     TaskManager taskManager;
 
     private float maxTimeInSeconds = 5f;
@@ -105,6 +104,7 @@ public class Task : MonoBehaviour
         this.chanceOfTreatment = includeTreatment;
         this.minNrOfOrnaments = minNrOfOrnaments;
         this.maxNrOfOrnaments = maxNrOfOrnaments;
+        
 
         gameObject.SetActive(true);
         if (TaskManager.GetInstance().TasksAvailableToSelect()) {
