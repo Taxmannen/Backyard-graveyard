@@ -44,14 +44,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36f6f5c62d77f6145878e687b244df5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PrefabTaskCard: {fileID: 6120881116044642905, guid: 2f3f6c9dc2f17664f897e237ba3ecd78,
-    type: 3}
-  taskCard: {fileID: 0}
+  myTaskCard: {fileID: 0}
   taskCardStartPos: {fileID: 0}
   head: 0
   body: 0
   ornamentType: 000000000000000000000000
   treatment: 0
+  instantiateNewTaskCards: 1
+  bodyPrefab: {fileID: 574326487724076679, guid: e93b4b26c9ce27247adfe56caaf08d52,
+    type: 3}
 --- !u!1001 &5146644396989786676
 PrefabInstance:
   m_ObjectHideFlags: 0
