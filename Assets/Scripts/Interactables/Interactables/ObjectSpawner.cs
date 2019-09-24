@@ -11,6 +11,7 @@ public class ObjectSpawner : Interactable
     [SerializeField] protected Vector3 rotation;
     [SerializeField] private bool despawnWhenPutBack;
     [SerializeField, Tooltip("Destroys the last spawned object when you spawn a new")] private bool onlyOneActive;
+    [SerializeField] private bool shouldPlaceInHand;
 
     [Header("Debug")]
     [SerializeField, ReadOnly] protected List<GameObject> spawnedObjects = new List<GameObject>();
@@ -38,7 +39,9 @@ public class ObjectSpawner : Interactable
 
     public override Interactable Interact()
     {
-        return SpawnObject().Interact();
+        Pickup pickup = SpawnObject();
+        if (shouldPlaceInHand) return null;
+        else return pickup.Interact();
     }
 
     protected virtual Pickup SpawnObject()

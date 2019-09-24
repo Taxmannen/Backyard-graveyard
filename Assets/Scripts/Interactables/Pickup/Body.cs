@@ -12,6 +12,8 @@ public class Body : BodyPart
     [SerializeField] private GameObject headPrefab;
     [SerializeField] private Transform headPosition;
 
+    private Collider[] headColliders;
+
     private FixedJoint fixedJoint;
 
     public Head Head { get; private set; }
@@ -60,6 +62,31 @@ public class Body : BodyPart
         }
     }
 
+    public override Interactable Interact()
+    {
+        base.Interact();
+        if (Head != null && collisionManager && collisionManager.GetCollisionTest()) collisionManager.SetColliderState(headColliders, true);
+        return this;
+    }
+
+    public override void Drop()
+    {
+        if (Head && !Head.ActiveHand && collisionManager && collisionManager.GetCollisionTest())
+        {
+            collisionManager.SetColliderState(colliders, false);
+            collisionManager.SetColliderState(headColliders, false);
+        }
+        else if(!Head)
+        {
+            collisionManager.SetColliderState(colliders, false);
+        }
+        ActiveHand = null;
+        /*
+        if (!Head.ActiveHand && collisionManager && collisionManager.GetCollisionTest()) collisionManager.SetColliderState(colliders, false);
+        if (Head != null && collisionManager && collisionManager.GetCollisionTest()) collisionManager.SetColliderState(headColliders, false);
+        */
+    }
+
     public void AttachHead(Head head)
     {
         head.transform.position = headPosition.position;
@@ -77,6 +104,17 @@ public class Body : BodyPart
         ConnectedBodyPart = head;
         head.ConnectedBodyPart = this;
         Head = head;
+
+        headColliders = head.GetComponentsInChildren<Collider>();
+        if (collisionManager && collisionManager.GetCollisionTest())
+        {
+            collisionManager.SetColliderState(colliders, true);
+            collisionManager.SetColliderState(headColliders, true);
+        }
+        /*
+        if (Head.ActiveHand && collisionManager && collisionManager.GetCollisionTest()) collisionManager.SetColliderState(colliders, true);
+        if (ActiveHand && collisionManager && collisionManager.GetCollisionTest()) collisionManager.SetColliderState(headColliders, true);
+        */
     }
 
     public void DetachHead()
@@ -90,8 +128,12 @@ public class Body : BodyPart
         ConnectedBodyPart = null;
         Head.ConnectedBodyPart = null;
 
+        if (!ActiveHand && collisionManager && collisionManager.GetCollisionTest()) collisionManager.SetColliderState(colliders, false);
+        if (!Head.ActiveHand && collisionManager && collisionManager.GetCollisionTest()) collisionManager.SetColliderState(headColliders, false);
+
         Head.transform.SetParent(null);
         Head = null;
+        headColliders = null;
     }
 
     public void SetRigidbodyConstraints(bool setConstraints)

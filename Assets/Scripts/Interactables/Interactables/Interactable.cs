@@ -9,6 +9,7 @@ public class Interactable : MonoBehaviour
     #region Variables
     [Header("Highlight")]
     [SerializeField] protected MeshRenderer[] meshRenderers;
+    [SerializeField] private GameObject ghostPrefab;
 
     protected List<Material[]> standardMaterials = new List<Material[]>();
     private List<Material[]> outlineMaterials = new List<Material[]>();
@@ -72,30 +73,14 @@ public class Interactable : MonoBehaviour
         }
     }
 
-    /* Fixa innan projektet är slut */
     public GameObject CreateGhostObject(Vector3 position, Vector3 rotation)
     {
-        GameObject ghost = Instantiate(gameObject);
-        Interactable ghostScript = ghost.GetComponent<Interactable>();
-        ghostScript.Start();
-        ghostScript.SetToOutlineMaterial(MaterialType.Ghost);
-
-        Collider[] cols = ghost.GetComponents<Collider>();
-        foreach (var collider in cols) Destroy(collider);
-
-        MonoBehaviour[] monoBehaviours = ghost.GetComponents<MonoBehaviour>();
-        foreach (var script in monoBehaviours) Destroy(script);
-
-        Destroy(ghost.GetComponent<Rigidbody>());
-
-        ghost.tag = "Untagged";
-        ghost.transform.position = position;
-        ghost.transform.rotation = Quaternion.Euler(rotation);
-        ghost.gameObject.SetActive(false);
-
-        ghost.SetActive(true);
-
-        return ghost;
+        if (ghostPrefab) return Instantiate(ghostPrefab, position, Quaternion.Euler(rotation));
+        else
+        {
+            Debug.LogError("No Ghost Prefab", gameObject);
+            return null;
+        }
     }
 
     public virtual Interactable Interact() { return this; }

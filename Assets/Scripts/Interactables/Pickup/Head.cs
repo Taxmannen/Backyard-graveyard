@@ -7,9 +7,41 @@ public class Head : BodyPart
 {
     private HeadType headType;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         SetColor();
+    }
+
+    public override Interactable Interact()
+    {
+        base.Interact();
+        if (ConnectedBodyPart)
+        {
+            Collider[] bodyColliders = ConnectedBodyPart.GetComponentsInChildren<Collider>();
+            if (collisionManager && collisionManager.GetCollisionTest())
+            {
+                collisionManager.SetColliderState(bodyColliders, true);
+            }
+        }
+        return this;
+    }
+
+    public override void Drop()
+    {
+        if (ConnectedBodyPart && !ConnectedBodyPart.ActiveHand && collisionManager && collisionManager.GetCollisionTest())
+        {
+            Collider[] bodyColliders = ConnectedBodyPart.GetComponentsInChildren<Collider>();
+            collisionManager.SetColliderState(bodyColliders, false);
+            collisionManager.SetColliderState(colliders, false);
+        }
+        else if (!ConnectedBodyPart)
+        {
+            collisionManager.SetColliderState(colliders, false);
+        }
+        
+
+        ActiveHand = null;
     }
 
     private void SetColor()

@@ -16,8 +16,8 @@ public class Pickup : Interactable
     [SerializeField] protected bool shouldDespawnWhenOnGround;
     [SerializeField] protected float despawnTimeWhenOnGround;
 
-    private CollisionManager collisionManager;
-    private Collider[] colliders;
+    protected CollisionManager collisionManager;
+    protected Collider[] colliders;
     private Coroutine coroutine;
     #endregion
 

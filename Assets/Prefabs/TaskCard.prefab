@@ -1721,6 +1721,7 @@ MonoBehaviour:
   taskCompleted: 0
   task: {fileID: 0}
   interactable: {fileID: 1787113084}
+  respawnTimeWhenPlacedOnGround: 3
 --- !u!114 &1787113084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1735,6 +1736,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshRenderers:
   - {fileID: 799405699631600179}
+  ghostPrefab: {fileID: 3454132608744000219, guid: 1e7984a854b9668439a3b8390f431542,
+    type: 3}
   pickupType: 5
   snapOnPickup: 0
   shouldDespawnWhenOnGround: 0
@@ -1755,11 +1758,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myTaskCard: {fileID: 3781455721957062567}
   taskCardStartPos: {fileID: 0}
+  bodyPrefab: {fileID: 0}
   head: 0
   body: 0
   ornamentType: 000000000000000000000000
   treatment: 0
-  instantiateNewTaskCards: 1
 --- !u!1 &7009350503707033692
 GameObject:
   m_ObjectHideFlags: 0

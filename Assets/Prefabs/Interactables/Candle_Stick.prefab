@@ -163,6 +163,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshRenderers:
   - {fileID: 674273714420966690}
+  ghostPrefab: {fileID: 4604240529131954380, guid: 59610c94473611c4da7ec3dd3821b8a1,
+    type: 3}
   pickupType: 2
   snapOnPickup: 0
   shouldDespawnWhenOnGround: 0

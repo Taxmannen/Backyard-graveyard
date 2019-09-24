@@ -27,7 +27,10 @@ public class CollisionManager : Singleton<CollisionManager>
     {
         foreach (Collider collider in allColliders)
         {
-            foreach (Collider pickupCollider in colliders) Physics.IgnoreCollision(collider, pickupCollider, state);
+            foreach (Collider pickupCollider in colliders)
+            {
+                if (pickupCollider != null && collider != null) Physics.IgnoreCollision(collider, pickupCollider, state);
+            }
         }
     }
 
@@ -38,6 +41,10 @@ public class CollisionManager : Singleton<CollisionManager>
         for (int i = 0; i < staticObjects.Length; i++) colliders[i] = staticObjects[i].GetComponent<Collider>();
         return colliders;
     }
+
+    public void AddToColliderList(Collider col) { allColliders.Add(col); }
+
+    public void RemoveToColliderList(Collider col) { allColliders.Remove(col); }
 
     public bool GetCollisionTest() { return collisionTest; }
 }
