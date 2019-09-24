@@ -191,8 +191,6 @@ MonoBehaviour:
   snapOnPickup: 1
   shouldDespawnWhenOnGround: 0
   despawnTimeWhenOnGround: 0
-  collisionTest: 0
-  dropTime: 0.2
   treatmentType: 0
 --- !u!1 &4396972548012373107
 GameObject:
@@ -305,7 +303,7 @@ MonoBehaviour:
   rayTransform: {fileID: 4396972546266430352}
   layers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 3892314369
 --- !u!114 &1732101739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -322,4 +320,6 @@ MonoBehaviour:
   amount: 500
   scalable: 0
   reusable: 1
+  spawner: {fileID: 0}
   usedObjects: []
+  amountLeftInPool: 0

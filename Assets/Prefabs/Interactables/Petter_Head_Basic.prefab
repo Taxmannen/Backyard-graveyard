@@ -174,11 +174,12 @@ MonoBehaviour:
   meshRenderers:
   - {fileID: 5437830253568043873}
   - {fileID: 1554083139675900066}
+  ghostPrefab: {fileID: 4921233004127933327, guid: f1643bc1dd2d39a41813785c6565090c,
+    type: 3}
   pickupType: 3
   snapOnPickup: 0
   shouldDespawnWhenOnGround: 0
   despawnTimeWhenOnGround: 0
-  collisionTest: 0
   treatmentType: 3
   paintParents:
   - {fileID: 6671833674379101841}
@@ -196,6 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0406957f5cf97b46b65484faabe3af2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeOnGroundBeforeUnrestIncrease: 15
 --- !u!1 &5435521833392123113
 GameObject:
   m_ObjectHideFlags: 0
