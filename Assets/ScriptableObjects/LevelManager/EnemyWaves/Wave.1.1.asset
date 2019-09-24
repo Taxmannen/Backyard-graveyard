@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeLimit: 0
   timelimitForWave: 600
-  timeBetweenEnemySpawns: 60
+  timeBetweenEnemySpawns: 2
   nrOfTasks: 5
   timePerTask: 600
   chanceOfCorrectBodyCombination: 95
@@ -23,5 +23,5 @@ MonoBehaviour:
   minNrOfOrnamnets: 0
   maxNrOfOrnamnets: 2
   chanceOfTreatment: 0
-  nrOfSpawnsPerWave: 1
+  nrOfSpawnsPerWave: 5
   unrestModifier: 6

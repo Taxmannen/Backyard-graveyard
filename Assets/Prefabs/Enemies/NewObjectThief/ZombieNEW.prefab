@@ -1530,6 +1530,9 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 2147483648
+  floatLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &6062145406466095685
 GameObject:
   m_ObjectHideFlags: 0
@@ -1605,8 +1608,8 @@ MonoBehaviour:
   marionetteStringGameObjects:
   - {fileID: 6062145405936983917}
   - {fileID: 6062145405570099032}
-  movementSpeedRun: 50
-  movementSpeedSearch: 25
+  movementSpeedRun: 30
+  movementSpeedSearch: 15
   armSpeed: 50
   distanceBeforeTargetIsReached: 3
   distanceBeforeTargetIsPickedUp: 0.5

@@ -333,6 +333,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5127969181241808799}
     m_Modifications:
+    - target: {fileID: 8109281210750297734, guid: 94c11bec0d9130d46a07a5dba3c20a4c,
+        type: 3}
+      propertyPath: m_Name
+      value: FireHolder (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 8109281210750297733, guid: 94c11bec0d9130d46a07a5dba3c20a4c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -388,10 +393,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8109281210750297734, guid: 94c11bec0d9130d46a07a5dba3c20a4c,
+    - target: {fileID: 6155783182034682441, guid: 94c11bec0d9130d46a07a5dba3c20a4c,
         type: 3}
-      propertyPath: m_Name
-      value: FireHolder (1)
+      propertyPath: m_Intensity
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6155783182034682441, guid: 94c11bec0d9130d46a07a5dba3c20a4c,
+        type: 3}
+      propertyPath: m_BounceIntensity
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6155783182034682441, guid: 94c11bec0d9130d46a07a5dba3c20a4c,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4292854721568026499, guid: 94c11bec0d9130d46a07a5dba3c20a4c,
         type: 3}
