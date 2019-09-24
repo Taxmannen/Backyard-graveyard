@@ -88,6 +88,7 @@ GameObject:
   m_Component:
   - component: {fileID: 139287722345477328}
   - component: {fileID: 3670213434203676281}
+  - component: {fileID: 2236740443113329639}
   - component: {fileID: 5710937870787751334}
   m_Layer: 0
   m_Name: Freezer
@@ -126,6 +127,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.8794363, y: 1.9071283, z: 3.9674814}
   m_Center: {x: 0.021866202, y: -0.00813818, z: -0.05630219}
+--- !u!65 &2236740443113329639
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4014256114335958723}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.1, y: 2.4, z: 4.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5710937870787751334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,13 +177,15 @@ MonoBehaviour:
   - {fileID: 5384316423081451082}
   - {fileID: 2927167657124100378}
   - {fileID: 4995431256850923782}
+  ghostPrefab: {fileID: 0}
   spawnPrefab: {fileID: 4410019569351948750, guid: 661a96f52f475164ea110a3e179a175d,
     type: 3}
-  objectPool: {fileID: 0}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0}
   despawnWhenPutBack: 0
   onlyOneActive: 0
+  shouldPlaceInHand: 0
+  spawnedObjects: []
 --- !u!1 &7362805942948646387
 GameObject:
   m_ObjectHideFlags: 0
@@ -353,9 +369,9 @@ MeshRenderer:
     type: 3}
   m_PrefabInstance: {fileID: 7657030913202972229}
   m_PrefabAsset: {fileID: 0}
---- !u!23 &5426987426968922 stripped
+--- !u!23 &3543582413753488646 stripped
 MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -1562613989573324001, guid: 5619de9def310364c95326717de52df0,
+  m_CorrespondingSourceObject: {fileID: 6588318091174540099, guid: 5619de9def310364c95326717de52df0,
     type: 3}
   m_PrefabInstance: {fileID: 7657030913202972229}
   m_PrefabAsset: {fileID: 0}
@@ -461,9 +477,9 @@ MeshRenderer:
     type: 3}
   m_PrefabInstance: {fileID: 7657030913202972229}
   m_PrefabAsset: {fileID: 0}
---- !u!23 &3543582413753488646 stripped
+--- !u!23 &5426987426968922 stripped
 MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 6588318091174540099, guid: 5619de9def310364c95326717de52df0,
+  m_CorrespondingSourceObject: {fileID: -1562613989573324001, guid: 5619de9def310364c95326717de52df0,
     type: 3}
   m_PrefabInstance: {fileID: 7657030913202972229}
   m_PrefabAsset: {fileID: 0}

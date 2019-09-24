@@ -75,7 +75,11 @@ public class Interactable : MonoBehaviour
     public GameObject CreateGhostObject(Vector3 position, Vector3 rotation)
     {
         if (ghostPrefab) return Instantiate(ghostPrefab, position, Quaternion.Euler(rotation));
-        else return null;
+        else
+        {
+            Debug.LogError("No Ghost Prefab", gameObject);
+            return null;
+        }
     }
 
     public virtual Interactable Interact() { return this; }
