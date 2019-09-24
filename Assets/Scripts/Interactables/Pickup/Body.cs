@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public enum BodyType { Red, Green, Blue, [System.ObsoleteAttribute] NumberOfTypes, [System.ObsoleteAttribute] None };
 
@@ -111,4 +112,16 @@ public class Body : BodyPart
     public BodyType GetBodyType() { return bodyType; }
 
     public Vector3 GetHeadPosition() { return headPosition.position; }
+
+    public void SetSnapOnPickupAfterGrave()
+    {
+        StartCoroutine(BodySnap());
+    }
+
+    private IEnumerator BodySnap()
+    {
+        SnapOnPickup = true;
+        yield return new WaitForSecondsRealtime(0.2f);
+        SnapOnPickup = false;
+    }
 }

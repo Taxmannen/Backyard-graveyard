@@ -23,7 +23,6 @@ public class Grave : Interactable
 
     private List<GameObject> dirtLayerList = new List<GameObject>();
     private Vector3 bodyOffset = new Vector3(0, -0.5f, -0.125f);
-    private Vector3 bodyPickup = new Vector3(0, 0.5f, -0.125f); //Tveksamt
     #endregion
 
     #region Awake
@@ -97,7 +96,7 @@ public class Grave : Interactable
         Body currentBody = body;
         currentBody.SetRigidbodyConstraints(false);
         currentBody.IsInGrave = false;
-        currentBody.transform.position = transform.position + (transform.rotation * bodyPickup);
+        currentBody.SetSnapOnPickupAfterGrave();
         body = null;
         return currentBody;
     }
