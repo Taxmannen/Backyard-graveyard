@@ -129,7 +129,7 @@ public class Hand : MonoBehaviour
         float minDistance = float.MaxValue;
         foreach (Interactable interactable in contactInteractable)
         {
-            if (interactable == null)
+            if (interactable == null || !interactable.gameObject.activeSelf)
             {
                 contactInteractable.Remove(interactable);
                 break;

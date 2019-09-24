@@ -9940,8 +9940,8 @@ MonoBehaviour:
   - {fileID: 7069080766121498685}
   pickupType: 0
   snapOnPickup: 1
-  shouldDespawnWhenOnGround: 0
-  despawnTimeWhenOnGround: 0
+  shouldDespawnWhenOnGround: 1
+  despawnTimeWhenOnGround: 1
 --- !u!114 &7341431876073968224
 MonoBehaviour:
   m_ObjectHideFlags: 0
