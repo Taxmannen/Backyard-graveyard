@@ -55,7 +55,7 @@ public class Task : MonoBehaviour
         }
         MyTaskCard.task = this;
 
-        Instantiate(bodyPrefab, TaskManager.GetInstance().bodySpawnPosition.position, Quaternion.identity);
+        //Instantiate(bodyPrefab, TaskManager.GetInstance().bodySpawnPosition.position, Quaternion.identity);
         //Initialise();
     }
 
