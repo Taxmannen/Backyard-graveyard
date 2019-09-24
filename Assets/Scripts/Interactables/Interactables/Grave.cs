@@ -11,6 +11,7 @@ public class Grave : Interactable
     [SerializeField] private GameObject dirt;
     [SerializeField] private GameObject dirtLayer;
     [SerializeField] private Transform dirtLayerParent;
+    [SerializeField] private Transform objectsInGraveTransform;
 
     [Header("Ornament Placements")]
     [SerializeField] private OrnamentPlacement[] ornamentPlacements;
@@ -22,7 +23,7 @@ public class Grave : Interactable
     [SerializeField] private List<Pickup> objectsInGrave = new List<Pickup>();
 
     private List<GameObject> dirtLayerList = new List<GameObject>();
-    private Vector3 bodyOffset = new Vector3(0, -0.5f, -0.125f);
+    private Vector3 bodyOffset = new Vector3(0, 0, -0.125f);
     #endregion
 
     #region Awake
@@ -39,7 +40,11 @@ public class Grave : Interactable
         if (!other.isTrigger && other.CompareTag("Interactable"))
         {
             Pickup pickup = other.GetComponent<Pickup>();
-            if (pickup && pickup.GetPickupType() != PickupType.TaskCard) objectsInGrave.Add(pickup); 
+            if (pickup && pickup.GetPickupType() != PickupType.TaskCard)
+            {
+                objectsInGrave.Add(pickup);
+                pickup.transform.SetParent(objectsInGraveTransform);
+            }
         }
     }
 
@@ -48,7 +53,11 @@ public class Grave : Interactable
         if (!other.isTrigger && other.CompareTag("Interactable"))
         {
             Pickup pickup = other.GetComponent<Pickup>();
-            if (pickup && pickup.GetPickupType() != PickupType.TaskCard) objectsInGrave.Remove(pickup);
+            if (pickup && pickup.GetPickupType() != PickupType.TaskCard)
+            {
+                objectsInGrave.Remove(pickup);
+                pickup.transform.SetParent(null);
+            }
         }
     }
 
@@ -87,6 +96,7 @@ public class Grave : Interactable
             body.transform.position = transform.position + (transform.rotation * bodyOffset);
             body.transform.rotation = Quaternion.Euler(transform.eulerAngles + new Vector3(90, 90, 90));
             body.SetRigidbodyConstraints(true);
+            body.transform.SetParent(objectsInGraveTransform);
             body.IsInGrave = true;
         }
     }
@@ -97,6 +107,7 @@ public class Grave : Interactable
         currentBody.SetRigidbodyConstraints(false);
         currentBody.IsInGrave = false;
         currentBody.SetSnapOnPickupAfterGrave();
+        body.transform.SetParent(null);
         body = null;
         return currentBody;
     }
@@ -107,10 +118,10 @@ public class Grave : Interactable
     {
         if (dirtLayerList.Count < maxAmountOfDirtLayers)
         {
-            float scale = 1 / (float)maxAmountOfDirtLayers;
+            float scale = 0.5f / (float)maxAmountOfDirtLayers;
             GameObject current = Instantiate(dirtLayer, dirtLayerParent);
-            current.transform.localScale = new Vector3(current.transform.localScale.x, 1 / (float)maxAmountOfDirtLayers, current.transform.localScale.z);
-            current.transform.localPosition = new Vector3(0, (-0.5f + (scale / 2)) + (scale * dirtLayerList.Count), 0);
+            current.transform.localScale = new Vector3(current.transform.localScale.x, scale, current.transform.localScale.z);
+            current.transform.localPosition = new Vector3(0, (scale / 2) + (scale * dirtLayerList.Count), 0);
             if (dirt) objectsInGrave.Remove(dirt);
             dirtLayerList.Add(current);
         }
