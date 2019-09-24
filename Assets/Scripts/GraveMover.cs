@@ -22,7 +22,7 @@ public class GraveMover : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("MainCamera"))
         {
             if (coroutine != null) Stop();
             coroutine = StartCoroutine(MoveGrave(endPos));
@@ -31,7 +31,7 @@ public class GraveMover : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("MainCamera"))
         {
             if (coroutine != null) Stop();
             coroutine = StartCoroutine(MoveGrave(startPos));

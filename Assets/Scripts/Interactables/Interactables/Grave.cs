@@ -23,7 +23,7 @@ public class Grave : Interactable
     [SerializeField] private List<Pickup> objectsInGrave = new List<Pickup>();
 
     private List<GameObject> dirtLayerList = new List<GameObject>();
-    private Vector3 bodyOffset = new Vector3(0, 0, -0.125f);
+    private Vector3 bodyOffset = new Vector3(0, 0.1f, -0.125f);
     #endregion
 
     #region Awake
@@ -150,10 +150,10 @@ public class Grave : Interactable
             Destroy(body.gameObject);
             body = null;
         }
-        for (int i = 0; i < (maxAmountOfDirtLayers - dirtLayerList.Count); i++) AddDirt();
+        for (int i = 0; i < maxAmountOfDirtLayers; i++) AddDirt(); //Checka
         foreach (Pickup pickup in objectsInGrave)
         {
-            if (!pickup.ActiveHand)
+            if (pickup && !pickup.ActiveHand)
             {
                 if (pickup.GetPickupType() == PickupType.Ornament) PoolManager.ReturnPickup(pickup);
                 else Destroy(pickup.gameObject);

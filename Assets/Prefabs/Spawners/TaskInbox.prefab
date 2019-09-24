@@ -392,12 +392,13 @@ MonoBehaviour:
   - {fileID: 1982658707309792489}
   - {fileID: 9166856853557678876}
   - {fileID: 758727389689706389}
-  spawnPrefab: {fileID: 4410019569351948750, guid: 661a96f52f475164ea110a3e179a175d,
+  spawnPrefab: {fileID: 6120881116044642905, guid: 2f3f6c9dc2f17664f897e237ba3ecd78,
     type: 3}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0}
   despawnWhenPutBack: 0
   onlyOneActive: 0
+  shouldPlaceInHand: 1
   spawnedObjects: []
 --- !u!1 &5172026167137564420
 GameObject:
