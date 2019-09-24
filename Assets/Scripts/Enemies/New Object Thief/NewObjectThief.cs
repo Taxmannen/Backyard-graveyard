@@ -309,8 +309,16 @@ public class NewObjectThief : MonoBehaviour
     {
         if(objectInHand != null)
         {
-            //Destroy(objectInHand);
-            PoolManager.ReturnPickup(objectInHand.GetComponent<Pickup>());
+            Pickup pickup = objectInHand.GetComponent<Pickup>();
+
+            if(pickup.GetPickupType() == PickupType.Body)
+            {
+                Destroy(pickup.gameObject);
+            }
+            else
+            {
+                PoolManager.ReturnPickup(objectInHand.GetComponent<Pickup>());
+            }
         }
 
         ReturnToObjectPool();
