@@ -27,6 +27,7 @@ public class TaskManager : Singleton<TaskManager>
     [Header("References")]
     public List<Task> tasks;
     [SerializeField] private EndOfGameStrings[] endOfGameStrings = new EndOfGameStrings[6];
+    [SerializeField] public Transform bodySpawnPosition;
 
     public GameObject levelCompletedImage;
     public Text levelCompletedText;
@@ -92,9 +93,11 @@ public class TaskManager : Singleton<TaskManager>
 
     public void Reset()
     {
+        Debug.LogError("RESETTING TASK MANAGER EVERYBODY PICNIC");
+
         completedTasks.Clear();
         levelCompletedImage.SetActive(false);
-        levelCompletedText.gameObject.SetActive(false);
+        levelCompletedText.text = "";
     }
 
     private Task GetAvailableTask()
@@ -144,12 +147,12 @@ public class TaskManager : Singleton<TaskManager>
 
     private void CompleteLevel()
     {
-        foreach (Task task in tasks)
-        {
-            task.MyTaskCard?.Disable();
-        }
+        //foreach (Task task in tasks)
+        //{
+        //    task?.MyTaskCard?.Disable();
+        //}
 
-        levelCompletedImage.SetActive(true);
+        //levelCompletedImage.SetActive(true);
 
         // Disable all InteractableObjects
         //DisableAllObjectsOfType.DisableAllObjects<Interactable>();

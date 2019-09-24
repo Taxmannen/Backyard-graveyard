@@ -10,6 +10,8 @@ using UnityEngine.UI;
 /// </summary>
 public class TaskCard : MonoBehaviour
 {
+    #region references
+    [Header("References")]
     public Image headImage;
     public Image bodyImage;
 
@@ -35,13 +37,15 @@ public class TaskCard : MonoBehaviour
 
     [SerializeField]
     private Image timerImage;
+    #endregion
+
     private float timerWidth;
     private float timerWidthMax = 2f;
     private float timerWidthMin = 0f;
     public bool taskCompleted = false;
     private Color timerColor = new Color(0f, 255f, 0f);
 
-    public Task task;
+    [SerializeField, ReadOnly] public Task task;
 
     public void UpdateTimerBar(float timerPercent)
     {
@@ -187,9 +191,9 @@ public class TaskCard : MonoBehaviour
     }
 
     public void Disable() {
-        foreach (Image image in GetComponentsInChildren<Image>()) {
-            image?.gameObject?.SetActive(false);
-        }
+        //foreach (Image image in GetComponentsInChildren<Image>()) {
+        //    image?.gameObject?.SetActive(false);
+        //}
 
         //headImage.gameObject.SetActive(false);
         //bodyImage.gameObject.SetActive(false);

@@ -15,15 +15,17 @@ public class Task : MonoBehaviour
 {
     //public GameObject PrefabTaskCard;
     //[SerializeField, ReadOnly] private TaskCard taskCard;
+    [Header("References")]
     [SerializeField] private TaskCard myTaskCard;
     [SerializeField] private Transform taskCardStartPos;
+    [SerializeField] private Body bodyPrefab;
 
     [Header("Debug")]
     [SerializeField, ReadOnly] private HeadType head;
     [SerializeField, ReadOnly] private BodyType body;
     [SerializeField, ReadOnly] private OrnamentType[] ornamentType = new OrnamentType[3];
     [SerializeField, ReadOnly] private TreatmentType treatment;
-    [SerializeField, ReadOnly] private bool instantiateNewTaskCards = true;
+    //[SerializeField, ReadOnly] private bool instantiateNewTaskCards = true;
 
     private bool taskEnded = false;
 
@@ -43,38 +45,48 @@ public class Task : MonoBehaviour
     public HeadType Head { get => head; private set => head = value; }
     public BodyType Body { get => body; private set => body = value; }
 
-    private void Start() {
+    private void Start()
+    {
         TaskManager = TaskManager.GetInstance();
-        if (!TaskManager.TaskManagerSpawnsTasks) {
+        if (!TaskManager.TaskManagerSpawnsTasks)
+        {
             TaskManager.tasks.Add(this);
             Activate(TaskManager.MaxTimeInSeconds, TaskManager.MinNrOfOrnaments, TaskManager.MaxNrOfOrnaments, TaskManager.ChanceOfTreatment);
         }
         MyTaskCard.task = this;
+
+        Instantiate(bodyPrefab, TaskManager.GetInstance().bodySpawnPosition.position, Quaternion.identity);
         //Initialise();
     }
 
-    public void Reinitialise() {
-        if (TaskManager.GetInstance().TasksAvailableToSelect()) {
+    public void Reinitialise()
+    {
+        if (TaskManager.GetInstance().TasksAvailableToSelect())
+        {
             myTaskCard.gameObject.transform.position = taskCardStartPos.position;
             myTaskCard.gameObject.transform.localScale = new Vector3(5f, 5f, 5f);
 
             ResetVars();
-            if (TaskManager.GetInstance().TasksAvailableToSelect()) {
+            if (TaskManager.GetInstance().TasksAvailableToSelect())
+            {
                 //Reinitialise();
                 RefreshTaskCardIngredients();
             }
-            else {
+            else
+            {
                 Debug.LogWarning("Task error: No tasks available to do");
                 TaskManager.tasks.Remove(this);
                 Destroy(myTaskCard.gameObject);
                 Destroy(this.gameObject);
             }
         }
-        else {
+        else
+        {
             Destroy(gameObject);
         }
     }
-    public void Initialise() {
+    public void Initialise()
+    {
         //if (initialised)
         //    return;
 
@@ -91,27 +103,31 @@ public class Task : MonoBehaviour
         myTaskCard.gameObject.SetActive(true);
         ResetVars();
     }
-    private void ResetVars() {
+    private void ResetVars()
+    {
         taskEnded = false;
         initialised = true;
         gameObject.SetActive(false);
     }
 
-    public void Activate(float maxTimeInSeconds, int minNrOfOrnaments, int maxNrOfOrnaments, float includeTreatment) {
+    public void Activate(float maxTimeInSeconds, int minNrOfOrnaments, int maxNrOfOrnaments, float includeTreatment)
+    {
         Initialise();
 
         this.maxTimeInSeconds = maxTimeInSeconds;
         this.chanceOfTreatment = includeTreatment;
         this.minNrOfOrnaments = minNrOfOrnaments;
         this.maxNrOfOrnaments = maxNrOfOrnaments;
-        
+
 
         gameObject.SetActive(true);
-        if (TaskManager.GetInstance().TasksAvailableToSelect()) {
+        if (TaskManager.GetInstance().TasksAvailableToSelect())
+        {
             //Reinitialise();
             RefreshTaskCardIngredients();
         }
-        else {
+        else
+        {
             Debug.LogWarning("Task error: No tasks available to do");
             TaskManager.tasks.Remove(this);
             Destroy(myTaskCard.gameObject);
@@ -119,20 +135,23 @@ public class Task : MonoBehaviour
         }
     }
 
-    private void Update() {
+    private void Update()
+    {
         float secondsElapsed = (float)((DateTime.Now - startTime).TotalSeconds);
         float quotientCompleted = secondsElapsed / maxTimeInSeconds;
 
-        if(quotientCompleted > 1f && !taskEnded) {
+        if (quotientCompleted > 1f && !taskEnded)
+        {
             CompleteTask(false);
         }
-        else {
+        else
+        {
             myTaskCard?.UpdateTimerBar(quotientCompleted);
         }
     }
 
-    private void CompleteTask(bool success) {
-        // Clean up task card, etc?
+    private void CompleteTask(bool success)
+    {
         if (taskEnded) return;
         taskEnded = true;
 
@@ -142,17 +161,10 @@ public class Task : MonoBehaviour
             myTaskCard.TaskCompleted();
         else
             myTaskCard.TaskFailed();
-
-        //if (TaskManager.GetInstance().TasksAvailableToSelect()) {
-        //    //Reinitialise();
-        //    //RefreshTaskCardIngredients();
-        //}
-        //else {
-        //    //gameObject.SetActive(false);
-        //}
     }
 
-    public void RefreshTaskCardIngredients() {
+    public void RefreshTaskCardIngredients()
+    {
         // TODO: THIS SHOULD GENERATE A UNIQUE TASK?
         TaskManager.GetInstance().TasksInProgress++;
 
@@ -164,14 +176,16 @@ public class Task : MonoBehaviour
         int nrOfOrnaments = RandomManager.GetRandomNumber(minNrOfOrnaments, maxNrOfOrnaments + 1);
         //Debug.LogError($"Fetching random number {minNrOfOrnaments}:{maxNrOfOrnaments} and getting {nrOfOrnaments}");
         //ornamentType = new OrnamentType[(int)OrnamentType.NumberOfTypes]; 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++)
+        {
             if (i < nrOfOrnaments)
                 ornamentType[i] = (OrnamentType)RandomManager.GetRandomNumber(0, (int)OrnamentType.NumberOfTypes);
             else
                 ornamentType[i] = OrnamentType.None;
         }
 
-        if (TaskManager.GetInstance().IncludeTreatments) {
+        if (TaskManager.GetInstance().IncludeTreatments)
+        {
             bool includeTreatment = RandomManager.GetRandomNumber(0, 101) < chanceOfTreatment;
 
             int treatmentIndex = 0;
@@ -187,7 +201,8 @@ public class Task : MonoBehaviour
 
             myTaskCard.SetTaskIngredients((int)ornamentType[0], (int)ornamentType[1], (int)ornamentType[2], bodydIndex, headIndex, treatmentIndex, includeTreatment);
         }
-        else {
+        else
+        {
             myTaskCard.SetTaskIngredients((int)ornamentType[0], (int)ornamentType[1], (int)ornamentType[2], bodydIndex, headIndex);
         }
 
@@ -204,24 +219,31 @@ public class Task : MonoBehaviour
     /// <param name="body"></param>
     /// <param name="OrnamentType"></param>
     /// <returns>Returns true if the task completed this frame</returns>
-    public bool CheckTask(HeadType head, BodyType body, List<OrnamentType> ornamentType, TreatmentType bodyTreatment, TreatmentType headTreatment) {
-        if (taskEnded) {
+    public bool CheckTask(HeadType head, BodyType body, List<OrnamentType> ornamentType, TreatmentType bodyTreatment, TreatmentType headTreatment)
+    {
+        if (taskEnded)
+        {
             Debug.Log("Completed");
             return false;
         }
 
         Debug.Log("Checking stuff, our head " + this.Head + " == " + head + " our body " + this.Body + " == " + body);
-        if (this.Head == head && this.Body == body && (!TaskManager.GetInstance().IncludeTreatments || bodyTreatment == treatment || headTreatment == treatment)) {
+        if (this.Head == head && this.Body == body &&
+           (!TaskManager.GetInstance().IncludeTreatments || bodyTreatment == treatment || headTreatment == treatment))
+        {
             //correct body, check OrnamentType
 
             List<OrnamentType> tmpOrnamentType = new List<OrnamentType>(ornamentType);
-            foreach(OrnamentType ornament in this.ornamentType) {
-                if (!tmpOrnamentType.Contains(ornament) && (ornament != OrnamentType.None)) {
+            foreach (OrnamentType ornament in this.ornamentType)
+            {
+                if (!tmpOrnamentType.Contains(ornament) && (ornament != OrnamentType.None))
+                {
                     Debug.Log("OrnamentType did not contain: " + ornament);
                     return false;
                 }
                 else if (ornament == OrnamentType.None) { }
-                else {
+                else
+                {
                     tmpOrnamentType.Remove(ornament);
                 }
             }

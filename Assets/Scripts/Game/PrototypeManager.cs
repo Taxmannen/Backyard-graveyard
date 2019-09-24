@@ -83,6 +83,13 @@ public class PrototypeManager : Singleton<PrototypeManager>
         PlayButton.PlayEvent += StartNewGame;
     }
 
+    private void Reset()
+    {
+        currentLevel = -1;
+        currentWave = -1;
+        waveStartTime = DateTime.Now;
+    }
+
     void Start()
     {
         //This swhould not happen here pls
@@ -100,7 +107,8 @@ public class PrototypeManager : Singleton<PrototypeManager>
             (DateTime.Now - waveStartTime).TotalSeconds > GetCurrentWave().timelimitForWave)
         {
             Debug.Log("Time limit over: you are Lose game?", this);
-            //playButton.StopPlaying();
+            TaskManager.GetInstance().levelCompletedText.text = "No more time! You are lose!";
+            playButton.StopPlaying();
             //Lose game here
         }
     }
@@ -120,6 +128,7 @@ public class PrototypeManager : Singleton<PrototypeManager>
         {
             Debug.Log("No more levels! You are win!");
             playButton.StopPlaying();
+            TaskManager.GetInstance().levelCompletedText.text = "No more levels! You are win!";
         }
     }
 
@@ -130,7 +139,18 @@ public class PrototypeManager : Singleton<PrototypeManager>
             //Pause
             playButton.StopPlaying();
         }
-        else AdvanceWave(); // Just continue
+        else StartCoroutine(AdvanceWaveOnDelay(5)); // Just continue... on a delay
+    }
+    IEnumerator AdvanceWaveOnDelay(int delay)
+    {
+        for(int i = delay; i > 0; i--)
+        {
+            TaskManager.GetInstance().levelCompletedText.text = $"Completed wave {currentWave + 1}.. \nAdvancing in {i}";
+            yield return new WaitForSecondsRealtime(1f);
+        }
+
+        TaskManager.GetInstance().levelCompletedText.text = "";
+        AdvanceWave();
     }
     public void AdvanceWave()
     {
@@ -190,6 +210,7 @@ public class PrototypeManager : Singleton<PrototypeManager>
 
     private void StartNewGame()
     {
+        Reset();
         AdvanceLevel();
         //AdvanceWave();
     }
