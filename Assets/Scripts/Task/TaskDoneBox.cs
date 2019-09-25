@@ -27,6 +27,11 @@ public class TaskDoneBox : MonoBehaviour
     private Vector3 baseRotation = new Vector3(90, 0, 0);
 
 
+    private void OnEnable()
+    {
+        PlayButton.StopEvent += Reset;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -59,6 +64,11 @@ public class TaskDoneBox : MonoBehaviour
             //Destroy(other.gameObject); 
             TaskManager.GetInstance().CheckLevelCompletion();
         }
+    }
+
+    private void OnDisable()
+    {
+        PlayButton.StopEvent -= Reset;
     }
 
     private void PlaceTaskCard(GameObject taskCard)
