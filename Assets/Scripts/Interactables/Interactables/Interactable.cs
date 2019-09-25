@@ -17,6 +17,8 @@ public class Interactable : MonoBehaviour
 
     private MaterialType materialType = MaterialType.Standard;
 
+    public bool IsBeingDestroyed { get; protected set; }
+
     public Hand ActiveHand { get; set; } = null;
     #endregion
 

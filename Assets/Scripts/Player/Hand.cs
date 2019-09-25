@@ -112,7 +112,7 @@ public class Hand : MonoBehaviour
 
         fixedJoint.connectedBody = null;
 
-        if (childObjectOnPickup)
+        if (childObjectOnPickup && !currentInteractable.IsBeingDestroyed)
         {
             try { currentInteractable.transform.SetParent(null); }
             catch { Exception e; }
