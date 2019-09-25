@@ -4,6 +4,7 @@ using UnityEngine;
 /* Script Made By Daniel */
 public class PlayButton : PhysicsButton
 {
+    #region Variables
     [SerializeField] private GameObject button;
     [SerializeField] private GameObject[] taskObjects;
 
@@ -12,6 +13,7 @@ public class PlayButton : PhysicsButton
     public static event Action PlayEvent;
     public static event Action StopEvent;
     public static bool isPlaying;
+    #endregion
 
     private void Awake()
     {
@@ -35,7 +37,8 @@ public class PlayButton : PhysicsButton
         {
             StopEvent?.Invoke();
             isPlaying = false;
-            //button.SetActive(true);
+            button.SetActive(true);
+            foreach (GameObject taskObject in taskObjects) taskObject.SetActive(false);
         }
     }
 
