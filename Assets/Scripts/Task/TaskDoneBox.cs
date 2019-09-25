@@ -23,7 +23,8 @@ public class TaskDoneBox : MonoBehaviour
 
     [Header("Other")]
     [SerializeField, ReadOnly] private List<GameObject> objectsInBox = new List<GameObject>();
-    private Vector3 baseOffset;
+    private Vector3 baseOffset = new Vector3(0, 0.06f, 0);
+    private Vector3 baseRotation = new Vector3(90, 0, 0);
 
 
     // Start is called before the first frame update
@@ -35,7 +36,7 @@ public class TaskDoneBox : MonoBehaviour
     public void Reset()
     {
         levelComplete = false;
-        baseOffset = new Vector3((0), (0.06f), (-0.15f));
+        
         totalTasksForLevel = PrototypeManager.GetInstance().NrOfTasks; // this line is probably a bug
         numberOfTasksCompleted = 0;
         ClearObjectsInBox();
@@ -52,11 +53,34 @@ public class TaskDoneBox : MonoBehaviour
         if (taskCard.taskCompleted == true && !levelComplete)
         {
             taskCard.taskCompleted = false;
-            CreateNewTaskCard();
+            PlaceTaskCard(taskCard.gameObject);
+            //CreateNewTaskCard();
             UpdateCompletedTasksText();
-            Destroy(other.gameObject); 
+            //Destroy(other.gameObject); 
             TaskManager.GetInstance().CheckLevelCompletion();
         }
+    }
+
+    private void PlaceTaskCard(GameObject taskCard)
+    {
+        if (numberOfTasksCompleted == totalTasksForLevel)
+        {
+            levelComplete = true;
+            if (PrototypeManager.GetInstance().GetCurrentWave().PauseAfterCompletedWave) PrototypeManager.GetInstance().AdvanceWave();
+        }
+
+        Vector3 newOffset = new Vector3(baseOffset.x, baseOffset.y + (numberOfTasksCompleted * 0.01f), baseOffset.z);
+        taskCard.gameObject.tag = "Untagged";
+        Destroy(taskCard.GetComponent<PlaceablePickup>());
+        Destroy(taskCard.GetComponent<Rigidbody>());
+        Destroy(taskCard.GetComponent<Task>());
+        taskCard.transform.localScale = new Vector3(0.15f, 0.15f, 0.1f);
+        taskCard.transform.SetParent(newCardParent.transform);
+        objectsInBox.Add(taskCard);
+
+        taskCard.transform.localRotation = Quaternion.Euler(baseRotation);
+        taskCard.transform.position = newCardParent.transform.position + (transform.rotation * newOffset);
+        numberOfTasksCompleted++;
     }
 
     private void CreateNewTaskCard()
