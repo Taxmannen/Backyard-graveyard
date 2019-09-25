@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5467560262156124733}
   - component: {fileID: 5467560262156124732}
   - component: {fileID: 5467560262156124735}
-  - component: {fileID: 5467560262156124734}
   - component: {fileID: 1190469270883686002}
   - component: {fileID: -7461355628464058231}
+  - component: {fileID: 980025547081850979}
   m_Layer: 0
   m_Name: Cube_of_Dirt
   m_TagString: Interactable
@@ -81,19 +81,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &5467560262156124734
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5467560262156124729}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1190469270883686002
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -124,7 +111,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshRenderers:
   - {fileID: 5467560262156124735}
+  ghostPrefab: {fileID: 0}
   pickupType: 0
   snapOnPickup: 1
   shouldDespawnWhenOnGround: 1
   despawnTimeWhenOnGround: 2
+--- !u!64 &980025547081850979
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5467560262156124729}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: -5495902117074765545, guid: 1b7ae09f90794d54abc7617bec4fdf5d, type: 3}
