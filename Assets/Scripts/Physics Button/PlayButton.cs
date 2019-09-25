@@ -25,10 +25,8 @@ public class PlayButton : PhysicsButton
     protected override void ButtonPush()
     {
         PlayEvent?.Invoke();
-        ClearRemaingObjects(); 
-        isPlaying = true;
-        foreach (GameObject taskObject in taskObjects) taskObject.SetActive(true);
-        button.SetActive(false);
+        ClearRemaingObjects();
+        SetPlayState(true);
     }
 
     public void StopPlaying()
@@ -36,10 +34,15 @@ public class PlayButton : PhysicsButton
         if (isPlaying)
         {
             StopEvent?.Invoke();
-            isPlaying = false;
-            button.SetActive(true);
-            foreach (GameObject taskObject in taskObjects) taskObject.SetActive(false);
+            SetPlayState(false);
         }
+    }
+
+    private void SetPlayState(bool state)
+    {
+        isPlaying = state;
+        button.SetActive(!state);
+        foreach (GameObject taskObject in taskObjects) taskObject.SetActive(state);
     }
 
     private void ClearRemaingObjects()
