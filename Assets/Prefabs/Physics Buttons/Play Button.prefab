@@ -402,7 +402,7 @@ GameObject:
   m_Component:
   - component: {fileID: 178537076728203114}
   - component: {fileID: 7253513144524922550}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: Max Position
   m_TagString: Button Limiter
   m_Icon: {fileID: 0}

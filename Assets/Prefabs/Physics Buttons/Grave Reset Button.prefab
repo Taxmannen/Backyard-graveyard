@@ -564,7 +564,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4182534414140060040}
   - component: {fileID: 6772378185533401770}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: Min Position
   m_TagString: Button Limiter
   m_Icon: {fileID: 0}
@@ -608,7 +608,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1401672051542656651}
   - component: {fileID: 8475862518686605143}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: Max Position
   m_TagString: Button Limiter
   m_Icon: {fileID: 0}
