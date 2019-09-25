@@ -4,12 +4,14 @@ using UnityEngine;
 /* Script Made By Daniel */
 public class PhysicsButton : MonoBehaviour
 {
+    #region Variables
     [SerializeField] private float executeTime = 0;
 
     private bool canTrigger = true;
     private bool hasCollided = false;
     private Vector3 position;
     private Coroutine coroutine;
+    #endregion
 
     private void FixedUpdate()
     {
