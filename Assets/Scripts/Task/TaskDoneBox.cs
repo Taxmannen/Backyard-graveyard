@@ -13,7 +13,6 @@ public class TaskDoneBox : MonoBehaviour
     [SerializeField] Text taskText;
 
     [Header("Prefabs")]
-    [SerializeField] GameObject taskCardInBox;
     [SerializeField] GameObject newCardParent;
 
     [Header("Level Related")]
@@ -23,6 +22,7 @@ public class TaskDoneBox : MonoBehaviour
 
     [Header("Other")]
     [SerializeField, ReadOnly] private List<GameObject> objectsInBox = new List<GameObject>();
+
     private Vector3 baseOffset = new Vector3(0, 0.06f, 0);
     private Vector3 baseRotation = new Vector3(90, 0, 0);
 
@@ -59,9 +59,7 @@ public class TaskDoneBox : MonoBehaviour
         {
             taskCard.taskCompleted = false;
             PlaceTaskCard(taskCard.gameObject);
-            //CreateNewTaskCard();
             UpdateCompletedTasksText();
-            //Destroy(other.gameObject); 
             TaskManager.GetInstance().CheckLevelCompletion();
         }
     }
@@ -93,21 +91,6 @@ public class TaskDoneBox : MonoBehaviour
         numberOfTasksCompleted++;
     }
 
-    private void CreateNewTaskCard()
-    {
-        if (numberOfTasksCompleted == totalTasksForLevel)
-        {
-            levelComplete = true;
-            if (PrototypeManager.GetInstance().GetCurrentWave().PauseAfterCompletedWave) PrototypeManager.GetInstance().AdvanceWave();
-        }
-
-        Vector3 newOffset = new Vector3(baseOffset.x, baseOffset.y + (numberOfTasksCompleted * 0.01f), baseOffset.z);
-        GameObject newcard = Instantiate(taskCardInBox, newCardParent.transform);
-        objectsInBox.Add(newcard);
-        newcard.transform.position = newCardParent.transform.position + (transform.rotation * newOffset);
-        numberOfTasksCompleted++;
-    }
-
     private void UpdateCompletedTasksText()
     {
         if (taskText != null)
@@ -116,12 +99,10 @@ public class TaskDoneBox : MonoBehaviour
         }
     }
 
-    //If LevelManager needs to emty the box when changing level.
     public void ClearObjectsInBox()
     {
         for (int i = 0; i < objectsInBox.Count; i++)
         {
-            //GameObject card = objectsInBox[i];
             Destroy(objectsInBox[i]);
         }
 
