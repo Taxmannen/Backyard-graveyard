@@ -35,7 +35,7 @@ public class PlayButton : PhysicsButton
         {
             StopEvent?.Invoke();
             isPlaying = false;
-            button.SetActive(true);
+            //button.SetActive(true);
         }
     }
 

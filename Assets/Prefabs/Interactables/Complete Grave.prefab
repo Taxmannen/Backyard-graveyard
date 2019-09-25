@@ -186,7 +186,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a369ad469895f8c4aa9796141bee80be, type: 2}
+  - {fileID: 2100000, guid: ef80a8eadf755c9419b44d956226a975, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -308,7 +308,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a369ad469895f8c4aa9796141bee80be, type: 2}
+  - {fileID: 2100000, guid: ef80a8eadf755c9419b44d956226a975, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -534,7 +534,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a369ad469895f8c4aa9796141bee80be, type: 2}
+  - {fileID: 2100000, guid: ef80a8eadf755c9419b44d956226a975, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -626,7 +626,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a369ad469895f8c4aa9796141bee80be, type: 2}
+  - {fileID: 2100000, guid: ef80a8eadf755c9419b44d956226a975, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1120,7 +1120,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a369ad469895f8c4aa9796141bee80be, type: 2}
+  - {fileID: 2100000, guid: ef80a8eadf755c9419b44d956226a975, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1582,7 +1582,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: deb1fcd54a0706b44a64375f690ab166, type: 3}
+  - {fileID: -101453692244570523, guid: 429538861c3a53541b6c9b19bd2967ed, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1624,11 +1624,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6224893830544828748}
     m_Modifications:
-    - target: {fileID: 2874860080843667540, guid: 3713940d9e9691c4bb911dbd1b947412,
-        type: 3}
-      propertyPath: m_Name
-      value: Grave Reset Button
-      objectReference: {fileID: 0}
     - target: {fileID: 2874860080843667543, guid: 3713940d9e9691c4bb911dbd1b947412,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1683,6 +1678,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874860080843667540, guid: 3713940d9e9691c4bb911dbd1b947412,
+        type: 3}
+      propertyPath: m_Name
+      value: Grave Reset Button
       objectReference: {fileID: 0}
     - target: {fileID: 3342822547927285255, guid: 3713940d9e9691c4bb911dbd1b947412,
         type: 3}

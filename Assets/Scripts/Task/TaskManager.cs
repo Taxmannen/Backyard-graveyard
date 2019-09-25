@@ -29,7 +29,7 @@ public class TaskManager : Singleton<TaskManager>
     [SerializeField] private EndOfGameStrings[] endOfGameStrings = new EndOfGameStrings[6];
     [SerializeField] public Transform bodySpawnPosition;
 
-    public GameObject levelCompletedImage;
+    //public GameObject levelCompletedImage;
     public Text levelCompletedText;
     [SerializeField] List<bool> completedTasks = new List<bool>();
     private int tasksInProgress = 0;
@@ -93,10 +93,8 @@ public class TaskManager : Singleton<TaskManager>
 
     public void Reset()
     {
-        Debug.LogError("RESETTING TASK MANAGER EVERYBODY PICNIC");
-
         completedTasks.Clear();
-        levelCompletedImage.SetActive(false);
+        //levelCompletedImage.SetActive(false);
         levelCompletedText.text = "";
     }
 

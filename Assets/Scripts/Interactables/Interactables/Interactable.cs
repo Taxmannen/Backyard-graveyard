@@ -55,8 +55,8 @@ public class Interactable : MonoBehaviour
 
     private void MaterialSetup()
     {
-        //Material outlineMaterial = Resources.Load<Material>("Materials/Outline Material");
-        Material outlineMaterial = Resources.Load<Material>("Materials/Outline");
+        Material outlineMaterial = Resources.Load<Material>("Materials/Outline Material");
+        //Material outlineMaterial = Resources.Load<Material>("Materials/Outline");
         Material ghostMaterial = Resources.Load<Material>("Materials/Ghost Material");
         foreach (MeshRenderer renderer in meshRenderers)
         {
