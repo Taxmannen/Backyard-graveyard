@@ -139,7 +139,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.2, y: 0.2, z: 2.1}
-  m_Center: {x: 0, y: 0, z: 0.15}
+  m_Center: {x: 0, y: 0, z: 2.56}
 --- !u!54 &5126344496912985825
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -171,12 +171,14 @@ MonoBehaviour:
   meshRenderers:
   - {fileID: 6460098764277231882}
   - {fileID: 2955886262586958720}
+  ghostPrefab: {fileID: 0}
   spawnPrefab: {fileID: 3073540760668419220, guid: a63e519607986f64a85cd34d43f78cf0,
     type: 3}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0}
   despawnWhenPutBack: 1
   onlyOneActive: 1
+  shouldPlaceInHand: 0
   spawnedObjects: []
 --- !u!1 &7413307823533797291
 GameObject:
