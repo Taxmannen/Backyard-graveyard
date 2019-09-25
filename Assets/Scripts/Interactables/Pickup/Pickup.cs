@@ -79,6 +79,7 @@ public class Pickup : Interactable
 
     private void OnDestroy()
     {
+        IsBeingDestroyed = true;
         if (ActiveHand != null) ActiveHand.Drop();
     }
 

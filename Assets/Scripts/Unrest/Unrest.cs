@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Unrest : MonoBehaviour
 {
-    [SerializeField] private float timeOnGroundBeforeUnrestIncrease = 15f;
+    //[SerializeField] private float timeOnGroundBeforeUnrestIncrease = 15f;
+    private float timeOnGroundBeforeUnrestIncrease = 10f;
     private Coroutine coroutine;
     private bool onGround;
     private int value = 1;
