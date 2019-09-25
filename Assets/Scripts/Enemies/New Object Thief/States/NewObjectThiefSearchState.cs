@@ -34,7 +34,7 @@ public class NewObjectThiefSearchState : NewObjectThiefState
         }
         else
         {
-            Debug.Log("Didn't add any last target");
+            //Debug.Log("Didn't add any last target");
         }
         
 
