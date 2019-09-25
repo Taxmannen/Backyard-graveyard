@@ -534,6 +534,10 @@ PrefabInstance:
       propertyPath: IntensityModifier
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 11471502, guid: 062893e7007e39441aea009115b6cefa, type: 3}
+      propertyPath: AudioSource
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 134360, guid: 062893e7007e39441aea009115b6cefa, type: 3}
       propertyPath: m_IsActive
       value: 0

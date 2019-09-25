@@ -4,13 +4,12 @@ using System;
 public enum ChangeTrack { PreviousTrack, NextTrack }
 
 /* Script Made By Daniel */
-[RequireComponent(typeof(AudioSource))]
 public class MusicPlayer : MonoBehaviour
 {
     #region Variables
     [SerializeField] private Sound[] tracks;
+    [SerializeField] private AudioSource[] speakers;
 
-    private AudioSource audioSource;
     private int currentTrackNumber;
     private bool isPlaying;
     #endregion
@@ -18,32 +17,39 @@ public class MusicPlayer : MonoBehaviour
     private void Awake()
     {
         PlayButton.PlayEvent += PlayOnStart;
-        audioSource = GetComponent<AudioSource>();
         if (tracks.Length > 0)
         {
-            audioSource.clip = tracks[0].GetAudioClip();
-            audioSource.volume = tracks[0].GetVolume();
+            foreach (AudioSource audioSource in speakers)
+            {
+                audioSource.clip = tracks[0].GetAudioClip();
+                audioSource.volume = tracks[0].GetVolume();
+            }
         }
     }
     private void Update()
     {
-        if (!audioSource.isPlaying && isPlaying) NextTrack();
+        if (!speakers[0].isPlaying && isPlaying) NextTrack();
     }
 
     public void PlayAndPause()
     {
-        if (tracks.Length > 0)
+        if (speakers.Length > 0 && tracks.Length > 0)
         {
-            if (!audioSource.isPlaying) audioSource.Play();
-            else                        audioSource.Pause();
-            isPlaying = audioSource.isPlaying;
-
+            if (!isPlaying)
+            {
+                foreach (AudioSource audioSource in speakers) audioSource.Play();
+            }
+            else
+            {
+                foreach (AudioSource audioSource in speakers) audioSource.Pause();
+            }
+            isPlaying = speakers[0].isPlaying;
         }
     }
 
     public void ChangeSong(ChangeTrack changeTrack)
     {
-        if (tracks.Length > 0)
+        if (speakers.Length > 0 && tracks.Length > 0)
         {
             if (changeTrack == ChangeTrack.PreviousTrack)
             {
@@ -55,9 +61,12 @@ public class MusicPlayer : MonoBehaviour
                 if (currentTrackNumber < tracks.Length - 1) currentTrackNumber++;
                 else currentTrackNumber = 0;
             }
-            audioSource.clip = tracks[currentTrackNumber].GetAudioClip();
-            audioSource.volume = tracks[currentTrackNumber].GetVolume();
-            audioSource.Play();
+            foreach (AudioSource audioSource in speakers)
+            {
+                audioSource.clip = tracks[currentTrackNumber].GetAudioClip();
+                audioSource.volume = tracks[currentTrackNumber].GetVolume();
+            }
+            foreach (AudioSource audioSource in speakers) audioSource.Play();
         }
     }
 
@@ -68,7 +77,7 @@ public class MusicPlayer : MonoBehaviour
 
     private void NextTrack()
     {
-        if (tracks.Length > 0)
+        if (speakers.Length > 0 && tracks.Length > 0)
         {
             ChangeSong(ChangeTrack.NextTrack);
             isPlaying = true;
