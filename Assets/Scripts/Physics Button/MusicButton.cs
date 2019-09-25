@@ -5,8 +5,10 @@ public enum ButtonAction { Play, PreviousTrack, NextTrack }
 /* Script Made By Daniel */
 public class MusicButton : PhysicsButton
 {
+    #region Variables
     [SerializeField] private MusicPlayer musicPlayer;
     [SerializeField] private ButtonAction buttonAction;
+    #endregion
 
     protected override void ButtonPush()
     {
