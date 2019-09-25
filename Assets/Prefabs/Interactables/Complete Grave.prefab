@@ -463,6 +463,7 @@ MonoBehaviour:
   - {fileID: 648593438238133906}
   - {fileID: 648593439493589514}
   - {fileID: 648593438976440236}
+  ghostPrefab: {fileID: 0}
   maxAmountOfDirtLayers: 3
   dirt: {fileID: 5467560262156124729, guid: 153773ae47cfb2540ad0f59fcd5ecedf, type: 3}
   dirtLayer: {fileID: 1930263825163367472, guid: e690d6f52159b6e4a88f67c2aee9ac6b,
@@ -1534,6 +1535,7 @@ GameObject:
   - component: {fileID: 4782958272125186180}
   - component: {fileID: 4556373479796411058}
   - component: {fileID: 7784459729405572683}
+  - component: {fileID: 5917233866724332978}
   m_Layer: 29
   m_Name: grave_stone
   m_TagString: Untagged
@@ -1601,6 +1603,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &5917233866724332978
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8375326337591624343}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: -5495902117074765545, guid: 429538861c3a53541b6c9b19bd2967ed, type: 3}
 --- !u!1001 &8191403376338439673
 PrefabInstance:
   m_ObjectHideFlags: 0
