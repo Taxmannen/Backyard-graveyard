@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: Wave.1.2
   m_EditorClassIdentifier: 
   timeLimit: 1
-  timelimitForWave: 60
-  timeBetweenEnemySpawns: 45
-  nrOfTasks: 1
+  timelimitForWave: 600
+  timeBetweenEnemySpawns: 60
+  nrOfTasks: 5
   timePerTask: 600
-  chanceOfCorrectBodyCombination: 85
+  chanceOfCorrectBodyCombination: 95
   PauseAfterCompletedWave: 0
   clearAllObjectPoolsOnPause: 0
-  minNrOfOrnamnets: 1
-  maxNrOfOrnamnets: 3
-  chanceOfTreatment: 50
+  minNrOfOrnamnets: 0
+  maxNrOfOrnamnets: 2
+  chanceOfTreatment: 0
   nrOfSpawnsPerWave: 1
   unrestModifier: 6

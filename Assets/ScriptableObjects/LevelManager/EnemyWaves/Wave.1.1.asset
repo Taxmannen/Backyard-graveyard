@@ -17,11 +17,11 @@ MonoBehaviour:
   timeBetweenEnemySpawns: 60
   nrOfTasks: 1
   timePerTask: 600
-  chanceOfCorrectBodyCombination: 95
+  chanceOfCorrectBodyCombination: 100
   PauseAfterCompletedWave: 0
   clearAllObjectPoolsOnPause: 0
   minNrOfOrnamnets: 0
-  maxNrOfOrnamnets: 2
+  maxNrOfOrnamnets: 1
   chanceOfTreatment: 0
   nrOfSpawnsPerWave: 1
   unrestModifier: 6
