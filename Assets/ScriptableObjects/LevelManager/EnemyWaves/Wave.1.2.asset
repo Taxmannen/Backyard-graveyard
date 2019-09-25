@@ -15,7 +15,7 @@ MonoBehaviour:
   timeLimit: 1
   timelimitForWave: 60
   timeBetweenEnemySpawns: 45
-  nrOfTasks: 8
+  nrOfTasks: 1
   timePerTask: 600
   chanceOfCorrectBodyCombination: 85
   PauseAfterCompletedWave: 0
