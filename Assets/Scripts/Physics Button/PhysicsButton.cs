@@ -4,32 +4,28 @@ using UnityEngine;
 /* Script Made By Daniel */
 public class PhysicsButton : MonoBehaviour
 {
-    private Vector3 position;
+    [SerializeField] private float executeTime = 0;
+
     private bool canTrigger = true;
     private bool hasCollided = false;
-    private float executeTime = 2;
+    private Vector3 position;
     private Coroutine coroutine;
 
     private void FixedUpdate()
     {
-        if (!hasCollided) position = transform.position;
+        if (!hasCollided) position = transform.localPosition;
     }
 
     private void OnCollisionEnter(Collision other)
     {
         if (canTrigger && other.gameObject.CompareTag("Button Trigger"))
         {
-            if (coroutine == null)
-            {
-                //Debug.Log(other.gameObject.name);
-                //StartCoroutine(ExecuteButtonPush());
-                ButtonPush();
-            }
+            if (coroutine == null) coroutine = StartCoroutine(ExecuteButtonPush());
         }
         if (other.gameObject.CompareTag("Button Limiter"))
         {
             hasCollided = true;
-            transform.position = position;
+            transform.localPosition = position;
         }
     }
 
@@ -51,15 +47,12 @@ public class PhysicsButton : MonoBehaviour
 
     private IEnumerator ExecuteButtonPush()
     {
-        Debug.Log("ButtonPush");
         yield return new WaitForSecondsRealtime(executeTime);
-        Debug.Log("Push Finished");
         ButtonPush();
     }
 
     protected virtual void ButtonPush()
     {
-        //Debug.Log("NU");
         StartCoroutine(ButtonTriggerDelay());
     }
 

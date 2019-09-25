@@ -310,6 +310,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 710489571209972061, guid: 5584509a8a87dc24fb29a4be86555461,
+        type: 3}
+      propertyPath: m_Name
+      value: Button Attachment (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 4656274545616113385, guid: 5584509a8a87dc24fb29a4be86555461,
         type: 3}
       propertyPath: musicPlayer
@@ -389,6 +394,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 710489571209972061, guid: 5584509a8a87dc24fb29a4be86555461,
+        type: 3}
+      propertyPath: m_Name
+      value: Button Attachment (2)
       objectReference: {fileID: 0}
     - target: {fileID: 4656274545616113385, guid: 5584509a8a87dc24fb29a4be86555461,
         type: 3}
