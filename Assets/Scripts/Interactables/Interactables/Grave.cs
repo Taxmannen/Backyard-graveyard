@@ -155,7 +155,7 @@ public class Grave : Interactable
         {
             if (pickup && !pickup.ActiveHand)
             {
-                if (pickup.GetPickupType() == PickupType.Ornament) PoolManager.ReturnPickup(pickup);
+                if (pickup.GetPickupType() == PickupType.Ornament) (pickup as Ornament).ReturnToPool();
                 else Destroy(pickup.gameObject);
             }
         }

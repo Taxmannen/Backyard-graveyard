@@ -16,8 +16,8 @@ public class Incinerator : MonoBehaviour
 
             else
             {
-                Pickup pickup = other.GetComponent<Pickup>();
-                if (!PoolManager.ReturnPickup(pickup))
+                Ornament ornament = other.GetComponent<Ornament>();
+                if (!PoolManager.ReturnOrnament(ornament))
                 {
                     Destroy(other.gameObject);
                 }

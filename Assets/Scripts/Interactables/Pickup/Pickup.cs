@@ -15,6 +15,7 @@ public class Pickup : Interactable
     [SerializeField] private bool snapOnPickup;
     [SerializeField] protected bool shouldDespawnWhenOnGround;
     [SerializeField] protected float despawnTimeWhenOnGround;
+    [SerializeField] private GameObject destoryParticle;
 
     protected CollisionManager collisionManager;
     protected Collider[] colliders;
@@ -64,6 +65,7 @@ public class Pickup : Interactable
         {
             if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Static"))
             {
+                //Made By Petter
                 Rigidbody rb = this.GetComponent<Rigidbody>();
                 rb.isKinematic = true;
                 rb.isKinematic = false;
@@ -77,10 +79,16 @@ public class Pickup : Interactable
         }
     }
 
+    public void ExecuteParticle()
+    {
+        if (destoryParticle != null) Instantiate(destoryParticle, transform.position, Quaternion.identity);
+    }
+
     private void OnDestroy()
     {
         IsBeingDestroyed = true;
         if (ActiveHand != null) ActiveHand.Drop();
+        ExecuteParticle();
     }
 
     private IEnumerator DestoryMe()

@@ -26,7 +26,7 @@ public class OrnamentPlacement : Placement
     {
         if (placedObject)
         {
-            PoolManager.ReturnPickup(placedObject.GetComponent<Pickup>());
+            placedObject.GetComponent<Ornament>().ReturnToPool();
             RemovePlacedObject();
         }
     }

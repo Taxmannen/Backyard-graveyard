@@ -21,36 +21,23 @@ public static class PoolManager
         }
     }
 
-    public static bool ReturnPickup(Pickup pickup)
-    {
-        if (pickup)
-        {
-            switch (pickup.GetPickupType())
-            {
-                case PickupType.Ornament:
-                    return ReturnOrnament(pickup.GetComponent<Ornament>());
-            }
-        }
-        return false;
-    }
-
-    private static bool ReturnOrnament(Ornament ornament)
+    public static bool ReturnOrnament(Ornament ornament, bool skipRemoveFromList = false)
     {
         if (ornament)
         {
             switch (ornament.GetOrnamentType())
             {
                 case OrnamentType.Flower:
-                    FlowerPool.GetInstance().ReturnToPool(ornament.gameObject);
+                    FlowerPool.GetInstance().ReturnToPool(ornament.gameObject, skipRemoveFromList);
                     break;
                 case OrnamentType.Candle:
-                    CandlePool.GetInstance().ReturnToPool(ornament.gameObject);
+                    CandlePool.GetInstance().ReturnToPool(ornament.gameObject, skipRemoveFromList);
                     break;
                 case OrnamentType.Heart:
-                    HeartPool.GetInstance().ReturnToPool(ornament.gameObject);
+                    HeartPool.GetInstance().ReturnToPool(ornament.gameObject, skipRemoveFromList);
                     break;
                 case OrnamentType.Statue:;
-                    StatuePool.GetInstance().ReturnToPool(ornament.gameObject);
+                    StatuePool.GetInstance().ReturnToPool(ornament.gameObject, skipRemoveFromList);
                     break;
                 default:
                     Debug.LogError("Something Went Wrong");

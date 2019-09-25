@@ -11,4 +11,12 @@ public class Ornament : PlaceablePickup
     #endregion
 
     public OrnamentType GetOrnamentType() { return ornamentType; }
+
+    public void ReturnToPool(bool skipRemoveFromList = false)
+    {
+        ExecuteParticle();
+        if (ActiveHand) ActiveHand.Drop();
+        if (Placement) Placement.RemovePlacedObject();
+        PoolManager.ReturnOrnament(this, skipRemoveFromList);
+    }
 }

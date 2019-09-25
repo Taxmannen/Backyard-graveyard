@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /* Script Made By Daniel */
 public class ObjectSpawnerWithPool : ObjectSpawner
@@ -22,26 +21,17 @@ public class ObjectSpawnerWithPool : ObjectSpawner
 
     protected override void ReturnObject(GameObject pickupObject)
     {
-        Pickup pickup = pickupObject.GetComponent<Pickup>();
-        if (pickup.ActiveHand) pickup.ActiveHand.Drop();
-        PoolManager.ReturnPickup(pickup);
+        Ornament ornament = pickupObject.GetComponent<Ornament>();
+        if (ornament.ActiveHand) ornament.ActiveHand.Drop();
+        PoolManager.ReturnOrnament(ornament);
     }
 
     protected override void ReplayGame()
     {
-        for (int i = 0; i < spawnedObjects.Count; i++)
+        foreach(GameObject ornament in spawnedObjects)
         {
-            if (spawnedObjects[i] != null)
-            {
-                Ornament ornament = spawnedObjects[i].GetComponent<Ornament>();
-                if (ornament)
-                {
-                    if (ornament.ActiveHand) ornament.ActiveHand.Drop();
-                    if (ornament.Placement) ornament.Placement.RemovePlacedObject();
-                }
-                objectPool.ReturnToPool(spawnedObjects[i], true);
-            }
+            if (ornament != null) ornament.GetComponent<Ornament>().ReturnToPool(true);
         }
-        spawnedObjects = new List<GameObject>();
+        spawnedObjects.Clear();
     }
 }

@@ -317,7 +317,7 @@ public class NewObjectThief : MonoBehaviour
             }
             else
             {
-                PoolManager.ReturnPickup(objectInHand.GetComponent<Pickup>());
+                PoolManager.ReturnOrnament(objectInHand.GetComponent<Ornament>());
             }
         }
 
