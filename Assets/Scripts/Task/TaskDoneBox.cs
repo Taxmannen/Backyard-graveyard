@@ -32,6 +32,11 @@ public class TaskDoneBox : MonoBehaviour
         PlayButton.StopEvent += Reset;
     }
 
+    private void OnDisable()
+    {
+        PlayButton.StopEvent -= Reset;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,7 +47,7 @@ public class TaskDoneBox : MonoBehaviour
     {
         levelComplete = false;
         
-        totalTasksForLevel = PrototypeManager.GetInstance().NrOfTasks; // this line is probably a bug
+        totalTasksForLevel = PrototypeManager.GetInstance().NrOfTasks;
         numberOfTasksCompleted = 0;
         ClearObjectsInBox();
     }
@@ -51,7 +56,6 @@ public class TaskDoneBox : MonoBehaviour
     {
         if (other == null) return;
         if (other.gameObject == null) return;
-        //if (other.CompareTag("Interactable")) return;
         TaskCard taskCard = other.gameObject.GetComponent<TaskCard>();
         if (taskCard == null) return;
 
@@ -62,11 +66,6 @@ public class TaskDoneBox : MonoBehaviour
             UpdateCompletedTasksText();
             TaskManager.GetInstance().CheckLevelCompletion();
         }
-    }
-
-    private void OnDisable()
-    {
-        PlayButton.StopEvent -= Reset;
     }
 
     private void PlaceTaskCard(GameObject taskCard)
