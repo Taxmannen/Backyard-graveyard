@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sledgehammer Small
       objectReference: {fileID: 0}
+    - target: {fileID: 2187847073836266636, guid: a63e519607986f64a85cd34d43f78cf0,
+        type: 3}
+      propertyPath: ghostPrefab
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2088598003375261319, guid: a63e519607986f64a85cd34d43f78cf0,
         type: 3}
       propertyPath: m_LocalPosition.x

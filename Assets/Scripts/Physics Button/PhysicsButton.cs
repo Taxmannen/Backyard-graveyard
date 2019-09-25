@@ -4,31 +4,51 @@ using UnityEngine;
 /* Script Made By Daniel */
 public class PhysicsButton : MonoBehaviour
 {
-    private Vector3 position;
+    [SerializeField] private float executeTime = 0;
+
     private bool canTrigger = true;
     private bool hasCollided = false;
+    private Vector3 position;
+    private Coroutine coroutine;
 
     private void FixedUpdate()
     {
-        if (!hasCollided) position = transform.position;
+        if (!hasCollided) position = transform.localPosition;
     }
 
     private void OnCollisionEnter(Collision other)
     {
         if (canTrigger && other.gameObject.CompareTag("Button Trigger"))
         {
-            ButtonPush();
+            if (coroutine == null) coroutine = StartCoroutine(ExecuteButtonPush());
         }
         if (other.gameObject.CompareTag("Button Limiter"))
         {
             hasCollided = true;
-            transform.position = position;
+            transform.localPosition = position;
         }
     }
 
     private void OnCollisionExit(Collision other)
     {
-        if (other.gameObject.CompareTag("Button Limiter")) hasCollided = false;
+        if (other.gameObject.CompareTag("Button Trigger"))
+        {
+            if (coroutine != null)
+            {
+                StopCoroutine(coroutine);
+                coroutine = null;
+            }
+        }
+        if (other.gameObject.CompareTag("Button Limiter"))
+        {
+            hasCollided = false;
+        }
+    }
+
+    private IEnumerator ExecuteButtonPush()
+    {
+        yield return new WaitForSecondsRealtime(executeTime);
+        ButtonPush();
     }
 
     protected virtual void ButtonPush()
@@ -39,7 +59,7 @@ public class PhysicsButton : MonoBehaviour
     private IEnumerator ButtonTriggerDelay()
     {
         canTrigger = false;
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSecondsRealtime(1);
         canTrigger = true;
     }
 }
