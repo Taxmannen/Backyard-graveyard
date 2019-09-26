@@ -21,6 +21,7 @@ public class Pickup : Interactable
     [SerializeField] private Vector3 particleOffset;
 
     protected CollisionManager collisionManager;
+    protected AudioManager audioManager;
     protected Collider[] colliders;
     protected AudioClip despawnClip;
     private Coroutine coroutine;
@@ -29,6 +30,7 @@ public class Pickup : Interactable
     protected virtual void Awake()
     {
         collisionManager = CollisionManager.GetInstance();
+        audioManager = AudioManager.GetInstance();
         colliders = GetComponentsInChildren<Collider>();
         despawnClip = Resources.Load<AudioClip>("Audio/ObjectDespawnSound01");
     }
@@ -94,7 +96,10 @@ public class Pickup : Interactable
         IsBeingDestroyed = true;
         if (ActiveHand != null) ActiveHand.Drop();
         ExecuteParticle();
-        AudioManager.GetInstance().PlaySoundAtPosition(despawnClip, transform);
+        if (audioManager)
+        {
+            audioManager.PlaySoundAtPosition(despawnClip, transform);
+        }
     }
 
     private IEnumerator DestoryMe()
