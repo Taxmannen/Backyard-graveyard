@@ -76,11 +76,13 @@ public class Grave : Interactable
     {
         if (dirtLayerList.Count > 0)
         {
+            PlayInteractSound();
             RemoveDirt();
             return Instantiate(dirt).GetComponent<Interactable>();
         }
         else if (dirtLayerList.Count == 0 && body)
         {
+            PlayInteractSound();
             return RemoveBody();
         }
         else return null;

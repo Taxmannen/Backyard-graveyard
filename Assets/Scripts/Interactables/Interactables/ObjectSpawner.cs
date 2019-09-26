@@ -39,6 +39,7 @@ public class ObjectSpawner : Interactable
 
     public override Interactable Interact()
     {
+        PlayInteractSound();
         Pickup pickup = SpawnObject();
         if (shouldPlaceInHand) return null;
         else return pickup.Interact();

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR.InteractionSystem;
 
 public enum MaterialType { Standard, Ghost, Outline }
 
@@ -20,6 +21,9 @@ public class Interactable : MonoBehaviour
     public bool IsBeingDestroyed { get; protected set; }
 
     public Hand ActiveHand { get; set; } = null;
+
+    [Header("Sound FXs")]
+    [SerializeField] private PlaySound soundFxsInteract;
     #endregion
 
     protected virtual void Start()
@@ -85,5 +89,15 @@ public class Interactable : MonoBehaviour
         }
     }
 
-    public virtual Interactable Interact() { return this; }
+    public virtual Interactable Interact()
+    {
+        return this;
+    }
+
+    protected void PlayInteractSound() {
+        if (soundFxsInteract != null)
+        {
+            soundFxsInteract.Play();
+        }
+    }
 }

@@ -16,6 +16,7 @@ public class Head : BodyPart
     public override Interactable Interact()
     {
         base.Interact();
+        PlayInteractSound();
         if (ConnectedBodyPart)
         {
             Collider[] bodyColliders = ConnectedBodyPart.GetComponentsInChildren<Collider>();

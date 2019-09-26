@@ -22,7 +22,7 @@ public class Pickup : Interactable
     [SerializeField] private Vector3 particleOffset;
 
     [Header("Sound FXs")]
-    [SerializeField] private PlaySound soundFxsPickUp;
+    
     [SerializeField] private PlaySound soundFxsPutDown;
 
     protected CollisionManager collisionManager;
@@ -55,10 +55,7 @@ public class Pickup : Interactable
         }
         if (collisionManager && collisionManager.GetCollisionTest()) collisionManager.SetColliderState(colliders, true);
 
-        if (soundFxsPickUp != null)
-        {
-            soundFxsPickUp.Play();
-        }
+        PlayInteractSound();
 
         return this;
     }
