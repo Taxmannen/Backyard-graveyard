@@ -453,7 +453,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 11815356943928808, guid: d6e53280342daf748a0b9b7b8dac3b54, type: 3}
-  amount: 500
+  amount: 5000
   scalable: 0
   reusable: 1
   spawner: {fileID: 0}

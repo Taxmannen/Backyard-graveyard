@@ -114,7 +114,8 @@ MonoBehaviour:
   snapOnPickup: 1
   shouldDespawnWhenOnGround: 0
   despawnTimeWhenOnGround: 0
-  destoryParticle: {fileID: 0}
+  destoryParticle: {fileID: 8722348895353668975, guid: a5ee626bbbdb69b48bfbc39e50f47452,
+    type: 3}
   particleOffset: {x: 0, y: 0, z: 0}
   soundFxsPutDown: {fileID: -9186134235938681556}
   damagePerForce: 3
