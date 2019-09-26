@@ -66,6 +66,7 @@ public class Body : BodyPart
 
     public override Interactable Interact()
     {
+        PlayInteractSound();
         base.Interact();
         if (Head != null && collisionManager && collisionManager.GetCollisionTest()) collisionManager.SetColliderState(headColliders, true);
         return this;
@@ -175,7 +176,7 @@ public class Body : BodyPart
         if (collisionManager && collisionManager.GetCollisionTest())
         {
             collisionManager.SetColliderState(colliders, state);
-            if (headColliders.Length > 0) collisionManager.SetColliderState(headColliders, state);
+            if (Head && headColliders.Length > 0) collisionManager.SetColliderState(headColliders, state);
         }
     }
 }

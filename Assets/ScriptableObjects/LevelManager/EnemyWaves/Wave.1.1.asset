@@ -21,7 +21,7 @@ MonoBehaviour:
   PauseAfterCompletedWave: 0
   clearAllObjectPoolsOnPause: 0
   minNrOfOrnamnets: 0
-  maxNrOfOrnamnets: 1
+  maxNrOfOrnamnets: 0
   chanceOfTreatment: 0
   nrOfSpawnsPerWave: 1
   unrestModifier: 6

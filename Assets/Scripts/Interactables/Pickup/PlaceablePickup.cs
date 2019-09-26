@@ -13,6 +13,7 @@ public class PlaceablePickup : Pickup
 
     public override Interactable Interact()
     {
+        PlayInteractSound();
         PickupObjectFromPlacement();
         return base.Interact();
     }
