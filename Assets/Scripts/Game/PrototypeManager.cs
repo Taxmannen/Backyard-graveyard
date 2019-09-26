@@ -99,7 +99,7 @@ public class PrototypeManager : Singleton<PrototypeManager>
             CurrentLevel++;
             currentWave = 0;
             //AdvanceWave();
-            StartCoroutine(AdvanceWaveOnDelay(5, $"Entering level {currentLevel + 1}/{levels.Length}\nGood luck!"));
+            StartCoroutine(AdvanceWaveOnDelay(5, $"Entering level {currentLevel + 1}/{levels.Length}\nGood luck!", true));
             //SetWaveProperties();
         }
         else
@@ -122,7 +122,7 @@ public class PrototypeManager : Singleton<PrototypeManager>
         }
         else StartCoroutine(AdvanceWaveOnDelay(5)); // Just continue... on a delay
     }
-    IEnumerator AdvanceWaveOnDelay(int delay, string text = "")
+    IEnumerator AdvanceWaveOnDelay(int delay, string text = "", bool resetWaveNumber = false)
     {
         TaskManager.GetInstance().HideTaskFrames();
         for (int i = delay; i > 0; i--)
@@ -135,7 +135,7 @@ public class PrototypeManager : Singleton<PrototypeManager>
 
         TaskManager.GetInstance().levelCompletedText.text = "";
         //TaskManager.GetInstance().ShowTaskFrames();
-        currentWave = -1;
+        if(resetWaveNumber) currentWave = -1;
         AdvanceWave();
     }
     public void AdvanceWave()
