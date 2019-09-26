@@ -22,7 +22,7 @@ MonoBehaviour:
     actionPath: 
     needsReinit: 0
   handToVibrate: 0
-  vibrationValues: {fileID: 0}
+  vibrationValues: {fileID: 9105307337380047989}
   currentInteractable: {fileID: 0}
   contactInteractable: []
   childObjectOnPickup: 1
@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 158cd63719647024687307991714f80e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playmode: 0
+  playmode: 1
   vr: {fileID: 8076222914984697322}
   pc: {fileID: 2737799386229676159}
   restartKey: 114
@@ -563,13 +563,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3347159431982175477, guid: e66d734b4b36a9e4da05e8659f8ff2f8,
         type: 3}
-      propertyPath: objectThiefPullingObjectFromYourHandJump.frequency
-      value: 75
+      propertyPath: objectThiefPullingObjectFromYourHandJump.amplitude
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3347159431982175477, guid: e66d734b4b36a9e4da05e8659f8ff2f8,
         type: 3}
-      propertyPath: objectThiefPullingObjectFromYourHandJump.amplitude
-      value: 1
+      propertyPath: objectThiefPullingObjectFromYourHandJump.frequency
+      value: 75
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e66d734b4b36a9e4da05e8659f8ff2f8, type: 3}

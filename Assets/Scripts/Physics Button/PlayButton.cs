@@ -28,12 +28,12 @@ public class PlayButton : PhysicsButton
     {
         PlayEvent?.Invoke();
         ClearRemaingObjects();
-        if (particle)
+        /*if (particle)
         {
             GameObject firework = Instantiate(particle);
             firework.transform.SetParent(spawnPosition);
             firework.transform.localPosition = new Vector3(0, 0, 0);
-        }
+        }*/
         SetPlayState(true);
     }
 

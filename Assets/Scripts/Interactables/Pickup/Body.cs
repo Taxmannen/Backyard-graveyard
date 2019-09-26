@@ -166,4 +166,13 @@ public class Body : BodyPart
         yield return new WaitForSecondsRealtime(0.2f);
         SnapOnPickup = false;
     }
+
+    public void SetColliderState(bool state)
+    {
+        if (collisionManager && collisionManager.GetCollisionTest())
+        {
+            collisionManager.SetColliderState(colliders, state);
+            if (headColliders.Length > 0) collisionManager.SetColliderState(headColliders, state);
+        }
+    }
 }

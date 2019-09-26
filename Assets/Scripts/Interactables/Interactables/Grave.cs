@@ -107,7 +107,8 @@ public class Grave : Interactable
         currentBody.SetRigidbodyConstraints(false);
         currentBody.IsInGrave = false;
         currentBody.SetSnapOnPickupAfterGrave();
-        body.transform.SetParent(null);
+        currentBody.transform.SetParent(null);
+        currentBody.SetColliderState(true);
         body = null;
         return currentBody;
     }

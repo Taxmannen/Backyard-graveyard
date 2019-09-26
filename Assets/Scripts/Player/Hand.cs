@@ -189,11 +189,13 @@ public class Hand : MonoBehaviour
 
     public void Vibrate(VibrationValues.VibrationSettings vibrationSettings)
     {
+        if (Player.GetInstance().GetPlayMode() == Playmode.PC) return;
         vibrationAction.Execute(0, vibrationSettings.duration, vibrationSettings.frequency, vibrationSettings.amplitude, handToVibrate);
     }
 
     public void Vibrate(VibrationValues.VibrationSettings vibrationSettings, float modifierValue, float modifierMax)
     {
+        if (Player.GetInstance().GetPlayMode() == Playmode.PC) return;
         //vibrationAction.RemoveOnActiveBindingChangeListener(vibrationAction.Execute(), handToVibrate);
         float percentageValue = modifierValue / modifierMax;
         if(percentageValue < 0.5f)
