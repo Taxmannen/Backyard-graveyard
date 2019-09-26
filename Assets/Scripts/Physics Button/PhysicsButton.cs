@@ -70,7 +70,7 @@ public class PhysicsButton : MonoBehaviour
     private IEnumerator ButtonTriggerDelay()
     {
         canTrigger = false;
-        yield return new WaitForSecondsRealtime(1);
+        yield return new WaitForSecondsRealtime(0.5f);
         canTrigger = true;
     }
 }
