@@ -254,7 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waveFile:
-  - {fileID: 8300000, guid: 4e6f97062c1ef93468706a5e8fa38ae2, type: 3}
+  - {fileID: 8300000, guid: 70cbbdbe5639e0041b6d9dc4869c607a, type: 3}
   stopOnPlay: 0
   disableOnEnd: 0
   looping: 0
