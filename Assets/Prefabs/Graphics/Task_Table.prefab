@@ -1200,6 +1200,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   taskManagerSpawnsTasks: 0
+  maxFailedTasksMultiplier: 0.5
+  maxSimultaneousTasksMultiplier: 2
   tasks:
   - {fileID: 6844648603978945165}
   - {fileID: 4829107060882842643}
@@ -1214,6 +1216,7 @@ MonoBehaviour:
   - s: You're getting the hang of this!
   - s: CAN YOU DIG IT?!
   bodySpawnPosition: {fileID: 0}
+  taskFrames: []
   levelCompletedText: {fileID: 2115221864}
   completedTasks: 
   includeTreatments: 1
