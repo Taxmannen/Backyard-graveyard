@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR.InteractionSystem;
 
 /// <summary>
 /// <author>Simon</author>
@@ -26,6 +27,8 @@ public class PrototypeManager : Singleton<PrototypeManager>
     public TaskDoneBox taskDoneBox;
     //[SerializeField] private EnemySpawner zombieSpawner;
     //[SerializeField] private EnemySpawner graveRobberSpawner;
+    [SerializeField] private PlaySound waveCompleteSoundFx;
+    [SerializeField] private PlaySound waveStartSoundFx;
 
     private PlayButton playButton;
     public DateTime waveStartTime;
@@ -113,6 +116,11 @@ public class PrototypeManager : Singleton<PrototypeManager>
 
     public void CompleteWave()
     {
+        if(waveCompleteSoundFx != null)
+        {
+            waveCompleteSoundFx.Play();
+        }
+        
         try { TaskManager.GetInstance().ResetTasks(); } catch (System.Exception e) { Debug.LogError(e); }
 
         if (GetCurrentWave().PauseAfterCompletedWave)
@@ -142,6 +150,11 @@ public class PrototypeManager : Singleton<PrototypeManager>
     {
         if(currentWave + 1 < GetCurrentLevel().gameWaves.Length)
         {
+            if(waveStartSoundFx != null)
+            {
+                waveStartSoundFx.Play();
+            }
+
             //taskDoneBox.Reset();
             currentWave++;
             SetWaveProperties();

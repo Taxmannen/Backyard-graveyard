@@ -217,7 +217,7 @@ public class TaskCard : MonoBehaviour
 
     private void OnCollisionStay(Collision other)
     {
-        if (other.gameObject.tag == "Ground" && interactable.ActiveHand == null && coroutine == null)
+        if (other.gameObject.tag == "Ground" && interactable && interactable.ActiveHand == null && coroutine == null)
         {
             StartReturnToBoxCoroutine();
         }
