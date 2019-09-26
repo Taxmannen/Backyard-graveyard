@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Valve.VR.InteractionSystem;
 
 /// <summary>
 /// <author>Kristoffer</author>
@@ -37,6 +38,13 @@ public class TaskCard : MonoBehaviour
 
     [SerializeField]
     private Image timerImage;
+
+    [SerializeField]
+    private PlaySound taskCompleteSoundFx;
+    [SerializeField]
+    private PlaySound taskFailSoundFx;
+    [SerializeField]
+    private PlaySound spawnSoundFX;
     #endregion
 
     private float timerWidth;
@@ -174,12 +182,15 @@ public class TaskCard : MonoBehaviour
         //{
         //    taskCompletedImage.gameObject.SetActive(true);
         //}
+        taskCompleteSoundFx.Play();
+
         taskCompletedImage.gameObject.SetActive(true);
         taskCompleted = true;
     }
 
 
     public void TaskFailed() {
+        taskFailSoundFx.Play();
         taskFailedImage.gameObject.SetActive(true);
         taskCompleted = false;
     }

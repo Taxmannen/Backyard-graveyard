@@ -6,43 +6,11 @@ using UnityEngine;
 /// <summary>
 /// <author>Simon</author>
 /// </summary>
-[System.Serializable]
-public class GameWave
+
+[Serializable]
+public class GameWaveObjects
 {
-    [SerializeField] private ZombieWaves[] zombieWaves;
-    [SerializeField] private GraveRobberWaves[] graveRobberWaves;
-}
-
-[System.Serializable]
-public class EnemyWaves
-{
-    [SerializeField] protected int nrOfEnemies = 5;
-    [SerializeField] protected float timeUntilSpawn;
-
-    public int NrOfEnemies { get => nrOfEnemies; private set => nrOfEnemies = value; }
-    public float TimeUntilSpawn { get => timeUntilSpawn; private set => timeUntilSpawn = value; }
-
-    public EnemyWaves(int nrOfEnemies, float timeUntilSpawn)
-    {
-        this.nrOfEnemies = nrOfEnemies;
-        this.timeUntilSpawn = timeUntilSpawn;
-    }
-}
-
-[System.Serializable]
-public class ZombieWaves : EnemyWaves
-{
-    public ZombieWaves(int nrOfEnemies, float timeUntilSpawn) : base(nrOfEnemies, timeUntilSpawn)
-    {
-    }
-}
-
-[System.Serializable]
-public class GraveRobberWaves : EnemyWaves
-{
-    public GraveRobberWaves(int nrOfEnemies, float timeUntilSpawn) : base(nrOfEnemies, timeUntilSpawn)
-    {
-    }
+    public List<GameObject> gameObjectsForWave;
 }
 
 public class PrototypeManager : Singleton<PrototypeManager>
@@ -52,6 +20,7 @@ public class PrototypeManager : Singleton<PrototypeManager>
     [SerializeField, ReadOnly] private int currentLevel = -1;
     [SerializeField, ReadOnly] private int currentWave = -1;
     [SerializeField] private bool clearInteractablesOnPickup = false;
+    [SerializeField] private List<GameWaveObjects> gameWaveObjects;
 
     [Header("References")]
     public TaskDoneBox taskDoneBox;
@@ -121,8 +90,9 @@ public class PrototypeManager : Singleton<PrototypeManager>
         if(CurrentLevel + 1 < levels.Length)
         {
             CurrentLevel++;
-            currentWave = 0;
-            SetWaveProperties();
+            currentWave = -1;
+            AdvanceWave();
+            //SetWaveProperties();
         }
         else
         {
@@ -160,6 +130,27 @@ public class PrototypeManager : Singleton<PrototypeManager>
             currentWave++;
             SetWaveProperties();
             taskDoneBox.Reset();
+
+            GameWaveObjects gameWaveObject;
+            try
+            {
+                gameWaveObject = gameWaveObjects[currentWave];
+            }
+            catch (Exception e)
+            {
+                // No wave objects for this wave
+                return;
+            }
+
+            //The gameWaveObjects at current wave exists, but does the array containt any objects?
+            gameWaveObject = gameWaveObjects[currentWave];
+            if (gameWaveObject.gameObjectsForWave == null || gameWaveObject.gameObjectsForWave.Count < 1) return;
+
+            for (int i = 0; i < gameWaveObject.gameObjectsForWave.Count; i++)
+            {
+                gameWaveObjects[currentWave].gameObjectsForWave[i].SetActive(true);
+                //Invoke(go.SetActive(false), 10f);
+            }
         }
         else
         {

@@ -13,7 +13,7 @@ public class PhysicsButton : MonoBehaviour
     private bool hasCollided = false;
     private Vector3 position;
     private Coroutine coroutine;
-    private AudioSource audioSource;
+    public AudioSource audioSource;
     #endregion
 
     private void Awake()

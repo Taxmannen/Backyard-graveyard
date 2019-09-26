@@ -11,6 +11,7 @@ public class Body : BodyPart
     [SerializeField] private GameObject bodyPrefab;
     [SerializeField] private GameObject headPrefab;
     [SerializeField] private Transform headPosition;
+    [SerializeField] private AudioSource breakingBodySound;
 
     private Collider[] headColliders;
 
@@ -32,6 +33,7 @@ public class Body : BodyPart
     {
         base.Start();
         SnapOnPickup = false;
+        breakingBodySound = GetComponent<AudioSource>();
     }
 
     private void SetColor()
@@ -121,6 +123,7 @@ public class Body : BodyPart
     {
         if (fixedJoint != null)
         {
+            breakingBodySound.Play();
             Destroy(gameObject.GetComponent<FixedJoint>());
             fixedJoint = null;
         }

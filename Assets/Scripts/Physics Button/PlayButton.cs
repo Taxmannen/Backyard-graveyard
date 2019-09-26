@@ -14,6 +14,7 @@ public class PlayButton : PhysicsButton
     public static event Action PlayEvent;
     public static event Action StopEvent;
     public static bool isPlaying;
+    private AudioClip buttonClickSound;
     #endregion
 
     private void Awake()
@@ -21,10 +22,12 @@ public class PlayButton : PhysicsButton
         if (instance == null) instance = this;
         else Destroy(this);
         foreach (GameObject taskObject in taskObjects) taskObject.SetActive(false);
+        buttonClickSound = Resources.Load<AudioClip>("Audio/ButtonClickSound03");
     }
 
     protected override void ButtonPush()
     {
+        AudioManager.GetInstance().PlaySoundAtPosition(buttonClickSound, transform);
         PlayEvent?.Invoke();
         ClearRemaingObjects();
         if (particle) Instantiate(particle);
