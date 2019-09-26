@@ -1,5 +1,95 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2681699963228150918
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4280625017865465072}
+    m_Modifications:
+    - target: {fileID: 8541198856713941188, guid: 372c0afde167bd244810cb1deb737331,
+        type: 3}
+      propertyPath: m_Name
+      value: Low Poly Smoke Small Hammer
+      objectReference: {fileID: 0}
+    - target: {fileID: 9028848937404128973, guid: 372c0afde167bd244810cb1deb737331,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9028848937404128973, guid: 372c0afde167bd244810cb1deb737331,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9028848937404128973, guid: 372c0afde167bd244810cb1deb737331,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9028848937404128973, guid: 372c0afde167bd244810cb1deb737331,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 9028848937404128973, guid: 372c0afde167bd244810cb1deb737331,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9028848937404128973, guid: 372c0afde167bd244810cb1deb737331,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9028848937404128973, guid: 372c0afde167bd244810cb1deb737331,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 9028848937404128973, guid: 372c0afde167bd244810cb1deb737331,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9028848937404128973, guid: 372c0afde167bd244810cb1deb737331,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 9028848937404128973, guid: 372c0afde167bd244810cb1deb737331,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9028848937404128973, guid: 372c0afde167bd244810cb1deb737331,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 205144871411474110, guid: 372c0afde167bd244810cb1deb737331,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 205144871411474110, guid: 372c0afde167bd244810cb1deb737331,
+        type: 3}
+      propertyPath: stopAction
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963564837578493089, guid: 372c0afde167bd244810cb1deb737331,
+        type: 3}
+      propertyPath: m_RenderAlignment
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 372c0afde167bd244810cb1deb737331, type: 3}
+--- !u!198 &2877692156172894776 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 205144871411474110, guid: 372c0afde167bd244810cb1deb737331,
+    type: 3}
+  m_PrefabInstance: {fileID: 2681699963228150918}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2854126677213096567
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -91,7 +181,32 @@ PrefabInstance:
         type: 3}
       propertyPath: destoryParticle
       value: 
-      objectReference: {fileID: 8541198856713941188, guid: 372c0afde167bd244810cb1deb737331,
+      objectReference: {fileID: 0}
+    - target: {fileID: 2187847073836266636, guid: a63e519607986f64a85cd34d43f78cf0,
         type: 3}
+      propertyPath: weaponEffect
+      value: 
+      objectReference: {fileID: 2877692156172894776}
+    - target: {fileID: 5933616817982509439, guid: a63e519607986f64a85cd34d43f78cf0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300093333996179724, guid: a63e519607986f64a85cd34d43f78cf0,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300093333996179724, guid: a63e519607986f64a85cd34d43f78cf0,
+        type: 3}
+      propertyPath: stopAction
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a63e519607986f64a85cd34d43f78cf0, type: 3}
+--- !u!4 &4280625017865465072 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2088598003375261319, guid: a63e519607986f64a85cd34d43f78cf0,
+    type: 3}
+  m_PrefabInstance: {fileID: 2854126677213096567}
+  m_PrefabAsset: {fileID: 0}

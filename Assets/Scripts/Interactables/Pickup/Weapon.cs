@@ -6,6 +6,7 @@ public class Weapon : Pickup
 {
     [Header("Weapon")]
     [SerializeField] private int damagePerForce = 3;
+    [SerializeField] private ParticleSystem weaponEffect;
 
     private SteamVR_Behaviour_Pose pose = null;
 
@@ -41,6 +42,11 @@ public class Weapon : Pickup
             
            
         }
+    }
+
+    public void CreatePoofEffect()
+    {
+        if (weaponEffect != null) Instantiate(weaponEffect, weaponEffect.transform.position, weaponEffect.transform.rotation).Play();
     }
 
     public override void Drop()

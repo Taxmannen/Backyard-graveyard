@@ -22,7 +22,6 @@ public class Pickup : Interactable
     [SerializeField] private Vector3 particleOffset;
 
     [Header("Sound FXs")]
-    
     [SerializeField] private PlaySound soundFxsPutDown;
 
     protected CollisionManager collisionManager;
@@ -104,7 +103,11 @@ public class Pickup : Interactable
 
     public void ExecuteParticle()
     {
-        if (destoryParticle != null) Instantiate(destoryParticle, transform.position + particleOffset, Quaternion.identity);
+        if (this is Weapon) (this as Weapon).CreatePoofEffect();
+        else
+        {
+            if (destoryParticle != null) Instantiate(destoryParticle, transform.position + particleOffset, Quaternion.identity);
+        }
     }
 
     private void OnDestroy()
