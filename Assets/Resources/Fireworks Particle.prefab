@@ -9668,7 +9668,7 @@ GameObject:
   - component: {fileID: 9153853372920373634}
   - component: {fileID: 3556039166815036851}
   m_Layer: 0
-  m_Name: Fireworks Particle 2
+  m_Name: Fireworks Particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14429,7 +14429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPos: {x: 150, y: 40, z: 0}
-  stopTime: 120
+  stopTime: 30
 --- !u!1 &9153853373151645542
 GameObject:
   m_ObjectHideFlags: 0

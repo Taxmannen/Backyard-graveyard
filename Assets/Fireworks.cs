@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class Firework : MonoBehaviour
+/* Script Made By Daniel */
+public class Fireworks : MonoBehaviour
 {
     [SerializeField] private Vector3 startPos;
     [SerializeField] private float stopTime = 5;
@@ -12,13 +13,13 @@ public class Firework : MonoBehaviour
     {
         ps = GetComponent<ParticleSystem>();
         transform.position = startPos;
-        StartCoroutine(Test());
+        StartCoroutine(StopPlayParticle());
     }
 
-    private IEnumerator Test()
+    private IEnumerator StopPlayParticle()
     {
         yield return new WaitForSecondsRealtime(stopTime);
         ps.Stop();
-        Destroy(gameObject, 2);
+        Destroy(gameObject, 10);
     }
 }

@@ -104,6 +104,7 @@ public class PrototypeManager : Singleton<PrototypeManager>
         else
         {
             Debug.Log("No more levels! You are win!");
+            Instantiate(Resources.Load("Fireworks Particle"));
             playButton.StopPlaying();
             TaskManager.GetInstance().levelCompletedText.text = "No more levels! You are win!";
         }
