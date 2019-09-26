@@ -8,16 +8,34 @@ using UnityEngine;
 public class NewObjectThiefFleeState : NewObjectThiefState
 {
 
+    
+
     private float timeBeforeJump;
+
+    //Used for vibration
+    private Pickup pickup;
+    private Hand playerHand;
+    private float vibrationTimer;
 
     //Change this to trigger-area later?
     private float distanceBeforeEnemyDespawn;
 
     public override void Enter(NewObjectThief objectThief)
     {
+
         //Fulfix där fienden rör sig mot ett objekt med tagen "Out of Bounds". Används för att despawna fienden.
         //objectThief.FindNewCurrentTargetObjectWithTag("Player");
         objectThief.currentTargetObject = objectThief.randomTargetObject;
+
+        if(objectThief.objectInHand != null)
+        {
+            pickup = objectThief.objectInHand.GetComponent<Pickup>();
+            if(pickup.ActiveHand != null)
+            {
+                vibrationTimer = pickup.ActiveHand.vibrationValues.objectThiefPullingObjectFromYourHand.duration;
+            }
+        }
+        
 
         timeBeforeJump = objectThief.GetTimeBeforeTryingNewTarget();
         distanceBeforeEnemyDespawn = objectThief.GetDistanceBeforeEnemyDespawn();
@@ -35,6 +53,8 @@ public class NewObjectThiefFleeState : NewObjectThiefState
 
     public override NewObjectThiefState FixedUpdate(NewObjectThief objectThief, float t)
     {
+        
+        
         //SetDirectionToTarget(objectThief);
         //MoveAwayFromTarget(objectThief);
         objectThief.MoveAwayFromTarget();
@@ -57,6 +77,16 @@ public class NewObjectThiefFleeState : NewObjectThiefState
     private Rigidbody objectInHandRigidBody;
     public override NewObjectThiefState Update(NewObjectThief objectThief, float t)
     {
+        vibrationTimer -= t;
+        if(vibrationTimer <= 0)
+        {
+            if (pickup.ActiveHand != null)
+            {
+                pickup.ActiveHand.Vibrate(pickup.ActiveHand.vibrationValues.objectThiefPullingObjectFromYourHand);
+                vibrationTimer = pickup.ActiveHand.vibrationValues.objectThiefPullingObjectFromYourHand.duration;
+            }
+        }
+        
 
         float distanceToTarget = objectThief.GetDistanceToTarget(objectThief.GetMarionetteStringPosition());
 
@@ -72,6 +102,11 @@ public class NewObjectThiefFleeState : NewObjectThiefState
             //Jumps, and adds a force to the object in the hand as well.
             objectThief.enemyJump.FleeJump(objectInHandRigidBody);
             timeBeforeJump = objectThief.GetTimeBeforeTryingNewTarget();
+
+            if(pickup.ActiveHand != null)
+            {
+                pickup.ActiveHand.Vibrate(pickup.ActiveHand.vibrationValues.objectThiefPullingObjectFromYourHandJump);
+            }
         }
 
         if (distanceToTarget > distanceBeforeEnemyDespawn)

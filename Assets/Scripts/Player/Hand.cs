@@ -11,7 +11,12 @@ public class Hand : MonoBehaviour
     public SteamVR_Action_Boolean grabAction = null;
     public SteamVR_Action_Boolean restartAction = null;
 
-    public KeyCode grabKey;
+
+    public SteamVR_Action_Vibration vibrationAction;
+    public SteamVR_Input_Sources handToVibrate;
+    public VibrationValues vibrationValues;
+    
+    private KeyCode grabKey = KeyCode.E;
 
     [Header("Debug")]
     [SerializeField] private Interactable currentInteractable;
@@ -27,6 +32,7 @@ public class Hand : MonoBehaviour
     {
         pose = GetComponent<SteamVR_Behaviour_Pose>();
         fixedJoint = GetComponent<FixedJoint>();
+        //vibrationValues = GameObject.FindGameObjectWithTag("VibrationValues")
     }
 
     private void Update()
@@ -56,7 +62,16 @@ public class Hand : MonoBehaviour
         if (other.CompareTag("Interactable"))
         {
             contactInteractable.Add(other.gameObject.GetComponent<Interactable>());
+            Vibrate(vibrationValues.touchingStuff);
         }   
+        else if(other.gameObject.layer == LayerMask.NameToLayer("Button"))
+        {
+            Vibrate(vibrationValues.pushingButton);
+        }
+        else
+        {
+            Vibrate(vibrationValues.touchingStuff);
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -74,6 +89,8 @@ public class Hand : MonoBehaviour
         currentInteractable = GetNearestInteractable();
 
         if (!currentInteractable) return;
+
+        Vibrate(vibrationValues.pickUpVibration);
 
         if (currentInteractable.ActiveHand)
             currentInteractable.ActiveHand.Drop();
@@ -103,6 +120,9 @@ public class Hand : MonoBehaviour
     {
         if (!currentInteractable) return;
         Rigidbody targetBody = currentInteractable.GetComponent<Rigidbody>();
+
+        //Vibrate(vibrationValues.putDownVibration);
+        
 
         if (FindObjectOfType<Player>().GetPlayMode() == Playmode.VR)
         {
@@ -164,5 +184,23 @@ public class Hand : MonoBehaviour
             interactable?.SetToOutlineMaterial(MaterialType.Standard);
         }
         if (!GetNearestInteractable()?.ActiveHand) GetNearestInteractable()?.SetToOutlineMaterial(MaterialType.Outline);
+    }
+
+
+    public void Vibrate(VibrationValues.VibrationSettings vibrationSettings)
+    {
+        vibrationAction.Execute(0, vibrationSettings.duration, vibrationSettings.frequency, vibrationSettings.amplitude, handToVibrate);
+    }
+
+    public void Vibrate(VibrationValues.VibrationSettings vibrationSettings, float modifierValue, float modifierMax)
+    {
+        //vibrationAction.RemoveOnActiveBindingChangeListener(vibrationAction.Execute(), handToVibrate);
+        float percentageValue = modifierValue / modifierMax;
+        if(percentageValue < 0.5f)
+        {
+            vibrationSettings.duration /= 2f;
+        }
+
+        vibrationAction.Execute(0, vibrationSettings.duration, vibrationSettings.frequency, percentageValue, handToVibrate);
     }
 }

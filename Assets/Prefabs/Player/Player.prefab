@@ -18,7 +18,11 @@ MonoBehaviour:
   restartAction:
     actionPath: /actions/default/in/Restart
     needsReinit: 0
-  grabKey: 101
+  vibrationAction:
+    actionPath: 
+    needsReinit: 0
+  handToVibrate: 0
+  vibrationValues: {fileID: 0}
   currentInteractable: {fileID: 0}
   contactInteractable: []
   childObjectOnPickup: 1
@@ -82,6 +86,7 @@ Transform:
   m_Children:
   - {fileID: 8076222914984938514}
   - {fileID: 2737799386229676133}
+  - {fileID: 7380080780864554942}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -97,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 158cd63719647024687307991714f80e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playmode: 1
+  playmode: 0
   vr: {fileID: 8076222914984697322}
   pc: {fileID: 2737799386229676159}
   restartKey: 114
@@ -489,6 +494,103 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af0c2488cd716a142b2b41fffa5f41bd, type: 3}
+--- !u!1001 &5778104083876345984
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8076222915566745564}
+    m_Modifications:
+    - target: {fileID: 6754706671275447052, guid: e66d734b4b36a9e4da05e8659f8ff2f8,
+        type: 3}
+      propertyPath: m_Name
+      value: VibrationValues
+      objectReference: {fileID: 0}
+    - target: {fileID: 3910429951726223166, guid: e66d734b4b36a9e4da05e8659f8ff2f8,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3910429951726223166, guid: e66d734b4b36a9e4da05e8659f8ff2f8,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3910429951726223166, guid: e66d734b4b36a9e4da05e8659f8ff2f8,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3910429951726223166, guid: e66d734b4b36a9e4da05e8659f8ff2f8,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3910429951726223166, guid: e66d734b4b36a9e4da05e8659f8ff2f8,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3910429951726223166, guid: e66d734b4b36a9e4da05e8659f8ff2f8,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3910429951726223166, guid: e66d734b4b36a9e4da05e8659f8ff2f8,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3910429951726223166, guid: e66d734b4b36a9e4da05e8659f8ff2f8,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3910429951726223166, guid: e66d734b4b36a9e4da05e8659f8ff2f8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3910429951726223166, guid: e66d734b4b36a9e4da05e8659f8ff2f8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3910429951726223166, guid: e66d734b4b36a9e4da05e8659f8ff2f8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3347159431982175477, guid: e66d734b4b36a9e4da05e8659f8ff2f8,
+        type: 3}
+      propertyPath: objectThiefPullingObjectFromYourHandJump.frequency
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3347159431982175477, guid: e66d734b4b36a9e4da05e8659f8ff2f8,
+        type: 3}
+      propertyPath: objectThiefPullingObjectFromYourHandJump.amplitude
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e66d734b4b36a9e4da05e8659f8ff2f8, type: 3}
+--- !u!4 &7380080780864554942 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3910429951726223166, guid: e66d734b4b36a9e4da05e8659f8ff2f8,
+    type: 3}
+  m_PrefabInstance: {fileID: 5778104083876345984}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &9105307337380047989 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3347159431982175477, guid: e66d734b4b36a9e4da05e8659f8ff2f8,
+    type: 3}
+  m_PrefabInstance: {fileID: 5778104083876345984}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae28a35ace699ac49aa6054ecfa04343, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8076222914984828990
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -544,14 +646,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2348914, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3380982, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 8203184094697030362, guid: 4d293c8e162f3874b982baadd71153d2,
         type: 3}
       propertyPath: m_RootOrder
@@ -562,6 +656,30 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1922723789, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
+      propertyPath: vibrationAction.actionPath
+      value: /actions/default/out/Haptic
+      objectReference: {fileID: 0}
+    - target: {fileID: 1922723789, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
+      propertyPath: handToVibrate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1922723789, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
+      propertyPath: vibrationValues
+      value: 
+      objectReference: {fileID: 9105307337380047989}
+    - target: {fileID: 1922723785, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
+      propertyPath: vibrationAction.actionPath
+      value: /actions/default/out/Haptic
+      objectReference: {fileID: 0}
+    - target: {fileID: 1922723785, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
+      propertyPath: handToVibrate
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1922723785, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
+      propertyPath: vibrationValues
+      value: 
+      objectReference: {fileID: 9105307337380047989}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
 --- !u!1 &8076222914984697322 stripped
