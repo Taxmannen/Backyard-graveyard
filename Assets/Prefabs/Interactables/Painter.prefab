@@ -190,6 +190,7 @@ MonoBehaviour:
   - {fileID: 3250213838504865428}
   - {fileID: 4396972548012373108}
   ghostPrefab: {fileID: 0}
+  soundFxsInteract: {fileID: 4169447956211418725}
   pickupType: 0
   snapOnPickup: 1
   shouldDespawnWhenOnGround: 0
@@ -197,7 +198,6 @@ MonoBehaviour:
   destoryParticle: {fileID: 8722348895353668975, guid: e870158c08df4a742b529e758503650f,
     type: 3}
   particleOffset: {x: 0, y: 0, z: 0}
-  soundFxsPickUp: {fileID: 4169447956211418725}
   soundFxsPutDown: {fileID: 4169447956211418725}
   treatmentType: 0
 --- !u!82 &5786092976219999611
