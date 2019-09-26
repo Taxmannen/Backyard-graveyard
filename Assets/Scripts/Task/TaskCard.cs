@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Valve.VR.InteractionSystem;
 
 /// <summary>
 /// <author>Kristoffer</author>
@@ -37,6 +38,9 @@ public class TaskCard : MonoBehaviour
 
     [SerializeField]
     private Image timerImage;
+
+    [SerializeField]
+    private PlaySound soundFX;
     #endregion
 
     private float timerWidth;
@@ -174,6 +178,8 @@ public class TaskCard : MonoBehaviour
         //{
         //    taskCompletedImage.gameObject.SetActive(true);
         //}
+        soundFX.Play();
+
         taskCompletedImage.gameObject.SetActive(true);
         taskCompleted = true;
     }
