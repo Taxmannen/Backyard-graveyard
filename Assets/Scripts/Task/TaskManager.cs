@@ -117,7 +117,7 @@ public class TaskManager : Singleton<TaskManager>
         completedTasks.Add(success);
         TasksInProgress--;
         //CheckLevelCompletion();
-        unrestValueChange = success ? 1 : -1;
+        unrestValueChange = success ? -1 : 1;
         UnrestManager.GetInstance().UpdateUnrest(unrestValueChange);
     }
 
