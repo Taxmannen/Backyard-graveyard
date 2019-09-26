@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3925921413017823899}
   - component: {fileID: 1685052370}
   - component: {fileID: 5598818760746254512}
+  - component: {fileID: 1303085178}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -74,10 +75,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levels:
   - {fileID: 11400000, guid: 5b53358c91d28d94eaa9d8bf8df79cac, type: 2}
-  - {fileID: 11400000, guid: 1c80317e6bce4ad46bb8c765bf84aeae, type: 2}
   currentLevel: -1
   currentWave: -1
   clearInteractablesOnPickup: 0
+  taskDoneBox: {fileID: 0}
 --- !u!114 &3925921413017823899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,7 +94,7 @@ MonoBehaviour:
   startingUnrest: 10
   minUnrest: 0
   maxUnrest: 20
-  debugMode: 0
+  debugMode: 1
 --- !u!114 &1685052370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,5 +124,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa63082f394cadc40b38f9b30f8a2650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collisionTest: 0
-  staticColliders: []
+  collisionTest: 1
+  staticColliders:
+  - {fileID: 0}
+--- !u!114 &1303085178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617469186783753531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b3c0c2cd8d39e9438cb2c0417ca737d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
