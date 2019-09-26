@@ -23,7 +23,7 @@ public class ObjectSpawnerWithPool : ObjectSpawner
     {
         Ornament ornament = pickupObject.GetComponent<Ornament>();
         if (ornament.ActiveHand) ornament.ActiveHand.Drop();
-        PoolManager.ReturnOrnament(ornament);
+        ornament.ReturnToPool();
     }
 
     protected override void ReplayGame()

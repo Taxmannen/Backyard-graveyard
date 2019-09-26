@@ -81,6 +81,7 @@ public class TaskDoneBox : MonoBehaviour
         Destroy(taskCard.GetComponent<PlaceablePickup>());
         Destroy(taskCard.GetComponent<Rigidbody>());
         Destroy(taskCard.GetComponent<Task>());
+        Destroy(taskCard.GetComponentInChildren<ParticleSystem>().gameObject);
         taskCard.transform.localScale = new Vector3(0.15f, 0.15f, 0.1f);
         taskCard.transform.SetParent(newCardParent.transform);
         objectsInBox.Add(taskCard);
