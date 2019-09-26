@@ -15,7 +15,10 @@ public class Pickup : Interactable
     [SerializeField] private bool snapOnPickup;
     [SerializeField] protected bool shouldDespawnWhenOnGround;
     [SerializeField] protected float despawnTimeWhenOnGround;
+
+    [Header("Particles")]
     [SerializeField] private GameObject destoryParticle;
+    [SerializeField] private Vector3 particleOffset;
 
     protected CollisionManager collisionManager;
     protected Collider[] colliders;
@@ -81,7 +84,7 @@ public class Pickup : Interactable
 
     public void ExecuteParticle()
     {
-        if (destoryParticle != null) Instantiate(destoryParticle, transform.position, Quaternion.identity);
+        if (destoryParticle != null) Instantiate(destoryParticle, transform.position + particleOffset, Quaternion.identity);
     }
 
     private void OnDestroy()

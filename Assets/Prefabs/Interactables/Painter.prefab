@@ -192,6 +192,9 @@ MonoBehaviour:
   snapOnPickup: 1
   shouldDespawnWhenOnGround: 0
   despawnTimeWhenOnGround: 0
+  destoryParticle: {fileID: 8722348895353668975, guid: e870158c08df4a742b529e758503650f,
+    type: 3}
+  particleOffset: {x: 0, y: 0, z: 0}
   treatmentType: 0
 --- !u!1 &4396972548012373107
 GameObject:
