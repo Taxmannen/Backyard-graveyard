@@ -1793,7 +1793,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 0
-  MinDistance: 1
+  MinDistance: 4.99
   MaxDistance: 10
   Pan2D: 0
   rolloffMode: 0
@@ -1954,7 +1954,7 @@ MonoBehaviour:
   stopOnEnd: 0
   playOnAwakeWithDelay: 0
   useRandomVolume: 1
-  volMin: 0.978
+  volMin: 1
   volMax: 1
   useRandomPitch: 1
   pitchMin: 1

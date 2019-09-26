@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using Valve.VR.InteractionSystem;
 
 public enum CollisionTest { None, Drop, Collider }
 
@@ -19,6 +20,10 @@ public class Pickup : Interactable
     [Header("Particles")]
     [SerializeField] private GameObject destoryParticle;
     [SerializeField] private Vector3 particleOffset;
+
+    [Header("Sound FXs")]
+    [SerializeField] private PlaySound soundFxsPickUp;
+    [SerializeField] private PlaySound soundFxsPutDown;
 
     protected CollisionManager collisionManager;
     protected AudioManager audioManager;
@@ -49,12 +54,25 @@ public class Pickup : Interactable
             coroutine = null;
         }
         if (collisionManager && collisionManager.GetCollisionTest()) collisionManager.SetColliderState(colliders, true);
+
+        if (soundFxsPickUp != null)
+        {
+            soundFxsPickUp.Play();
+        }
+
         return this;
     }
 
     public virtual void Drop()
     {
         if (collisionManager && collisionManager.GetCollisionTest()) collisionManager.SetColliderState(colliders, false);
+
+        if(soundFxsPutDown != null)
+        {
+            soundFxsPutDown.Play();
+        }
+        
+
         ActiveHand = null;
     }
 
