@@ -40,7 +40,9 @@ public class TaskCard : MonoBehaviour
     private Image timerImage;
 
     [SerializeField]
-    private PlaySound soundFX;
+    private PlaySound taskCompleteSoundFx;
+    [SerializeField]
+    private PlaySound taskFailSoundFx;
     [SerializeField]
     private PlaySound spawnSoundFX;
     #endregion
@@ -180,7 +182,7 @@ public class TaskCard : MonoBehaviour
         //{
         //    taskCompletedImage.gameObject.SetActive(true);
         //}
-        soundFX.Play();
+        taskCompleteSoundFx.Play();
 
         taskCompletedImage.gameObject.SetActive(true);
         taskCompleted = true;
@@ -188,6 +190,7 @@ public class TaskCard : MonoBehaviour
 
 
     public void TaskFailed() {
+        taskFailSoundFx.Play();
         taskFailedImage.gameObject.SetActive(true);
         taskCompleted = false;
     }

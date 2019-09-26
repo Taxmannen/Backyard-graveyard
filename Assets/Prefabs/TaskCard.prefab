@@ -1574,6 +1574,7 @@ GameObject:
   - component: {fileID: 5272932470002792534}
   - component: {fileID: 43350223445701407}
   - component: {fileID: 2653410130215084960}
+  - component: {fileID: 2601643252438527624}
   m_Layer: 0
   m_Name: TaskCard
   m_TagString: Interactable
@@ -1721,8 +1722,9 @@ MonoBehaviour:
   taskCompletedImage: {fileID: 4109342618497726613}
   taskFailedImage: {fileID: 4810072535817708267}
   timerImage: {fileID: 4310205551068021343}
-  soundFX: {fileID: 43350223445701407}
-  spawnSoundFX: {fileID: 0}
+  taskCompleteSoundFx: {fileID: 43350223445701407}
+  taskFailSoundFx: {fileID: 2601643252438527624}
+  spawnSoundFX: {fileID: 2653410130215084960}
   taskCompleted: 0
   task: {fileID: 0}
   interactable: {fileID: 1787113084}
@@ -1924,6 +1926,38 @@ MonoBehaviour:
   useRandomPitch: 1
   pitchMin: 0.98
   pitchMax: 1.02
+  useRetriggerTime: 0
+  timeInitial: 0
+  timeMin: 0
+  timeMax: 0
+  useRandomSilence: 0
+  percentToNotPlay: 0
+  delayOffsetTime: 0
+--- !u!114 &2601643252438527624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6120881116044642905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a125d9df683e2a49b12babced273360, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveFile:
+  - {fileID: 8300000, guid: 4e67c61dabb672948838f17895dcfc64, type: 3}
+  stopOnPlay: 0
+  disableOnEnd: 0
+  looping: 0
+  stopOnEnd: 0
+  playOnAwakeWithDelay: 0
+  useRandomVolume: 1
+  volMin: 0.978
+  volMax: 1
+  useRandomPitch: 1
+  pitchMin: 1
+  pitchMax: 2
   useRetriggerTime: 0
   timeInitial: 0
   timeMin: 0
