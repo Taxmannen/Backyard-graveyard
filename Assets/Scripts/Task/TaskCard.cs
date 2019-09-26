@@ -183,7 +183,7 @@ public class TaskCard : MonoBehaviour
         //    taskCompletedImage.gameObject.SetActive(true);
         //}
         taskCompleteSoundFx.Play();
-
+        GetComponent<TaskCardPickup>().SetTaskCompletion(true);
         taskCompletedImage.gameObject.SetActive(true);
         taskCompleted = true;
     }

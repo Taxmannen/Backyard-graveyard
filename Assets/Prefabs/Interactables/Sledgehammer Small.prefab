@@ -87,5 +87,11 @@ PrefabInstance:
       propertyPath: ghostPrefab
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2187847073836266636, guid: a63e519607986f64a85cd34d43f78cf0,
+        type: 3}
+      propertyPath: destoryParticle
+      value: 
+      objectReference: {fileID: 8541198856713941188, guid: 372c0afde167bd244810cb1deb737331,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a63e519607986f64a85cd34d43f78cf0, type: 3}

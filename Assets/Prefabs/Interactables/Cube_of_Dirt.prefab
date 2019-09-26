@@ -114,7 +114,7 @@ MonoBehaviour:
   meshRenderers:
   - {fileID: 5467560262156124735}
   ghostPrefab: {fileID: 0}
-  soundFxsInteract: {fileID: 0}
+  soundFxsInteract: {fileID: 1345725039103891222}
   pickupType: 0
   snapOnPickup: 1
   shouldDespawnWhenOnGround: 1
