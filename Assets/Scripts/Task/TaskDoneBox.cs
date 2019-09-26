@@ -43,6 +43,11 @@ public class TaskDoneBox : MonoBehaviour
         Reset();
     }
 
+    private void Update()
+    {
+        if (PlayButton.isPlaying) UpdateCompletedTasksText();
+    }
+
     public void Reset()
     {
         levelComplete = false;
@@ -94,7 +99,11 @@ public class TaskDoneBox : MonoBehaviour
     {
         if (taskText != null)
         {
-            taskText.text = "Tasks Completed:\n" + numberOfTasksCompleted + "/" + totalTasksForLevel;
+            DateTime startTime = PrototypeManager.GetInstance().waveStartTime;
+            DateTime endTime = PrototypeManager.GetInstance().waveStartTime.AddSeconds(PrototypeManager.GetInstance().GetCurrentWave().timelimitForWave);
+            TimeSpan timeSpan = endTime - DateTime.Now;
+            string s = $"{timeSpan.Minutes:00}::{timeSpan.Seconds:00}";
+            taskText.text = $"Tasks Completed\n {numberOfTasksCompleted} / {totalTasksForLevel} \n<color=red>Time to complete wave\n{s}</color>";
         }
     }
 

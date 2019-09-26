@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 68e1a4ea9b8e401448a2710347c144d2, type: 2}
+  - {fileID: 2100000, guid: a561f11b1110edd4bbe82e9df8e37e59, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -114,6 +114,7 @@ MonoBehaviour:
   meshRenderers:
   - {fileID: 5467560262156124735}
   ghostPrefab: {fileID: 0}
+  soundFxsInteract: {fileID: 0}
   pickupType: 0
   snapOnPickup: 1
   shouldDespawnWhenOnGround: 1
@@ -121,7 +122,6 @@ MonoBehaviour:
   destoryParticle: {fileID: 8722348895353668975, guid: e870158c08df4a742b529e758503650f,
     type: 3}
   particleOffset: {x: 0, y: 0, z: 0}
-  soundFxsPickUp: {fileID: 1345725039103891222}
   soundFxsPutDown: {fileID: 1345725039103891222}
 --- !u!64 &980025547081850979
 MeshCollider:

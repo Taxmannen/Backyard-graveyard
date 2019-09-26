@@ -28,7 +28,7 @@ public class PrototypeManager : Singleton<PrototypeManager>
     //[SerializeField] private EnemySpawner graveRobberSpawner;
 
     private PlayButton playButton;
-    private DateTime waveStartTime;
+    public DateTime waveStartTime;
 
     public int NrOfTasks { get => GetCurrentWave().nrOfTasks; private set => GetCurrentWave().nrOfTasks = value; }
     public int CurrentLevel {
@@ -97,8 +97,9 @@ public class PrototypeManager : Singleton<PrototypeManager>
         if(CurrentLevel + 1 < levels.Length)
         {
             CurrentLevel++;
-            currentWave = -1;
-            AdvanceWave();
+            currentWave = 0;
+            //AdvanceWave();
+            StartCoroutine(AdvanceWaveOnDelay(5, $"Entering level {currentLevel + 1}/{levels.Length}\nGood luck!"));
             //SetWaveProperties();
         }
         else
@@ -111,6 +112,8 @@ public class PrototypeManager : Singleton<PrototypeManager>
 
     public void CompleteWave()
     {
+        try { TaskManager.GetInstance().ResetTasks(); } catch (System.Exception e) { Debug.LogError(e); }
+
         if (GetCurrentWave().PauseAfterCompletedWave)
         {
             //Pause
@@ -118,17 +121,20 @@ public class PrototypeManager : Singleton<PrototypeManager>
         }
         else StartCoroutine(AdvanceWaveOnDelay(5)); // Just continue... on a delay
     }
-    IEnumerator AdvanceWaveOnDelay(int delay)
+    IEnumerator AdvanceWaveOnDelay(int delay, string text = "")
     {
         TaskManager.GetInstance().HideTaskFrames();
         for (int i = delay; i > 0; i--)
         {
-            TaskManager.GetInstance().levelCompletedText.text = $"Completed wave {currentWave + 1}.. \nAdvancing in {i}";
+            if (text == "") TaskManager.GetInstance().levelCompletedText.text = $"Completed wave {currentWave + 1}/{GetCurrentLevel().gameWaves.Length}.. \nContinuing in {i}";
+            else TaskManager.GetInstance().levelCompletedText.text = text + $"\nContinuing in {i}";
+
             yield return new WaitForSecondsRealtime(1f);
         }
 
         TaskManager.GetInstance().levelCompletedText.text = "";
         //TaskManager.GetInstance().ShowTaskFrames();
+        currentWave = -1;
         AdvanceWave();
     }
     public void AdvanceWave()
