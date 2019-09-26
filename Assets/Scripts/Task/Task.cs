@@ -143,6 +143,7 @@ public class Task : MonoBehaviour
         if (quotientCompleted > 1f && !taskEnded)
         {
             CompleteTask(false);
+            TaskManager.GetInstance().CheckLevelCompletion();
         }
         else
         {

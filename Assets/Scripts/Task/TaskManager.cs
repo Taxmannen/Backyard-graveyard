@@ -23,11 +23,14 @@ public class TaskManager : Singleton<TaskManager>
 {
     [Header("Settings")]
     [SerializeField] private bool taskManagerSpawnsTasks = false;
+    [SerializeField] private float maxFailedTasksMultiplier;
+    [SerializeField] private float maxSimultaneousTasksMultiplier;
 
     [Header("References")]
     public List<Task> tasks;
     [SerializeField] private EndOfGameStrings[] endOfGameStrings = new EndOfGameStrings[6];
     [SerializeField] public Transform bodySpawnPosition;
+    [SerializeField] private GameObject[] taskFrames;
 
     //public GameObject levelCompletedImage;
     public Text levelCompletedText;
@@ -93,9 +96,10 @@ public class TaskManager : Singleton<TaskManager>
 
     public void Reset()
     {
-        completedTasks.Clear();
+        ResetTasks();
         //levelCompletedImage.SetActive(false);
         levelCompletedText.text = "";
+        ShowTaskFrames();
     }
 
     private Task GetAvailableTask()
@@ -123,11 +127,19 @@ public class TaskManager : Singleton<TaskManager>
 
     public bool CheckLevelCompletion()
     {
+        if (!PlayButton.isPlaying) return false;
+
         int nrOfCompletedTasks = GetNrOfSuccessfulTasks();
         int nrOfFailedTasks = GetNrOfFailedTasks();
 
         string s = "You completed " + nrOfCompletedTasks + " tasks and failed " + nrOfFailedTasks + " tasks";
         Debug.Log(s);
+
+        if(nrOfFailedTasks > MaxNumberOfTasks * maxFailedTasksMultiplier)
+        {
+            PrototypeManager.GetInstance().LoseGame();
+            return false;
+        }
 
         if (!CompletedAllTasks()) return false;
 
@@ -141,7 +153,14 @@ public class TaskManager : Singleton<TaskManager>
     public int TasksRemaniningToComplete() { return MaxNumberOfTasks - GetNrOfCompletedTasks(); }
     public int TasksRemaniningToSelect() { return MaxNumberOfTasks - (GetNrOfCompletedTasks() + TasksInProgress); }
     public bool CompletedAllTasks() { return TasksRemaniningToComplete() <= 0; }
-    public bool TasksAvailableToSelect() { return TasksRemaniningToSelect() > 0; }
+    //public bool TasksAvailableToSelect() { return TasksRemaniningToSelect() > 0; }
+    public bool TasksAvailableToSelect()
+    {
+        float tasksRemaningToSelect = GetNrOfCompletedTasks() + tasksInProgress;
+        bool b = tasksRemaningToSelect < (maxSimultaneousTasksMultiplier * MaxNumberOfTasks);
+        Debug.Log($"GetNrOfCompletedTasks() {GetNrOfCompletedTasks()} + tasksInProgress {tasksInProgress} = {GetNrOfCompletedTasks() + tasksInProgress} < maxSimultaneousTasksMultiplier {maxSimultaneousTasksMultiplier} * MaxNumberOfTasks {MaxNumberOfTasks} = {b}");
+        return b;
+    }
 
     private void CompleteLevel()
     {
@@ -159,17 +178,25 @@ public class TaskManager : Singleton<TaskManager>
 
     public void ResetTasks()
     {
+        
         for (int i = 0; i < tasks.Count; i++)
         {
-            Task task = tasks[i];
-            if (task == null)
-            {
-                tasks.Remove(task);
-            }
-            else
-            {
-                task.gameObject.SetActive(false);
-            }
+            if (tasks[i] == null) { continue; }
+            else { Destroy(tasks[i].gameObject); }
         }
+        tasks.Clear();
+        completedTasks.Clear();
+
+        TasksInProgress = 0;
+    }
+
+    public void HideTaskFrames()
+    {
+        foreach (GameObject gameObject in taskFrames) gameObject.SetActive(false);
+    }
+
+    public void ShowTaskFrames()
+    {
+        foreach (GameObject gameObject in taskFrames) gameObject.SetActive(true);
     }
 }

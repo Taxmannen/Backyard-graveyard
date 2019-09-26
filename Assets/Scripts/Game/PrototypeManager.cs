@@ -75,11 +75,18 @@ public class PrototypeManager : Singleton<PrototypeManager>
             GetCurrentWave().timeLimit == true &&
             (DateTime.Now - waveStartTime).TotalSeconds > GetCurrentWave().timelimitForWave)
         {
-            Debug.Log("Time limit over: you are Lose game?", this);
-            TaskManager.GetInstance().levelCompletedText.text = "No more time! You are lose!";
-            playButton.StopPlaying();
+            LoseGame();
             //Lose game here
         }
+    }
+
+    public void LoseGame()
+    {
+        Debug.Log("Time limit over: you are Lose game?", this);
+        TaskManager.GetInstance().levelCompletedText.text = "You ran out of time!\nPress the button to try again.";
+        playButton.StopPlaying();
+        TaskManager.GetInstance().ResetTasks();
+        TaskManager.GetInstance().HideTaskFrames();
     }
 
     public LevelSO GetCurrentLevel() { return levels[CurrentLevel]; }
@@ -113,13 +120,15 @@ public class PrototypeManager : Singleton<PrototypeManager>
     }
     IEnumerator AdvanceWaveOnDelay(int delay)
     {
-        for(int i = delay; i > 0; i--)
+        TaskManager.GetInstance().HideTaskFrames();
+        for (int i = delay; i > 0; i--)
         {
             TaskManager.GetInstance().levelCompletedText.text = $"Completed wave {currentWave + 1}.. \nAdvancing in {i}";
             yield return new WaitForSecondsRealtime(1f);
         }
 
         TaskManager.GetInstance().levelCompletedText.text = "";
+        TaskManager.GetInstance().ShowTaskFrames();
         AdvanceWave();
     }
     public void AdvanceWave()
