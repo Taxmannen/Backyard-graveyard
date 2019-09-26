@@ -19,6 +19,9 @@ public class Door : MonoBehaviour
     public Transform openTransform;
     public Transform closedTransform;
 
+    public AudioSource doorOpenSound;
+    public AudioSource doorClosedSound;
+
 
     private void Awake()
     {
@@ -123,6 +126,7 @@ public class Door : MonoBehaviour
             
             yield return new WaitForSeconds(0.01f);
         }
+        targetDoor.doorClosedSound.Play();
         targetDoor.fenceDoor.transform.rotation = closedTransform.rotation;
         fenceDoor.transform.rotation = closedTransform.rotation;
         yield return null;
