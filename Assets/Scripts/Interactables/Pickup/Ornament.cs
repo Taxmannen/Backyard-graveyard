@@ -15,6 +15,7 @@ public class Ornament : PlaceablePickup
     public void ReturnToPool(bool skipRemoveFromList = false)
     {
         ExecuteParticle();
+        AudioManager.GetInstance().PlaySoundAtPosition(despawnClip, transform);
         if (ActiveHand) ActiveHand.Drop();
         if (Placement) Placement.RemovePlacedObject();
         PoolManager.ReturnOrnament(this, skipRemoveFromList);

@@ -22,6 +22,7 @@ public class Pickup : Interactable
 
     protected CollisionManager collisionManager;
     protected Collider[] colliders;
+    protected AudioClip despawnClip;
     private Coroutine coroutine;
     #endregion
 
@@ -29,6 +30,7 @@ public class Pickup : Interactable
     {
         collisionManager = CollisionManager.GetInstance();
         colliders = GetComponentsInChildren<Collider>();
+        despawnClip = Resources.Load<AudioClip>("Audio/ObjectDespawnSound01");
     }
 
     public bool SnapOnPickup
@@ -92,6 +94,7 @@ public class Pickup : Interactable
         IsBeingDestroyed = true;
         if (ActiveHand != null) ActiveHand.Drop();
         ExecuteParticle();
+        AudioManager.GetInstance().PlaySoundAtPosition(despawnClip, transform);
     }
 
     private IEnumerator DestoryMe()
