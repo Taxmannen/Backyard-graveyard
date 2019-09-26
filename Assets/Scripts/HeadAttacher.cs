@@ -14,7 +14,7 @@ public class HeadAttacher : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         Head head = other.GetComponent<Head>();
-        if (!body.Head && other.CompareTag("Interactable") && head)
+        if (!body.Head && other.CompareTag("Interactable") && head && !head.ConnectedBodyPart)
         {
             if (ghostObject == null)
             {
