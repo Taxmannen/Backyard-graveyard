@@ -407,6 +407,7 @@ MonoBehaviour:
   - {fileID: 9166856853557678876}
   - {fileID: 758727389689706389}
   ghostPrefab: {fileID: 0}
+  soundFxsInteract: {fileID: 0}
   spawnPrefab: {fileID: 6120881116044642905, guid: c77440a0ee14ab54bb88ffe626a7705f,
     type: 3}
   position: {x: 0, y: 0, z: 0}
@@ -541,7 +542,7 @@ RectTransform:
   m_GameObject: {fileID: 5490724359237502709}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.01, y: 0.1, z: 0.01}
+  m_LocalScale: {x: 0.005, y: 0.05, z: 0.05}
   m_Children: []
   m_Father: {fileID: 1599073886162260907}
   m_RootOrder: 0
@@ -581,11 +582,11 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 28
+    m_FontSize: 48
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 2
-    m_MaxSize: 40
+    m_MaxSize: 48
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1

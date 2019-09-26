@@ -532,7 +532,7 @@ RectTransform:
   m_GameObject: {fileID: 3244483001895902332}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalScale: {x: 0.001, y: 0.001, z: 0.01}
   m_Children: []
   m_Father: {fileID: 9025792696958085002}
   m_RootOrder: 0
@@ -572,11 +572,11 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 12
+    m_FontSize: 120
     m_FontStyle: 1
     m_BestFit: 1
     m_MinSize: 1
-    m_MaxSize: 40
+    m_MaxSize: 120
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -713,6 +713,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1013728702983700852}
     m_Modifications:
+    - target: {fileID: 8109281210750297734, guid: 94c11bec0d9130d46a07a5dba3c20a4c,
+        type: 3}
+      propertyPath: m_Name
+      value: FireHolder
+      objectReference: {fileID: 0}
     - target: {fileID: 8109281210750297733, guid: 94c11bec0d9130d46a07a5dba3c20a4c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -782,11 +787,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8109281210750297734, guid: 94c11bec0d9130d46a07a5dba3c20a4c,
-        type: 3}
-      propertyPath: m_Name
-      value: FireHolder
       objectReference: {fileID: 0}
     - target: {fileID: 8109281210750297731, guid: 94c11bec0d9130d46a07a5dba3c20a4c,
         type: 3}
