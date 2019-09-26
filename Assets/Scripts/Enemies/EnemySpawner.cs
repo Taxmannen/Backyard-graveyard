@@ -20,6 +20,11 @@ public class EnemySpawner : Singleton<EnemySpawner>
     [Header("References")]
     [SerializeField] private EnemySpawnLocation[] enemySpawnLocations;
 
+    private void Start()
+    {
+        SetInstance(this);
+    }
+
     public void SetWavesProperties(float timeBetweenSpawns, float unrestModifier, int nrOfSpawnsPerWave) {
         this.timeBetweenSpawn = timeBetweenSpawns;
         this.unrestModifier = unrestModifier;
