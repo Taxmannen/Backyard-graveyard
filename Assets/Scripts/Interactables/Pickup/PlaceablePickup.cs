@@ -1,5 +1,4 @@
-﻿/* Script Made By Daniel */
-using UnityEngine;
+﻿using UnityEngine;
 
 /* Script Made By Daniel */
 public class PlaceablePickup : Pickup

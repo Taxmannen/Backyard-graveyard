@@ -8,7 +8,6 @@ public class PlayButton : PhysicsButton
     [SerializeField] private GameObject button;
     [SerializeField] private GameObject[] taskObjects;
     [SerializeField] private GameObject particle;
-    [SerializeField] private Transform spawnPosition;
 
     private static PlayButton instance;
 
@@ -31,12 +30,7 @@ public class PlayButton : PhysicsButton
         AudioManager.GetInstance().PlaySoundAtPosition(buttonClickSound, transform);
         PlayEvent?.Invoke();
         ClearRemaingObjects();
-        /*if (particle)
-        {
-            GameObject firework = Instantiate(particle);
-            firework.transform.SetParent(spawnPosition);
-            firework.transform.localPosition = new Vector3(0, 0, 0);
-        }*/
+        if (particle) Instantiate(particle);
         SetPlayState(true);
     }
 

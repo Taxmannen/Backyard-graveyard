@@ -195,12 +195,6 @@ public class TaskCard : MonoBehaviour
         taskCompleted = false;
     }
 
-    public void ScaleTaskCard(bool toSmall)
-    {
-        if (toSmall) transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-        else         transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
-    }
-
     public void Disable() {
         //foreach (Image image in GetComponentsInChildren<Image>()) {
         //    image?.gameObject?.SetActive(false);
