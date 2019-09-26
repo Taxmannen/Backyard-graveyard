@@ -7,7 +7,6 @@ public class PlayButton : PhysicsButton
     #region Variables
     [SerializeField] private GameObject button;
     [SerializeField] private GameObject[] taskObjects;
-    [SerializeField] private GameObject particle;
 
     private static PlayButton instance;
 
@@ -30,7 +29,6 @@ public class PlayButton : PhysicsButton
         AudioManager.GetInstance().PlaySoundAtPosition(buttonClickSound, transform);
         PlayEvent?.Invoke();
         ClearRemaingObjects();
-        if (particle) Instantiate(particle);
         SetPlayState(true);
     }
 

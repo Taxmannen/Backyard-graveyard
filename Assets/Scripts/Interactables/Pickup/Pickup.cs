@@ -30,6 +30,7 @@ public class Pickup : Interactable
     protected Collider[] colliders;
     protected AudioClip despawnClip;
     private Coroutine coroutine;
+    protected bool isQuitting = false;
     #endregion
 
     protected virtual void Awake()
@@ -108,6 +109,8 @@ public class Pickup : Interactable
 
     private void OnDestroy()
     {
+        Debug.Log("On Destroy");
+        if (isQuitting) return;
         IsBeingDestroyed = true;
         if (ActiveHand != null) ActiveHand.Drop();
         ExecuteParticle();
@@ -124,4 +127,10 @@ public class Pickup : Interactable
     }
 
     public PickupType GetPickupType() { return pickupType; }
+
+    private void OnApplicationQuit()
+    {
+        Debug.Log("On Application QUIT");
+        isQuitting = true;
+    }
 }
