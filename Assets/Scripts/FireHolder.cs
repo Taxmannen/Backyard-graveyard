@@ -13,6 +13,16 @@ public class FireHolder : MonoBehaviour
     private float burningTime = 60f;
     private float timeSinceLit;
 
+    private void OnEnable()
+    {
+        PlayButton.PlayEvent += ResetFires;
+    }
+
+    private void OnDisable()
+    {
+        PlayButton.PlayEvent -= ResetFires;
+    }
+
     private void Awake()
     {
         try
@@ -55,5 +65,13 @@ public class FireHolder : MonoBehaviour
         fireParticleSystem.SetActive(false);
         fireMaterial.material = unlitMaterial;
         yield return null;
+    }
+
+    private void ResetFires()
+    {
+        StopCoroutine(StartBurning());
+        isLit = false;
+        fireParticleSystem.SetActive(false);
+        fireMaterial.material = unlitMaterial;
     }
 }
