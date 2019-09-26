@@ -2,6 +2,8 @@
 using UnityEngine;
 
 /* Script Made By Daniel */
+
+[RequireComponent (typeof (AudioSource))]
 public class PhysicsButton : MonoBehaviour
 {
     #region Variables
@@ -11,7 +13,13 @@ public class PhysicsButton : MonoBehaviour
     private bool hasCollided = false;
     private Vector3 position;
     private Coroutine coroutine;
+    private AudioSource audioSource;
     #endregion
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     private void FixedUpdate()
     {
@@ -55,6 +63,7 @@ public class PhysicsButton : MonoBehaviour
 
     protected virtual void ButtonPush()
     {
+        audioSource.Play();
         StartCoroutine(ButtonTriggerDelay());
     }
 
