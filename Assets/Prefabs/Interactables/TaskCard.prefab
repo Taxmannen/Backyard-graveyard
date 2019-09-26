@@ -1742,7 +1742,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30a279cd93d31694a8a32f3a97caad09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshRenderers: []
+  meshRenderers:
+  - {fileID: 799405699631600179}
   ghostPrefab: {fileID: 3454132608744000219, guid: 1e7984a854b9668439a3b8390f431542,
     type: 3}
   pickupType: 5
