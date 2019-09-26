@@ -1575,6 +1575,7 @@ GameObject:
   - component: {fileID: 43350223445701407}
   - component: {fileID: 2653410130215084960}
   - component: {fileID: 2601643252438527624}
+  - component: {fileID: 6487847324631528227}
   m_Layer: 0
   m_Name: TaskCard
   m_TagString: Interactable
@@ -1752,6 +1753,8 @@ MonoBehaviour:
   despawnTimeWhenOnGround: 0
   destoryParticle: {fileID: 0}
   particleOffset: {x: 0, y: 0, z: 0}
+  soundFxsPickUp: {fileID: 6487847324631528227}
+  soundFxsPutDown: {fileID: 6487847324631528227}
   snappedPosition: {x: -0.015, y: 0, z: 0}
   snappedRotation: {x: 0, y: 0, z: 0}
   taskCompleteParticle: {fileID: 7608272407211143206}
@@ -1960,6 +1963,38 @@ MonoBehaviour:
   useRandomPitch: 1
   pitchMin: 1
   pitchMax: 2
+  useRetriggerTime: 0
+  timeInitial: 0
+  timeMin: 0
+  timeMax: 0
+  useRandomSilence: 0
+  percentToNotPlay: 0
+  delayOffsetTime: 0
+--- !u!114 &6487847324631528227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6120881116044642905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a125d9df683e2a49b12babced273360, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveFile:
+  - {fileID: 8300000, guid: 4e6f97062c1ef93468706a5e8fa38ae2, type: 3}
+  stopOnPlay: 0
+  disableOnEnd: 0
+  looping: 0
+  stopOnEnd: 0
+  playOnAwakeWithDelay: 0
+  useRandomVolume: 1
+  volMin: 1
+  volMax: 1
+  useRandomPitch: 1
+  pitchMin: 0.95
+  pitchMax: 1.05
   useRetriggerTime: 0
   timeInitial: 0
   timeMin: 0

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using Valve.VR.InteractionSystem;
 
 public enum BodyType { Red, Green, Blue, [System.ObsoleteAttribute] NumberOfTypes, [System.ObsoleteAttribute] None };
 
@@ -11,7 +12,7 @@ public class Body : BodyPart
     [SerializeField] private GameObject bodyPrefab;
     [SerializeField] private GameObject headPrefab;
     [SerializeField] private Transform headPosition;
-    [SerializeField] private AudioSource breakingBodySound;
+    [SerializeField] private PlaySound breakingBodySound;
 
     private Collider[] headColliders;
 
@@ -33,7 +34,6 @@ public class Body : BodyPart
     {
         base.Start();
         SnapOnPickup = false;
-        breakingBodySound = GetComponent<AudioSource>();
     }
 
     private void SetColor()

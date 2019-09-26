@@ -166,6 +166,7 @@ GameObject:
   - component: {fileID: 4283033218345101879}
   - component: {fileID: 2554706839288985499}
   - component: {fileID: 919225942869861090}
+  - component: {fileID: 686491813754118346}
   m_Layer: 8
   m_Name: Petter_FullBody
   m_TagString: Interactable
@@ -241,6 +242,8 @@ MonoBehaviour:
   destoryParticle: {fileID: 8722348895353668975, guid: e870158c08df4a742b529e758503650f,
     type: 3}
   particleOffset: {x: 0, y: 0, z: 0}
+  soundFxsPickUp: {fileID: 919225942869861090}
+  soundFxsPutDown: {fileID: 919225942869861090}
   treatmentType: 4
   paintParents:
   - {fileID: 2050584688491530359}
@@ -250,7 +253,7 @@ MonoBehaviour:
   headPrefab: {fileID: 5060645952705957100, guid: 1cf5b4ef40e7a9848a6306e41c117d46,
     type: 3}
   headPosition: {fileID: 6708845041535332153}
-  breakingBodySound: {fileID: 0}
+  breakingBodySound: {fileID: 686491813754118346}
 --- !u!114 &4283033218345101879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,7 +276,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 4e02aa3e5db4c5b4ea5851dcf53fb61c, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -371,7 +374,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a125d9df683e2a49b12babced273360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveFile: []
+  waveFile:
+  - {fileID: 8300000, guid: 4e6f97062c1ef93468706a5e8fa38ae2, type: 3}
   stopOnPlay: 0
   disableOnEnd: 0
   looping: 0
@@ -383,6 +387,38 @@ MonoBehaviour:
   useRandomPitch: 1
   pitchMin: 1
   pitchMax: 1
+  useRetriggerTime: 0
+  timeInitial: 0
+  timeMin: 0
+  timeMax: 0
+  useRandomSilence: 0
+  percentToNotPlay: 0
+  delayOffsetTime: 0
+--- !u!114 &686491813754118346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4410019569351948750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a125d9df683e2a49b12babced273360, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveFile:
+  - {fileID: 8300000, guid: 4e02aa3e5db4c5b4ea5851dcf53fb61c, type: 3}
+  stopOnPlay: 0
+  disableOnEnd: 0
+  looping: 0
+  stopOnEnd: 0
+  playOnAwakeWithDelay: 0
+  useRandomVolume: 1
+  volMin: 1
+  volMax: 1
+  useRandomPitch: 1
+  pitchMin: 0.95
+  pitchMax: 1.05
   useRetriggerTime: 0
   timeInitial: 0
   timeMin: 0
