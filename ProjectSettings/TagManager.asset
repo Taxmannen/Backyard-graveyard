@@ -20,6 +20,7 @@ TagManager:
   - Button Trigger
   - Button Limiter
   - VeryNiceBoxRespawn
+  - VibrationValues
   layers:
   - Default
   - TransparentFX

@@ -36,9 +36,12 @@ public class LoadingBar : MonoBehaviour
             else
             {
                 triggeringDoor.fenceDoor.transform.rotation = triggeringDoor.closedTransform.rotation;
+                triggeringDoor.doorOpenSound.Stop();
+                triggeringDoor.doorClosedSound.Play();
             }
             triggeringDoor = null;
         }
+
         StopAllCoroutines();
         isBeingLoaded = false;
         loadingBarFillAmount = 0f;
@@ -49,6 +52,7 @@ public class LoadingBar : MonoBehaviour
     {
         isBeingLoaded = true;
         this.triggeringDoor = triggeringDoor;
+        triggeringDoor.doorOpenSound.Play();
         while (loadingBarFillAmount <= 1f)
         {
             loadingBarFillAmount += 0.015f;
