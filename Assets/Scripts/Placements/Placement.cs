@@ -54,8 +54,8 @@ public class Placement : MonoBehaviour
             }
             else
             {
-                TaskCard taskCard = placedObject.GetComponent<TaskCard>();
-                if (taskCard) taskCard.ScaleTaskCard(false);
+                TaskCardPickup taskCard = placedObject.GetComponent<TaskCardPickup>();
+                if (taskCard) taskCard.ScaleTaskCard(true);
             }
         }
     }
@@ -75,8 +75,8 @@ public class Placement : MonoBehaviour
             }
             else
             {
-                TaskCard taskCard = placedObject.GetComponent<TaskCard>();
-                if (taskCard) taskCard.ScaleTaskCard(true);
+                TaskCardPickup taskCard = placedObject.GetComponent<TaskCardPickup>();
+                if (taskCard) taskCard.ScaleTaskCard(false);
             }
             placedObject = null;
         }
