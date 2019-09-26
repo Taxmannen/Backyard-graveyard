@@ -1573,6 +1573,7 @@ GameObject:
   - component: {fileID: 1086587705084711139}
   - component: {fileID: 5272932470002792534}
   - component: {fileID: 43350223445701407}
+  - component: {fileID: 2653410130215084960}
   m_Layer: 0
   m_Name: TaskCard
   m_TagString: Interactable
@@ -1721,6 +1722,7 @@ MonoBehaviour:
   taskFailedImage: {fileID: 4810072535817708267}
   timerImage: {fileID: 4310205551068021343}
   soundFX: {fileID: 43350223445701407}
+  spawnSoundFX: {fileID: 0}
   taskCompleted: 0
   task: {fileID: 0}
   interactable: {fileID: 1787113084}
@@ -1889,6 +1891,39 @@ MonoBehaviour:
   useRandomPitch: 1
   pitchMin: 1
   pitchMax: 2
+  useRetriggerTime: 0
+  timeInitial: 0
+  timeMin: 0
+  timeMax: 0
+  useRandomSilence: 0
+  percentToNotPlay: 0
+  delayOffsetTime: 0
+--- !u!114 &2653410130215084960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6120881116044642905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a125d9df683e2a49b12babced273360, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveFile:
+  - {fileID: 8300000, guid: 42102d81b1f53d644a1858d048e6efa6, type: 3}
+  - {fileID: 8300000, guid: ccd768e707b500e40969edb341a406c1, type: 3}
+  stopOnPlay: 0
+  disableOnEnd: 0
+  looping: 0
+  stopOnEnd: 0
+  playOnAwakeWithDelay: 1
+  useRandomVolume: 1
+  volMin: 1
+  volMax: 1
+  useRandomPitch: 1
+  pitchMin: 0.98
+  pitchMax: 1.02
   useRetriggerTime: 0
   timeInitial: 0
   timeMin: 0

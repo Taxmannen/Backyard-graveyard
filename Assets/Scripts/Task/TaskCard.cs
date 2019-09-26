@@ -41,6 +41,8 @@ public class TaskCard : MonoBehaviour
 
     [SerializeField]
     private PlaySound soundFX;
+    [SerializeField]
+    private PlaySound spawnSoundFX;
     #endregion
 
     private float timerWidth;
