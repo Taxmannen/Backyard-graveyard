@@ -78,6 +78,7 @@ MonoBehaviour:
   currentLevel: -1
   currentWave: -1
   clearInteractablesOnPickup: 0
+  gameWaveObjects: []
   taskDoneBox: {fileID: 0}
 --- !u!114 &3925921413017823899
 MonoBehaviour:
