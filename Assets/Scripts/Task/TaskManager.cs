@@ -137,7 +137,7 @@ public class TaskManager : Singleton<TaskManager>
 
         if(nrOfFailedTasks > MaxNumberOfTasks * maxFailedTasksMultiplier)
         {
-            PrototypeManager.GetInstance().LoseGame();
+            PrototypeManager.GetInstance().LoseGame("You failed yoo many tasks.");
             return false;
         }
 
@@ -158,7 +158,7 @@ public class TaskManager : Singleton<TaskManager>
     {
         float tasksRemaningToSelect = GetNrOfCompletedTasks() + tasksInProgress;
         bool b = tasksRemaningToSelect < (maxSimultaneousTasksMultiplier * MaxNumberOfTasks);
-        Debug.Log($"GetNrOfCompletedTasks() {GetNrOfCompletedTasks()} + tasksInProgress {tasksInProgress} = {GetNrOfCompletedTasks() + tasksInProgress} < maxSimultaneousTasksMultiplier {maxSimultaneousTasksMultiplier} * MaxNumberOfTasks {MaxNumberOfTasks} = {b}");
+        //Debug.Log($"GetNrOfCompletedTasks() {GetNrOfCompletedTasks()} + tasksInProgress {tasksInProgress} = {GetNrOfCompletedTasks() + tasksInProgress} < maxSimultaneousTasksMultiplier {maxSimultaneousTasksMultiplier} * MaxNumberOfTasks {MaxNumberOfTasks} = {b}");
         return b;
     }
 
@@ -192,11 +192,13 @@ public class TaskManager : Singleton<TaskManager>
 
     public void HideTaskFrames()
     {
+        Debug.Log("HideTaskFrames");
         foreach (GameObject gameObject in taskFrames) gameObject.SetActive(false);
     }
 
     public void ShowTaskFrames()
     {
+        Debug.Log("ShowTaskFrames");
         foreach (GameObject gameObject in taskFrames) gameObject.SetActive(true);
     }
 }

@@ -75,15 +75,15 @@ public class PrototypeManager : Singleton<PrototypeManager>
             GetCurrentWave().timeLimit == true &&
             (DateTime.Now - waveStartTime).TotalSeconds > GetCurrentWave().timelimitForWave)
         {
-            LoseGame();
+            LoseGame("You ran out of time");
             //Lose game here
         }
     }
 
-    public void LoseGame()
+    public void LoseGame(string reason)
     {
         Debug.Log("Time limit over: you are Lose game?", this);
-        TaskManager.GetInstance().levelCompletedText.text = "You ran out of time!\nPress the button to try again.";
+        TaskManager.GetInstance().levelCompletedText.text = reason + "\nPress the button to try again.";
         playButton.StopPlaying();
         TaskManager.GetInstance().ResetTasks();
         TaskManager.GetInstance().HideTaskFrames();
@@ -128,7 +128,7 @@ public class PrototypeManager : Singleton<PrototypeManager>
         }
 
         TaskManager.GetInstance().levelCompletedText.text = "";
-        TaskManager.GetInstance().ShowTaskFrames();
+        //TaskManager.GetInstance().ShowTaskFrames();
         AdvanceWave();
     }
     public void AdvanceWave()
