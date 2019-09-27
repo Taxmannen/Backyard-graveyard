@@ -133,6 +133,7 @@ public class PrototypeManager : Singleton<PrototypeManager>
     IEnumerator AdvanceWaveOnDelay(int delay, string text = "", bool resetWaveNumber = false)
     {
         TaskManager.GetInstance().HideTaskFrames();
+        taskDoneBox.ToggleText(false);
         for (int i = delay; i > 0; i--)
         {
             if (text == "") TaskManager.GetInstance().levelCompletedText.text = $"Completed wave {currentWave + 1}/{GetCurrentLevel().gameWaves.Length}.. \nContinuing in {i}";
@@ -141,6 +142,7 @@ public class PrototypeManager : Singleton<PrototypeManager>
             yield return new WaitForSecondsRealtime(1f);
         }
 
+        taskDoneBox.ToggleText(true);
         TaskManager.GetInstance().levelCompletedText.text = "";
         //TaskManager.GetInstance().ShowTaskFrames();
         if(resetWaveNumber) currentWave = -1;
