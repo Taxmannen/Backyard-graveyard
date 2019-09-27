@@ -28,6 +28,6 @@ public class TaskCardPickup : PlaceablePickup
 
     public void SetTaskCompletion(bool state)
     {
-        taskCompleteParticle.SetActive(state);
+        //taskCompleteParticle.SetActive(state);
     }
 }
