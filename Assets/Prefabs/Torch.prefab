@@ -9941,12 +9941,14 @@ MonoBehaviour:
   meshRenderers:
   - {fileID: 7069080766121498685}
   ghostPrefab: {fileID: 0}
+  soundFxsInteract: {fileID: 0}
   pickupType: 0
   snapOnPickup: 1
   shouldDespawnWhenOnGround: 1
   despawnTimeWhenOnGround: 1
   destoryParticle: {fileID: 0}
   particleOffset: {x: 0, y: 0, z: 0}
+  soundFxsPutDown: {fileID: 0}
 --- !u!114 &7341431876073968224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10074,8 +10076,8 @@ MonoBehaviour:
   stopOnEnd: 0
   playOnAwakeWithDelay: 1
   useRandomVolume: 1
-  volMin: 1
-  volMax: 1
+  volMin: 0.8
+  volMax: 0.8
   useRandomPitch: 1
   pitchMin: 1
   pitchMax: 1
