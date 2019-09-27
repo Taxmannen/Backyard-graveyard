@@ -29,8 +29,9 @@ public class Pickup : Interactable
     protected Collider[] colliders;
     protected AudioClip despawnClip;
     private Coroutine coroutine;
-    protected bool isQuitting = false;
+    private bool isQuitting;
     #endregion
+
 
     protected virtual void Awake()
     {
@@ -45,6 +46,15 @@ public class Pickup : Interactable
         get { return snapOnPickup; }
         set { snapOnPickup = value; }
     }
+
+    /*
+    protected bool IsQuitting {
+        get => isQuitting;
+        set {
+            if (isQuitting) return;
+            else isQuitting = false;
+        }
+    }*/
 
     public override Interactable Interact()
     {
@@ -113,13 +123,16 @@ public class Pickup : Interactable
     private void OnDestroy()
     {
         //Debug.Log("On Destroy");
-        if (isQuitting) return;
+        //if (isQuitting) throw new System.Exception("Test");
         IsBeingDestroyed = true;
         if (ActiveHand != null) ActiveHand.Drop();
-        ExecuteParticle();
-        if (audioManager)
+        if (!isQuitting)
         {
-            audioManager.PlaySoundAtPosition(despawnClip, transform);
+            ExecuteParticle();
+            if (audioManager)
+            {
+                audioManager.PlaySoundAtPosition(despawnClip, transform);
+            }
         }
     }
 
@@ -133,7 +146,7 @@ public class Pickup : Interactable
 
     private void OnApplicationQuit()
     {
-        //Debug.Log("On Application QUIT");
+        //Debug.Log("On Application Quit");
         isQuitting = true;
     }
 }
