@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 3995080371414404008}
   - component: {fileID: 1901952031481175639}
   - component: {fileID: 2052902263430549229}
+  - component: {fileID: 6595377423362169076}
   m_Layer: 0
   m_Name: Petter_Head_Basic
   m_TagString: Interactable
@@ -332,6 +333,19 @@ MonoBehaviour:
   useRandomSilence: 0
   percentToNotPlay: 0
   delayOffsetTime: 0
+--- !u!135 &6595377423362169076
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5060645952705957100}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5435521833392123113
 GameObject:
   m_ObjectHideFlags: 0
