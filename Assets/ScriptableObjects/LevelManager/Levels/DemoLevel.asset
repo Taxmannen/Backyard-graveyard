@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameWaves:
   - {fileID: 11400000, guid: f2d6d1d27fa8ba64c853dbb6e9e9310e, type: 2}
-  - {fileID: 11400000, guid: 03d8ec5899649e6419ed5ac002a0a1b7, type: 2}
+  - {fileID: 11400000, guid: 1338077a5b58c71439a84101237bbeac, type: 2}
