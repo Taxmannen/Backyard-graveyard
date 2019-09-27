@@ -84,10 +84,6 @@ public class Body : BodyPart
             collisionManager.SetColliderState(colliders, false);
         }
         ActiveHand = null;
-        /*
-        if (!Head.ActiveHand && collisionManager && collisionManager.GetCollisionTest()) collisionManager.SetColliderState(colliders, false);
-        if (Head != null && collisionManager && collisionManager.GetCollisionTest()) collisionManager.SetColliderState(headColliders, false);
-        */
     }
 
     public void AttachHead(Head head)
@@ -114,10 +110,6 @@ public class Body : BodyPart
             collisionManager.SetColliderState(colliders, true);
             collisionManager.SetColliderState(headColliders, true);
         }
-        /*
-        if (Head.ActiveHand && collisionManager && collisionManager.GetCollisionTest()) collisionManager.SetColliderState(colliders, true);
-        if (ActiveHand && collisionManager && collisionManager.GetCollisionTest()) collisionManager.SetColliderState(headColliders, true);
-        */
     }
 
     public void DetachHead()
