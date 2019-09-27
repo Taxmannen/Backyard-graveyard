@@ -304,8 +304,8 @@ MonoBehaviour:
   stopOnEnd: 0
   playOnAwakeWithDelay: 0
   useRandomVolume: 1
-  volMin: 0.5
-  volMax: 0.7
+  volMin: 0.1
+  volMax: 0.15
   useRandomPitch: 1
   pitchMin: 0.9
   pitchMax: 1.1
