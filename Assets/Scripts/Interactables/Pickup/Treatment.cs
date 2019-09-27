@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Valve.VR.InteractionSystem;
 
 public enum TreatmentType { MakeUp, WashUp, Mummify, [System.ObsoleteAttribute] NumberOfTypes, None }
 
@@ -7,6 +8,7 @@ public class Treatment : Pickup
 {
     [Header("Treathment")]
     [SerializeField] private TreatmentType treatmentType = TreatmentType.None;
+    [SerializeField] private PlaySound treatmentSound;
 
     public TreatmentType GetTreatmentType() { return treatmentType; }
 
@@ -16,7 +18,11 @@ public class Treatment : Pickup
         if (other.CompareTag("Interactable"))
         {
             BodyPart bodyPart = other.GetComponent<BodyPart>();
-            if (bodyPart && ActiveHand) bodyPart.SetTreatment(treatmentType);
+            if (bodyPart && ActiveHand) {
+                treatmentSound.Play();
+                bodyPart.SetTreatment(treatmentType);
+
+            }
         }
     }
 }

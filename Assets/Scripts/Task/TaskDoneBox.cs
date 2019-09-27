@@ -104,8 +104,11 @@ public class TaskDoneBox : MonoBehaviour
             DateTime startTime = PrototypeManager.GetInstance().waveStartTime;
             DateTime endTime = PrototypeManager.GetInstance().waveStartTime.AddSeconds(PrototypeManager.GetInstance().GetCurrentWave().timelimitForWave);
             TimeSpan timeSpan = endTime - DateTime.Now;
-            string s = $"{timeSpan.Minutes:00}::{timeSpan.Seconds:00}";
-            taskText.text = $"Tasks Completed\n {numberOfTasksCompleted} / {totalTasksForLevel} \n<color=red>Time to complete wave\n{s}</color>";
+            string s = $"{timeSpan.Minutes:00} : {timeSpan.Seconds:00}";
+            taskText.text = $"Tasks Completed\n {numberOfTasksCompleted} / {totalTasksForLevel} " +
+                (PrototypeManager.GetInstance().GetCurrentWave().timeLimit ? 
+                $"\n<color=red>Time to complete wave\n{s}</color>" :
+                $"\n<color=red>No time limit.</color>");
         }
     }
 

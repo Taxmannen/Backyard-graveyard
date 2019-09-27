@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 6858529416432039460}
   - component: {fileID: -798535846970864985}
   - component: {fileID: 4392607712228369569}
+  - component: {fileID: -2438806091946800814}
   m_Layer: 0
   m_Name: Bandage
   m_TagString: Interactable
@@ -315,6 +316,7 @@ MonoBehaviour:
   particleOffset: {x: 0, y: 0, z: 0}
   soundFxsPutDown: {fileID: 4392607712228369569}
   treatmentType: 2
+  treatmentSound: {fileID: -2438806091946800814}
 --- !u!82 &-798535846970864985
 AudioSource:
   m_ObjectHideFlags: 0
@@ -436,6 +438,39 @@ MonoBehaviour:
   useRandomPitch: 1
   pitchMin: 0.95
   pitchMax: 1.05
+  useRetriggerTime: 0
+  timeInitial: 0
+  timeMin: 0
+  timeMax: 0
+  useRandomSilence: 0
+  percentToNotPlay: 0
+  delayOffsetTime: 0
+--- !u!114 &-2438806091946800814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6858529416432039458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a125d9df683e2a49b12babced273360, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveFile:
+  - {fileID: 8300000, guid: efc13d248f02c8d4195e5421c5f42a3a, type: 3}
+  - {fileID: 8300000, guid: 4b0204031c9929945a10ba8afe9037a6, type: 3}
+  stopOnPlay: 0
+  disableOnEnd: 0
+  looping: 0
+  stopOnEnd: 0
+  playOnAwakeWithDelay: 0
+  useRandomVolume: 1
+  volMin: 0.7
+  volMax: 0.8
+  useRandomPitch: 1
+  pitchMin: 0.9
+  pitchMax: 1.1
   useRetriggerTime: 0
   timeInitial: 0
   timeMin: 0

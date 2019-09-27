@@ -41,6 +41,9 @@ public class NewObjectThief : MonoBehaviour
     private Vector3[] relativeStartPositions;
     private Quaternion[] relativeStartRotations;
 
+    [Header("Sound FXs")]
+    [SerializeField] private AudioSource ghostSound;
+
     private void SetRelativeStartPosAndRotations()
     {
         relativeStartPositions = new Vector3[relativeTransforms.Length];
@@ -124,6 +127,7 @@ public class NewObjectThief : MonoBehaviour
 
     private void OnEnable()
     {
+        ghostSound.Play();
 
         //Enable and set marionette at correct position again.
         ToggleMarionetteStrings(true);
@@ -350,6 +354,8 @@ public class NewObjectThief : MonoBehaviour
 
     public void Die()
     {
+        ghostSound.Stop();
+
         isDead = true;
         returnedState = new NewObjectThiefDeathState();
         StateSwap();
