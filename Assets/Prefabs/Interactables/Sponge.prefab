@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 7639219426745629896}
   - component: {fileID: -6769824205212033862}
   - component: {fileID: 4369420206502791761}
+  - component: {fileID: 7394611672233399275}
   m_Layer: 0
   m_Name: Sponge
   m_TagString: Interactable
@@ -151,6 +152,7 @@ MonoBehaviour:
   particleOffset: {x: 0, y: 0, z: 0}
   soundFxsPutDown: {fileID: 4369420206502791761}
   treatmentType: 1
+  treatmentSound: {fileID: 7394611672233399275}
 --- !u!82 &-6769824205212033862
 AudioSource:
   m_ObjectHideFlags: 0
@@ -272,6 +274,41 @@ MonoBehaviour:
   useRandomPitch: 1
   pitchMin: 0.95
   pitchMax: 1.05
+  useRetriggerTime: 0
+  timeInitial: 0
+  timeMin: 0
+  timeMax: 0
+  useRandomSilence: 0
+  percentToNotPlay: 0
+  delayOffsetTime: 0
+--- !u!114 &7394611672233399275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7639219426745629897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a125d9df683e2a49b12babced273360, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveFile:
+  - {fileID: 8300000, guid: c2f5bcb43b76a7c45a0eed362dee316a, type: 3}
+  - {fileID: 8300000, guid: ffb0cfb2e8d1f8f44bf890cb4d8c04ef, type: 3}
+  - {fileID: 8300000, guid: 99b02317695f63d4383f4c0e479a96cf, type: 3}
+  - {fileID: 8300000, guid: 3b22f86d389ab7943ab92287b718d6d2, type: 3}
+  stopOnPlay: 0
+  disableOnEnd: 0
+  looping: 0
+  stopOnEnd: 0
+  playOnAwakeWithDelay: 0
+  useRandomVolume: 1
+  volMin: 0.5
+  volMax: 0.7
+  useRandomPitch: 1
+  pitchMin: 0.9
+  pitchMax: 1.1
   useRetriggerTime: 0
   timeInitial: 0
   timeMin: 0
