@@ -78,12 +78,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshRenderers:
   - {fileID: 8266242970126217690}
+  ghostPrefab: {fileID: 0}
+  soundFxsInteract: {fileID: 0}
   spawnPrefab: {fileID: 1254065932924604926, guid: dc91eb5b6a2845040947f1afd534117e,
     type: 3}
-  position: {x: 0, y: 0, z: 0}
+  position: {x: 0, y: -0.1, z: 0}
   rotation: {x: -90, y: 0, z: 0}
   despawnWhenPutBack: 1
   onlyOneActive: 0
+  shouldPlaceInHand: 0
   spawnedObjects: []
 --- !u!114 &-617140608141143518
 MonoBehaviour:

@@ -112,7 +112,7 @@ public class Pickup : Interactable
 
     private void OnDestroy()
     {
-        Debug.Log("On Destroy");
+        //Debug.Log("On Destroy");
         if (isQuitting) return;
         IsBeingDestroyed = true;
         if (ActiveHand != null) ActiveHand.Drop();
@@ -133,7 +133,7 @@ public class Pickup : Interactable
 
     private void OnApplicationQuit()
     {
-        Debug.Log("On Application QUIT");
+        //Debug.Log("On Application QUIT");
         isQuitting = true;
     }
 }
