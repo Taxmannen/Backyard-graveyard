@@ -40,7 +40,7 @@ public class HeadAttacher : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Interactable") && other.GetComponent<Head>())
+        if (!body.IsInGrave && other.CompareTag("Interactable") && other.GetComponent<Head>())
         {
             if (ghostObject != null)
             {

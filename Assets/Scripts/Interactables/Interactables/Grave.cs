@@ -95,9 +95,9 @@ public class Grave : Interactable
         if (body == null && dirtLayerList.Count == 0)
         {
             body = newBody;
+            body.SetRigidbodyConstraints(true);
             body.transform.position = transform.position + (transform.rotation * bodyOffset);
             body.transform.rotation = Quaternion.Euler(transform.eulerAngles + new Vector3(90, 90, 90));
-            body.SetRigidbodyConstraints(true);
             body.transform.SetParent(objectsInGraveTransform);
             body.IsInGrave = true;
         }
