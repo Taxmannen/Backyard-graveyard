@@ -9,16 +9,17 @@ public class PhysicsButton : MonoBehaviour
     #region Variables
     [SerializeField] private float executeTime = 0;
 
-    private bool canTrigger = true;
+    private bool canTrigger = false;
     private bool hasCollided = false;
     private Vector3 position;
     private Coroutine coroutine;
     public AudioSource audioSource;
     #endregion
 
-    private void Awake()
+    protected virtual void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+        StartCoroutine(ButtonTriggerDelay());
     }
 
     private void FixedUpdate()
@@ -57,7 +58,10 @@ public class PhysicsButton : MonoBehaviour
 
     private IEnumerator ExecuteButtonPush()
     {
-        yield return new WaitForSecondsRealtime(executeTime);
+        if (this is GraveResetButton) audioSource.Play();
+        yield return new WaitForSecondsRealtime(executeTime/2);
+        if (this is GraveResetButton) audioSource.Play();
+        yield return new WaitForSecondsRealtime(executeTime/2);
         ButtonPush();
     }
 

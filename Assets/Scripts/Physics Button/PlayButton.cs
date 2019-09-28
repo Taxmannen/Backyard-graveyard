@@ -16,12 +16,13 @@ public class PlayButton : PhysicsButton
     private AudioClip buttonClickSound;
     #endregion
 
-    private void Awake()
+    protected override void Awake()
     {
         if (instance == null) instance = this;
         else Destroy(this);
         foreach (GameObject taskObject in taskObjects) taskObject.SetActive(false);
         buttonClickSound = Resources.Load<AudioClip>("Audio/ButtonClickSound03");
+        base.Awake();
     }
 
     protected override void ButtonPush()

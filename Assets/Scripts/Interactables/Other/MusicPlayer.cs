@@ -10,12 +10,14 @@ public class MusicPlayer : MonoBehaviour
     [SerializeField] private Sound[] tracks;
     [SerializeField] private AudioSource[] speakers;
 
+    private ParticleSystem[] particles;
     private int currentTrackNumber;
     private bool isPlaying;
     #endregion
 
     private void Awake()
     {
+        particles = GetComponentsInChildren<ParticleSystem>();
         PlayButton.PlayEvent += PlayOnStart;
         if (tracks.Length > 0)
         {
@@ -38,10 +40,12 @@ public class MusicPlayer : MonoBehaviour
             if (!isPlaying)
             {
                 foreach (AudioSource audioSource in speakers) audioSource.Play();
+                foreach (ParticleSystem particle in particles) particle.Play();
             }
             else
             {
                 foreach (AudioSource audioSource in speakers) audioSource.Pause();
+                foreach (ParticleSystem particle in particles) particle.Stop();
             }
             isPlaying = speakers[0].isPlaying;
         }
@@ -67,6 +71,7 @@ public class MusicPlayer : MonoBehaviour
                 audioSource.volume = tracks[currentTrackNumber].GetVolume();
             }
             foreach (AudioSource audioSource in speakers) audioSource.Play();
+            foreach (ParticleSystem particle in particles) particle.Play();
         }
     }
 

@@ -11,14 +11,9 @@ public class MusicButton : PhysicsButton
     private bool canPush;
     #endregion
 
-    private void Start()
-    {
-        Invoke("EnablePlayer", 1);
-    }
-
     protected override void ButtonPush()
     {
-        if (musicPlayer && canPush)
+        if (musicPlayer)
         {
             switch (buttonAction)
             {
@@ -37,10 +32,5 @@ public class MusicButton : PhysicsButton
             }
         }
         base.ButtonPush();
-    }
-
-    private void EnablePlayer()
-    {
-        canPush = true;
     }
 }
