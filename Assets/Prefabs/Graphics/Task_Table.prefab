@@ -1213,10 +1213,10 @@ MonoBehaviour:
   bodySpawnPosition: {fileID: 0}
   taskFrames:
   - {fileID: 8779373616224458816}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 9041019947016295574}
+  - {fileID: 9041019948468025942}
+  - {fileID: 9041019948806004357}
+  - {fileID: 9041019948362043417}
   levelCompletedText: {fileID: 2115221864}
   completedTasks: 
   includeTreatments: 1
@@ -1453,11 +1453,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Task Card Placement (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 337416428418261664, guid: 1473699fb9e712d43948af68d011f547,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 337416428418261692, guid: 1473699fb9e712d43948af68d011f547,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1513,21 +1508,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9041019947102921458, guid: 1473699fb9e712d43948af68d011f547,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5414310151397871841, guid: 1473699fb9e712d43948af68d011f547,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1473699fb9e712d43948af68d011f547, type: 3}
 --- !u!4 &337416428232283352 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 337416428418261692, guid: 1473699fb9e712d43948af68d011f547,
+    type: 3}
+  m_PrefabInstance: {fileID: 527103588}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &9041019947016295574 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9041019947102921458, guid: 1473699fb9e712d43948af68d011f547,
     type: 3}
   m_PrefabInstance: {fileID: 527103588}
   m_PrefabAsset: {fileID: 0}
@@ -1542,11 +1533,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Task Card Placement (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 337416428418261664, guid: 1473699fb9e712d43948af68d011f547,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 337416428418261692, guid: 1473699fb9e712d43948af68d011f547,
         type: 3}
@@ -1603,43 +1589,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9041019947102921458, guid: 1473699fb9e712d43948af68d011f547,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5414310151397871841, guid: 1473699fb9e712d43948af68d011f547,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5414310151397871841, guid: 1473699fb9e712d43948af68d011f547,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5414310151397871841, guid: 1473699fb9e712d43948af68d011f547,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 5414310151397871841, guid: 1473699fb9e712d43948af68d011f547,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5414310151397871841, guid: 1473699fb9e712d43948af68d011f547,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 5414310151397871841, guid: 1473699fb9e712d43948af68d011f547,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1473699fb9e712d43948af68d011f547, type: 3}
+--- !u!1 &9041019948362043417 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9041019947102921458, guid: 1473699fb9e712d43948af68d011f547,
+    type: 3}
+  m_PrefabInstance: {fileID: 1327330027}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &337416429577769047 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 337416428418261692, guid: 1473699fb9e712d43948af68d011f547,
@@ -1657,11 +1614,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Task Card Placement (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 337416428418261664, guid: 1473699fb9e712d43948af68d011f547,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 337416428418261692, guid: 1473699fb9e712d43948af68d011f547,
         type: 3}
@@ -1718,18 +1670,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9041019947102921458, guid: 1473699fb9e712d43948af68d011f547,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5414310151397871841, guid: 1473699fb9e712d43948af68d011f547,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1473699fb9e712d43948af68d011f547, type: 3}
+--- !u!1 &9041019948806004357 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9041019947102921458, guid: 1473699fb9e712d43948af68d011f547,
+    type: 3}
+  m_PrefabInstance: {fileID: 1703361655}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &337416428880092875 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 337416428418261692, guid: 1473699fb9e712d43948af68d011f547,
@@ -1747,11 +1695,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Task Card Placement (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 337416428418261664, guid: 1473699fb9e712d43948af68d011f547,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 337416428418261692, guid: 1473699fb9e712d43948af68d011f547,
         type: 3}
@@ -1808,18 +1751,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9041019947102921458, guid: 1473699fb9e712d43948af68d011f547,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5414310151397871841, guid: 1473699fb9e712d43948af68d011f547,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1473699fb9e712d43948af68d011f547, type: 3}
+--- !u!1 &9041019948468025942 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9041019947102921458, guid: 1473699fb9e712d43948af68d011f547,
+    type: 3}
+  m_PrefabInstance: {fileID: 1910659236}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &337416428676332056 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 337416428418261692, guid: 1473699fb9e712d43948af68d011f547,

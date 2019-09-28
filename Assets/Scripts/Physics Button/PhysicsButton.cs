@@ -19,7 +19,7 @@ public class PhysicsButton : MonoBehaviour
     protected virtual void Awake()
     {
         audioSource = GetComponent<AudioSource>();
-        StartCoroutine(ButtonTriggerDelay());
+        StartCoroutine(ButtonTriggerDelay(2));
     }
 
     private void FixedUpdate()
@@ -68,13 +68,13 @@ public class PhysicsButton : MonoBehaviour
     protected virtual void ButtonPush()
     {
         audioSource.Play();
-        StartCoroutine(ButtonTriggerDelay());
+        StartCoroutine(ButtonTriggerDelay(0.4f));
     }
 
-    private IEnumerator ButtonTriggerDelay()
+    private IEnumerator ButtonTriggerDelay(float delayTime)
     {
         canTrigger = false;
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSecondsRealtime(delayTime);
         canTrigger = true;
     }
 }

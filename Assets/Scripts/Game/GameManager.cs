@@ -12,6 +12,7 @@ public class GameManager : Singleton<GameManager>
     private void Awake()
     {
         SetInstance(this);
+        if (!Application.isEditor) Cursor.visible = false;
     }
 
     private void Update()
