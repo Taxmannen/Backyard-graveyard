@@ -1155,7 +1155,7 @@ GameObject:
   - component: {fileID: 6669334811284617634}
   - component: {fileID: 6669334811284617635}
   m_Layer: 0
-  m_Name: Music Player Real
+  m_Name: Music Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1259,9 +1259,10 @@ GameObject:
   - component: {fileID: 8370006271436871567}
   - component: {fileID: 718048527896960926}
   - component: {fileID: 1220081769364565293}
-  m_Layer: 0
+  - component: {fileID: 302557025}
+  m_Layer: 10
   m_Name: Radio
-  m_TagString: Untagged
+  m_TagString: Static
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1326,6 +1327,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &302557025
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6794142732429965282}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4762477281045989054, guid: cb8874b5fc5d28f43959a20485260b98, type: 3}
 --- !u!1 &7171681896423178999
 GameObject:
   m_ObjectHideFlags: 0

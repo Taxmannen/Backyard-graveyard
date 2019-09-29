@@ -9,7 +9,6 @@ public class Grave : Interactable
     [SerializeField] private int maxAmountOfDirtLayers;
 
     [SerializeField] private GameObject dirt;
-    [SerializeField] private GameObject dirtLayer;
     [SerializeField] private Transform dirtLayerParent;
     [SerializeField] private Transform objectsInGraveTransform;
 
@@ -22,14 +21,17 @@ public class Grave : Interactable
     [Header("Debug")]
     [SerializeField] private List<Pickup> objectsInGrave = new List<Pickup>();
 
+    private DirtLayerPool dirtLayerPool;
     private List<GameObject> dirtLayerList = new List<GameObject>();
     private Vector3 bodyOffset = new Vector3(0, 0.1f, -0.125f);
     #endregion
 
-    #region Awake
-    private void Awake()
+    #region Start
+    protected override void Start()
     {
+        base.Start();
         PlayButton.PlayEvent += ClearBodyAndAddDirt;
+        dirtLayerPool = GetComponent<DirtLayerPool>();
         for (int i = 0; i < maxAmountOfDirtLayers; i++) AddDirt();
     }
     #endregion
@@ -122,7 +124,7 @@ public class Grave : Interactable
         if (dirtLayerList.Count < maxAmountOfDirtLayers)
         {
             float scale = 0.5f / (float)maxAmountOfDirtLayers;
-            GameObject current = Instantiate(dirtLayer, dirtLayerParent);
+            GameObject current = dirtLayerPool.Get(Vector3.zero, Quaternion.identity, dirtLayerParent);
             current.transform.localScale = new Vector3(current.transform.localScale.x, scale, current.transform.localScale.z);
             current.transform.localPosition = new Vector3(0, (scale / 2) + (scale * dirtLayerList.Count), 0);
             if (dirt) objectsInGrave.Remove(dirt);
@@ -135,7 +137,7 @@ public class Grave : Interactable
     {
         GameObject currentLayer = dirtLayerList[dirtLayerList.Count - 1];
         dirtLayerList.Remove(currentLayer);
-        Destroy(currentLayer);
+        dirtLayerPool.ReturnToPool(currentLayer);
     }
     #endregion
 

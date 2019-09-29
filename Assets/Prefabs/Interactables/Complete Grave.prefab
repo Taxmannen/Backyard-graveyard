@@ -357,6 +357,7 @@ GameObject:
   - component: {fileID: 648593439061266971}
   - component: {fileID: 7319372813089733626}
   - component: {fileID: 2085222703584786049}
+  - component: {fileID: 1478724048}
   m_Layer: 29
   m_Name: Grave
   m_TagString: Interactable
@@ -469,8 +470,6 @@ MonoBehaviour:
   soundFxsInteract: {fileID: 2085222703584786049}
   maxAmountOfDirtLayers: 3
   dirt: {fileID: 5467560262156124729, guid: 153773ae47cfb2540ad0f59fcd5ecedf, type: 3}
-  dirtLayer: {fileID: 1930263825163367472, guid: e690d6f52159b6e4a88f67c2aee9ac6b,
-    type: 3}
   dirtLayerParent: {fileID: 648593438914450511}
   objectsInGraveTransform: {fileID: 3073690972695012735}
   ornamentPlacements:
@@ -607,6 +606,25 @@ MonoBehaviour:
   useRandomSilence: 0
   percentToNotPlay: 0
   delayOffsetTime: 0
+--- !u!114 &1478724048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 648593439061266969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e98eb8f2facfe0a46b84be5ecafca2cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 1930263825163367472, guid: e690d6f52159b6e4a88f67c2aee9ac6b, type: 3}
+  amount: 3
+  scalable: 0
+  reusable: 0
+  spawner: {fileID: 0}
+  usedObjects: []
+  amountLeftInPool: 0
 --- !u!1 &648593439493589527
 GameObject:
   m_ObjectHideFlags: 0

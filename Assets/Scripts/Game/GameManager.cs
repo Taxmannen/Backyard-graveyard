@@ -15,12 +15,6 @@ public class GameManager : Singleton<GameManager>
         if (!Application.isEditor) Cursor.visible = false;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P)) Pause(!paused);
-        if (Input.GetKeyDown(KeyCode.R)) SceneManager.LoadScene("Main");
-    }
-
     private void Pause(bool state)
     {
         paused = state;

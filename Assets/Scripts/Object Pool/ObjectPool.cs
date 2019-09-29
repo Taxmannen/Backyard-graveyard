@@ -65,6 +65,7 @@ public abstract class ObjectPool : MonoBehaviour
             newObject.transform.SetParent(transform);
             newObject.SetActive(false);
             objects.Enqueue(newObject);
+            if (this is DirtLayerPool) CollisionManager.GetInstance().AddToColliderList(newObject.GetComponent<Collider>());
         }
         amountLeftInPool = objects.Count;
     }

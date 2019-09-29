@@ -37,10 +37,13 @@ public class Player : Singleton<Player>
     }
 
     // Made By Simon
-    private void Update() {
-        if (Input.GetKeyUp(restartKey)) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        if (Input.GetKeyUp(reenableObjectsKey)) DisableAllObjectsOfType.EnableAllDisabledObjects<Interactable>();
-        if (Input.GetKeyUp(disableObjectsKey)) DisableAllObjectsOfType.DisableAllObjects<Interactable>();
+    private void Update()
+    {
+        #if UNITY_EDITOR
+            if (Input.GetKeyUp(restartKey)) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            if (Input.GetKeyUp(reenableObjectsKey)) DisableAllObjectsOfType.EnableAllDisabledObjects<Interactable>();
+            if (Input.GetKeyUp(disableObjectsKey)) DisableAllObjectsOfType.DisableAllObjects<Interactable>();
+        #endif
     }
 
     public Playmode GetPlayMode() { return playmode; }
