@@ -72,6 +72,7 @@ public class MusicPlayer : MonoBehaviour
             }
             foreach (AudioSource audioSource in speakers) audioSource.Play();
             foreach (ParticleSystem particle in particles) particle.Play();
+            isPlaying = true;
         }
     }
 
@@ -82,11 +83,7 @@ public class MusicPlayer : MonoBehaviour
 
     private void NextTrack()
     {
-        if (speakers.Length > 0 && tracks.Length > 0)
-        {
-            ChangeSong(ChangeTrack.NextTrack);
-            isPlaying = true;
-        }
+        if (speakers.Length > 0 && tracks.Length > 0) ChangeSong(ChangeTrack.NextTrack);
     }
 
     [Serializable]

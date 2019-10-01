@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 182180101}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -0.0015, z: 0.0704}
+  m_LocalPosition: {x: 0, y: 0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4410019569351948751}
@@ -44,7 +44,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.1, z: 0.1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0, z: -0.1}
 --- !u!114 &182180104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,7 +84,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3039501145315900004}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0}
   m_LocalScale: {x: 0.46867892, y: 0.49325562, z: 0.48879093}
   m_Children:
   - {fileID: 6708845041535332153}
@@ -219,7 +219,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.22, y: 0.4, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0.01, y: 0, z: 0}
 --- !u!114 &4410019569351948748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -468,26 +468,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wash-Up Particle
       objectReference: {fileID: 0}
-    - target: {fileID: 947148710501114292, guid: 3cee3518424653b499563a02872efc29,
-        type: 3}
-      propertyPath: ShapeModule.m_Scale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 947148710501114292, guid: 3cee3518424653b499563a02872efc29,
-        type: 3}
-      propertyPath: ShapeModule.m_Scale.x
-      value: 1.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 947148710501114292, guid: 3cee3518424653b499563a02872efc29,
-        type: 3}
-      propertyPath: InitialModule.startLifetime.minScalar
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 947148710501114292, guid: 3cee3518424653b499563a02872efc29,
-        type: 3}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 1.6
-      objectReference: {fileID: 0}
     - target: {fileID: 9130568259377117385, guid: 3cee3518424653b499563a02872efc29,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -557,6 +537,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 947148710501114292, guid: 3cee3518424653b499563a02872efc29,
+        type: 3}
+      propertyPath: ShapeModule.m_Scale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 947148710501114292, guid: 3cee3518424653b499563a02872efc29,
+        type: 3}
+      propertyPath: ShapeModule.m_Scale.x
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 947148710501114292, guid: 3cee3518424653b499563a02872efc29,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.minScalar
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 947148710501114292, guid: 3cee3518424653b499563a02872efc29,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 1.6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cee3518424653b499563a02872efc29, type: 3}
