@@ -115,7 +115,9 @@ public class BodyPart : Pickup
 
     private void MaterialSetup()
     {
-        Material mummyMaterial = Resources.Load<Material>("Materials/Mummy Material");
+        Material mummyMaterial;
+        if (this is Body) mummyMaterial = Resources.Load<Material>("Materials/Mummy Body Material");
+        else mummyMaterial = Resources.Load<Material>("Materials/Mummy Head Material");
         foreach (MeshRenderer renderer in meshRenderers)
         {
             Material[] mummy = new Material[renderer.materials.Length];

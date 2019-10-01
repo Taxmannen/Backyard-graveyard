@@ -89,7 +89,7 @@ public class Body : BodyPart
     public void AttachHead(Head head)
     {
         head.transform.position = headPosition.position;
-        head.transform.rotation = transform.rotation;
+        head.transform.rotation = transform.rotation * Quaternion.Euler(0, 270, 0);
 
         if (fixedJoint != null)
         {

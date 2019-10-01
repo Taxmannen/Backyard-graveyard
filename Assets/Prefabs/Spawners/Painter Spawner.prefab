@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 5074841555523207440}
   - component: {fileID: 5074841555523207441}
   - component: {fileID: 5074841555523207446}
+  - component: {fileID: 9073267751272369701}
   m_Layer: 0
-  m_Name: PainterSpawner
+  m_Name: Painter Spawner
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,13 +78,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshRenderers:
   - {fileID: 5615649121716039089}
+  ghostPrefab: {fileID: 0}
+  soundFxsInteract: {fileID: 0}
   spawnPrefab: {fileID: 4396972547315592819, guid: 7661f18554889fa499201b9a63dc86c2,
     type: 3}
-  objectPool: {fileID: 0}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -90, y: 0, z: 0}
   despawnWhenPutBack: 1
   onlyOneActive: 1
+  shouldPlaceInHand: 0
+  spawnedObjects: []
+--- !u!114 &9073267751272369701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5074841555523207447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 416e675364dd3bf4088a6beecdb21511, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 4396972547315592819, guid: 7661f18554889fa499201b9a63dc86c2, type: 3}
+  amount: 1
+  scalable: 0
+  reusable: 0
+  spawner: {fileID: 5074841555523207446}
+  usedObjects: []
+  amountLeftInPool: 0
 --- !u!1 &6184037206824081773
 GameObject:
   m_ObjectHideFlags: 0
